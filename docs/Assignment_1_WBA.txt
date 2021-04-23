@@ -1,0 +1,19 @@
+WBA
+
+UML Class and Interaction Diagrams:
+- Dinosaurs and Behaviors: Er Tian Ru
+  - Due: 16/4
+  - Review: Jeremy Yoon (Due 18/4)
+
+- Items, Actions and Grounds: Jeremy Yoon
+  - Due: 16/4
+  - Review: Er Tian Ru (Due 18/4)
+
+Design Rationale:
+- Dirt, Bush, Tree, Frut, PickFruitAction,   VendingMachine, BuyAction, Egg, MealKit and LaserGun: Jeremy Yoon
+  - Due: 22/4
+  - Review: Er Tian Ru (Due 23/4)
+
+- Dinosaur, BabyDinosaur, Stegosaur, Brachiosaur,   Allosaur, Behaviors, AttackBehavior, HungryBehavior and HornyBehavior: Er Tian Ru
+  - Due: 22/4
+  - Review: Jeremy Yoon (Due 23/4)
