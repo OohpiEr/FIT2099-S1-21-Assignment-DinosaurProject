@@ -10,7 +10,7 @@ UML Class and Interaction Diagrams:
   - Review: Er Tian Ru (Due 18/4)
 
 Design Rationale:
-- Dirt, Bush, Tree, Frut, PickFruitAction,   VendingMachine, BuyAction, Egg, MealKit and LaserGun: Jeremy Yoon
+- Dirt, Bush, Tree, Fruit, PickFruitAction,   VendingMachine, BuyAction, Egg, MealKit and LaserGun: Jeremy Yoon
   - Due: 22/4
   - Review: Er Tian Ru (Due 23/4)
 
