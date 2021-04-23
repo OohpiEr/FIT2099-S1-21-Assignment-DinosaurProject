@@ -15,9 +15,30 @@ public class HornyBehaviour implements Behaviour {
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
+        Action returnAction = null;
         Actor target = getNearestTarget(actor, map);
-        followBehaviour = new FollowBehaviour(target);
-        return followBehaviour.getAction(actor,map);
+
+        if (isTargetInExit(target, actor, map)) {
+            //TODO return BreedAction @see BreedAction
+        } else {
+            followBehaviour = new FollowBehaviour(target);
+            returnAction = followBehaviour.getAction(actor, map);
+        }
+
+        return returnAction;
+    }
+
+
+    public boolean isTargetInExit(Actor target, Actor actor, GameMap map) {
+        Location here = map.locationOf(actor);
+
+        for (Exit exit : here.getExits()) {
+            Location destination = exit.getDestination();
+            if (destination.getActor() == target) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Actor getNearestTarget(Actor actor, GameMap map) {
@@ -34,9 +55,9 @@ public class HornyBehaviour implements Behaviour {
                     boolean isActorFemale = ((Dinosaur) actor).isFemale();
                     boolean isPossibleTargetFemale = ((Dinosaur) possibleTarget).isFemale();
 
-                    if((isActorFemale ^ isPossibleTargetFemale) ) {
+                    if ((isActorFemale ^ isPossibleTargetFemale)) {
                         //isActorFemale XOR isPossibleTargetFemale
-                        if((isActorFemale && !((Dinosaur)actor).isPregnant()) || (isPossibleTargetFemale && !((Dinosaur)possibleTarget).isPregnant())) {
+                        if ((isActorFemale && !((Dinosaur) actor).isPregnant()) || (isPossibleTargetFemale && !((Dinosaur) possibleTarget).isPregnant())) {
                             locationsWithTargets.add(map.locationOf(possibleTarget));
                         }
                     }
