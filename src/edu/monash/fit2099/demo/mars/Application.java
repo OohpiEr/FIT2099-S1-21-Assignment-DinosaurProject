@@ -1,7 +1,7 @@
 package edu.monash.fit2099.demo.mars;
 
 import edu.monash.fit2099.engine.*;
-import game.FollowBehaviour;
+import game.behaviours.FollowBehaviour;
 
 import java.util.Arrays;
 import java.util.List;

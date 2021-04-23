@@ -1,6 +1,6 @@
 package edu.monash.fit2099.demo.mars;
 
-import game.Behaviour;
+import game.behaviours.Behaviour;
 import edu.monash.fit2099.engine.*;
 
 public class SpitBehaviour extends Action implements Behaviour{
