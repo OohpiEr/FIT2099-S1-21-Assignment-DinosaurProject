@@ -5,7 +5,7 @@ UML Class and Interaction Diagrams:
   - Due: 16/4
   - Review: Jeremy Yoon (Due 18/4)
 
-- Items, Actions and Grounds: Jeremy Yoon
+- Items, Actions, Grounds and HornyBehavior: Jeremy Yoon
   - Due: 16/4
   - Review: Er Tian Ru (Due 18/4)
 
