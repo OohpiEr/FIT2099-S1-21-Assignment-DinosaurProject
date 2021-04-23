@@ -7,7 +7,6 @@ import java.util.List;
 
 public class HungryBehaviour implements Behaviour {
     private Class<?> foodClass;
-//    private int hungryHitPoints;
 
     public HungryBehaviour(Class<?> foodClass) {
         this.foodClass = foodClass;
@@ -58,7 +57,7 @@ public class HungryBehaviour implements Behaviour {
         }
 
         //compare distance of each location to actor
-        int distance = 0;
+        int distance = Integer.MAX_VALUE;
         Location closestFoodLocation = null;
         for (Location location : locationsWithFood) {
             int newDistance = getDistance(location, here);
@@ -73,7 +72,7 @@ public class HungryBehaviour implements Behaviour {
 
     /**
      * Compute the Manhattan distance between two locations.
-     *
+     * todo: move this to a util class
      * @param a the first location
      * @param b the first location
      * @return the number of steps between a and b if you only move in the four cardinal directions.

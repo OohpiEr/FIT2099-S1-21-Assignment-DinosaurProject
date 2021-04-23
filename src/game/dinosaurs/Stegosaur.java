@@ -21,10 +21,11 @@ public class Stegosaur extends Dinosaur {
      *
      * @param name the name of the Actor
      */
-    public Stegosaur(String name) {
+    public Stegosaur(String name, boolean isFemale) {
         //TODO change char + initialise proper HP
         //TODO why is the maxhitpoint the initial hp
-        super(name, 'S', 100);
+        //TODO setter for hp?
+        super(name, 'S', 100, isFemale);
         actionFactories.add(new HungryBehaviour(Fruit.class));
         actionFactories.add(new WanderBehaviour());
         //TODO horny behaviour
@@ -38,7 +39,8 @@ public class Stegosaur extends Dinosaur {
     /**
      * Figure out what to do next.
      * <p>
-     * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it
+     * FIXME: balance between horny and hungry (always hungry not enough horny??)
+     * FIXME: use lastAction.getNextAction --> continue behaviour?? how
      * just stands there.  That's boring.
      *
      * @see Actor#playTurn(Actions, Action, GameMap, Display)

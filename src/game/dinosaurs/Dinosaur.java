@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Dinosaur extends Actor {
+    /**
+     * gender
+     */
     private boolean isFemale;
+    private boolean isPregnant;
     //diet (capability) what is this why
-    // TODO why is this public?? -> demo/mars/bug has it public (maybe justify in design rational??)
+    // TODO why is this public?? -> demo/mars/bug has it public
     public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 
     /**
@@ -19,9 +23,10 @@ public abstract class Dinosaur extends Actor {
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
      */
-    public Dinosaur(String name, char displayChar, int hitPoints) {
+    public Dinosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints);
-
+        setFemale(isFemale);
+        this.isPregnant = false;
     }
 
     public boolean isFemale() {
@@ -30,6 +35,14 @@ public abstract class Dinosaur extends Actor {
 
     public void setFemale(boolean female) {
         isFemale = female;
+    }
+
+    public boolean isPregnant() {
+        return isPregnant;
+    }
+
+    public void setPregnant(boolean pregnant) {
+        isPregnant = pregnant;
     }
 
     /**
