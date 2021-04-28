@@ -20,6 +20,7 @@ public class Stegosaur extends Dinosaur {
      * All Stegosaurs are represented by a 'd' and have 100 hit points.
      *
      * @param name the name of the Actor
+     * @param isFemale whether the dinosaur is female
      */
     public Stegosaur(String name, boolean isFemale) {
         //TODO change char + initialise proper HP

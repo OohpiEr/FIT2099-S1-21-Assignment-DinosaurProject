@@ -18,11 +18,12 @@ public class Allosaur extends Dinosaur {
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
+     * @param isFemale    whether the dinosaur is female
      */
-    public Allosaur(String name, char displayChar, int hitPoints) {
+    public Allosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         //TODO change char + initialise proper HP
         //TODO why is the maxhitpoint the initial hp
-        super(name, 'A', 100);
+        super(name, 'A', 100, isFemale);
         actionFactories.add(new HungryBehaviour(Fruit.class));
         actionFactories.add(new WanderBehaviour());
         actionFactories.add(new AttackBehaviour());
