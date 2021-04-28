@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
 import game.dinosaurs.BabyAllosaur;
-import game.dinosaurs.BabyBranchiosaur;
+import game.dinosaurs.BabyBrachiosaur;
 import game.dinosaurs.BabyStegosaur;
 
 /**
@@ -74,12 +74,12 @@ public class Egg extends PortableItem{
                     }
                 }
             } else if(type==Type.Branchiosaur){
-                if(currentLocation.canActorEnter(new BabyBranchiosaur())){
-                    currentLocation.addActor(new BabyBranchiosaur());
+                if(currentLocation.canActorEnter(new BabyBrachiosaur())){
+                    currentLocation.addActor(new BabyBrachiosaur());
                 } else {
                     for(Exit exit : currentLocation.getExits()){
-                        if(exit.getDestination().canActorEnter(new BabyBranchiosaur())){
-                            exit.getDestination().addActor(new BabyBranchiosaur());
+                        if(exit.getDestination().canActorEnter(new BabyBrachiosaur())){
+                            exit.getDestination().addActor(new BabyBrachiosaur());
                             break;
                         }
                     }
@@ -120,8 +120,8 @@ public class Egg extends PortableItem{
                 }
             } else if(type==Type.Branchiosaur){
                 for(Exit exit : currentLocation.getExits()){
-                    if(exit.getDestination().canActorEnter(new BabyBranchiosaur())){
-                        exit.getDestination().addActor(new BabyBranchiosaur());
+                    if(exit.getDestination().canActorEnter(new BabyBrachiosaur())){
+                        exit.getDestination().addActor(new BabyBrachiosaur());
                         break;
                     }
                 }

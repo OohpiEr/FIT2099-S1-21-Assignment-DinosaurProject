@@ -12,4 +12,12 @@ public class Brachiosaur extends Dinosaur{
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints, isFemale);
     }
+
+    /**
+     * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
+     */
+    public Brachiosaur(){
+        super("Allosaur", 'A', 100, false);
+        this.setFemale(Math.random()<0.5);
+    }
 }

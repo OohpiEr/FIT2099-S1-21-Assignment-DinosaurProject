@@ -1,6 +1,6 @@
 package game.dinosaurs;
 
-public class BabyBranchiosaur extends BabyDino{
+public class BabyBrachiosaur extends BabyDino{
     /**
      * Constructor.
      *
@@ -9,14 +9,14 @@ public class BabyBranchiosaur extends BabyDino{
      * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
      */
-    public BabyBranchiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
+    public BabyBrachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints, isFemale);
     }
 
     /**
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
-    public BabyBranchiosaur(){
+    public BabyBrachiosaur(){
         super("Baby Branchiosaur", 's',10, false);
         boolean isFemale = Math.random() < 0.5;
         this.setFemale(isFemale);
