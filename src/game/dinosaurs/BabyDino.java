@@ -1,5 +1,7 @@
 package game.dinosaurs;
 
+import edu.monash.fit2099.engine.GameMap;
+
 public abstract class BabyDino extends Dinosaur{
     /**
      * Constructor.
@@ -14,5 +16,5 @@ public abstract class BabyDino extends Dinosaur{
     }
 
     @Override
-    public abstract void checkDead();
+    public abstract void checkDead(GameMap map);
 }

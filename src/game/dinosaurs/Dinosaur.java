@@ -51,36 +51,11 @@ public abstract class Dinosaur extends Actor {
         isPregnant = pregnant;
     }
 
-    public boolean setHitPoints(int hitPoints){
-        boolean success = false;
-        if(hitPoints<=MAX_HITPOINTS && hitPoints>=0){
-            this.hitPoints = hitPoints;
-            checkDead();
-            success = true;
-        }
-        return success;
-    }
-
-    public boolean addHitPoints(int hitPoints){
-        boolean success = false;
-        if(this.hitPoints+hitPoints<=MAX_HITPOINTS && hitPoints>=0){
-            this.hitPoints += hitPoints;
-            success = true;
-        }
-        return success;
-    }
-
-    public boolean removeHitPoints(int hitPoints){
-        boolean success = false;
-        if(hitPoints>=0){
-            this.hitPoints -= hitPoints;
-            checkDead();
-            success = true;
-        }
-        return success;
-    }
-
-    public abstract void checkDead();
+    /**
+     * Used to check if a dinosaur is dead, and execute the required functions
+     * @param map       the GameMap the dinosaur is in
+     */
+    public abstract void checkDead(GameMap map);
 
     /**
      * Figure out what to do next.
@@ -92,6 +67,7 @@ public abstract class Dinosaur extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        checkDead(map);
         return new DoNothingAction();
     }
 

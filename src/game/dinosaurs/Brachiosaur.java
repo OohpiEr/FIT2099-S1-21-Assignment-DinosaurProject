@@ -1,5 +1,8 @@
 package game.dinosaurs;
 
+import edu.monash.fit2099.engine.GameMap;
+import game.items.Corpse;
+
 public class Brachiosaur extends Dinosaur{
 
     private final int STARTING_HITPOINTS = 100;
@@ -26,5 +29,13 @@ public class Brachiosaur extends Dinosaur{
         this.setFemale(Math.random()<0.5);
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
+    }
+
+    @Override
+    public void checkDead(GameMap map) {
+        if(hitPoints<=0){
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.Branchiosaur));
+            map.removeActor(this);
+        }
     }
 }

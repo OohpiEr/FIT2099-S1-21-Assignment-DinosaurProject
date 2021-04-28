@@ -5,7 +5,7 @@ package game.items;
  */
 public class Corpse extends PortableItem{
 
-    private enum Type {
+    public enum Type {
         Stegosaur ("Stegosaur"),
         Branchiosaur ("Branchiosaur"),
         Allosaur ("Allosaur");

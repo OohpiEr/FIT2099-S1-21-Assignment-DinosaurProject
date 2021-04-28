@@ -2,10 +2,12 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
+import game.items.Corpse;
 import game.items.Fruit;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.items.Egg;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,14 @@ public class Allosaur extends Dinosaur {
         actionFactories.add(new AttackBehaviour());
 
         maxHitPoints = MAX_HITPOINTS;
+    }
+
+    @Override
+    public void checkDead(GameMap map) {
+        if(hitPoints<=0){
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.Allosaur));
+            map.removeActor(this);
+        }
     }
 
     /**

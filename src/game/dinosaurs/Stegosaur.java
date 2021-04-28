@@ -3,6 +3,7 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
+import game.items.Corpse;
 import game.items.Fruit;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
@@ -92,5 +93,13 @@ public class Stegosaur extends Dinosaur {
                 return action;
         }*/
         return new DoNothingAction();
+    }
+
+    @Override
+    public void checkDead(GameMap map) {
+        if(hitPoints<=0){
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.Stegosaur));
+            map.removeActor(this);
+        }
     }
 }
