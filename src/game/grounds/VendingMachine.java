@@ -38,7 +38,7 @@ public class VendingMachine extends Ground {
         if(actor.getClass()== Player.class){
             items.forEach((k,v)->{
                 if(((Player) actor).getEcoPoints()>=v){
-                    actions.add(new BuyAction());
+                    actions.add(new BuyAction(k,v));
                 }
             });
         }

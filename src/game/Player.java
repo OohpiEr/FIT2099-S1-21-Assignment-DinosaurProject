@@ -44,4 +44,16 @@ public class Player extends Actor {
 			this.ecoPoints = ecoPoints;
 		}
 	}
+
+	public void addEcoPoints(int ecoPoints){
+		if(ecoPoints>=0){
+			this.ecoPoints+=ecoPoints;
+		}
+	}
+
+	public void removeEcoPoints(int ecoPoints){
+		if(ecoPoints>=0){
+			this.ecoPoints-=ecoPoints;
+		}
+	}
 }
