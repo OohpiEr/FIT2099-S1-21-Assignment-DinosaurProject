@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Dinosaur extends Actor {
+
+    private final int STARTING_HITPOINTS = 10;
+    private final int MAX_HITPOINTS = 100;
+
     /**
      * gender
      */
@@ -28,6 +32,7 @@ public abstract class Dinosaur extends Actor {
         super(name, displayChar, hitPoints);
         setFemale(isFemale);
         this.isPregnant = false;
+        this.maxHitPoints = MAX_HITPOINTS;
     }
 
     public boolean isFemale() {
@@ -45,6 +50,37 @@ public abstract class Dinosaur extends Actor {
     public void setPregnant(boolean pregnant) {
         isPregnant = pregnant;
     }
+
+    public boolean setHitPoints(int hitPoints){
+        boolean success = false;
+        if(hitPoints<=MAX_HITPOINTS && hitPoints>=0){
+            this.hitPoints = hitPoints;
+            checkDead();
+            success = true;
+        }
+        return success;
+    }
+
+    public boolean addHitPoints(int hitPoints){
+        boolean success = false;
+        if(this.hitPoints+hitPoints<=MAX_HITPOINTS && hitPoints>=0){
+            this.hitPoints += hitPoints;
+            success = true;
+        }
+        return success;
+    }
+
+    public boolean removeHitPoints(int hitPoints){
+        boolean success = false;
+        if(hitPoints>=0){
+            this.hitPoints -= hitPoints;
+            checkDead();
+            success = true;
+        }
+        return success;
+    }
+
+    public abstract void checkDead();
 
     /**
      * Figure out what to do next.

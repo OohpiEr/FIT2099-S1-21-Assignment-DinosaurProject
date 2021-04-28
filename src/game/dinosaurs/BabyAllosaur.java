@@ -1,6 +1,10 @@
 package game.dinosaurs;
 
 public class BabyAllosaur extends BabyDino{
+
+    private final int STARTING_HITPOINTS = 20;
+    private final int MAX_HITPOINTS = 100;
+
     /**
      * Constructor.
      *
@@ -11,6 +15,7 @@ public class BabyAllosaur extends BabyDino{
      */
     public BabyAllosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints, isFemale);
+        maxHitPoints = MAX_HITPOINTS;
     }
 
     /**
@@ -20,5 +25,7 @@ public class BabyAllosaur extends BabyDino{
         super("Baby Allosaur", 's',20, false);
         boolean isFemale = Math.random() < 0.5;
         this.setFemale(isFemale);
+        this.hitPoints = STARTING_HITPOINTS;
+        maxHitPoints = MAX_HITPOINTS;
     }
 }

@@ -12,6 +12,9 @@ import game.behaviours.WanderBehaviour;
  */
 public class Stegosaur extends Dinosaur {
 
+    private final int STARTING_HITPOINTS = 50;
+    private final int MAX_HITPOINTS = 100;
+
     // Will need to change this to a collection if Stegosaur gets additional Behaviours.
 
 
@@ -30,6 +33,18 @@ public class Stegosaur extends Dinosaur {
         actionFactories.add(new HungryBehaviour(Fruit.class));
         actionFactories.add(new WanderBehaviour());
         //TODO horny behaviour
+
+        maxHitPoints = MAX_HITPOINTS;
+    }
+
+    /**
+     * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
+     */
+    public Stegosaur(){
+        super("Stegosaur", 'A', 50, false);
+        this.setFemale(Math.random()<0.5);
+        this.hitPoints = STARTING_HITPOINTS;
+        maxHitPoints = MAX_HITPOINTS;
     }
 
     @Override

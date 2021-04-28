@@ -11,7 +11,8 @@ import java.util.ArrayList;
 
 public class Allosaur extends Dinosaur {
     private ArrayList<Stegosaur> offLimitsStegosaurs = new ArrayList<Stegosaur>();
-
+    private final int STARTING_HITPOINTS = 100;
+    private final int MAX_HITPOINTS = 100;
     /**
      * Constructor.
      *
@@ -27,6 +28,28 @@ public class Allosaur extends Dinosaur {
         actionFactories.add(new HungryBehaviour(Fruit.class));
         actionFactories.add(new WanderBehaviour());
         actionFactories.add(new AttackBehaviour());
+
+        maxHitPoints = MAX_HITPOINTS;
+    }
+
+    /**
+     * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
+     */
+    public Allosaur(){
+        super("Allosaur", 'A', 100, false);
+        this.setFemale(Math.random()<0.5);
+        this.hitPoints = STARTING_HITPOINTS;
+        maxHitPoints = MAX_HITPOINTS;
+    }
+
+    /**
+     * Constructor. Provides default values for name and displayChar. Randomises gender
+     * @param hitPoints     the Allosaur's starting hitpoints
+     */
+    public Allosaur(int hitPoints){
+        super("Allosaur", 'A', hitPoints, false);
+        this.setFemale(Math.random()<0.5);
+        maxHitPoints = MAX_HITPOINTS;
     }
 
     public ArrayList<Stegosaur> getOffLimitsStegosaurs() {
