@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.Item;
 /**
  * TODO empty Fruit class
  */
-public class Fruit extends Item {
+public class Fruit extends PortableItem {
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -13,6 +13,6 @@ public class Fruit extends Item {
      * @param portable true if and only if the Item can be picked up
      */
     public Fruit(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+        super(name, displayChar);
     }
 }
