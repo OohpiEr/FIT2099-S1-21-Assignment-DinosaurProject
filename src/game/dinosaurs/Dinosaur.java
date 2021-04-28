@@ -11,6 +11,9 @@ public abstract class Dinosaur extends Actor {
     private final int STARTING_HITPOINTS = 10;
     private final int MAX_HITPOINTS = 100;
 
+    private ArrayList<Item> food;
+    private ArrayList<Ground> eatsFrom;
+
     /**
      * gender
      */

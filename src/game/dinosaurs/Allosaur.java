@@ -7,7 +7,6 @@ import game.items.Fruit;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
-import game.items.Egg;
 
 import java.util.ArrayList;
 
@@ -34,14 +33,6 @@ public class Allosaur extends Dinosaur {
         maxHitPoints = MAX_HITPOINTS;
     }
 
-    @Override
-    public void checkDead(GameMap map) {
-        if(hitPoints<=0){
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.Allosaur));
-            map.removeActor(this);
-        }
-    }
-
     /**
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
@@ -60,6 +51,19 @@ public class Allosaur extends Dinosaur {
         super("Allosaur", 'A', hitPoints, false);
         this.setFemale(Math.random()<0.5);
         maxHitPoints = MAX_HITPOINTS;
+    }
+
+    /**
+     * Checks if the Allosaur is dead, and places an Allosaur corpse on its location in its place if it is
+     * @see Corpse
+     * @param map       the GameMap the dinosaur is in
+     */
+    @Override
+    public void checkDead(GameMap map) {
+        if(hitPoints<=0){
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.Allosaur));
+            map.removeActor(this);
+        }
     }
 
     public ArrayList<Stegosaur> getOffLimitsStegosaurs() {

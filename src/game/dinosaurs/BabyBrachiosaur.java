@@ -32,6 +32,11 @@ public class BabyBrachiosaur extends BabyDino{
         maxHitPoints = MAX_HITPOINTS;
     }
 
+    /**
+     * Checks if the baby Brachiosaur is dead, and places a Brachiosaur corpse on its location in its place if it is
+     * @see Corpse
+     * @param map       the GameMap the dinosaur is in
+     */
     @Override
     public void checkDead(GameMap map) {
         if(hitPoints<=0){

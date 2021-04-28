@@ -2,6 +2,7 @@ package game.items;
 
 /**
  * A class that represents a dinosaur corpse. Can currently represent a Stegosaur, Branchiosaur or ALlosaur corpse with an enum attribute 'type' to represent which.
+ * @see game.dinosaurs.Dinosaur
  */
 public class Corpse extends PortableItem{
 

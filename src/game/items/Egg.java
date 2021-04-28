@@ -9,6 +9,7 @@ import game.dinosaurs.BabyStegosaur;
 
 /**
  * A class representing a dinosaur egg. Has an enum attribute 'type' to represent what type of dinosaur egg it is
+ * @see game.dinosaurs.Dinosaur
  */
 public class Egg extends PortableItem{
 

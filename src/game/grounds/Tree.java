@@ -18,6 +18,7 @@ public class Tree extends Ground implements hasFood {
 
 	/**
 	 * Constructor. Instantiates the fruits ArrayList
+	 * @see Fruit
 	 */
 	public Tree() {
 		super('+');
@@ -87,6 +88,10 @@ public class Tree extends Ground implements hasFood {
 		}
 	}
 
+	/**
+	 * Checks if the Bush has any Fruits in fruits
+	 * @return True if fruits is empty. False otherwise
+	 */
 	@Override
 	public boolean isEmpty() {
 		return fruits.isEmpty();

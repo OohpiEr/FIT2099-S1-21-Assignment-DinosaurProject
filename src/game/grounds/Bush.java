@@ -20,7 +20,7 @@ public class Bush extends Ground implements hasFood{
 
     /**
      * Constructor. Instantiates the fruits ArrayList
-     *
+     * @see Fruit
      */
     public Bush() {
         super('b');
@@ -69,6 +69,7 @@ public class Bush extends Ground implements hasFood{
 
     /**
      * Extends the parent tick() method. Has a chance to add a new Fruit to fruits. Has a chance to be killed if a Brachiosaur is on the same location
+     * @see Dirt
      * @param location The location of the Ground
      */
     @Override

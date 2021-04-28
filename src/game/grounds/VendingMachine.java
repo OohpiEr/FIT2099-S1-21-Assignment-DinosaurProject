@@ -14,7 +14,7 @@ public class VendingMachine extends Ground {
     private HashMap<Item, Integer> items;
 
     /**
-     * Constructor. Instantiates the items ArrayList
+     * Constructor. Instantiates the items HashMap
      */
     public VendingMachine() {
         super('$');
@@ -22,16 +22,32 @@ public class VendingMachine extends Ground {
         };
     }
 
+    /**
+     * Constructor. Instantiates the VendingMachine using the provided items HashMap
+     * @param items
+     */
     public VendingMachine(HashMap<Item,Integer> items){
         super('$');
         this.items = items;
     }
 
+    /**
+     * Returns True if the actor can enter the vending machine's location. False otherwise
+     * @param actor the Actor to check
+     * @return
+     */
     @Override
     public boolean canActorEnter(Actor actor) {
         return false;
     }
 
+    /**
+     * Returns the actions allowed by actors next to it. Currently only returns BuyActions to a Player instance based on their ecoPoints
+     * @param actor the Actor acting
+     * @param location the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return
+     */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
@@ -45,6 +61,10 @@ public class VendingMachine extends Ground {
         return actions;
     }
 
+    /**
+     * Gets the HashMap of items available in the vending machine
+     * @return A HashMap of items available in the vending machine
+     */
     public HashMap<Item,Integer> getItems(){
         return items;
     }
