@@ -1,6 +1,6 @@
 package game.dinosaurs;
 
-public class BabyDino extends Dinosaur{
+public abstract class BabyDino extends Dinosaur{
     /**
      * Constructor.
      *
@@ -12,4 +12,7 @@ public class BabyDino extends Dinosaur{
     public BabyDino(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints, isFemale);
     }
+
+    @Override
+    public abstract void checkDead();
 }
