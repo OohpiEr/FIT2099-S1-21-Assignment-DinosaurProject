@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
 /**
- * TODO empty Fruit class
+ * A class that represents a fruit
  */
 public class Fruit extends PortableItem {
 
