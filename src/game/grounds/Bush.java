@@ -3,6 +3,7 @@ package game.grounds;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.hasFood;
+import game.dinosaurs.Brachiosaur;
 import game.items.Fruit;
 
 import java.util.ArrayList;
@@ -14,7 +15,8 @@ import java.util.Random;
 public class Bush extends Ground implements hasFood{
 
     private ArrayList<Fruit> fruits;
-    private final double CHANCE_TO_PRODUCE_FRUIT = 0.10;
+    private final double CHANCE_TO_PRODUCE_FRUIT = 0.1;
+    private final double CHANCE_TO_BE_KILLED_BY_BRACHIOSAUR = 0.5;
 
     /**
      * Constructor. Instantiates the fruits ArrayList
@@ -66,7 +68,7 @@ public class Bush extends Ground implements hasFood{
     }
 
     /**
-     * Extends the parent tick() method. Has a chance to add a new Fruit to fruits
+     * Extends the parent tick() method. Has a chance to add a new Fruit to fruits. Has a chance to be killed if a Brachiosaur is on the same location
      * @param location The location of the Ground
      */
     @Override
@@ -74,6 +76,11 @@ public class Bush extends Ground implements hasFood{
         super.tick(location);
         if(Math.random()<=CHANCE_TO_PRODUCE_FRUIT){
             this.addFruits(1);
+        }
+        if(location.getActor().getClass()== Brachiosaur.class){
+            if(Math.random()<=CHANCE_TO_BE_KILLED_BY_BRACHIOSAUR){
+                location.setGround(new Dirt());
+            }
         }
     }
 
