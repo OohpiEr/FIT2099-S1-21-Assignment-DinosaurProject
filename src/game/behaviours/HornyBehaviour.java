@@ -1,10 +1,7 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
-import game.AttackAction;
-import game.dinosaurs.Allosaur;
 import game.dinosaurs.Dinosaur;
-import game.dinosaurs.Stegosaur;
 
 import java.util.ArrayList;
 import java.util.List;

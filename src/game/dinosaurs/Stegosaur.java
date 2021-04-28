@@ -2,8 +2,8 @@ package game.dinosaurs;
 
 
 import edu.monash.fit2099.engine.*;
-import game.AttackAction;
-import game.Fruit;
+import game.actions.AttackAction;
+import game.items.Fruit;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 
