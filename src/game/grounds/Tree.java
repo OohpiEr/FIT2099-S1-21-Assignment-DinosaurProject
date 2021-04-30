@@ -1,6 +1,7 @@
 package game.grounds;
 
 import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.hasFood;
 import game.items.Fruit;
@@ -15,6 +16,7 @@ public class Tree extends Ground implements hasFood {
     private ArrayList<Fruit> fruits;
     private final double CHANCE_TO_PRODUCE_FRUIT = 0.5;
     private final double CHANCE_TO_DROP_FRUIT = 0.05;
+    private final String NAME = "tree";
 
     /**
      * Constructor. Instantiates the fruits ArrayList
@@ -101,5 +103,25 @@ public class Tree extends Ground implements hasFood {
     @Override
     public boolean isEmpty() {
         return fruits.isEmpty();
+    }
+
+    /**
+     * Removes the specified quantity of the specified food from this Tree
+     * @param food      The food that is eaten
+     * @param quantity  The quantity of the food that is eaten
+     */
+    @Override
+    public void eatFromThis(Item food, int quantity) {
+        if(food.getClass()==Fruit.class){
+            removeFruits(quantity);
+        }
+    }
+
+    /**
+     * Returns the name of the Tree
+     * @return  The name of the Tree
+     */
+    public String getName(){
+        return NAME;
     }
 }

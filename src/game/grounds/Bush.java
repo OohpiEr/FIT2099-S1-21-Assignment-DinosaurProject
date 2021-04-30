@@ -1,6 +1,7 @@
 package game.grounds;
 
 import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.hasFood;
 import game.dinosaurs.Brachiosaur;
@@ -17,6 +18,7 @@ public class Bush extends Ground implements hasFood {
     private ArrayList<Fruit> fruits;
     private final double CHANCE_TO_PRODUCE_FRUIT = 0.1;
     private final double CHANCE_TO_BE_KILLED_BY_BRACHIOSAUR = 0.5;
+    private final String NAME = "bush";
 
     /**
      * Constructor. Instantiates the fruits ArrayList
@@ -98,5 +100,25 @@ public class Bush extends Ground implements hasFood {
     @Override
     public boolean isEmpty() {
         return fruits.isEmpty();
+    }
+
+    /**
+     * Removes the specified quantity of the specified food from this Bush
+     * @param food      The food that is eaten
+     * @param quantity  The quantity of the food that is eaten
+     */
+    @Override
+    public void eatFromThis(Item food, int quantity) {
+        if(food.getClass()==Fruit.class){
+            removeFruits(quantity);
+        }
+    }
+
+    /**
+     * Returns the name of the Bush
+     * @return  The name of the Bush
+     */
+    public String getName(){
+        return NAME;
     }
 }
