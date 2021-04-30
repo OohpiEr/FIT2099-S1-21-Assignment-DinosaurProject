@@ -41,8 +41,6 @@ public class HornyBehaviour implements Behaviour {
     public Actor getNearestTarget(Actor actor, GameMap map) {
 
         List<Location> locationsWithTargets = new ArrayList<>();
-        //FIXME: use actorlocations
-
 
         for (int x : map.getXRange()) {
             for (int y : map.getYRange()) {
