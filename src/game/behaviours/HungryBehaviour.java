@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static game.Util.distance;
+
+
 //TODO write 3 modules for each dinos
 public class HungryBehaviour implements Behaviour {
     private Class<?> foodClass;
@@ -23,11 +26,11 @@ public class HungryBehaviour implements Behaviour {
             return null;
         }
 
-        int currentDistance = getDistance(here, there);
+        int currentDistance = distance(here, there);
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
             if (destination.canActorEnter(actor)) {
-                int newDistance = getDistance(destination, there);
+                int newDistance = distance(destination, there);
                 if (newDistance < currentDistance) {
                     return new MoveActorAction(destination, exit.getName());
                 }
@@ -61,7 +64,7 @@ public class HungryBehaviour implements Behaviour {
         int distance = Integer.MAX_VALUE;
         Location closestFoodLocation = null;
         for (Location location : locationsWithFood) {
-            int newDistance = getDistance(location, here);
+            int newDistance = distance(location, here);
             if (distance > newDistance) {
                 distance = newDistance;
                 closestFoodLocation = location;
@@ -71,14 +74,4 @@ public class HungryBehaviour implements Behaviour {
         return closestFoodLocation;
     }
 
-    /**
-     * Compute the Manhattan distance between two locations.
-     * todo: move this to a util class
-     * @param a the first location
-     * @param b the first location
-     * @return the number of steps between a and b if you only move in the four cardinal directions.
-     */
-    private int getDistance(Location a, Location b) {
-        return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
-    }
 }

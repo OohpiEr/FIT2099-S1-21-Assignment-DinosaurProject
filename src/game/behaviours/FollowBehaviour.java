@@ -2,6 +2,8 @@ package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
 
+import static game.Util.distance;
+
 /**
  * A class that figures out a MoveAction that will move the actor one step 
  * closer to a target Actor.
@@ -41,14 +43,4 @@ public class FollowBehaviour implements Behaviour {
 		return null;
 	}
 
-	/**
-	 * Compute the Manhattan distance between two locations.
-	 * 
-	 * @param a the first location
-	 * @param b the first location
-	 * @return the number of steps between a and b if you only move in the four cardinal directions.
-	 */
-	private int distance(Location a, Location b) {
-		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
-	}
 }

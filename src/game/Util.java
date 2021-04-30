@@ -10,7 +10,7 @@ public final class Util {
      * @param b the first location
      * @return the number of steps between a and b if you only move in the four cardinal directions.
      */
-    public int getDistance(Location a, Location b) {
+    public static int distance(Location a, Location b) {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 }

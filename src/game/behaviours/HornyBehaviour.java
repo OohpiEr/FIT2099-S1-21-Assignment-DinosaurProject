@@ -6,6 +6,8 @@ import game.dinosaurs.Dinosaur;
 import java.util.ArrayList;
 import java.util.List;
 
+import static game.Util.distance;
+
 public class HornyBehaviour implements Behaviour {
 
     FollowBehaviour followBehaviour;
@@ -65,7 +67,7 @@ public class HornyBehaviour implements Behaviour {
         Location closestActorLocation = null;
         Location here = map.locationOf(actor);
         for (Location location : locationsWithTargets) {
-            int newDistance = getDistance(location, here);
+            int newDistance = distance(location, here);
             if (distance > newDistance) {
                 distance = newDistance;
                 closestActorLocation = location;
@@ -76,14 +78,4 @@ public class HornyBehaviour implements Behaviour {
 
     }
 
-    /**
-     * Compute the Manhattan distance between two locations.
-     *
-     * @param a the first location
-     * @param b the first location
-     * @return the number of steps between a and b if you only move in the four cardinal directions.
-     */
-    private int getDistance(Location a, Location b) {
-        return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
-    }
 }
