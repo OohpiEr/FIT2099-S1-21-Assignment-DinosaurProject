@@ -20,6 +20,8 @@ public class Stegosaur extends Dinosaur {
     private final int MAX_HITPOINTS = 100;
     private final int HUNGRY_BEHAVIOUR = 1;
     private final int HORNY_BEHAVIOUR = 2;
+    private final String NAME = "Stegosaur";
+    private final char DISPLAY_CHAR = 'S';
 
     /**
      * Constructor.
@@ -41,6 +43,8 @@ public class Stegosaur extends Dinosaur {
     public Stegosaur() {
         super("Stegosaur", 'S', 50, false);
         this.setFemale(Math.random() < 0.5);
+        name = NAME;
+        displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
     }
@@ -109,6 +113,11 @@ public class Stegosaur extends Dinosaur {
             map.locationOf(this).addItem(new Corpse(Corpse.Type.Stegosaur));
             map.removeActor(this);
         }
+    }
+
+    @Override
+    public void eat(Item food) {
+
     }
 
 }

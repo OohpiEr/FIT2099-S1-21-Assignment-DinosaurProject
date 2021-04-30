@@ -1,12 +1,15 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import game.items.Corpse;
 
 public class BabyStegosaur extends BabyDino{
 
     private final int STARTING_HITPOINTS = 10;
     private final int MAX_HITPOINTS = 100;
+    private final String NAME = "Baby Stegosaur";
+    private final char DISPLAY_CHAR = 's';
 
     /**
      * Constructor.
@@ -28,6 +31,8 @@ public class BabyStegosaur extends BabyDino{
         super("Baby Stegosaur", 's',10, false);
         boolean isFemale = Math.random() < 0.5;
         this.setFemale(isFemale);
+        name = NAME;
+        displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
     }
@@ -43,5 +48,10 @@ public class BabyStegosaur extends BabyDino{
             map.locationOf(this).addItem(new Corpse(Corpse.Type.Stegosaur));
             map.removeActor(this);
         }
+    }
+
+    @Override
+    public void eat(Item food) {
+
     }
 }

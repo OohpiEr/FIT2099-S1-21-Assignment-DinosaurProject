@@ -1,12 +1,15 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import game.items.Corpse;
 
 public class BabyBrachiosaur extends BabyDino{
 
     private final int STARTING_HITPOINTS = 10;
     private final int MAX_HITPOINTS = 160;
+    private final String NAME = "Baby Brachiosaur";
+    private final char DISPLAY_CHAR = 'b';
 
     /**
      * Constructor.
@@ -25,9 +28,11 @@ public class BabyBrachiosaur extends BabyDino{
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyBrachiosaur(){
-        super("Baby Branchiosaur", 's',10, false);
+        super("Baby Branchiosaur", 'b',10, false);
         boolean isFemale = Math.random() < 0.5;
         this.setFemale(isFemale);
+        name = NAME;
+        displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
     }
@@ -43,5 +48,10 @@ public class BabyBrachiosaur extends BabyDino{
             map.locationOf(this).addItem(new Corpse(Corpse.Type.Branchiosaur));
             map.removeActor(this);
         }
+    }
+
+    @Override
+    public void eat(Item food) {
+
     }
 }

@@ -64,6 +64,12 @@ public abstract class Dinosaur extends Actor {
     public abstract void checkDead(GameMap map);
 
     /**
+     * Used to let the dinosaur eat something. Adjusts hitpoints according to the food provided
+     * @param food
+     */
+    public abstract void eat(Item food);
+
+    /**
      * Figure out what to do next.
      * <p>
      * just stands there.  That's boring.

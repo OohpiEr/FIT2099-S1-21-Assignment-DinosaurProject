@@ -14,6 +14,9 @@ public class Allosaur extends Dinosaur {
     private ArrayList<Stegosaur> offLimitsStegosaurs = new ArrayList<Stegosaur>();
     private final int STARTING_HITPOINTS = 100;
     private final int MAX_HITPOINTS = 100;
+    private final String NAME = "Allosaur";
+    private final char DISPLAY_CHAR = 'A';
+
     /**
      * Constructor.
      *
@@ -39,6 +42,8 @@ public class Allosaur extends Dinosaur {
     public Allosaur(){
         super("Allosaur", 'A', 100, false);
         this.setFemale(Math.random()<0.5);
+        name = NAME;
+        displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
     }
@@ -50,6 +55,8 @@ public class Allosaur extends Dinosaur {
     public Allosaur(int hitPoints){
         super("Allosaur", 'A', hitPoints, false);
         this.setFemale(Math.random()<0.5);
+        name = NAME;
+        displayChar = DISPLAY_CHAR;
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -64,6 +71,11 @@ public class Allosaur extends Dinosaur {
             map.locationOf(this).addItem(new Corpse(Corpse.Type.Allosaur));
             map.removeActor(this);
         }
+    }
+
+    @Override
+    public void eat(Item food) {
+
     }
 
     public ArrayList<Stegosaur> getOffLimitsStegosaurs() {
