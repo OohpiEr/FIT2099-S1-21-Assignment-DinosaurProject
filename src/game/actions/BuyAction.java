@@ -26,7 +26,7 @@ public class BuyAction extends Action {
      * @see game.grounds.VendingMachine
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
-     * @return
+     * @return  A description of the purchase
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -34,6 +34,7 @@ public class BuyAction extends Action {
         if(actor.getClass()== Player.class){
             ((Player) actor).removeEcoPoints(getPrice());
             actor.addItemToInventory(item);
+            result = "Player bought " + item.toString() + " for " + getPrice();
         }
         return result;
     }

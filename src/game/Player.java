@@ -35,22 +35,38 @@ public class Player extends Actor {
 		return menu.showMenu(this, actions, display);
 	}
 
+	/**
+	 * Returns the player's number of eco points
+	 * @return	the player's number of eco points
+	 */
 	public int getEcoPoints() {
 		return ecoPoints;
 	}
 
+	/**
+	 * Sets the player's number of eco points
+	 * @param ecoPoints	The new number of eco points the player should have
+	 */
 	public void setEcoPoints(int ecoPoints) {
 		if(ecoPoints>=0){
 			this.ecoPoints = ecoPoints;
 		}
 	}
 
+	/**
+	 * Adds the provided number of eco points to the player's total eco points
+	 * @param ecoPoints	The number of eco points to be added to the player's total eco points
+	 */
 	public void addEcoPoints(int ecoPoints){
 		if(ecoPoints>=0){
 			this.ecoPoints+=ecoPoints;
 		}
 	}
 
+	/**
+	 * Removes the provided number of eco points from the player's total eco points
+	 * @param ecoPoints	The number of eco points to be removed from the player's total eco points
+	 */
 	public void removeEcoPoints(int ecoPoints){
 		if(ecoPoints>=0){
 			this.ecoPoints-=ecoPoints;
