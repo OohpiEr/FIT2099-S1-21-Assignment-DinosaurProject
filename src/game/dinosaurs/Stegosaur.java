@@ -73,7 +73,7 @@ public class Stegosaur extends Dinosaur {
         if (action != null) {
             return action;
         } else {
-            return actions.get(Util.random(0, actions.size()-1));
+            return actions.get(Util.random(0, actions.size() - 1));
         }
     }
 

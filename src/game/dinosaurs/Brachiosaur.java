@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.items.Corpse;
 
-public class Brachiosaur extends Dinosaur{
+public class Brachiosaur extends Dinosaur {
 
     private final int STARTING_HITPOINTS = 100;
     private final int MAX_HITPOINTS = 160;
@@ -27,9 +27,9 @@ public class Brachiosaur extends Dinosaur{
     /**
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
-    public Brachiosaur(){
+    public Brachiosaur() {
         super("Brachiosaur", 'B', 100, false);
-        this.setFemale(Math.random()<0.5);
+        this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
@@ -38,12 +38,13 @@ public class Brachiosaur extends Dinosaur{
 
     /**
      * Checks if the Brachiosaur is dead, and places a Brachiosaur corpse on its location in its place if it is
+     *
+     * @param map the GameMap the dinosaur is in
      * @see Corpse
-     * @param map       the GameMap the dinosaur is in
      */
     @Override
     public void checkDead(GameMap map) {
-        if(hitPoints<=0){
+        if (hitPoints <= 0) {
             map.locationOf(this).addItem(new Corpse(Corpse.Type.Branchiosaur));
             map.removeActor(this);
         }

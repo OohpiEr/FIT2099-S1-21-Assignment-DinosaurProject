@@ -39,9 +39,9 @@ public class Allosaur extends Dinosaur {
     /**
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
-    public Allosaur(){
+    public Allosaur() {
         super("Allosaur", 'A', 100, false);
-        this.setFemale(Math.random()<0.5);
+        this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
@@ -50,11 +50,12 @@ public class Allosaur extends Dinosaur {
 
     /**
      * Constructor. Provides default values for name and displayChar. Randomises gender
-     * @param hitPoints     the Allosaur's starting hitpoints
+     *
+     * @param hitPoints the Allosaur's starting hitpoints
      */
-    public Allosaur(int hitPoints){
+    public Allosaur(int hitPoints) {
         super("Allosaur", 'A', hitPoints, false);
-        this.setFemale(Math.random()<0.5);
+        this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         maxHitPoints = MAX_HITPOINTS;
@@ -62,12 +63,13 @@ public class Allosaur extends Dinosaur {
 
     /**
      * Checks if the Allosaur is dead, and places an Allosaur corpse on its location in its place if it is
+     *
+     * @param map the GameMap the dinosaur is in
      * @see Corpse
-     * @param map       the GameMap the dinosaur is in
      */
     @Override
     public void checkDead(GameMap map) {
-        if(hitPoints<=0){
+        if (hitPoints <= 0) {
             map.locationOf(this).addItem(new Corpse(Corpse.Type.Allosaur));
             map.removeActor(this);
         }

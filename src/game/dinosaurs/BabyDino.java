@@ -3,7 +3,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.GameMap;
 import game.items.Corpse;
 
-public abstract class BabyDino extends Dinosaur{
+public abstract class BabyDino extends Dinosaur {
     /**
      * Constructor.
      *
@@ -18,7 +18,8 @@ public abstract class BabyDino extends Dinosaur{
 
     /**
      * Used to check if a dinosaur is dead, and execute the required functions
-     * @param map       the GameMap the dinosaur is in
+     *
+     * @param map the GameMap the dinosaur is in
      */
     @Override
     public abstract void checkDead(GameMap map);

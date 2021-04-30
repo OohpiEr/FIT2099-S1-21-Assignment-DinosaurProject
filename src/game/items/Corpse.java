@@ -2,14 +2,15 @@ package game.items;
 
 /**
  * A class that represents a dinosaur corpse. Can currently represent a Stegosaur, Branchiosaur or ALlosaur corpse with an enum attribute 'type' to represent which.
+ *
  * @see game.dinosaurs.Dinosaur
  */
-public class Corpse extends PortableItem{
+public class Corpse extends PortableItem {
 
     public enum Type {
-        Stegosaur ("Stegosaur"),
-        Branchiosaur ("Branchiosaur"),
-        Allosaur ("Allosaur");
+        Stegosaur("Stegosaur"),
+        Branchiosaur("Branchiosaur"),
+        Allosaur("Allosaur");
 
         private String name;
 
@@ -26,10 +27,11 @@ public class Corpse extends PortableItem{
 
     /**
      * Constructor. Creates a new Corpse instance based on what dinosaur it is
+     *
      * @param type The type of dinosaur corpse
      */
     public Corpse(Type type) {
-        super(type.getName()+" corpse", 'C');
+        super(type.getName() + " corpse", 'C');
         this.type = type;
     }
 }

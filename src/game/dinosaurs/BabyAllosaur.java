@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.items.Corpse;
 
-public class BabyAllosaur extends BabyDino{
+public class BabyAllosaur extends BabyDino {
 
     private final int STARTING_HITPOINTS = 20;
     private final int MAX_HITPOINTS = 100;
@@ -27,8 +27,8 @@ public class BabyAllosaur extends BabyDino{
     /**
      * Constructor. Sets initial hitPoints to 20 and randomises gender
      */
-    public BabyAllosaur(){
-        super("Baby Allosaur", 'a',20, false);
+    public BabyAllosaur() {
+        super("Baby Allosaur", 'a', 20, false);
         boolean isFemale = Math.random() < 0.5;
         this.setFemale(isFemale);
         name = NAME;
@@ -39,12 +39,13 @@ public class BabyAllosaur extends BabyDino{
 
     /**
      * Checks if the baby Allosaur is dead, and places an Allosaur corpse on its location in its place if it is
+     *
+     * @param map the GameMap the dinosaur is in
      * @see Corpse
-     * @param map       the GameMap the dinosaur is in
      */
     @Override
     public void checkDead(GameMap map) {
-        if(hitPoints<=0){
+        if (hitPoints <= 0) {
             map.locationOf(this).addItem(new Corpse(Corpse.Type.Allosaur));
             map.removeActor(this);
         }

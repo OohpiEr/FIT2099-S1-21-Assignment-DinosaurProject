@@ -39,6 +39,9 @@ public abstract class Dinosaur extends Actor {
         this.isPregnant = false;
         this.maxHitPoints = MAX_HITPOINTS;
         actionFactories.add(new WanderBehaviour());
+
+        food = new ArrayList<>();
+        eatsFrom = new ArrayList<>();
     }
 
     public boolean isFemale() {

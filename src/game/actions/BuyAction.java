@@ -13,25 +13,27 @@ public class BuyAction extends Action {
 
     /**
      * Constructor.
-     * @param item      the Item to be bought
-     * @param price     the price of the item in eco points
+     *
+     * @param item  the Item to be bought
+     * @param price the price of the item in eco points
      */
-    public BuyAction(Item item, int price){
+    public BuyAction(Item item, int price) {
         setItem(item);
         setPrice(price);
     }
 
     /**
      * Should only be called on a player. Adds the item to their inventory and deducts the price from their eco points. Price should never be too expensive (Checked in VendingMachine)
-     * @see game.grounds.VendingMachine
+     *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
-     * @return  A description of the purchase
+     * @param map   The map the actor is on.
+     * @return A description of the purchase
+     * @see game.grounds.VendingMachine
      */
     @Override
     public String execute(Actor actor, GameMap map) {
         String result = null;
-        if(actor.getClass()== Player.class){
+        if (actor.getClass() == Player.class) {
             ((Player) actor).removeEcoPoints(getPrice());
             actor.addItemToInventory(item);
             result = "Player bought " + item.toString() + " for " + getPrice();
@@ -41,6 +43,7 @@ public class BuyAction extends Action {
 
     /**
      * Returns a description of this transaction suitable to display in the menu.
+     *
      * @param actor The actor performing the action.
      * @return
      */
@@ -51,7 +54,8 @@ public class BuyAction extends Action {
 
     /**
      * Gets the Item to be bought
-     * @return      the Item to be bought
+     *
+     * @return the Item to be bought
      */
     public Item getItem() {
         return item;
@@ -59,7 +63,8 @@ public class BuyAction extends Action {
 
     /**
      * Sets the Item to be bought
-     * @param item      the Item to be bought
+     *
+     * @param item the Item to be bought
      */
     public void setItem(Item item) {
         this.item = item;
@@ -67,7 +72,8 @@ public class BuyAction extends Action {
 
     /**
      * Gets the price of the item to be bought
-     * @return      the price of the item to be bought
+     *
+     * @return the price of the item to be bought
      */
     public int getPrice() {
         return price;
@@ -75,10 +81,11 @@ public class BuyAction extends Action {
 
     /**
      * Sets the price of the item to be bought
-     * @param price     the price of the item to be bought. Cannot be negative
+     *
+     * @param price the price of the item to be bought. Cannot be negative
      */
     public void setPrice(int price) {
-        if(price>=0){
+        if (price >= 0) {
             this.price = price;
         } else {
             this.price = 0;

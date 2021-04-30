@@ -8,8 +8,9 @@ import edu.monash.fit2099.engine.Location;
  */
 public class Fruit extends PortableItem {
 
-    private int rotLevel=0;
+    private int rotLevel = 0;
     private final int MAX_ROTLEVEL_BEFORE_ROTTING = 15;
+
     /***
      * Constructor.
      *  @param name the name of this Item
@@ -22,19 +23,20 @@ public class Fruit extends PortableItem {
     /**
      * A default, parameterless constructor for Fruit
      */
-    public Fruit(){
+    public Fruit() {
         super("Fruit", 'f');
     }
 
     /**
      * Extends the parent tick() method for Items on the ground (in a Location). Handles the Fruit's rotting
+     *
      * @param currentLocation The location of the ground on which we lie.
      */
     @Override
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
         rotLevel++;
-        if(rotLevel>=MAX_ROTLEVEL_BEFORE_ROTTING){
+        if (rotLevel >= MAX_ROTLEVEL_BEFORE_ROTTING) {
             currentLocation.removeItem(this);
         }
     }
