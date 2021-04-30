@@ -68,10 +68,11 @@ public abstract class Dinosaur extends Actor {
     public abstract void checkDead(GameMap map);
 
     /**
-     * Used to let the dinosaur eat something. Adjusts hitpoints according to the food provided
-     * @param food  The Item eaten
+     * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
+     * @param food      The Item eaten
+     * @param quantity  The quantity of the food eaten
      */
-    public abstract void eat(Item food);
+    public abstract void eat(Item food, int quantity);
 
     /**
      * Figure out what to do next.

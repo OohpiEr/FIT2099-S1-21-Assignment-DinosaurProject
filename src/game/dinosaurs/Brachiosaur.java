@@ -58,14 +58,17 @@ public class Brachiosaur extends Dinosaur {
     }
 
     /**
-     * Used to let the dinosaur eat something. Adjusts hitpoints according to the food provided
-     * @param food  The Item eaten
+     * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
+     * @param food      The Item eaten
+     * @param quantity  The quantity of the food eaten
      */
     @Override
-    public void eat(Item food) {
+    public void eat(Item food, int quantity) {
         final int FRUIT_HEAL = 5;
         if(food.getClass()==Fruit.class){
-            heal(FRUIT_HEAL);
+            for(int i=0;i<quantity;i++){
+                heal(FRUIT_HEAL);
+            }
         }
     }
 }

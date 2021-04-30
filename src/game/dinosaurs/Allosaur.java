@@ -76,23 +76,26 @@ public class Allosaur extends Dinosaur {
     }
 
     /**
-     * Used to let the dinosaur eat something. Adjusts hitpoints according to the food provided
-     * @param food  The Item eaten
+     * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
+     * @param food      The Item eaten
+     * @param quantity  The quantity of the food eaten
      */
     @Override
-    public void eat(Item food) {
+    public void eat(Item food, int quantity) {
         final int ALLOSAUR_CORPSE_HEAL = 50;
         final int STEGOSAUR_CORPSE_HEAL = 50;
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
         if(food.getClass()==Corpse.class){
-            if(((Corpse) food).getType()==Corpse.Type.Stegosaur){
-                heal(STEGOSAUR_CORPSE_HEAL);
-            }
-            else if(((Corpse) food).getType()==Corpse.Type.Allosaur){
-                heal(ALLOSAUR_CORPSE_HEAL);
-            }
-            else if(((Corpse) food).getType()==Corpse.Type.Branchiosaur){
-                heal(BRACHIOSAUR_CORPSE_HEAL);
+            for(int i=0;i<quantity;i++){
+                if(((Corpse) food).getType()==Corpse.Type.Stegosaur){
+                    heal(STEGOSAUR_CORPSE_HEAL);
+                }
+                else if(((Corpse) food).getType()==Corpse.Type.Allosaur){
+                    heal(ALLOSAUR_CORPSE_HEAL);
+                }
+                else if(((Corpse) food).getType()==Corpse.Type.Branchiosaur){
+                    heal(BRACHIOSAUR_CORPSE_HEAL);
+                }
             }
         }
     }
