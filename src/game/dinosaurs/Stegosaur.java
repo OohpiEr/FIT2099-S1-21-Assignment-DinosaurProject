@@ -18,6 +18,8 @@ public class Stegosaur extends Dinosaur {
 
     private final int STARTING_HITPOINTS = 50;
     private final int MAX_HITPOINTS = 100;
+    private final int HUNGRY_BEHAVIOUR = 1;
+    private final int HORNY_BEHAVIOUR = 2;
 
     /**
      * Constructor.
@@ -27,8 +29,10 @@ public class Stegosaur extends Dinosaur {
      * @param isFemale whether the dinosaur is female
      */
     public Stegosaur(String name, boolean isFemale) {
-        super(name, 'S', 100, isFemale);
+        super(name, 'S', 50, isFemale);
         maxHitPoints = MAX_HITPOINTS;
+        actionFactories.add(new HungryBehaviour(Fruit.class));
+        actionFactories.add(new HornyBehaviour());
     }
 
     /**
@@ -58,39 +62,39 @@ public class Stegosaur extends Dinosaur {
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         super.playTurn(actions, lastAction, map, display);
 
-        determineBehaviour();
+        if (lastAction.getNextAction() != null)
+            return lastAction.getNextAction();
 
-        for (Behaviour factory : actionFactories) {
-            Action action = factory.getAction(this, map);
-            if(action != null)
-                return action;
+        Action action = determineBehaviour(map);
+        if (action != null) {
+            return action;
+        } else {
+            return actions.get(Util.random(0, actions.size()-1));
         }
-
-        return actions.get(Util.random(0,actions.size()));
     }
 
     /**
      * determines the highest priority behaviour based on probability
-     *      * FIXME: use lastAction.getNextAction --> continue behaviour?? how
+     * FIXME: use lastAction.getNextAction --> continue behaviour?? how
      * FIXME: make it default to hundry behaviour if no mate (how??)
      * FIXME: have to remove behaviour from collection so it doesn't keep adding more
      */
-    private void determineBehaviour() {
-        Behaviour behaviour = null;
+    private Action determineBehaviour(GameMap map) {
+        Action action = null;
 
         if (hitPoints > 50 && hitPoints < 90) {
             //hungry behaviour or horny behaviour
-            if (Util.getBooleanProbability(0.6)) {
-                behaviour = new HornyBehaviour();
+            if (Util.getBooleanProbability(0.4)) {
+                action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
             } else {
-                behaviour = new HungryBehaviour(Fruit.class);
+                action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
             }
-        } else if (hitPoints < 50) {
+        } else if (hitPoints <= 50) {
             //hungry behaviour
-            behaviour = new HungryBehaviour(Fruit.class);
+            action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
         }
 
-        actionFactories.add(0, behaviour);
+        return action;
     }
 
     /**

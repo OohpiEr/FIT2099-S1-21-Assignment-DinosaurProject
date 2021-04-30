@@ -17,4 +17,9 @@ public class BreedAction extends Action {
     public String menuDescription(Actor actor) {
         return null;
     }
+
+    @Override
+    public Action getNextAction() {
+        return super.getNextAction();
+    }
 }
