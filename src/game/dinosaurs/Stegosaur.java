@@ -49,7 +49,6 @@ public class Stegosaur extends Dinosaur {
     /**
      * Figure out what to do next.
      * <p>
-     * FIXME: balance between horny and hungry (always hungry not enough horny??)
      * FIXME: use lastAction.getNextAction --> continue behaviour?? how
      * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it just stands there.  That's boring.
      *
@@ -72,6 +71,7 @@ public class Stegosaur extends Dinosaur {
 
     /**
      * determines the highest priority behaviour based on probability
+     *      * FIXME: use lastAction.getNextAction --> continue behaviour?? how
      * FIXME: make it default to hundry behaviour if no mate (how??)
      * FIXME: have to remove behaviour from collection so it doesn't keep adding more
      */

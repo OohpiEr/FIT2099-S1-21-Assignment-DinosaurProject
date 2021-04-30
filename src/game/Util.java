@@ -17,9 +17,9 @@ public final class Util {
     }
 
     /**
-     * Get a random integer between 2 integers
-     * @param lowerBound lowerbound
-     * @param upperBound upperbound
+     * Get a random integer between 2 integers (inclusive)
+     * @param lowerBound lowerbound (inclusive)
+     * @param upperBound upperbound (inclusive)
      * @return random number as an integer
      */
     public static int random(int lowerBound, int upperBound){
