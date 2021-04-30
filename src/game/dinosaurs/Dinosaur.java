@@ -2,6 +2,7 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.behaviours.Behaviour;
+import game.behaviours.WanderBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +20,8 @@ public abstract class Dinosaur extends Actor {
      */
     private boolean isFemale;
     private boolean isPregnant;
-    //diet (capability) what is this why
-    // TODO why is this public?? -> demo/mars/bug has it public
+    // TODO diet (capability) ???
+    // TODO why is this public?? -> demo/mars/bug has it public -> chechk why
     public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 
     /**
@@ -36,6 +37,7 @@ public abstract class Dinosaur extends Actor {
         setFemale(isFemale);
         this.isPregnant = false;
         this.maxHitPoints = MAX_HITPOINTS;
+        actionFactories.add(new WanderBehaviour());
     }
 
     public boolean isFemale() {
@@ -63,7 +65,6 @@ public abstract class Dinosaur extends Actor {
     /**
      * Figure out what to do next.
      * <p>
-     * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it
      * just stands there.  That's boring.
      *
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
