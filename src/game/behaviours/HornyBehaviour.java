@@ -14,6 +14,7 @@ public class HornyBehaviour implements Behaviour {
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
+
         Action returnAction = null;
         Actor target = getNearestTarget(actor, map);
 
@@ -40,8 +41,8 @@ public class HornyBehaviour implements Behaviour {
         return false;
     }
 
+    //FIXME return null if fail
     public Actor getNearestTarget(Actor actor, GameMap map) {
-
         List<Location> locationsWithTargets = new ArrayList<>();
 
         for (int x : map.getXRange()) {
