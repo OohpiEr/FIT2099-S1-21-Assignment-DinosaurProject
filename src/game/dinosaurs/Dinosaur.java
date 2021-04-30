@@ -69,7 +69,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Used to let the dinosaur eat something. Adjusts hitpoints according to the food provided
-     * @param food
+     * @param food  The Item eaten
      */
     public abstract void eat(Item food);
 

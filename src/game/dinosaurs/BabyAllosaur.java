@@ -57,8 +57,25 @@ public class BabyAllosaur extends BabyDino {
         }
     }
 
+    /**
+     * Used to let the dinosaur eat something. Adjusts hitpoints according to the food provided
+     * @param food  The Item eaten
+     */
     @Override
     public void eat(Item food) {
-
+        final int ALLOSAUR_CORPSE_HEAL = 50;
+        final int STEGOSAUR_CORPSE_HEAL = 50;
+        final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
+        if(food.getClass()==Corpse.class){
+            if(((Corpse) food).getType()==Corpse.Type.Stegosaur){
+                heal(STEGOSAUR_CORPSE_HEAL);
+            }
+            else if(((Corpse) food).getType()==Corpse.Type.Allosaur){
+                heal(ALLOSAUR_CORPSE_HEAL);
+            }
+            else if(((Corpse) food).getType()==Corpse.Type.Branchiosaur){
+                heal(BRACHIOSAUR_CORPSE_HEAL);
+            }
+        }
     }
 }

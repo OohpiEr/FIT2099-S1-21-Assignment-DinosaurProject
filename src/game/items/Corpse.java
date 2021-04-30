@@ -23,6 +23,14 @@ public class Corpse extends PortableItem {
         }
     }
 
+    /**
+     * Returns the type of corpse this is
+     * @return  The type of corpse this is
+     */
+    public Type getType() {
+        return type;
+    }
+
     Type type;
 
     /**
