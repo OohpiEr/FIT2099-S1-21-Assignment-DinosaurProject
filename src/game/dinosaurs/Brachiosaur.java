@@ -1,8 +1,12 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import game.grounds.Bush;
+import game.grounds.Tree;
 import game.items.Corpse;
+import game.items.Fruit;
 
 public class Brachiosaur extends Dinosaur {
 
@@ -10,6 +14,9 @@ public class Brachiosaur extends Dinosaur {
     private final int MAX_HITPOINTS = 160;
     private final String NAME = "Brachiosaur";
     private final char DISPLAY_CHAR = 'B';
+
+    private final Item[] FOOD = {new Fruit()};
+    private final Ground[] EATS_FROM = {new Tree()};
 
     /**
      * Constructor.

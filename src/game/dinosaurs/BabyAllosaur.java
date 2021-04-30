@@ -1,8 +1,11 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import game.grounds.Bush;
 import game.items.Corpse;
+import game.items.Fruit;
 
 public class BabyAllosaur extends BabyDino {
 
@@ -10,6 +13,9 @@ public class BabyAllosaur extends BabyDino {
     private final int MAX_HITPOINTS = 100;
     private final String NAME = "Baby Allosaur";
     private final char DISPLAY_CHAR = 'a';
+
+    private final Item[] FOOD = {new Corpse(Corpse.Type.Stegosaur)};    // The corpse type doesn't matter here, just adding it in for initialisation purposes
+    private final Ground[] EATS_FROM = {};
 
     /**
      * Constructor.

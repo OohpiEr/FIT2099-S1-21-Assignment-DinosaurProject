@@ -6,10 +6,14 @@ import game.Util;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.behaviours.HornyBehaviour;
+import game.grounds.Bush;
 import game.items.Corpse;
 import game.items.Fruit;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * A herbivorous dinosaur.
@@ -22,6 +26,9 @@ public class Stegosaur extends Dinosaur {
     private final int HORNY_BEHAVIOUR = 2;
     private final String NAME = "Stegosaur";
     private final char DISPLAY_CHAR = 'S';
+
+    private final Item[] FOOD = {new Fruit()};
+    private final Ground[] EATS_FROM = {new Bush()};
 
     /**
      * Constructor.

@@ -3,6 +3,8 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
+import game.grounds.Bush;
+import game.items.Fruit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +15,8 @@ public abstract class Dinosaur extends Actor {
     private final int MAX_HITPOINTS = 100;
     private final int WANDER_BEHAVIOUR = 0;
 
-    private ArrayList<Item> food;
-    private ArrayList<Ground> eatsFrom;
+    private final Item[] FOOD = {};
+    private final Ground[] EATS_FROM = {};
 
     /**
      * gender
@@ -39,9 +41,6 @@ public abstract class Dinosaur extends Actor {
         this.isPregnant = false;
         this.maxHitPoints = MAX_HITPOINTS;
         actionFactories.add(new WanderBehaviour());
-
-        food = new ArrayList<>();
-        eatsFrom = new ArrayList<>();
     }
 
     public boolean isFemale() {
