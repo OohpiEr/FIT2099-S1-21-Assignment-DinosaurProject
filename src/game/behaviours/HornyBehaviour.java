@@ -24,6 +24,10 @@ public class HornyBehaviour implements Behaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
 
+        if (((Dinosaur) actor).isFemale() && ((Dinosaur) actor).isPregnant()){
+            return null;
+        }
+
         Actor target = null;
         Action returnAction = null;
         List<Location> locationsWithTargets = getPossibleTargets(actor, map);
@@ -31,9 +35,10 @@ public class HornyBehaviour implements Behaviour {
         if (locationsWithTargets != null) {
             target = getNearestTarget(actor, map, locationsWithTargets);
 
-            if (target != null) {
+            if (target != null && (((Dinosaur) target).isFemale() && !((Dinosaur) target).isPregnant())) {
+
                 if (isTargetInExit(target, actor, map)) {
-                    returnAction = new BreedAction();
+                    returnAction = new BreedAction(actor,target);
                 } else {
                     followBehaviour = new FollowBehaviour(target);
                     returnAction = followBehaviour.getAction(actor, map);

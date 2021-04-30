@@ -23,8 +23,7 @@ public abstract class Dinosaur extends Actor {
      */
     private boolean isFemale;
     private boolean isPregnant;
-    // TODO diet (capability) ???
-    // TODO why is this public?? -> demo/mars/bug has it public -> chechk why
+    protected int pregnantTick;
     public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 
     /**
@@ -40,6 +39,7 @@ public abstract class Dinosaur extends Actor {
         setFemale(isFemale);
         this.isPregnant = false;
         this.maxHitPoints = MAX_HITPOINTS;
+        this.pregnantTick = 0;
         actionFactories.add(new WanderBehaviour());
     }
 
@@ -58,6 +58,8 @@ public abstract class Dinosaur extends Actor {
     public void setPregnant(boolean pregnant) {
         isPregnant = pregnant;
     }
+
+
 
     /**
      * Used to check if a dinosaur is dead, and execute the required functions

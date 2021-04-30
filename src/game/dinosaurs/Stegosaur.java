@@ -4,6 +4,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.Util;
 import game.actions.AttackAction;
+import game.actions.BreedAction;
 import game.behaviours.Behaviour;
 import game.behaviours.HornyBehaviour;
 import game.grounds.Bush;
@@ -40,8 +41,10 @@ public class Stegosaur extends Dinosaur {
     public Stegosaur(String name, boolean isFemale) {
         super(name, 'S', 50, isFemale);
         maxHitPoints = MAX_HITPOINTS;
-        actionFactories.add(new HungryBehaviour(Fruit.class));
-        actionFactories.add(new HornyBehaviour());
+        hitPoints = STARTING_HITPOINTS;
+        setBehaviours();
+//        TODO pregnantTick doesnt work why
+//        this.pregnantTick
     }
 
     /**
@@ -54,6 +57,12 @@ public class Stegosaur extends Dinosaur {
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
+        setBehaviours();
+    }
+
+    private void setBehaviours(){
+        actionFactories.add(new HungryBehaviour(Fruit.class));
+        actionFactories.add(new HornyBehaviour());
     }
 
     @Override
@@ -63,10 +72,8 @@ public class Stegosaur extends Dinosaur {
 
     /**
      * Figure out what to do next.
-     * <p>
-     * FIXME: use lastAction.getNextAction --> continue behaviour?? how
-     * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it just stands there.  That's boring.
      *
+     * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it just stands there.  That's boring.
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @Override
@@ -86,9 +93,8 @@ public class Stegosaur extends Dinosaur {
 
     /**
      * determines the highest priority behaviour based on probability
-     * FIXME: use lastAction.getNextAction --> continue behaviour?? how
-     * FIXME: make it default to hundry behaviour if no mate (how??)
-     * FIXME: have to remove behaviour from collection so it doesn't keep adding more
+     * @param map gamemap the actor is on
+     * @return action to be performed this playturn
      */
     private Action determineBehaviour(GameMap map) {
         Action action = null;
