@@ -7,6 +7,9 @@ import game.grounds.Bush;
 import game.items.Corpse;
 import game.items.Fruit;
 
+/**
+ * A baby Stegosaur, a herbivorous dinosaur
+ */
 public class BabyStegosaur extends BabyDino {
 
     private final int STARTING_HITPOINTS = 10;

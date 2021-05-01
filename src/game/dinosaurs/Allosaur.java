@@ -10,6 +10,9 @@ import game.behaviours.WanderBehaviour;
 
 import java.util.ArrayList;
 
+/**
+ * A carnivorous dinosaur
+ */
 public class Allosaur extends Dinosaur {
     private ArrayList<Stegosaur> offLimitsStegosaurs = new ArrayList<Stegosaur>();
     private final int STARTING_HITPOINTS = 100;

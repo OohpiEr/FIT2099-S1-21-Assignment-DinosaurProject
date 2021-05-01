@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.*;
 import edu.monash.fit2099.interfaces.hasFood;
 import game.dinosaurs.Dinosaur;
 
+/**
+ * A class that lets an actor eat a quantity of food from somewhere/something
+ */
 public class EatAction extends Action {
 
     private Item food;

@@ -9,6 +9,9 @@ import game.items.Fruit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An abstract class to represent a dinosaur
+ */
 public abstract class Dinosaur extends Actor {
 
     private final int STARTING_HITPOINTS = 10;

@@ -3,6 +3,9 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.GameMap;
 import game.items.Corpse;
 
+/**
+ * An abstract class to represent a baby dinosaur
+ */
 public abstract class BabyDino extends Dinosaur {
     /**
      * Constructor.

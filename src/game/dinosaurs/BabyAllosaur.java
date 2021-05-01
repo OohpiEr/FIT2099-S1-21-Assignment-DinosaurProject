@@ -7,6 +7,9 @@ import game.grounds.Bush;
 import game.items.Corpse;
 import game.items.Fruit;
 
+/**
+ * A baby Allosaur, a carnivorous dinosaur
+ */
 public class BabyAllosaur extends BabyDino {
 
     private final int STARTING_HITPOINTS = 20;

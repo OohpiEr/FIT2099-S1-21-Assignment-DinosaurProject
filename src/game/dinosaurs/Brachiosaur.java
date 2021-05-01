@@ -8,6 +8,9 @@ import game.grounds.Tree;
 import game.items.Corpse;
 import game.items.Fruit;
 
+/**
+ * A herbivorous dinosaur
+ */
 public class Brachiosaur extends Dinosaur {
 
     private final int STARTING_HITPOINTS = 100;
