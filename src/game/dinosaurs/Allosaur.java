@@ -19,6 +19,8 @@ public class Allosaur extends Dinosaur {
     private final int MAX_HITPOINTS = 100;
     private final String NAME = "Allosaur";
     private final char DISPLAY_CHAR = 'A';
+    private final int PREGNANT_TICK = 20;
+
 
     /**
      * Constructor.
@@ -35,7 +37,7 @@ public class Allosaur extends Dinosaur {
         actionFactories.add(new HungryBehaviour(Fruit.class));
         actionFactories.add(new WanderBehaviour());
         actionFactories.add(new AttackBehaviour());
-
+        this.pregnantTick = PREGNANT_TICK;
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -49,6 +51,7 @@ public class Allosaur extends Dinosaur {
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
+        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**

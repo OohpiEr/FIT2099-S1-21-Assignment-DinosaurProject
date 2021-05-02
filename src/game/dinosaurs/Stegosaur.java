@@ -25,6 +25,7 @@ public class Stegosaur extends Dinosaur {
     private final int MAX_HITPOINTS = 100;
     private final int HUNGRY_BEHAVIOUR = 1;
     private final int HORNY_BEHAVIOUR = 2;
+    private final int PREGNANT_TICK = 10;
     private final String NAME = "Stegosaur";
     private final char DISPLAY_CHAR = 'S';
 
@@ -33,7 +34,7 @@ public class Stegosaur extends Dinosaur {
 
     /**
      * Constructor.
-     * All Stegosaurs are represented by a 'd' and have 100 hit points.
+     * All Stegosaurs are represented by a 'S' and have 100 max hit points.
      *
      * @param name     the name of the Actor
      * @param isFemale whether the dinosaur is female
@@ -42,9 +43,9 @@ public class Stegosaur extends Dinosaur {
         super(name, 'S', 50, isFemale);
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
+        this.pregnantTick = PREGNANT_TICK;
         setBehaviours();
 //        TODO do pregnantTick
-//        this.pregnantTick
     }
 
     /**
@@ -57,10 +58,11 @@ public class Stegosaur extends Dinosaur {
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
+        this.pregnantTick = PREGNANT_TICK;
         setBehaviours();
     }
 
-    private void setBehaviours(){
+    private void setBehaviours() {
         actionFactories.add(new HungryBehaviour(Fruit.class));
         actionFactories.add(new HornyBehaviour());
     }
@@ -73,7 +75,6 @@ public class Stegosaur extends Dinosaur {
     /**
      * Figure out what to do next.
      *
-     * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it just stands there.  That's boring.
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @Override
@@ -93,6 +94,7 @@ public class Stegosaur extends Dinosaur {
 
     /**
      * determines the highest priority behaviour based on probability
+     *
      * @param map gamemap the actor is on
      * @return action to be performed this playturn
      */
@@ -114,6 +116,7 @@ public class Stegosaur extends Dinosaur {
         return action;
     }
 
+
     /**
      * Checks if the Stegosaur is dead, and places a Stegosaur corpse on its location in its place if it is
      *
@@ -131,14 +134,15 @@ public class Stegosaur extends Dinosaur {
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
-     * @param food      The Item eaten
-     * @param quantity  The quantity of the food eaten
+     *
+     * @param food     The Item eaten
+     * @param quantity The quantity of the food eaten
      */
     @Override
     public void eat(Item food, int quantity) {
         final int FRUIT_HEAL = 10;
-        if(food.getClass()==Fruit.class){
-            for(int i=0;i<quantity;i++){
+        if (food.getClass() == Fruit.class) {
+            for (int i = 0; i < quantity; i++) {
                 heal(FRUIT_HEAL);
             }
         }

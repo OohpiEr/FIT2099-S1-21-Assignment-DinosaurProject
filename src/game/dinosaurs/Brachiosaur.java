@@ -17,6 +17,7 @@ public class Brachiosaur extends Dinosaur {
     private final int MAX_HITPOINTS = 160;
     private final String NAME = "Brachiosaur";
     private final char DISPLAY_CHAR = 'B';
+    private final int PREGNANT_TICK = 20;
 
     private final Item[] FOOD = {new Fruit()};
     private final Ground[] EATS_FROM = {new Tree()};
@@ -32,6 +33,7 @@ public class Brachiosaur extends Dinosaur {
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints, isFemale);
         maxHitPoints = MAX_HITPOINTS;
+        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**
@@ -44,6 +46,7 @@ public class Brachiosaur extends Dinosaur {
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
+        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**
