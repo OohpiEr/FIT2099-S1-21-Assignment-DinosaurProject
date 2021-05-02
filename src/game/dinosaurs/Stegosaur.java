@@ -4,17 +4,12 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.Util;
 import game.actions.AttackAction;
-import game.actions.BreedAction;
-import game.behaviours.Behaviour;
 import game.behaviours.HornyBehaviour;
 import game.grounds.Bush;
 import game.items.Corpse;
+import game.items.Egg;
 import game.items.Fruit;
 import game.behaviours.HungryBehaviour;
-import game.behaviours.WanderBehaviour;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * A herbivorous dinosaur.
@@ -43,7 +38,6 @@ public class Stegosaur extends Dinosaur {
         super(name, 'S', 50, isFemale);
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
-        this.pregnantTick = PREGNANT_TICK;
         setBehaviours();
 //        TODO do pregnantTick
     }
@@ -58,7 +52,6 @@ public class Stegosaur extends Dinosaur {
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
-        this.pregnantTick = PREGNANT_TICK;
         setBehaviours();
     }
 
@@ -126,6 +119,20 @@ public class Stegosaur extends Dinosaur {
                 heal(FRUIT_HEAL);
             }
         }
+    }
+
+    @Override
+    protected void layEgg() {
+        Egg egg = new Egg(Egg.Type.STEGOSAUR);
+        //todo lays egg
+    }
+
+    /**
+     * resets pregnant tick to stegosaur's maximum pregnant tick
+     */
+    @Override
+    public void resetPregnantTick() {
+        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**

@@ -14,10 +14,10 @@ import game.dinosaurs.BabyStegosaur;
  */
 public class Egg extends PortableItem {
 
-    private enum Type {
-        Stegosaur("Stegosaur"),
-        Branchiosaur("Branchiosaur"),
-        Allosaur("Allosaur");
+    public enum Type {
+        STEGOSAUR("Stegosaur"),
+        BRANCHIOSAUR("Branchiosaur"),
+        ALLOSAUR("Allosaur");
 
         private String name;
 
@@ -50,11 +50,11 @@ public class Egg extends PortableItem {
     }
 
     public void setTimeToHatch() {
-        if (type == Type.Stegosaur) {
+        if (type == Type.STEGOSAUR) {
             this.timeToHatch = STEGOSAUR_TIME_TO_HATCH;
-        } else if (type == Type.Branchiosaur) {
+        } else if (type == Type.BRANCHIOSAUR) {
             this.timeToHatch = BRANCHIOSAUR_TIME_TO_HATCH;
-        } else if (type == Type.Allosaur) {
+        } else if (type == Type.ALLOSAUR) {
             this.timeToHatch = ALLOSAUR_TIME_TO_HATCH;
         }
     }
@@ -70,7 +70,7 @@ public class Egg extends PortableItem {
         roundsPassed++;
         if (roundsPassed >= timeToHatch) {
             // Egg will try to hatch a baby dinosaur at its location. If it can't, it will try to hatch a baby dinosaur at its adjacent locations
-            if (type == Type.Stegosaur) {
+            if (type == Type.STEGOSAUR) {
                 if (currentLocation.canActorEnter(new BabyStegosaur())) {
                     currentLocation.addActor(new BabyStegosaur());
                 } else {
@@ -81,7 +81,7 @@ public class Egg extends PortableItem {
                         }
                     }
                 }
-            } else if (type == Type.Branchiosaur) {
+            } else if (type == Type.BRANCHIOSAUR) {
                 if (currentLocation.canActorEnter(new BabyBrachiosaur())) {
                     currentLocation.addActor(new BabyBrachiosaur());
                 } else {
@@ -92,7 +92,7 @@ public class Egg extends PortableItem {
                         }
                     }
                 }
-            } else if (type == Type.Allosaur) {
+            } else if (type == Type.ALLOSAUR) {
                 if (currentLocation.canActorEnter(new BabyAllosaur())) {
                     currentLocation.addActor(new BabyAllosaur());
                 } else {
@@ -120,21 +120,21 @@ public class Egg extends PortableItem {
         roundsPassed++;
         if (roundsPassed >= timeToHatch) {
             // Egg will try to hatch a baby dinosaur an adjacent location
-            if (type == Type.Stegosaur) {
+            if (type == Type.STEGOSAUR) {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyStegosaur())) {
                         exit.getDestination().addActor(new BabyStegosaur());
                         break;
                     }
                 }
-            } else if (type == Type.Branchiosaur) {
+            } else if (type == Type.BRANCHIOSAUR) {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyBrachiosaur())) {
                         exit.getDestination().addActor(new BabyBrachiosaur());
                         break;
                     }
                 }
-            } else if (type == Type.Allosaur) {
+            } else if (type == Type.ALLOSAUR) {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyAllosaur())) {
                         exit.getDestination().addActor(new BabyAllosaur());

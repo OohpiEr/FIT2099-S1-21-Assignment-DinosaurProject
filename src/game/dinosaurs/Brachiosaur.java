@@ -1,11 +1,9 @@
 package game.dinosaurs;
 
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Item;
-import game.grounds.Bush;
+import edu.monash.fit2099.engine.*;
 import game.grounds.Tree;
 import game.items.Corpse;
+import game.items.Egg;
 import game.items.Fruit;
 
 /**
@@ -17,7 +15,7 @@ public class Brachiosaur extends Dinosaur {
     private final int MAX_HITPOINTS = 160;
     private final String NAME = "Brachiosaur";
     private final char DISPLAY_CHAR = 'B';
-    private final int PREGNANT_TICK = 20;
+    private final int PREGNANT_TICK = 30;
 
     private final Item[] FOOD = {new Fruit()};
     private final Ground[] EATS_FROM = {new Tree()};
@@ -76,5 +74,24 @@ public class Brachiosaur extends Dinosaur {
                 heal(FRUIT_HEAL);
             }
         }
+    }
+
+    @Override
+    protected void layEgg() {
+        Egg egg = new Egg(Egg.Type.BRANCHIOSAUR);
+        //todo lays egg
+    }
+
+    /**
+     * resets pregnant tick to Brachiosaur's maximum pregnant tick
+     */
+    @Override
+    public void resetPregnantTick() {
+        this.pregnantTick = PREGNANT_TICK;
+    }
+
+    @Override
+    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        return super.playTurn(actions, lastAction, map, display);
     }
 }

@@ -3,6 +3,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.items.Corpse;
+import game.items.Egg;
 import game.items.Fruit;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.HungryBehaviour;
@@ -83,27 +84,32 @@ public class Allosaur extends Dinosaur {
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
-     * @param food      The Item eaten
-     * @param quantity  The quantity of the food eaten
+     *
+     * @param food     The Item eaten
+     * @param quantity The quantity of the food eaten
      */
     @Override
     public void eat(Item food, int quantity) {
         final int ALLOSAUR_CORPSE_HEAL = 50;
         final int STEGOSAUR_CORPSE_HEAL = 50;
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
-        if(food.getClass()==Corpse.class){
-            for(int i=0;i<quantity;i++){
-                if(((Corpse) food).getType()==Corpse.Type.Stegosaur){
+        if (food.getClass() == Corpse.class) {
+            for (int i = 0; i < quantity; i++) {
+                if (((Corpse) food).getType() == Corpse.Type.Stegosaur) {
                     heal(STEGOSAUR_CORPSE_HEAL);
-                }
-                else if(((Corpse) food).getType()==Corpse.Type.Allosaur){
+                } else if (((Corpse) food).getType() == Corpse.Type.Allosaur) {
                     heal(ALLOSAUR_CORPSE_HEAL);
-                }
-                else if(((Corpse) food).getType()==Corpse.Type.Branchiosaur){
+                } else if (((Corpse) food).getType() == Corpse.Type.Branchiosaur) {
                     heal(BRACHIOSAUR_CORPSE_HEAL);
                 }
             }
         }
+    }
+
+    @Override
+    protected void layEgg() {
+        Egg egg = new Egg(Egg.Type.ALLOSAUR);
+        //todo lays egg
     }
 
     public ArrayList<Stegosaur> getOffLimitsStegosaurs() {
@@ -135,6 +141,14 @@ public class Allosaur extends Dinosaur {
         }
 
         return false;
+    }
+
+    /**
+     * resets pregnant tick to Allosaur's maximum pregnant tick
+     */
+    @Override
+    public void resetPregnantTick() {
+        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**

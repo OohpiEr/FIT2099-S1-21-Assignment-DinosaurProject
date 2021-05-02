@@ -86,8 +86,21 @@ public abstract class Dinosaur extends Actor {
     protected void tick(Actor actor) {
         if (pregnantTick > 0 && isPregnant == true) {
             pregnantTick -= 1;
+        } else if (pregnantTick == 0 && isPregnant == true){
+            setPregnant(false);
+            layEgg();
         }
     }
+
+    /**
+     * lays egg on nearest possible ground
+     */
+    protected abstract void layEgg();
+
+    /**
+     * resets pregnant tick to it's maximum tick
+     */
+    public abstract void resetPregnantTick();
 
     /**
      * Figure out what to do next.
