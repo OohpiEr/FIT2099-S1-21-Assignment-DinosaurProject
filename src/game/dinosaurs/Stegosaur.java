@@ -43,7 +43,7 @@ public class Stegosaur extends Dinosaur {
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
         setBehaviours();
-//        TODO pregnantTick doesnt work why
+//        TODO do pregnantTick
 //        this.pregnantTick
     }
 

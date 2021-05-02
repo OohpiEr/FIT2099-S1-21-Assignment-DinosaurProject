@@ -16,18 +16,18 @@ public abstract class Dinosaur extends Actor {
 
     private final int STARTING_HITPOINTS = 10;
     private final int MAX_HITPOINTS = 100;
-    private final int WANDER_BEHAVIOUR = 0;
+    protected final int WANDER_BEHAVIOUR = 0;
 
-    private final Item[] FOOD = {};
-    private final Ground[] EATS_FROM = {};
+    protected final Item[] FOOD = {};
+    protected final Ground[] EATS_FROM = {};
 
     /**
      * gender
      */
-    private boolean isFemale;
-    private boolean isPregnant;
+    protected boolean isFemale;
+    protected boolean isPregnant;
     protected int pregnantTick;
-    public List<Behaviour> actionFactories = new ArrayList<Behaviour>();
+    protected List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 
     /**
      * Constructor.
