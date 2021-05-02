@@ -79,6 +79,18 @@ public abstract class Dinosaur extends Actor {
     public abstract void eat(Item food, int quantity);
 
     /**
+     * Inform an Item on the ground of the passage of time.
+     * This method is called once per turn, if the item rests upon the ground.
+     *
+     * @param actor the actor experiencing time
+     */
+    protected void tick(Actor actor) {
+        if (pregnantTick > 0) {
+            pregnantTick -= 1;
+        }
+    }
+
+    /**
      * Figure out what to do next.
      * <p>
      * just stands there.  That's boring.
@@ -88,6 +100,7 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         checkDead(map);
+        tick(this);
         return new DoNothingAction();
     }
 

@@ -73,26 +73,6 @@ public class Stegosaur extends Dinosaur {
     }
 
     /**
-     * Figure out what to do next.
-     *
-     * @see Actor#playTurn(Actions, Action, GameMap, Display)
-     */
-    @Override
-    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        super.playTurn(actions, lastAction, map, display);
-
-        if (lastAction.getNextAction() != null)
-            return lastAction.getNextAction();
-
-        Action action = determineBehaviour(map);
-        if (action != null) {
-            return action;
-        } else {
-            return actions.get(Util.random(0, actions.size() - 1));
-        }
-    }
-
-    /**
      * determines the highest priority behaviour based on probability
      *
      * @param map gamemap the actor is on
@@ -145,6 +125,26 @@ public class Stegosaur extends Dinosaur {
             for (int i = 0; i < quantity; i++) {
                 heal(FRUIT_HEAL);
             }
+        }
+    }
+
+    /**
+     * Figure out what to do next.
+     *
+     * @see Actor#playTurn(Actions, Action, GameMap, Display)
+     */
+    @Override
+    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        super.playTurn(actions, lastAction, map, display);
+
+        if (lastAction.getNextAction() != null)
+            return lastAction.getNextAction();
+
+        Action action = determineBehaviour(map);
+        if (action != null) {
+            return action;
+        } else {
+            return actions.get(Util.random(0, actions.size() - 1));
         }
     }
 
