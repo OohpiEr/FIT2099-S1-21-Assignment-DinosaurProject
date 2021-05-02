@@ -46,12 +46,16 @@ public class Egg extends PortableItem {
     public Egg(Type type) {
         super(type.getName() + " egg", 'e');
         this.type = type;
+        setTimeToHatch();
+    }
+
+    public void setTimeToHatch() {
         if (type == Type.Stegosaur) {
-            timeToHatch = STEGOSAUR_TIME_TO_HATCH;
+            this.timeToHatch = STEGOSAUR_TIME_TO_HATCH;
         } else if (type == Type.Branchiosaur) {
-            timeToHatch = BRANCHIOSAUR_TIME_TO_HATCH;
+            this.timeToHatch = BRANCHIOSAUR_TIME_TO_HATCH;
         } else if (type == Type.Allosaur) {
-            timeToHatch = ALLOSAUR_TIME_TO_HATCH;
+            this.timeToHatch = ALLOSAUR_TIME_TO_HATCH;
         }
     }
 

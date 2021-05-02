@@ -19,10 +19,19 @@ public class BreedAction extends Action {
         setActor(actor);
         setTarget(target);
         setPregnant();
+        resetPregnantTick();
     }
 
-    private void setPregnant(){
-        if(actor.isFemale()){
+    private void resetPregnantTick() {
+        if (actor.isFemale() && actor.isPregnant()) {
+            actor.resetPregnantTick();
+        } else if (target.isFemale() && target.isPregnant()) {
+            target.resetPregnantTick();
+        }
+    }
+
+    private void setPregnant() {
+        if (actor.isFemale()) {
             actor.setPregnant(true);
         } else {
             target.setPregnant(true);

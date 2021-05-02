@@ -62,7 +62,6 @@ public abstract class Dinosaur extends Actor {
         isPregnant = pregnant;
     }
 
-
     /**
      * Used to check if a dinosaur is dead, and execute the required functions
      *
@@ -79,13 +78,13 @@ public abstract class Dinosaur extends Actor {
     public abstract void eat(Item food, int quantity);
 
     /**
-     * Inform an Item on the ground of the passage of time.
+     * Inform a Dino the passage of time.
      * This method is called once per turn, if the item rests upon the ground.
      *
      * @param actor the actor experiencing time
      */
     protected void tick(Actor actor) {
-        if (pregnantTick > 0) {
+        if (pregnantTick > 0 && isPregnant == true) {
             pregnantTick -= 1;
         }
     }

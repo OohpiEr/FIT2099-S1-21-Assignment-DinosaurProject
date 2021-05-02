@@ -17,14 +17,14 @@ public class HornyBehaviour implements Behaviour {
      * Get action for horny behaviour
      *
      * @param actor the Actor acting
-     * @param map the GameMap containing the Actor
+     * @param map   the GameMap containing the Actor
      * @return an Action that actor can perform, or null if actor can't do this.
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
 
-        if (((Dinosaur) actor).isFemale() && ((Dinosaur) actor).isPregnant()){
+        if (((Dinosaur) actor).isFemale() && ((Dinosaur) actor).isPregnant()) {
             return null;
         }
 
@@ -38,7 +38,7 @@ public class HornyBehaviour implements Behaviour {
             if (target != null && (((Dinosaur) target).isFemale() && !((Dinosaur) target).isPregnant())) {
 
                 if (isTargetInExit(target, actor, map)) {
-                    returnAction = new BreedAction(actor,target);
+                    returnAction = new BreedAction(actor, target);
                 } else {
                     followBehaviour = new FollowBehaviour(target);
                     returnAction = followBehaviour.getAction(actor, map);
@@ -53,8 +53,8 @@ public class HornyBehaviour implements Behaviour {
      * Checks if target is in exit
      *
      * @param target target actor
-     * @param actor the actor itself
-     * @param map the map the actor in in
+     * @param actor  the actor itself
+     * @param map    the map the actor in in
      * @return true if the target is in exit
      */
     private boolean isTargetInExit(Actor target, Actor actor, GameMap map) {
@@ -72,8 +72,8 @@ public class HornyBehaviour implements Behaviour {
     /**
      * gets nearest target in the map containing the actor being horny
      *
-     * @param actor the actor itself
-     * @param map the map the actor in in
+     * @param actor                the actor itself
+     * @param map                  the map the actor in in
      * @param locationsWithTargets list of locations with possible targets
      * @return target actor
      */
@@ -99,7 +99,7 @@ public class HornyBehaviour implements Behaviour {
      * gets possible targets in the same map as the actor being horny
      *
      * @param actor the actor itself
-     * @param map the map the actor is in
+     * @param map   the map the actor is in
      * @return a list of possible targets
      */
     private List getPossibleTargets(Actor actor, GameMap map) {
