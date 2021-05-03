@@ -119,7 +119,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * resets pregnant tick to it's maximum tick
      */
-    public abstract void resetPregnantTick();
+    public void resetPregnantTick(){};
 
     /**
      * Figure out what to do next.

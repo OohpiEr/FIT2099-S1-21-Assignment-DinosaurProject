@@ -3,7 +3,6 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.items.Corpse;
-import game.items.Egg;
 import game.items.Fruit;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.HungryBehaviour;
@@ -77,7 +76,7 @@ public class Allosaur extends Dinosaur {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.Allosaur));
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.ALLOSAUR));
             map.removeActor(this);
         }
     }
@@ -95,11 +94,11 @@ public class Allosaur extends Dinosaur {
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
-                if (((Corpse) food).getType() == Corpse.Type.Stegosaur) {
+                if (((Corpse) food).getType() == Corpse.Type.STEGOSAUR) {
                     heal(STEGOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == Corpse.Type.Allosaur) {
+                } else if (((Corpse) food).getType() == Corpse.Type.ALLOSAUR) {
                     heal(ALLOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == Corpse.Type.Branchiosaur) {
+                } else if (((Corpse) food).getType() == Corpse.Type.BRANCHIOSAUR) {
                     heal(BRACHIOSAUR_CORPSE_HEAL);
                 }
             }

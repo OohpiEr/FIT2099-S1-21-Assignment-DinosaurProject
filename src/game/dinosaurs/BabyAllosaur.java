@@ -3,9 +3,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
-import game.grounds.Bush;
 import game.items.Corpse;
-import game.items.Fruit;
 
 /**
  * A baby Allosaur, a carnivorous dinosaur
@@ -17,7 +15,7 @@ public class BabyAllosaur extends BabyDino {
     private final String NAME = "Baby Allosaur";
     private final char DISPLAY_CHAR = 'a';
 
-    private final Item[] FOOD = {new Corpse(Corpse.Type.Stegosaur)};    // The corpse type doesn't matter here, just adding it in for initialisation purposes
+    private final Item[] FOOD = {new Corpse(Corpse.Type.STEGOSAUR)};    // The corpse type doesn't matter here, just adding it in for initialisation purposes
     private final Ground[] EATS_FROM = {};
 
     /**
@@ -55,7 +53,7 @@ public class BabyAllosaur extends BabyDino {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.Allosaur));
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.ALLOSAUR));
             map.removeActor(this);
         }
     }
@@ -72,13 +70,13 @@ public class BabyAllosaur extends BabyDino {
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
         if(food.getClass()==Corpse.class){
             for(int i=0;i<quantity;i++){
-                if(((Corpse) food).getType()==Corpse.Type.Stegosaur){
+                if(((Corpse) food).getType()==Corpse.Type.STEGOSAUR){
                     heal(STEGOSAUR_CORPSE_HEAL);
                 }
-                else if(((Corpse) food).getType()==Corpse.Type.Allosaur){
+                else if(((Corpse) food).getType()==Corpse.Type.ALLOSAUR){
                     heal(ALLOSAUR_CORPSE_HEAL);
                 }
-                else if(((Corpse) food).getType()==Corpse.Type.Branchiosaur){
+                else if(((Corpse) food).getType()==Corpse.Type.BRANCHIOSAUR){
                     heal(BRACHIOSAUR_CORPSE_HEAL);
                 }
             }

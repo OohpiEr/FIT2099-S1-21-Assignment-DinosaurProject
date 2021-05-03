@@ -3,7 +3,6 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.grounds.Tree;
 import game.items.Corpse;
-import game.items.Egg;
 import game.items.Fruit;
 
 /**
@@ -57,7 +56,7 @@ public class Brachiosaur extends Dinosaur {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.Branchiosaur));
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.BRANCHIOSAUR));
             map.removeActor(this);
         }
     }

@@ -101,7 +101,7 @@ public class Stegosaur extends Dinosaur {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.Stegosaur));
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.STEGOSAUR));
             map.removeActor(this);
         }
     }
@@ -121,8 +121,6 @@ public class Stegosaur extends Dinosaur {
             }
         }
     }
-
-
 
     /**
      * resets pregnant tick to stegosaur's maximum pregnant tick
