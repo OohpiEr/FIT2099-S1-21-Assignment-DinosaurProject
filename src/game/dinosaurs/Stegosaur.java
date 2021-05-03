@@ -77,16 +77,27 @@ public class Stegosaur extends Dinosaur {
     private Action determineBehaviour(GameMap map) {
         Action action = null;
 
-        if (hitPoints > 50 && hitPoints < 90) {
-            //hungry behaviour or horny behaviour
+        if (hitPoints >= 90 && hitPoints <= 100) {
+            //wander behaviour or horny behaviour
             if (Util.getBooleanProbability(0.4)) {
                 action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
             } else {
-                action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
             }
-        } else if (hitPoints <= 50) {
+        } else if (hitPoints >= 50 && hitPoints < 90) {
+            //hungry behaviour or horny behaviour
+            if (Util.getBooleanProbability(1)) {
+                action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
+            } else if (Util.getBooleanProbability(0.5)) {
+                action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+            } else {
+                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+            }
+        } else if (hitPoints < 50) {
             //hungry behaviour
             action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+        } else {
+            action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
         }
 
         return action;

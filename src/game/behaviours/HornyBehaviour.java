@@ -108,17 +108,12 @@ public class HornyBehaviour implements Behaviour {
         for (int x : map.getXRange()) {
             for (int y : map.getYRange()) {
                 Actor possibleTarget = map.getActorAt(map.at(x, y));
-                if ((possibleTarget != null) && (possibleTarget.getClass() == actor.getClass())) ;
-                {
-                    boolean isActorFemale = ((Dinosaur) actor).isFemale();
-                    boolean isPossibleTargetFemale = ((Dinosaur) possibleTarget).isFemale();
-
-                    if ((isActorFemale ^ isPossibleTargetFemale)) {
-                        //isActorFemale XOR isPossibleTargetFemale
-                        if ((isActorFemale && !((Dinosaur) actor).isPregnant()) || (isPossibleTargetFemale && !((Dinosaur) possibleTarget).isPregnant())) {
-                            locationsWithTargets.add(map.locationOf(possibleTarget));
-                        }
-                    }
+                if ((possibleTarget != null) &&
+                        (possibleTarget != actor) &&
+                        (possibleTarget.getClass() == actor.getClass()) &&
+                        (((Dinosaur) actor).isFemale() ^ ((Dinosaur) possibleTarget).isFemale()) &&
+                        ((((Dinosaur) actor).isFemale() && !((Dinosaur) actor).isPregnant()) || (((Dinosaur) possibleTarget).isFemale() && !((Dinosaur) possibleTarget).isPregnant()))) {
+                    locationsWithTargets.add(map.locationOf(possibleTarget));
                 }
             }
         }
