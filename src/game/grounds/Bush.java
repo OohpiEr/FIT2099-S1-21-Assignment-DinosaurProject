@@ -26,7 +26,7 @@ public class Bush extends Ground implements hasFood {
      * @see Fruit
      */
     public Bush() {
-        super('b');
+        super('x');
         fruits = new ArrayList<>();
     }
 

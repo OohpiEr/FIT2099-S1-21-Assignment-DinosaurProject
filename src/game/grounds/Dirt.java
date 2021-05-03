@@ -13,8 +13,8 @@ public class Dirt extends Ground {
         super('.');
     }
 
-    private final double BASE_CHANCE_TO_GROW_BUSH = 0.01;
-    private final double CHANCE_TO_GROW_BUSH_IF_HAVE_ADJACENT_BUSH = 0.10;
+    private final double BASE_CHANCE_TO_GROW_BUSH = 0.004;
+    private final double CHANCE_TO_GROW_BUSH_IF_HAVE_ADJACENT_BUSH = 0.01;
 
     /**
      * Extends the parent tick() method. Adds a chance for the Dirt to turn into a Bush if there is no adjacent Tree. Chance is increased if there is an adjacent Bush
