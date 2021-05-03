@@ -16,6 +16,7 @@ import game.behaviours.HungryBehaviour;
  */
 public class Stegosaur extends Dinosaur {
 
+    private final Type DINO_TYPE = Type.STEGOSAUR;
     private final int STARTING_HITPOINTS = 50;
     private final int MAX_HITPOINTS = 100;
     private final int HUNGRY_BEHAVIOUR = 1;
@@ -35,7 +36,8 @@ public class Stegosaur extends Dinosaur {
      * @param isFemale whether the dinosaur is female
      */
     public Stegosaur(String name, boolean isFemale) {
-        super(name, 'S', 50, isFemale);
+        super(name, 'S', 50, isFemale, Type.STEGOSAUR);
+        dinoType = DINO_TYPE;
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
         setBehaviours();
@@ -46,7 +48,8 @@ public class Stegosaur extends Dinosaur {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Stegosaur() {
-        super("Stegosaur", 'S', 50, false);
+        super("Stegosaur", 'S', 50, false, Type.STEGOSAUR);
+        dinoType = DINO_TYPE;
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -89,7 +92,6 @@ public class Stegosaur extends Dinosaur {
         return action;
     }
 
-
     /**
      * Checks if the Stegosaur is dead, and places a Stegosaur corpse on its location in its place if it is
      *
@@ -103,7 +105,6 @@ public class Stegosaur extends Dinosaur {
             map.removeActor(this);
         }
     }
-
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
@@ -121,11 +122,7 @@ public class Stegosaur extends Dinosaur {
         }
     }
 
-    @Override
-    protected void layEgg() {
-        Egg egg = new Egg(Egg.Type.STEGOSAUR);
-        //todo lays egg
-    }
+
 
     /**
      * resets pregnant tick to stegosaur's maximum pregnant tick

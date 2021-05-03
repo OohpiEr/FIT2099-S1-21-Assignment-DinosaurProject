@@ -11,6 +11,7 @@ import game.items.Fruit;
  */
 public class Brachiosaur extends Dinosaur {
 
+    private final Type DINO_TYPE = Type.BRANCHIOSAUR;
     private final int STARTING_HITPOINTS = 100;
     private final int MAX_HITPOINTS = 160;
     private final String NAME = "Brachiosaur";
@@ -29,7 +30,7 @@ public class Brachiosaur extends Dinosaur {
      * @param isFemale    whether the dinosaur is female
      */
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale);
+        super(name, displayChar, hitPoints, isFemale, Type.BRANCHIOSAUR);
         maxHitPoints = MAX_HITPOINTS;
         this.pregnantTick = PREGNANT_TICK;
     }
@@ -38,7 +39,7 @@ public class Brachiosaur extends Dinosaur {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Brachiosaur() {
-        super("Brachiosaur", 'B', 100, false);
+        super("Brachiosaur", 'B', 100, false, Type.BRANCHIOSAUR);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -76,11 +77,6 @@ public class Brachiosaur extends Dinosaur {
         }
     }
 
-    @Override
-    protected void layEgg() {
-        Egg egg = new Egg(Egg.Type.BRANCHIOSAUR);
-        //todo lays egg
-    }
 
     /**
      * resets pregnant tick to Brachiosaur's maximum pregnant tick

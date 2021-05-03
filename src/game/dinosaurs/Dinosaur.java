@@ -4,6 +4,8 @@ import edu.monash.fit2099.engine.*;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
+import game.items.Corpse;
+import game.items.Egg;
 import game.items.Fruit;
 
 import java.util.ArrayList;
@@ -17,7 +19,6 @@ public abstract class Dinosaur extends Actor {
     private final int STARTING_HITPOINTS = 10;
     private final int MAX_HITPOINTS = 100;
     protected final int WANDER_BEHAVIOUR = 0;
-
     protected final Item[] FOOD = {};
     protected final Ground[] EATS_FROM = {};
 
@@ -29,6 +30,8 @@ public abstract class Dinosaur extends Actor {
     protected int pregnantTick;
     protected List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 
+    protected Type dinoType;
+
     /**
      * Constructor.
      *
@@ -37,8 +40,9 @@ public abstract class Dinosaur extends Actor {
      * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
      */
-    public Dinosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
+    public Dinosaur(String name, char displayChar, int hitPoints, boolean isFemale, Type dinoType) {
         super(name, displayChar, hitPoints);
+        this.dinoType = dinoType;
         setFemale(isFemale);
         this.isPregnant = false;
         this.maxHitPoints = MAX_HITPOINTS;
@@ -81,21 +85,36 @@ public abstract class Dinosaur extends Actor {
      * Inform a Dino the passage of time.
      * This method is called once per turn, if the item rests upon the ground.
      *
-     * @param actor the actor experiencing time
+     * @param map the map the actor is in
      */
-    protected void tick(Actor actor) {
+    protected void tick(GameMap map) {
         if (pregnantTick > 0 && isPregnant == true) {
             pregnantTick -= 1;
-        } else if (pregnantTick == 0 && isPregnant == true){
-            setPregnant(false);
-            layEgg();
+        } else if (pregnantTick == 0 && isPregnant == true) {
+            layEgg(map);
         }
     }
 
     /**
      * lays egg on nearest possible ground
      */
-    protected abstract void layEgg();
+
+    protected void layEgg(GameMap map) {
+        if (isPregnant() && pregnantTick == 0) {
+            setPregnant(false);
+            Egg egg = null;
+
+            switch (dinoType) {
+                case STEGOSAUR -> egg = new Egg(Egg.Type.STEGOSAUR);
+                case BRANCHIOSAUR -> egg = new Egg(Egg.Type.BRANCHIOSAUR);
+                case ALLOSAUR -> egg = new Egg(Egg.Type.ALLOSAUR);
+            }
+
+            if (egg != null) {
+                map.locationOf(this).addItem(egg);
+            }
+        }
+    }
 
     /**
      * resets pregnant tick to it's maximum tick
@@ -112,9 +131,24 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         checkDead(map);
-        tick(this);
+        tick(map);
         return new DoNothingAction();
     }
 
+    public enum Type {
+        STEGOSAUR("Stegosaur"),
+        BRANCHIOSAUR("Branchiosaur"),
+        ALLOSAUR("Allosaur");
+
+        private String name;
+
+        Type(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
 
 }

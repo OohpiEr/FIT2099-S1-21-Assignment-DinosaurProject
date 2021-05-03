@@ -15,6 +15,8 @@ import java.util.ArrayList;
  * A carnivorous dinosaur
  */
 public class Allosaur extends Dinosaur {
+
+    private final Type DINO_TYPE = Type.ALLOSAUR;
     private ArrayList<Stegosaur> offLimitsStegosaurs = new ArrayList<Stegosaur>();
     private final int STARTING_HITPOINTS = 100;
     private final int MAX_HITPOINTS = 100;
@@ -32,9 +34,7 @@ public class Allosaur extends Dinosaur {
      * @param isFemale    whether the dinosaur is female
      */
     public Allosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        //TODO change char + initialise proper HP
-        //TODO why is the maxhitpoint the initial hp
-        super(name, 'A', 100, isFemale);
+        super(name, 'A', 100, isFemale, Type.ALLOSAUR);
         actionFactories.add(new HungryBehaviour(Fruit.class));
         actionFactories.add(new WanderBehaviour());
         actionFactories.add(new AttackBehaviour());
@@ -46,7 +46,7 @@ public class Allosaur extends Dinosaur {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Allosaur() {
-        super("Allosaur", 'A', 100, false);
+        super("Allosaur", 'A', 100, false, Type.ALLOSAUR);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -61,7 +61,7 @@ public class Allosaur extends Dinosaur {
      * @param hitPoints the Allosaur's starting hitpoints
      */
     public Allosaur(int hitPoints) {
-        super("Allosaur", 'A', hitPoints, false);
+        super("Allosaur", 'A', hitPoints, false, Type.ALLOSAUR);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -106,11 +106,7 @@ public class Allosaur extends Dinosaur {
         }
     }
 
-    @Override
-    protected void layEgg() {
-        Egg egg = new Egg(Egg.Type.ALLOSAUR);
-        //todo lays egg
-    }
+
 
     public ArrayList<Stegosaur> getOffLimitsStegosaurs() {
         return offLimitsStegosaurs;
