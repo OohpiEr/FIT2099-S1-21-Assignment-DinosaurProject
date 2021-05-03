@@ -1,6 +1,7 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.LayEggAction;
 import game.behaviours.Behaviour;
 import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
@@ -83,23 +84,24 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Inform a Dino the passage of time.
-     * This method is called once per turn, if the item rests upon the ground.
+     * This method is called once per turn
      *
      * @param map the map the actor is in
+     * @return an action if applicable
      */
-    protected void tick(GameMap map) {
+    protected Action tick(GameMap map) {
         if (pregnantTick > 0 && isPregnant == true) {
             pregnantTick -= 1;
         } else if (pregnantTick == 0 && isPregnant == true) {
-            layEgg(map);
+            return new LayEggAction(this, map);
         }
+        return null;
     }
 
     /**
      * lays egg on nearest possible ground
      */
-
-    protected void layEgg(GameMap map) {
+    public void layEgg(GameMap map) {
         if (isPregnant() && pregnantTick == 0) {
             setPregnant(false);
             Egg egg = null;
@@ -119,7 +121,10 @@ public abstract class Dinosaur extends Actor {
     /**
      * resets pregnant tick to it's maximum tick
      */
-    public void resetPregnantTick(){};
+    public void resetPregnantTick() {
+    }
+
+    ;
 
     /**
      * Figure out what to do next.
@@ -131,8 +136,12 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         checkDead(map);
-        tick(map);
-        return new DoNothingAction();
+        Action action = tick(map);
+        if (action != null) {
+            return action;
+        } else {
+            return null;
+        }
     }
 
     public enum Type {

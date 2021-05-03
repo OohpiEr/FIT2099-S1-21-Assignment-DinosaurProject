@@ -148,17 +148,16 @@ public class Stegosaur extends Dinosaur {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        super.playTurn(actions, lastAction, map, display);
+        Action action = super.playTurn(actions, lastAction, map, display);
 
-        if (lastAction.getNextAction() != null)
-            return lastAction.getNextAction();
-
-        Action action = determineBehaviour(map);
-        if (action != null) {
-            return action;
-        } else {
-            return actions.get(Util.random(0, actions.size() - 1));
+        if (action == null && lastAction.getNextAction() != null) {
+            action = lastAction.getNextAction();
+        } else if (action == null) {
+            action = determineBehaviour(map);
+            if (action == null) {
+                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+            }
         }
+        return action;
     }
-
 }
