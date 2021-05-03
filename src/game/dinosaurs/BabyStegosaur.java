@@ -29,7 +29,7 @@ public class BabyStegosaur extends BabyDino {
      * @param isFemale    whether the dinosaur is female
      */
     public BabyStegosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale);
+        super(name, displayChar, hitPoints, isFemale, Type.STEGOSAUR);
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -37,7 +37,7 @@ public class BabyStegosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyStegosaur() {
-        super("Baby Stegosaur", 's', 10, false);
+        super("Baby Stegosaur", 's', 10, false, Type.STEGOSAUR);
         boolean isFemale = Math.random() < 0.5;
         this.setFemale(isFemale);
         name = NAME;
@@ -55,7 +55,7 @@ public class BabyStegosaur extends BabyDino {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.Stegosaur));
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.STEGOSAUR));
             map.removeActor(this);
         }
     }

@@ -27,7 +27,7 @@ public class BabyAllosaur extends BabyDino {
      * @param isFemale    whether the dinosaur is female
      */
     public BabyAllosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale);
+        super(name, displayChar, hitPoints, isFemale, Type.ALLOSAUR);
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -35,7 +35,7 @@ public class BabyAllosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 20 and randomises gender
      */
     public BabyAllosaur() {
-        super("Baby Allosaur", 'a', 20, false);
+        super("Baby Allosaur", 'a', 20, false, Type.ALLOSAUR);
         boolean isFemale = Math.random() < 0.5;
         this.setFemale(isFemale);
         name = NAME;
@@ -60,23 +60,22 @@ public class BabyAllosaur extends BabyDino {
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
-     * @param food      The Item eaten
-     * @param quantity  The quantity of the food eaten
+     *
+     * @param food     The Item eaten
+     * @param quantity The quantity of the food eaten
      */
     @Override
     public void eat(Item food, int quantity) {
         final int ALLOSAUR_CORPSE_HEAL = 50;
         final int STEGOSAUR_CORPSE_HEAL = 50;
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
-        if(food.getClass()==Corpse.class){
-            for(int i=0;i<quantity;i++){
-                if(((Corpse) food).getType()==Corpse.Type.STEGOSAUR){
+        if (food.getClass() == Corpse.class) {
+            for (int i = 0; i < quantity; i++) {
+                if (((Corpse) food).getType() == Corpse.Type.STEGOSAUR) {
                     heal(STEGOSAUR_CORPSE_HEAL);
-                }
-                else if(((Corpse) food).getType()==Corpse.Type.ALLOSAUR){
+                } else if (((Corpse) food).getType() == Corpse.Type.ALLOSAUR) {
                     heal(ALLOSAUR_CORPSE_HEAL);
-                }
-                else if(((Corpse) food).getType()==Corpse.Type.BRANCHIOSAUR){
+                } else if (((Corpse) food).getType() == Corpse.Type.BRANCHIOSAUR) {
                     heal(BRACHIOSAUR_CORPSE_HEAL);
                 }
             }
