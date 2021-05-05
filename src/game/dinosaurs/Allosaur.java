@@ -149,7 +149,6 @@ public class Allosaur extends Dinosaur {
     /**
      * Figure out what to do next.
      * <p>
-     * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it
      * just stands there.  That's boring.
      *
      * @see Actor#playTurn(Actions, Action, GameMap, Display)

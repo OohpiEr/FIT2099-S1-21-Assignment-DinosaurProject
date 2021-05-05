@@ -48,7 +48,7 @@ public class BreedAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (Util.getBooleanProbability(0.90)) {
+        if (Math.random() <= 0.9) {
             return actor + " breeds with " + actor;
         } else {
             return actor + " woohoo in the bushes with " + actor;
@@ -62,6 +62,7 @@ public class BreedAction extends Action {
 
     @Override
     public Action getNextAction() {
+        //TODO GET NEXT ACTION
         return super.getNextAction();
     }
 

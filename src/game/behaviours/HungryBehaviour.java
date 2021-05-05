@@ -8,7 +8,6 @@ import java.util.List;
 import static game.Util.distance;
 
 
-//TODO write 3 modules for each dinos
 public class HungryBehaviour implements Behaviour {
     private Class<?> foodClass;
 
