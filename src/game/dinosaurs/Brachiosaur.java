@@ -3,9 +3,13 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.behaviours.HornyBehaviour;
 import game.behaviours.HungryBehaviour;
+import game.grounds.Bush;
 import game.grounds.Tree;
 import game.items.Corpse;
 import game.items.Fruit;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A herbivorous dinosaur
@@ -23,7 +27,9 @@ public class Brachiosaur extends Dinosaur {
     private final int HORNY_BEHAVIOUR = 2;
 
     private final Class<?>[] FOOD = {Fruit.class};
-    private final Class<?>[] EATS_FROM = {Tree.class};
+    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+        put(Tree.class, new Class[]{Fruit.class});
+    }};
 
     /**
      * Constructor.
@@ -69,7 +75,7 @@ public class Brachiosaur extends Dinosaur {
     }
 
     private void setBehaviours() {
-        actionFactories.add(new HungryBehaviour(Fruit.class));
+        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
         actionFactories.add(new HornyBehaviour());
     }
 
@@ -82,7 +88,7 @@ public class Brachiosaur extends Dinosaur {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.BRANCHIOSAUR));
+            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.BRANCHIOSAUR));
             map.removeActor(this);
         }
     }

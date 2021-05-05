@@ -9,6 +9,8 @@ import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A carnivorous dinosaur
@@ -24,7 +26,9 @@ public class Allosaur extends Dinosaur {
     private final int PREGNANT_TICK = 20;
 
     private final Class<?>[] FOOD = {Corpse.class};
-    private final Class<?>[] EATS_FROM = {};
+    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+        put(Ground.class, new Class[]{Corpse.class});
+    }};
 
 
     /**
@@ -37,7 +41,7 @@ public class Allosaur extends Dinosaur {
      */
     public Allosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, 'A', 100, isFemale, DinosaurEnumType.ALLOSAUR);
-        actionFactories.add(new HungryBehaviour(Fruit.class));
+        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
         actionFactories.add(new WanderBehaviour());
         actionFactories.add(new AttackBehaviour());
         this.pregnantTick = PREGNANT_TICK;
@@ -79,7 +83,7 @@ public class Allosaur extends Dinosaur {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.ALLOSAUR));
+            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.ALLOSAUR));
             map.removeActor(this);
         }
     }
@@ -97,11 +101,11 @@ public class Allosaur extends Dinosaur {
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
-                if (((Corpse) food).getType() == Corpse.Type.STEGOSAUR) {
+                if (((Corpse) food).getType() == DinosaurEnumType.STEGOSAUR) {
                     heal(STEGOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == Corpse.Type.ALLOSAUR) {
+                } else if (((Corpse) food).getType() == DinosaurEnumType.ALLOSAUR) {
                     heal(ALLOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == Corpse.Type.BRANCHIOSAUR) {
+                } else if (((Corpse) food).getType() == DinosaurEnumType.BRANCHIOSAUR) {
                     heal(BRACHIOSAUR_CORPSE_HEAL);
                 }
             }

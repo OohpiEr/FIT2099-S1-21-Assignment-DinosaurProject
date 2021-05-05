@@ -7,6 +7,9 @@ import game.grounds.Bush;
 import game.items.Corpse;
 import game.items.Fruit;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A baby Stegosaur, a herbivorous dinosaur
  */
@@ -18,7 +21,10 @@ public class BabyStegosaur extends BabyDino {
     private final char DISPLAY_CHAR = 's';
 
     private final Class<?>[] FOOD = {Fruit.class};
-    private final Class<?>[] EATS_FROM = {Bush.class};
+    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+        put(Bush.class, new Class[]{Fruit.class});
+        put(Ground.class, new Class[]{Fruit.class});
+    }};
 
     /**
      * Constructor.
@@ -55,7 +61,7 @@ public class BabyStegosaur extends BabyDino {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.STEGOSAUR));
+            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.STEGOSAUR));
             map.removeActor(this);
         }
     }

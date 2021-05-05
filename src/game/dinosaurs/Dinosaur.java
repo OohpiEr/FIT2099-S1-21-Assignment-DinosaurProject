@@ -10,7 +10,9 @@ import game.items.Egg;
 import game.items.Fruit;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * An abstract class to represent a dinosaur
@@ -21,7 +23,7 @@ public abstract class Dinosaur extends Actor {
     private final int MAX_HITPOINTS = 100;
     protected final int WANDER_BEHAVIOUR = 0;
     protected final Class<?>[] FOOD = {};
-    protected final Class<?>[] EATS_FROM = {};
+    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>();
 
     /**
      * gender

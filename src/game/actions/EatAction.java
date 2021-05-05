@@ -51,7 +51,7 @@ public class EatAction extends Action {
     public String execute(Actor actor, GameMap map) {
         String result = null;
 
-        if (actor.getClass() == Dinosaur.class) {
+        if (actor instanceof Dinosaur) {
             if (object == null) {
                 ((Dinosaur) actor).eat(food, quantity);
                 for (int i = 0; i < quantity; i++) {

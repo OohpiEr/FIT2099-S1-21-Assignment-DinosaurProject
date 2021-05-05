@@ -114,6 +114,11 @@ public class Bush extends Ground implements hasFood {
         }
     }
 
+    @Override
+    public ArrayList<?> getFood() {
+        return fruits;
+    }
+
     /**
      * Returns the name of the Bush
      * @return  The name of the Bush

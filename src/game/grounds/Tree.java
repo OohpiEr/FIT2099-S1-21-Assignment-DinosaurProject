@@ -117,6 +117,11 @@ public class Tree extends Ground implements hasFood {
         }
     }
 
+    @Override
+    public ArrayList<?> getFood() {
+        return fruits;
+    }
+
     /**
      * Returns the name of the Tree
      * @return  The name of the Tree

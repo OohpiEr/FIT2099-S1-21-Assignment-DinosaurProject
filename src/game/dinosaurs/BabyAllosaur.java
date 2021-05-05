@@ -3,7 +3,13 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import game.grounds.Bush;
+import game.grounds.Tree;
 import game.items.Corpse;
+import game.items.Fruit;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A baby Allosaur, a carnivorous dinosaur
@@ -15,8 +21,10 @@ public class BabyAllosaur extends BabyDino {
     private final String NAME = "Baby Allosaur";
     private final char DISPLAY_CHAR = 'a';
 
-    private final Class<?>[] FOOD = {Corpse.class};
-    private final Class<?>[] EATS_FROM = {};
+    private final Item[] FOOD = {new Corpse(DinosaurEnumType.ALLOSAUR)};
+    private final HashMap<Class<?>, Item[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+        put(Tree.class, new Item[]{new Fruit()});
+    }};
 
     /**
      * Constructor.
@@ -53,7 +61,7 @@ public class BabyAllosaur extends BabyDino {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.ALLOSAUR));
+            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.ALLOSAUR));
             map.removeActor(this);
         }
     }
@@ -71,11 +79,11 @@ public class BabyAllosaur extends BabyDino {
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
-                if (((Corpse) food).getType() == Corpse.Type.STEGOSAUR) {
+                if (((Corpse) food).getType() == DinosaurEnumType.STEGOSAUR) {
                     heal(STEGOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == Corpse.Type.ALLOSAUR) {
+                } else if (((Corpse) food).getType() == DinosaurEnumType.ALLOSAUR) {
                     heal(ALLOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == Corpse.Type.BRANCHIOSAUR) {
+                } else if (((Corpse) food).getType() == DinosaurEnumType.BRANCHIOSAUR) {
                     heal(BRACHIOSAUR_CORPSE_HEAL);
                 }
             }

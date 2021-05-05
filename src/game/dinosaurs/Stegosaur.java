@@ -11,6 +11,10 @@ import game.items.Egg;
 import game.items.Fruit;
 import game.behaviours.HungryBehaviour;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A herbivorous dinosaur.
  */
@@ -26,7 +30,10 @@ public class Stegosaur extends Dinosaur {
     private final char DISPLAY_CHAR = 'S';
 
     private final Class<?>[] FOOD = {Fruit.class};
-    private final Class<?>[] EATS_FROM = {Bush.class};
+    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+        put(Bush.class, new Class[]{Fruit.class});
+        put(Ground.class, new Class[]{Fruit.class});
+    }};
 
     /**
      * Constructor.
@@ -58,7 +65,7 @@ public class Stegosaur extends Dinosaur {
     }
 
     private void setBehaviours() {
-        actionFactories.add(new HungryBehaviour(Fruit.class));
+        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
         actionFactories.add(new HornyBehaviour());
     }
 
@@ -71,7 +78,7 @@ public class Stegosaur extends Dinosaur {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.STEGOSAUR));
+            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.STEGOSAUR));
             map.removeActor(this);
         }
     }

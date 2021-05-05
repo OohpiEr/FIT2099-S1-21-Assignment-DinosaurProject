@@ -3,9 +3,13 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import game.grounds.Bush;
 import game.grounds.Tree;
 import game.items.Corpse;
 import game.items.Fruit;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A baby Brachiosaur, a herbivorous dinosaur
@@ -18,7 +22,9 @@ public class BabyBrachiosaur extends BabyDino {
     private final char DISPLAY_CHAR = 'b';
 
     private final Class<?>[] FOOD = {Fruit.class};
-    private final Class<?>[] EATS_FROM = {Tree.class};
+    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+        put(Tree.class, new Class[]{Fruit.class});
+    }};
 
     /**
      * Constructor.
@@ -55,7 +61,7 @@ public class BabyBrachiosaur extends BabyDino {
     @Override
     public void checkDead(GameMap map) {
         if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.BRANCHIOSAUR));
+            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.BRANCHIOSAUR));
             map.removeActor(this);
         }
     }
