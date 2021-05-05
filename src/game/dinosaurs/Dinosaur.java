@@ -31,7 +31,7 @@ public abstract class Dinosaur extends Actor {
     protected int pregnantTick;
     protected List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 
-    protected Type dinoType;
+    protected DinosaurEnumType dinoType;
 
     /**
      * Constructor.
@@ -41,7 +41,7 @@ public abstract class Dinosaur extends Actor {
      * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
      */
-    public Dinosaur(String name, char displayChar, int hitPoints, boolean isFemale, Type dinoType) {
+    public Dinosaur(String name, char displayChar, int hitPoints, boolean isFemale, DinosaurEnumType dinoType) {
         super(name, displayChar, hitPoints);
         this.dinoType = dinoType;
         setFemale(isFemale);
@@ -108,9 +108,9 @@ public abstract class Dinosaur extends Actor {
             Egg egg = null;
 
             switch (dinoType) {
-                case STEGOSAUR -> egg = new Egg(Egg.Type.STEGOSAUR);
-                case BRANCHIOSAUR -> egg = new Egg(Egg.Type.BRANCHIOSAUR);
-                case ALLOSAUR -> egg = new Egg(Egg.Type.ALLOSAUR);
+                case STEGOSAUR -> egg = new Egg(DinosaurEnumType.STEGOSAUR);
+                case BRANCHIOSAUR -> egg = new Egg(DinosaurEnumType.BRANCHIOSAUR);
+                case ALLOSAUR -> egg = new Egg(DinosaurEnumType.ALLOSAUR);
             }
 
             if (egg != null) {
@@ -142,22 +142,6 @@ public abstract class Dinosaur extends Actor {
             return action;
         } else {
             return null;
-        }
-    }
-
-    public enum Type {
-        STEGOSAUR("Stegosaur"),
-        BRANCHIOSAUR("Branchiosaur"),
-        ALLOSAUR("Allosaur");
-
-        private String name;
-
-        Type(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
         }
     }
 

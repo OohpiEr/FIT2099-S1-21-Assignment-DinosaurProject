@@ -15,7 +15,7 @@ public abstract class BabyDino extends Dinosaur {
      * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
      */
-    public BabyDino(String name, char displayChar, int hitPoints, boolean isFemale, Type dinoType) {
+    public BabyDino(String name, char displayChar, int hitPoints, boolean isFemale, DinosaurEnumType dinoType) {
         super(name, displayChar, hitPoints, isFemale, dinoType);
     }
 

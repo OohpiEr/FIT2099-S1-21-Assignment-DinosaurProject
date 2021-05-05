@@ -16,7 +16,7 @@ import game.behaviours.HungryBehaviour;
  */
 public class Stegosaur extends Dinosaur {
 
-    private final Type DINO_TYPE = Type.STEGOSAUR;
+    private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private final int STARTING_HITPOINTS = 50;
     private final int MAX_HITPOINTS = 100;
     private final int HUNGRY_BEHAVIOUR = 1;
@@ -36,7 +36,7 @@ public class Stegosaur extends Dinosaur {
      * @param isFemale whether the dinosaur is female
      */
     public Stegosaur(String name, boolean isFemale) {
-        super(name, 'S', 50, isFemale, Type.STEGOSAUR);
+        super(name, 'S', 50, isFemale, DinosaurEnumType.STEGOSAUR);
         dinoType = DINO_TYPE;
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
@@ -47,7 +47,7 @@ public class Stegosaur extends Dinosaur {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Stegosaur() {
-        super("Stegosaur", 'S', 50, false, Type.STEGOSAUR);
+        super("Stegosaur", 'S', 50, false, DinosaurEnumType.STEGOSAUR);
         dinoType = DINO_TYPE;
         this.setFemale(Math.random() < 0.5);
         name = NAME;

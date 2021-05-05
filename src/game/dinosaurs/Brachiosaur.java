@@ -12,7 +12,7 @@ import game.items.Fruit;
  */
 public class Brachiosaur extends Dinosaur {
 
-    private final Type DINO_TYPE = Type.BRANCHIOSAUR;
+    private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
     private final int STARTING_HITPOINTS = 100;
     private final int MAX_HITPOINTS = 160;
     private final String NAME = "Brachiosaur";
@@ -34,7 +34,7 @@ public class Brachiosaur extends Dinosaur {
      * @param isFemale    whether the dinosaur is female
      */
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale, Type.BRANCHIOSAUR);
+        super(name, displayChar, hitPoints, isFemale, DinosaurEnumType.BRANCHIOSAUR);
         maxHitPoints = MAX_HITPOINTS;
         pregnantTick = PREGNANT_TICK;
         setBehaviours();
@@ -47,7 +47,7 @@ public class Brachiosaur extends Dinosaur {
      * @param isFemale whether the dinosaur is female
      */
     public Brachiosaur(String name, boolean isFemale) {
-        super(name, 'B', 100, isFemale, Type.STEGOSAUR);
+        super(name, 'B', 100, isFemale, DinosaurEnumType.STEGOSAUR);
         dinoType = DINO_TYPE;
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
@@ -58,7 +58,7 @@ public class Brachiosaur extends Dinosaur {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Brachiosaur() {
-        super("Brachiosaur", 'B', 100, false, Type.BRANCHIOSAUR);
+        super("Brachiosaur", 'B', 100, false, DinosaurEnumType.BRANCHIOSAUR);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
