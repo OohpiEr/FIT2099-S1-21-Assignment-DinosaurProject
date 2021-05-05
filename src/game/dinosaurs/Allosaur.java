@@ -23,6 +23,9 @@ public class Allosaur extends Dinosaur {
     private final char DISPLAY_CHAR = 'A';
     private final int PREGNANT_TICK = 20;
 
+    private final Class<?>[] FOOD = {Corpse.class};
+    private final Class<?>[] EATS_FROM = {};
+
 
     /**
      * Constructor.

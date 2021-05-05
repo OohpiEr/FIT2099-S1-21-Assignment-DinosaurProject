@@ -25,8 +25,8 @@ public class Stegosaur extends Dinosaur {
     private final String NAME = "Stegosaur";
     private final char DISPLAY_CHAR = 'S';
 
-    private final Item[] FOOD = {new Fruit()};
-    private final Ground[] EATS_FROM = {new Bush()};
+    private final Class<?>[] FOOD = {Fruit.class};
+    private final Class<?>[] EATS_FROM = {Bush.class};
 
     /**
      * Constructor.

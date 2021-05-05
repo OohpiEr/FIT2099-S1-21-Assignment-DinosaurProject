@@ -17,8 +17,8 @@ public class BabyStegosaur extends BabyDino {
     private final String NAME = "Baby Stegosaur";
     private final char DISPLAY_CHAR = 's';
 
-    private final Item[] FOOD = {new Fruit()};
-    private final Ground[] EATS_FROM = {new Bush()};
+    private final Class<?>[] FOOD = {Fruit.class};
+    private final Class<?>[] EATS_FROM = {Bush.class};
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ public class BabyStegosaur extends BabyDino {
      * @param isFemale    whether the dinosaur is female
      */
     public BabyStegosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale, Type.STEGOSAUR);
+        super(name, displayChar, hitPoints, isFemale, DinosaurEnumType.STEGOSAUR);
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -37,7 +37,7 @@ public class BabyStegosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyStegosaur() {
-        super("Baby Stegosaur", 's', 10, false, Type.STEGOSAUR);
+        super("Baby Stegosaur", 's', 10, false, DinosaurEnumType.STEGOSAUR);
         boolean isFemale = Math.random() < 0.5;
         this.setFemale(isFemale);
         name = NAME;

@@ -15,8 +15,8 @@ public class BabyAllosaur extends BabyDino {
     private final String NAME = "Baby Allosaur";
     private final char DISPLAY_CHAR = 'a';
 
-    private final Item[] FOOD = {new Corpse(Corpse.Type.STEGOSAUR)};    // The corpse type doesn't matter here, just adding it in for initialisation purposes
-    private final Ground[] EATS_FROM = {};
+    private final Class<?>[] FOOD = {Corpse.class};
+    private final Class<?>[] EATS_FROM = {};
 
     /**
      * Constructor.

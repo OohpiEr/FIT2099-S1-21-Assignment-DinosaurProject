@@ -20,8 +20,8 @@ public abstract class Dinosaur extends Actor {
     private final int STARTING_HITPOINTS = 10;
     private final int MAX_HITPOINTS = 100;
     protected final int WANDER_BEHAVIOUR = 0;
-    protected final Item[] FOOD = {};
-    protected final Ground[] EATS_FROM = {};
+    protected final Class<?>[] FOOD = {};
+    protected final Class<?>[] EATS_FROM = {};
 
     /**
      * gender

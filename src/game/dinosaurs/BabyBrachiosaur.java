@@ -17,8 +17,8 @@ public class BabyBrachiosaur extends BabyDino {
     private final String NAME = "Baby Brachiosaur";
     private final char DISPLAY_CHAR = 'b';
 
-    private final Item[] FOOD = {new Fruit()};
-    private final Ground[] EATS_FROM = {new Tree()};
+    private final Class<?>[] FOOD = {Fruit.class};
+    private final Class<?>[] EATS_FROM = {Tree.class};
 
     /**
      * Constructor.

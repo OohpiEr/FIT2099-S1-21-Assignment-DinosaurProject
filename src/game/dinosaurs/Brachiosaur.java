@@ -22,8 +22,8 @@ public class Brachiosaur extends Dinosaur {
     private final int HUNGRY_BEHAVIOUR = 1;
     private final int HORNY_BEHAVIOUR = 2;
 
-    private final Item[] FOOD = {new Fruit()};
-    private final Ground[] EATS_FROM = {new Tree()};
+    private final Class<?>[] FOOD = {Fruit.class};
+    private final Class<?>[] EATS_FROM = {Tree.class};
 
     /**
      * Constructor.
