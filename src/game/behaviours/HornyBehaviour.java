@@ -35,7 +35,7 @@ public class HornyBehaviour implements Behaviour {
         if (locationsWithTargets != null) {
             target = getNearestTarget(actor, map, locationsWithTargets);
 
-            if (target != null && (((Dinosaur) target).isFemale() && !((Dinosaur) target).isPregnant())) {
+            if (target != null) {
 
                 if (isTargetInExit(target, actor, map)) {
                     returnAction = new BreedAction(actor, target);
