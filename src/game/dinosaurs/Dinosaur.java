@@ -90,6 +90,7 @@ public abstract class Dinosaur extends Actor {
      * @return an action if applicable
      */
     protected Action tick(GameMap map) {
+        hitPoints -= 1;
         if (pregnantTick > 0 && isPregnant == true) {
             pregnantTick -= 1;
         } else if (pregnantTick == 0 && isPregnant == true) {
