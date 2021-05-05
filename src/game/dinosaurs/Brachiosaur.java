@@ -1,6 +1,8 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
+import game.behaviours.HornyBehaviour;
+import game.behaviours.HungryBehaviour;
 import game.grounds.Tree;
 import game.items.Corpse;
 import game.items.Fruit;
@@ -17,6 +19,9 @@ public class Brachiosaur extends Dinosaur {
     private final char DISPLAY_CHAR = 'B';
     private final int PREGNANT_TICK = 30;
 
+    private final int HUNGRY_BEHAVIOUR = 1;
+    private final int HORNY_BEHAVIOUR = 2;
+
     private final Item[] FOOD = {new Fruit()};
     private final Ground[] EATS_FROM = {new Tree()};
 
@@ -31,7 +36,22 @@ public class Brachiosaur extends Dinosaur {
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints, isFemale, Type.BRANCHIOSAUR);
         maxHitPoints = MAX_HITPOINTS;
-        this.pregnantTick = PREGNANT_TICK;
+        pregnantTick = PREGNANT_TICK;
+        setBehaviours();
+    }
+
+    /**
+     * Constructor.
+     *TODO THIS IS TEMP - FOR TESTING
+     * @param name     the name of the Actor
+     * @param isFemale whether the dinosaur is female
+     */
+    public Brachiosaur(String name, boolean isFemale) {
+        super(name, 'B', 100, isFemale, Type.STEGOSAUR);
+        dinoType = DINO_TYPE;
+        maxHitPoints = MAX_HITPOINTS;
+        hitPoints = STARTING_HITPOINTS;
+        setBehaviours();
     }
 
     /**
@@ -45,6 +65,12 @@ public class Brachiosaur extends Dinosaur {
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
         this.pregnantTick = PREGNANT_TICK;
+        setBehaviours();
+    }
+
+    private void setBehaviours() {
+        actionFactories.add(new HungryBehaviour(Fruit.class));
+        actionFactories.add(new HornyBehaviour());
     }
 
     /**
@@ -76,7 +102,6 @@ public class Brachiosaur extends Dinosaur {
         }
     }
 
-
     /**
      * resets pregnant tick to Brachiosaur's maximum pregnant tick
      */
@@ -85,8 +110,47 @@ public class Brachiosaur extends Dinosaur {
         this.pregnantTick = PREGNANT_TICK;
     }
 
+    private Action determineBehaviour(GameMap map) {
+        Action action = null;
+
+        if (hitPoints >= 140 && hitPoints <= MAX_HITPOINTS) {
+            //wander behaviour or horny behaviour
+            if (Math.random() < 0.4) {
+                action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
+            } else {
+                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+            }
+        } else if (hitPoints >= 100 && hitPoints < 140) {
+            //hungry behaviour or horny behaviour
+            if (Math.random() <= 0.2) {
+                action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
+            } else if (Math.random() <= 0.7) {
+                action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+            } else {
+                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+            }
+        } else if (hitPoints < 100) {
+            //hungry behaviour
+            action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+        } else {
+            action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+        }
+
+        return action;
+    }
+
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        return super.playTurn(actions, lastAction, map, display);
+        Action action = super.playTurn(actions, lastAction, map, display);
+
+        if (action == null && lastAction.getNextAction() != null) {
+            action = lastAction.getNextAction();
+        } else if (action == null) {
+            action = determineBehaviour(map);
+            if (action == null) {
+                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+            }
+        }
+        return action;
     }
 }

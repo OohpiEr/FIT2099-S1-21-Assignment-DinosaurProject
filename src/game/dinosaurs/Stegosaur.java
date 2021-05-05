@@ -62,9 +62,47 @@ public class Stegosaur extends Dinosaur {
         actionFactories.add(new HornyBehaviour());
     }
 
+    /**
+     * Checks if the Stegosaur is dead, and places a Stegosaur corpse on its location in its place if it is
+     *
+     * @param map the GameMap the dinosaur is in
+     * @see Corpse
+     */
+    @Override
+    public void checkDead(GameMap map) {
+        if (hitPoints <= 0) {
+            map.locationOf(this).addItem(new Corpse(Corpse.Type.STEGOSAUR));
+            map.removeActor(this);
+        }
+    }
+
+    /**
+     * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
+     *
+     * @param food     The Item eaten
+     * @param quantity The quantity of the food eaten
+     */
+    @Override
+    public void eat(Item food, int quantity) {
+        final int FRUIT_HEAL = 10;
+        if (food.getClass() == Fruit.class) {
+            for (int i = 0; i < quantity; i++) {
+                heal(FRUIT_HEAL);
+            }
+        }
+    }
+
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         return new Actions(new AttackAction(this));
+    }
+
+    /**
+     * resets pregnant tick to stegosaur's maximum pregnant tick
+     */
+    @Override
+    public void resetPregnantTick() {
+        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**
@@ -100,44 +138,6 @@ public class Stegosaur extends Dinosaur {
         }
 
         return action;
-    }
-
-    /**
-     * Checks if the Stegosaur is dead, and places a Stegosaur corpse on its location in its place if it is
-     *
-     * @param map the GameMap the dinosaur is in
-     * @see Corpse
-     */
-    @Override
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(Corpse.Type.STEGOSAUR));
-            map.removeActor(this);
-        }
-    }
-
-    /**
-     * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
-     *
-     * @param food     The Item eaten
-     * @param quantity The quantity of the food eaten
-     */
-    @Override
-    public void eat(Item food, int quantity) {
-        final int FRUIT_HEAL = 10;
-        if (food.getClass() == Fruit.class) {
-            for (int i = 0; i < quantity; i++) {
-                heal(FRUIT_HEAL);
-            }
-        }
-    }
-
-    /**
-     * resets pregnant tick to stegosaur's maximum pregnant tick
-     */
-    @Override
-    public void resetPregnantTick() {
-        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**
