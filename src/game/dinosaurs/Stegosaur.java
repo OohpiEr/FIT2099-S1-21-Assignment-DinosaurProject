@@ -65,6 +65,9 @@ public class Stegosaur extends Dinosaur {
         setBehaviours();
     }
 
+    /**
+     * add behaviours to Stegosaur's actionFactories
+     */
     private void setBehaviours() {
         actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
         actionFactories.add(new HornyBehaviour());
@@ -100,6 +103,14 @@ public class Stegosaur extends Dinosaur {
         }
     }
 
+
+    /**
+     * Returns a collection of the Actions that the otherActor can do to the current Actor.
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return a collection of the Actions that the otherActor can do to the current Actor.
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         return new Actions(new AttackAction(this));
@@ -124,25 +135,19 @@ public class Stegosaur extends Dinosaur {
 
         if (hitPoints >= 90 && hitPoints <= 100) {
             //wander behaviour or horny behaviour
-            if (Math.random() < 0.4) {
+            if (!isPregnant() && Math.random() < 0.4) {
                 action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
             } else {
                 action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
             }
         } else if (hitPoints >= 50 && hitPoints < 90) {
-            //hungry behaviour or horny behaviour
-            if (Math.random() <= 0.4) {
-                action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
-//                for (Behaviour behaviour : actionFactories) {
-//                    if (behaviour.getClass() == HornyBehaviour.class) {
-//                        action = actionFactories.get(actionFactories.indexOf(behaviour)).getAction(this, map);
-//                    }
-//                }
-
+            //hungry, horny or wander behaviour
+            if (!isPregnant() && Math.random() <= 1) {
+                action = getBehaviourAction(HornyBehaviour.class, map);
             } else if (Math.random() <= 0.5) {
-                action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(HungryBehaviour.class, map);
             } else {
-                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(WanderBehaviour.class, map);
             }
         } else if (hitPoints < 50) {
             //hungry behaviour
@@ -151,6 +156,20 @@ public class Stegosaur extends Dinosaur {
             action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
         }
 
+        return action;
+    }
+
+    /**
+     * returns
+     * @return
+     */
+    private Action getBehaviourAction(Class<?> clazz, GameMap map){
+        Action action = null;
+        for (Behaviour behaviour : actionFactories) {
+            if (behaviour.getClass().isInstance(clazz)) {
+                action = actionFactories.get(actionFactories.indexOf(behaviour)).getAction(this, map);
+            }
+        }
         return action;
     }
 
