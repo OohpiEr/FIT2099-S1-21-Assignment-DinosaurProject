@@ -117,9 +117,25 @@ public class Tree extends Ground implements hasFood {
         }
     }
 
+    /**
+     * Returns an ArrayList of the Tree's food
+     * @return An ArrayList of the Tree's food
+     */
     @Override
     public ArrayList<?> getFood() {
         return fruits;
+    }
+
+    /**
+     * Returns an instance of the Tree's food
+     * @return An instance of the Tree's food
+     */
+    @Override
+    public Item getFoodInstance() {
+        if (!isEmpty()){
+            return fruits.get(0);
+        }
+        return null;
     }
 
     /**

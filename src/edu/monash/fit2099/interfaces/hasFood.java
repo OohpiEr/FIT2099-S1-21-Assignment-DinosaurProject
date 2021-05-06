@@ -26,4 +26,10 @@ public interface hasFood {
      * @return An ArrayList of the food in the implementing object
      */
     ArrayList<?> getFood();
+
+    /**
+     * Returns an instance of the implementing object's food
+     * @return
+     */
+    Item getFoodInstance();
 }
