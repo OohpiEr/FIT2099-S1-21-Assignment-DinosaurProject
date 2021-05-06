@@ -29,7 +29,7 @@ public class FeedAction extends Action {
             ((Dinosaur) target).eat(food, quantity);
         }
         if (actor instanceof Player){
-            ((Player) actor).addEcoPoints(ECO_POINT_REWARD);
+            Player.addEcoPoints(ECO_POINT_REWARD);
         }
         return null;
     }
