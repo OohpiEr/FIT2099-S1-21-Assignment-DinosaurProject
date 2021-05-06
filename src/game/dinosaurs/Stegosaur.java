@@ -134,7 +134,7 @@ public class Stegosaur extends AdultDino {
      * @param map gamemap the actor is on
      * @return action to be performed this playturn
      */
-    private Action determineBehaviour(GameMap map) {
+    protected Action determineBehaviour(GameMap map) {
         Action action = null;
 
         if (hitPoints >= 90 && hitPoints <= 100) {
@@ -163,21 +163,7 @@ public class Stegosaur extends AdultDino {
         return action;
     }
 
-    /**
-     * returns
-     *
-     * @return
-     */
-    private Action getBehaviourAction(Class<?> clazz, GameMap map) {
-        Action action = null;
-        for (Behaviour behaviour : actionFactories) {
-            if (behaviour.getClass() == clazz) {
-                action = actionFactories.get(actionFactories.indexOf(behaviour)).getAction(this, map);
-                break;
-            }
-        }
-        return action;
-    }
+
 
     /**
      * Select and return an action to perform on the current turn.

@@ -3,6 +3,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.behaviours.HornyBehaviour;
 import game.behaviours.HungryBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
 import game.grounds.Tree;
 import game.items.Corpse;
@@ -27,7 +28,7 @@ public class Brachiosaur extends AdultDino {
     private final int HORNY_BEHAVIOUR = 2;
 
     private final Class<?>[] FOOD = {Fruit.class};
-    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Tree.class, new Class[]{Fruit.class});
     }};
 
@@ -48,7 +49,8 @@ public class Brachiosaur extends AdultDino {
 
     /**
      * Constructor.
-     *TODO THIS IS TEMP - FOR TESTING
+     * TODO THIS IS TEMP - FOR TESTING
+     *
      * @param name     the name of the Actor
      * @param isFemale whether the dinosaur is female
      */
@@ -98,14 +100,15 @@ public class Brachiosaur extends AdultDino {
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
-     * @param food      The Item eaten
-     * @param quantity  The quantity of the food eaten
+     *
+     * @param food     The Item eaten
+     * @param quantity The quantity of the food eaten
      */
     @Override
     public void eat(Item food, int quantity) {
         final int FRUIT_HEAL = 5;
-        if(food.getClass()==Fruit.class){
-            for(int i=0;i<quantity;i++){
+        if (food.getClass() == Fruit.class) {
+            for (int i = 0; i < quantity; i++) {
                 heal(FRUIT_HEAL);
             }
         }
@@ -119,30 +122,36 @@ public class Brachiosaur extends AdultDino {
         this.pregnantTick = PREGNANT_TICK;
     }
 
-    private Action determineBehaviour(GameMap map) {
+    /**
+     * determines the highest priority behaviour based on probability
+     *
+     * @param map gamemap the actor is on
+     * @return action to be performed this playturn
+     */
+    protected Action determineBehaviour(GameMap map) {
         Action action = null;
 
         if (hitPoints >= 140 && hitPoints <= MAX_HITPOINTS) {
             //wander behaviour or horny behaviour
             if (Math.random() < 0.4) {
-                action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(HornyBehaviour.class, map);
             } else {
-                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(WanderBehaviour.class, map);
             }
         } else if (hitPoints >= 100 && hitPoints < 140) {
             //hungry behaviour or horny behaviour
             if (Math.random() <= 0.2) {
-                action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(HornyBehaviour.class, map);
             } else if (Math.random() <= 0.7) {
-                action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(HungryBehaviour.class, map);
             } else {
-                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(WanderBehaviour.class, map);
             }
         } else if (hitPoints < 100) {
             //hungry behaviour
-            action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+            action = getBehaviourAction(HungryBehaviour.class, map);
         } else {
-            action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+            action = getBehaviourAction(WanderBehaviour.class, map);
         }
 
         return action;

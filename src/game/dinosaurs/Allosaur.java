@@ -2,11 +2,9 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
+import game.behaviours.*;
 import game.items.Corpse;
 import game.items.Fruit;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.HungryBehaviour;
-import game.behaviours.WanderBehaviour;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,13 +16,13 @@ import java.util.Map;
 public class Allosaur extends AdultDino {
 
     private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.ALLOSAUR;
-    private ArrayList<Stegosaur> offLimitsStegosaurs = new ArrayList<Stegosaur>();
     private final int STARTING_HITPOINTS = 100;
     private final int MAX_HITPOINTS = 100;
     private final String NAME = "Allosaur";
     private final char DISPLAY_CHAR = 'A';
     private final int PREGNANT_TICK = 20;
 
+    private ArrayList<Stegosaur> offLimitsStegosaurs = new ArrayList<Stegosaur>();
     private final Class<?>[] FOOD = {Corpse.class};
     private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Ground.class, new Class[]{Corpse.class});
@@ -35,11 +33,9 @@ public class Allosaur extends AdultDino {
      * Constructor.
      *
      * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
      */
-    public Allosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
+    public Allosaur(String name, boolean isFemale) {
         super(name, 'A', 100, isFemale, DinosaurEnumType.ALLOSAUR);
         setBehaviours();
         this.pregnantTick = PREGNANT_TICK;
@@ -140,12 +136,12 @@ public class Allosaur extends AdultDino {
         return new Actions(new AttackAction(this));
     }
 
-    public boolean nearStegosaur(GameMap map) {
+    private boolean nearStegosaur(GameMap map) {
         Location here = map.locationOf(this);
 
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.getActor().getClass() == Stegosaur.class) {
+            if (destination.containsAnActor() && destination.getActor().getClass() == Stegosaur.class) {
                 return true;
             }
         }
@@ -162,38 +158,62 @@ public class Allosaur extends AdultDino {
     }
 
     /**
+     * determines the highest priority behaviour based on probability
+     *
+     * @param map gamemap the actor is on
+     * @return action to be performed this playturn
+     */
+    protected Action determineBehaviour(GameMap map) {
+        Action action = null;
+
+        if (nearStegosaur(map)) {
+            //attack behaviour
+            action = getBehaviourAction(AttackBehaviour.class, map);
+        } else if (hitPoints >= 90 && hitPoints <= 100) {
+            //wander behaviour or horny behaviour
+            if (!isPregnant() && Math.random() < 0.4) {
+                action = getBehaviourAction(HornyBehaviour.class, map);
+            } else {
+                action = getBehaviourAction(WanderBehaviour.class, map);
+            }
+        } else if (hitPoints >= 50 && hitPoints < 90) {
+            //hungry, horny or wander behaviour
+            if (!isPregnant() && Math.random() <= 0.4) {
+                action = getBehaviourAction(HornyBehaviour.class, map);
+            } else if (Math.random() <= 0.5) {
+                action = getBehaviourAction(HungryBehaviour.class, map);
+            } else {
+                action = getBehaviourAction(WanderBehaviour.class, map);
+            }
+        } else if (hitPoints < 50) {
+            //hungry behaviour
+            action = getBehaviourAction(HungryBehaviour.class, map);
+        } else {
+            action = getBehaviourAction(WanderBehaviour.class, map);
+        }
+
+        return action;
+    }
+
+
+    /**
      * Select and return an action to perform on the current turn.
      *
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        super.playTurn(actions, lastAction, map, display);
-        Action action = null;
-        if (nearStegosaur(map)) {
-            //attack behaviour
-/*            Action attackAction = new AttackAction(stegosaur);
-            attackAction.execute(this, map);
-            this.hitPoints += 20;*/
-            action = actionFactories.get(3).getAction(this, map);
-        } else if (hitPoints > 50) {
-            //horny behaviour
-            action = actionFactories.get(2).getAction(this, map);
-        } else if (hitPoints < 90) {
-            //hungry behaviour
-            action = actionFactories.get(0).getAction(this, map);
-        } else {
-            //wander behaviour
-            action = actionFactories.get(1).getAction(this, map);
-        }
+        Action action = super.playTurn(actions, lastAction, map, display);
 
-        if (action != null)
-            return action;
-/*        for (Behaviour factory : actionFactories) {
-            Action action = factory.getAction(this, map);
-            if (action != null)
-                return action;
-        }*/
-        return new DoNothingAction();
+        if (action == null && lastAction.getNextAction() != null) {
+            action = lastAction.getNextAction();
+        } else if (action == null) {
+            action = determineBehaviour(map);
+            if (action == null) {
+                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+            }
+        }
+        return action;
+
     }
 }

@@ -74,16 +74,43 @@ public abstract class Dinosaur extends Actor {
 
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        if (otherActor instanceof Player){
-            for (Item item : otherActor.getInventory()){
-                for (Class<?> food : FOOD){
-                    if (item.getClass() == food){
+        if (otherActor instanceof Player) {
+            for (Item item : otherActor.getInventory()) {
+                for (Class<?> food : FOOD) {
+                    if (item.getClass() == food) {
                         return (new Actions(new FeedAction(this, item, 1)));
                     }
                 }
             }
         }
         return super.getAllowableActions(otherActor, direction, map);
+    }
+
+    /**
+     * abstract method to be implemented
+     * determines the highest priority behaviour based on probability
+     *
+     * @param map gamemap the actor is on
+     * @return action to be performed this playturn
+     */
+    protected abstract Action determineBehaviour(GameMap map);
+
+    /**
+     * gets the required behaviour from actionfactories and returns it's getAction
+     *
+     * @param clazz class of the Behaviour
+     * @param map gamemap the actor is on
+     * @return Action performed by the behaviour
+     */
+    protected Action getBehaviourAction(Class<?> clazz, GameMap map) {
+        Action action = null;
+        for (Behaviour behaviour : actionFactories) {
+            if (behaviour.getClass() == clazz) {
+                action = actionFactories.get(actionFactories.indexOf(behaviour)).getAction(this, map);
+                break;
+            }
+        }
+        return action;
     }
 
     /**
