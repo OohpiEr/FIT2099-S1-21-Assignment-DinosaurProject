@@ -2,6 +2,7 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.LayEggAction;
+import game.behaviours.HornyBehaviour;
 import game.items.Egg;
 
 public abstract class AdultDino extends Dinosaur {
@@ -41,6 +42,12 @@ public abstract class AdultDino extends Dinosaur {
 
     public boolean isPregnant() {
         return isPregnant;
+    }
+
+    @Override
+    protected void setBehaviours() {
+        super.setBehaviours();
+        actionFactories.add(new HornyBehaviour());
     }
 
     /**

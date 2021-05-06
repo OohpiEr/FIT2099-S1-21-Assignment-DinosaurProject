@@ -74,9 +74,8 @@ public class Brachiosaur extends AdultDino {
         setBehaviours();
     }
 
-    private void setBehaviours() {
+    protected void setBehaviours() {
         actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
-        actionFactories.add(new HornyBehaviour());
     }
 
     /**

@@ -3,6 +3,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.actions.LayEggAction;
 import game.behaviours.Behaviour;
+import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
 import game.items.Corpse;
@@ -38,13 +39,17 @@ public abstract class Dinosaur extends Actor {
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
-     * @param isFemale    whether the dinosaur is female
      */
     public Dinosaur(String name, char displayChar, int hitPoints, DinosaurEnumType dinoType) {
         super(name, displayChar, hitPoints);
         this.dinoType = dinoType;
         this.maxHitPoints = MAX_HITPOINTS;
+        setBehaviours();
+    }
+
+    protected void setBehaviours() {
         actionFactories.add(new WanderBehaviour());
+        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
     }
 
 

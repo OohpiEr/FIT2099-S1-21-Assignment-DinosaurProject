@@ -32,7 +32,7 @@ public class Stegosaur extends AdultDino {
     private final char DISPLAY_CHAR = 'S';
 
     private final Class<?>[] FOOD = {Fruit.class};
-    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Bush.class, new Class[]{Fruit.class});
         put(Ground.class, new Class[]{Fruit.class});
     }};
@@ -49,7 +49,6 @@ public class Stegosaur extends AdultDino {
         dinoType = DINO_TYPE;
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
-        setBehaviours();
     }
 
     /**
@@ -63,15 +62,6 @@ public class Stegosaur extends AdultDino {
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
-        setBehaviours();
-    }
-
-    /**
-     * add behaviours to Stegosaur's actionFactories
-     */
-    private void setBehaviours() {
-        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
-        actionFactories.add(new HornyBehaviour());
     }
 
     /**
@@ -107,6 +97,7 @@ public class Stegosaur extends AdultDino {
 
     /**
      * Returns a collection of the Actions that the otherActor can do to the current Actor.
+     *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
@@ -137,9 +128,9 @@ public class Stegosaur extends AdultDino {
         if (hitPoints >= 90 && hitPoints <= 100) {
             //wander behaviour or horny behaviour
             if (!isPregnant() && Math.random() < 0.4) {
-                action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(HornyBehaviour.class, map);
             } else {
-                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(WanderBehaviour.class, map);
             }
         } else if (hitPoints >= 50 && hitPoints < 90) {
             //hungry, horny or wander behaviour
@@ -152,9 +143,9 @@ public class Stegosaur extends AdultDino {
             }
         } else if (hitPoints < 50) {
             //hungry behaviour
-            action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
+            action = getBehaviourAction(HungryBehaviour.class, map);
         } else {
-            action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+            action = getBehaviourAction(WanderBehaviour.class, map);
         }
 
         return action;
@@ -162,13 +153,15 @@ public class Stegosaur extends AdultDino {
 
     /**
      * returns
+     *
      * @return
      */
-    private Action getBehaviourAction(Class<?> clazz, GameMap map){
+    private Action getBehaviourAction(Class<?> clazz, GameMap map) {
         Action action = null;
         for (Behaviour behaviour : actionFactories) {
-            if (behaviour.getClass().isInstance(clazz)) {
+            if (behaviour.getClass() == clazz) {
                 action = actionFactories.get(actionFactories.indexOf(behaviour)).getAction(this, map);
+                break;
             }
         }
         return action;
