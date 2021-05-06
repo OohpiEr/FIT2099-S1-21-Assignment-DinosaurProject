@@ -4,6 +4,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.Util;
 import game.actions.AttackAction;
+import game.behaviours.Behaviour;
 import game.behaviours.HornyBehaviour;
 import game.grounds.Bush;
 import game.items.Corpse;
@@ -132,6 +133,12 @@ public class Stegosaur extends Dinosaur {
             //hungry behaviour or horny behaviour
             if (Math.random() <= 0.4) {
                 action = actionFactories.get(HORNY_BEHAVIOUR).getAction(this, map);
+//                for (Behaviour behaviour : actionFactories) {
+//                    if (behaviour.getClass() == HornyBehaviour.class) {
+//                        action = actionFactories.get(actionFactories.indexOf(behaviour)).getAction(this, map);
+//                    }
+//                }
+
             } else if (Math.random() <= 0.5) {
                 action = actionFactories.get(HUNGRY_BEHAVIOUR).getAction(this, map);
             } else {
