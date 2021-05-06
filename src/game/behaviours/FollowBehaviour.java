@@ -1,6 +1,7 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.BreedAction;
 import game.actions.FollowAction;
 
 import static game.Util.distance;
@@ -36,7 +37,8 @@ public class FollowBehaviour implements Behaviour {
             if (destination.canActorEnter(actor)) {
                 int newDistance = distance(destination, there);
                 if (newDistance < currentDistance) {
-                    return new FollowAction(destination, exit.getName(), actor, target, map);
+                    Action breedAction = new BreedAction(actor, target);
+                    return new FollowAction(destination, exit.getName(), actor, target, breedAction, map);
                 }
             }
         }

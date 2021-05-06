@@ -154,9 +154,7 @@ public class Allosaur extends AdultDino {
     }
 
     /**
-     * Figure out what to do next.
-     * <p>
-     * just stands there.  That's boring.
+     * Select and return an action to perform on the current turn.
      *
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */

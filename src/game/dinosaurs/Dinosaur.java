@@ -5,6 +5,7 @@ import game.Player;
 import game.actions.FeedAction;
 import game.actions.LayEggAction;
 import game.behaviours.Behaviour;
+import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
 import game.items.Corpse;
@@ -45,6 +46,10 @@ public abstract class Dinosaur extends Actor {
         super(name, displayChar, hitPoints);
         this.dinoType = dinoType;
         this.maxHitPoints = MAX_HITPOINTS;
+        setBehaviours();
+    }
+
+    protected void setBehaviours() {
         actionFactories.add(new WanderBehaviour());
     }
 

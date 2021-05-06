@@ -2,6 +2,7 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.LayEggAction;
+import game.behaviours.HornyBehaviour;
 import game.items.Egg;
 
 public abstract class AdultDino extends Dinosaur {
@@ -43,6 +44,12 @@ public abstract class AdultDino extends Dinosaur {
         return isPregnant;
     }
 
+    @Override
+    protected void setBehaviours() {
+        super.setBehaviours();
+        actionFactories.add(new HornyBehaviour());
+    }
+
     /**
      * resets pregnant tick to it's maximum tick
      */
@@ -79,6 +86,11 @@ public abstract class AdultDino extends Dinosaur {
         return null;
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @see Actor#playTurn(Actions, Action, GameMap, Display)
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         return super.playTurn(actions, lastAction, map, display);
