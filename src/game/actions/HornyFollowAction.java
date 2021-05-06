@@ -3,13 +3,14 @@ package game.actions;
 import edu.monash.fit2099.engine.*;
 import game.behaviours.FollowBehaviour;
 
-public class FollowAction extends MoveActorAction {
+
+public class HornyFollowAction extends MoveActorAction {
 
     private Actor actor;
     private Actor target;
     private GameMap map;
 
-    public FollowAction(Location moveToLocation, String direction, Actor actor, Actor target, GameMap map) {
+    public HornyFollowAction(Location moveToLocation, String direction, Actor actor, Actor target, GameMap map) {
         super(moveToLocation, direction);
         this.target = target;
         this.actor = actor;
