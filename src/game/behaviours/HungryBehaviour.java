@@ -3,6 +3,9 @@ package game.behaviours;
 import edu.monash.fit2099.engine.*;
 import edu.monash.fit2099.interfaces.hasFood;
 import game.actions.EatAction;
+import game.dinosaurs.BabyBrachiosaur;
+import game.dinosaurs.Brachiosaur;
+import game.grounds.Tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +36,11 @@ public class HungryBehaviour implements Behaviour {
 
         if (there == here) {
             if (there.getGround() instanceof hasFood && !((hasFood) there.getGround()).isEmpty()) {
-                return new EatAction((Item) (((hasFood) there.getGround()).getFood().get(0)), (hasFood) there.getGround(), 1);
+                hasFood ground = (hasFood) there.getGround();
+                if ((actor.getClass() == Brachiosaur.class || actor.getClass() == BabyBrachiosaur.class) && ground.getClass() == Tree.class) {
+                    return new EatAction((ground.getFoodInstance()), ground, ground.getFood().size());
+                }
+                return new EatAction((ground.getFoodInstance()), ground, 1);
             } else {
                 for (Item item : there.getItems()) {
                     if (Arrays.asList(foodClasses).contains(item.getClass())) {
