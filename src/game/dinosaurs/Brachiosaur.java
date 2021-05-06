@@ -144,6 +144,11 @@ public class Brachiosaur extends AdultDino {
         return action;
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @see Actor#playTurn(Actions, Action, GameMap, Display)
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         Action action = super.playTurn(actions, lastAction, map, display);

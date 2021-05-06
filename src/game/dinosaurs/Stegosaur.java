@@ -168,7 +168,7 @@ public class Stegosaur extends AdultDino {
     }
 
     /**
-     * Figure out what to do next.
+     * Select and return an action to perform on the current turn.
      *
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */

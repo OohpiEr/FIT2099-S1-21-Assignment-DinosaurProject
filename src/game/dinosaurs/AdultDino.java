@@ -86,6 +86,11 @@ public abstract class AdultDino extends Dinosaur {
         return null;
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @see Actor#playTurn(Actions, Action, GameMap, Display)
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         return super.playTurn(actions, lastAction, map, display);
