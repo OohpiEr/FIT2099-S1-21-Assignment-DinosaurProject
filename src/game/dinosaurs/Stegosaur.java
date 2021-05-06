@@ -49,6 +49,8 @@ public class Stegosaur extends AdultDino {
         dinoType = DINO_TYPE;
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
+        setBehaviours();
+
     }
 
     /**
@@ -62,6 +64,11 @@ public class Stegosaur extends AdultDino {
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
+        setBehaviours();
+    }
+
+    protected void setBehaviours() {
+        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
     }
 
     /**
