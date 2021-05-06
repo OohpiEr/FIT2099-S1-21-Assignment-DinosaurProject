@@ -6,6 +6,7 @@ import game.Util;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.behaviours.HornyBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
 import game.items.Corpse;
 import game.items.Egg;
