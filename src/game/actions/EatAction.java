@@ -60,8 +60,7 @@ public class EatAction extends Action {
 
                 result = actor.toString() + " eats " + quantity + " " + food.toString() + "(s) from the ground";
             } else if (location == null) {
-                object.eatFromThis(food, quantity);
-                ((Dinosaur) actor).eat(food, quantity);
+                object.eatFromThis((Dinosaur) actor, food, quantity);
 
                 result = actor.toString() + " eats " + quantity + " " + food.toString() + "(s) from a " + object.toString();
             }
