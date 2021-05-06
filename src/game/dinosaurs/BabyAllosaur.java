@@ -34,8 +34,8 @@ public class BabyAllosaur extends BabyDino {
      * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
      */
-    public BabyAllosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale, DinosaurEnumType.ALLOSAUR);
+    public BabyAllosaur(String name, char displayChar, int hitPoints) {
+        super(name, displayChar, hitPoints,  DinosaurEnumType.ALLOSAUR);
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -43,9 +43,7 @@ public class BabyAllosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 20 and randomises gender
      */
     public BabyAllosaur() {
-        super("Baby Allosaur", 'a', 20, false, DinosaurEnumType.ALLOSAUR);
-        boolean isFemale = Math.random() < 0.5;
-        this.setFemale(isFemale);
+        super("Baby Allosaur", 'a', 20, DinosaurEnumType.ALLOSAUR);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;

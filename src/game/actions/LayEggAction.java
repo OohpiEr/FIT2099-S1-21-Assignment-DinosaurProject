@@ -4,14 +4,15 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.Util;
+import game.dinosaurs.AdultDino;
 import game.dinosaurs.Dinosaur;
 
 public class LayEggAction extends Action {
 
-    private Dinosaur dinosaur;
+    private AdultDino dinosaur;
     private GameMap map;
 
-    public LayEggAction(Dinosaur dinosaur, GameMap map) {
+    public LayEggAction(AdultDino dinosaur, GameMap map) {
         this.dinosaur = dinosaur;
         this.map = map;
     }

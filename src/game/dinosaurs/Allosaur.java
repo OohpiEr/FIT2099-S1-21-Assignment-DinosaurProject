@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * A carnivorous dinosaur
  */
-public class Allosaur extends Dinosaur {
+public class Allosaur extends AdultDino {
 
     private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.ALLOSAUR;
     private ArrayList<Stegosaur> offLimitsStegosaurs = new ArrayList<Stegosaur>();

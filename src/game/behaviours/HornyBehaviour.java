@@ -2,6 +2,7 @@ package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.BreedAction;
+import game.dinosaurs.AdultDino;
 import game.dinosaurs.Dinosaur;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class HornyBehaviour implements Behaviour {
 
     FollowBehaviour followBehaviour;
 
+
     /**
      * Get action for horny behaviour
      *
@@ -23,25 +25,26 @@ public class HornyBehaviour implements Behaviour {
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
+        AdultDino dino = (AdultDino) actor;
 
-        if (((Dinosaur) actor).isFemale() && ((Dinosaur) actor).isPregnant()) {
+        if (dino.isFemale() && dino.isPregnant()) {
             return null;
         }
 
-        Actor target = null;
+        AdultDino target = null;
         Action returnAction = null;
-        List<Location> locationsWithTargets = getPossibleTargets(actor, map);
+        List<Location> locationsWithTargets = getPossibleTargets(dino, map);
 
         if (locationsWithTargets != null) {
-            target = getNearestTarget(actor, map, locationsWithTargets);
+            target = (AdultDino) getNearestTarget(dino, map, locationsWithTargets);
 
             if (target != null) {
 
-                if (isTargetInExit(target, actor, map)) {
-                    returnAction = new BreedAction(actor, target);
+                if (isTargetInExit(target, dino, map)) {
+                    returnAction = new BreedAction(dino, target);
                 } else {
                     followBehaviour = new FollowBehaviour(target);
-                    returnAction = followBehaviour.getAction(actor, map);
+                    returnAction = followBehaviour.getAction(dino, map);
                 }
             }
         }
@@ -98,21 +101,21 @@ public class HornyBehaviour implements Behaviour {
     /**
      * gets possible targets in the same map as the actor being horny
      *
-     * @param actor the actor itself
-     * @param map   the map the actor is in
+     * @param dino the dinosaur itself
+     * @param map  the map the actor is in
      * @return a list of possible targets
      */
-    private List getPossibleTargets(Actor actor, GameMap map) {
+    private List getPossibleTargets(AdultDino dino, GameMap map) {
         List<Location> locationsWithTargets = new ArrayList<>();
 
         for (int x : map.getXRange()) {
             for (int y : map.getYRange()) {
                 Actor possibleTarget = map.getActorAt(map.at(x, y));
                 if ((possibleTarget != null) &&
-                        (possibleTarget != actor) &&
-                        (possibleTarget.getClass() == actor.getClass()) &&
-                        (((Dinosaur) actor).isFemale() ^ ((Dinosaur) possibleTarget).isFemale()) &&
-                        ((((Dinosaur) actor).isFemale() && !((Dinosaur) actor).isPregnant()) || (((Dinosaur) possibleTarget).isFemale() && !((Dinosaur) possibleTarget).isPregnant()))) {
+                        (possibleTarget != dino) &&
+                        (possibleTarget.getClass() == dino.getClass()) &&
+                        (dino.isFemale() ^ ((AdultDino) possibleTarget).isFemale()) &&
+                        ((dino.isFemale() && !(dino.isPregnant())) || (((AdultDino) possibleTarget).isFemale() && !((AdultDino) possibleTarget).isPregnant()))) {
                     locationsWithTargets.add(map.locationOf(possibleTarget));
                 }
             }

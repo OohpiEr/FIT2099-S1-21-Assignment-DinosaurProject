@@ -35,7 +35,7 @@ public class BabyBrachiosaur extends BabyDino {
      * @param isFemale    whether the dinosaur is female
      */
     public BabyBrachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale, DinosaurEnumType.BRANCHIOSAUR);
+        super(name, displayChar, hitPoints, DinosaurEnumType.BRANCHIOSAUR);
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -43,9 +43,7 @@ public class BabyBrachiosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyBrachiosaur() {
-        super("Baby Branchiosaur", 'b', 10, false, DinosaurEnumType.BRANCHIOSAUR);
-        boolean isFemale = Math.random() < 0.5;
-        this.setFemale(isFemale);
+        super("Baby Branchiosaur", 'b', 10, DinosaurEnumType.BRANCHIOSAUR);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;

@@ -6,6 +6,7 @@ import game.Util;
 import game.actions.AttackAction;
 import game.behaviours.Behaviour;
 import game.behaviours.HornyBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
 import game.items.Corpse;
 import game.items.Egg;
@@ -19,7 +20,7 @@ import java.util.Map;
 /**
  * A herbivorous dinosaur.
  */
-public class Stegosaur extends Dinosaur {
+public class Stegosaur extends AdultDino {
 
     private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private final int STARTING_HITPOINTS = 50;

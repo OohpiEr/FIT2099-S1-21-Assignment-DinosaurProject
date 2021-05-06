@@ -28,9 +28,6 @@ public abstract class Dinosaur extends Actor {
     /**
      * gender
      */
-    protected boolean isFemale;
-    protected boolean isPregnant;
-    protected int pregnantTick;
     protected List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 
     protected DinosaurEnumType dinoType;
@@ -43,31 +40,13 @@ public abstract class Dinosaur extends Actor {
      * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
      */
-    public Dinosaur(String name, char displayChar, int hitPoints, boolean isFemale, DinosaurEnumType dinoType) {
+    public Dinosaur(String name, char displayChar, int hitPoints, DinosaurEnumType dinoType) {
         super(name, displayChar, hitPoints);
         this.dinoType = dinoType;
-        setFemale(isFemale);
-        this.isPregnant = false;
         this.maxHitPoints = MAX_HITPOINTS;
-        this.pregnantTick = 0;
         actionFactories.add(new WanderBehaviour());
     }
 
-    public boolean isFemale() {
-        return isFemale;
-    }
-
-    public void setFemale(boolean female) {
-        isFemale = female;
-    }
-
-    public boolean isPregnant() {
-        return isPregnant;
-    }
-
-    public void setPregnant(boolean pregnant) {
-        isPregnant = pregnant;
-    }
 
     /**
      * Used to check if a dinosaur is dead, and execute the required functions
@@ -93,46 +72,12 @@ public abstract class Dinosaur extends Actor {
      */
     protected Action tick(GameMap map) {
         hitPoints -= 1;
-        if (pregnantTick > 0 && isPregnant == true) {
-            pregnantTick -= 1;
-        } else if (pregnantTick == 0 && isPregnant == true) {
-            return new LayEggAction(this, map);
-        }
         return null;
     }
 
-    /**
-     * lays egg on nearest possible ground
-     */
-    public void layEgg(GameMap map) {
-        if (isPregnant() && pregnantTick == 0) {
-            setPregnant(false);
-            Egg egg = null;
-
-            switch (dinoType) {
-                case STEGOSAUR -> egg = new Egg(DinosaurEnumType.STEGOSAUR);
-                case BRANCHIOSAUR -> egg = new Egg(DinosaurEnumType.BRANCHIOSAUR);
-                case ALLOSAUR -> egg = new Egg(DinosaurEnumType.ALLOSAUR);
-            }
-
-            if (egg != null) {
-                map.locationOf(this).addItem(egg);
-            }
-        }
-    }
 
     /**
-     * resets pregnant tick to it's maximum tick
-     */
-    public void resetPregnantTick() {
-    }
-
-    ;
-
-    /**
-     * Figure out what to do next.
-     * <p>
-     * just stands there.  That's boring.
+     * Select and return an action to perform on the current turn.
      *
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */

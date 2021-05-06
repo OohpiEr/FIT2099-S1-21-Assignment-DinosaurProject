@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.Util;
+import game.dinosaurs.AdultDino;
 import game.dinosaurs.Dinosaur;
 
 /**
@@ -12,8 +13,8 @@ import game.dinosaurs.Dinosaur;
  */
 public class BreedAction extends Action {
 
-    private Dinosaur actor;
-    private Dinosaur target;
+    private AdultDino actor;
+    private AdultDino target;
 
     public BreedAction(Actor actor, Actor target) {
         setActor(actor);
@@ -39,11 +40,11 @@ public class BreedAction extends Action {
     }
 
     public void setActor(Actor actor) {
-        this.actor = (Dinosaur) actor;
+        this.actor = (AdultDino) actor;
     }
 
     public void setTarget(Actor target) {
-        this.target = (Dinosaur) target;
+        this.target = (AdultDino) target;
     }
 
     @Override

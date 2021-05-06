@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * A herbivorous dinosaur
  */
-public class Brachiosaur extends Dinosaur {
+public class Brachiosaur extends AdultDino {
 
     private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
     private final int STARTING_HITPOINTS = 100;
