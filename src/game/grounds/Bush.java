@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.hasFood;
+import game.Player;
 import game.dinosaurs.Brachiosaur;
 import game.items.Fruit;
 
@@ -19,6 +20,7 @@ public class Bush extends Ground implements hasFood {
     private final double CHANCE_TO_PRODUCE_FRUIT = 0.1;
     private final double CHANCE_TO_BE_KILLED_BY_BRACHIOSAUR = 0.5;
     private final String NAME = "bush";
+    private final int ECO_POINT_REWARD = 1;
 
     /**
      * Constructor. Instantiates the fruits ArrayList
@@ -84,6 +86,7 @@ public class Bush extends Ground implements hasFood {
         super.tick(location);
         if (Math.random() <= CHANCE_TO_PRODUCE_FRUIT) {
             this.addFruits(1);
+            Player.addEcoPoints(ECO_POINT_REWARD);
         }
         if (location.containsAnActor() && location.getActor().getClass() == Brachiosaur.class) {
             if (Math.random() <= CHANCE_TO_BE_KILLED_BY_BRACHIOSAUR) {
