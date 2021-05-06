@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.hasFood;
+import game.Player;
 import game.items.Fruit;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class Tree extends Ground implements hasFood {
     private final double CHANCE_TO_PRODUCE_FRUIT = 0.5;
     private final double CHANCE_TO_DROP_FRUIT = 0.05;
     private final String NAME = "tree";
+    private final int ECO_POINT_REWARD = 1;
 
     /**
      * Constructor. Instantiates the fruits ArrayList
@@ -88,6 +90,7 @@ public class Tree extends Ground implements hasFood {
 
         if (Math.random() <= CHANCE_TO_PRODUCE_FRUIT) {
             this.addFruits(1);
+            Player.addEcoPoints(ECO_POINT_REWARD);
         }
         if (Math.random() <= CHANCE_TO_DROP_FRUIT && !fruits.isEmpty()) {
             this.removeFruits(1);

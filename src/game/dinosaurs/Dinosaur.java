@@ -1,6 +1,8 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
+import game.Player;
+import game.actions.FeedAction;
 import game.actions.LayEggAction;
 import game.behaviours.Behaviour;
 import game.behaviours.HungryBehaviour;
@@ -69,6 +71,20 @@ public abstract class Dinosaur extends Actor {
      * @param quantity The quantity of the food eaten
      */
     public abstract void eat(Item food, int quantity);
+
+    @Override
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        if (otherActor instanceof Player){
+            for (Item item : otherActor.getInventory()){
+                for (Class<?> food : FOOD){
+                    if (item.getClass() == food){
+                        return (new Actions(new FeedAction(this, item, 1)));
+                    }
+                }
+            }
+        }
+        return super.getAllowableActions(otherActor, direction, map);
+    }
 
     /**
      * Inform a Dino the passage of time.
