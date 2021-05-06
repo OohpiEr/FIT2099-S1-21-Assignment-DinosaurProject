@@ -41,9 +41,7 @@ public class Allosaur extends AdultDino {
      */
     public Allosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, 'A', 100, isFemale, DinosaurEnumType.ALLOSAUR);
-        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
-        actionFactories.add(new WanderBehaviour());
-        actionFactories.add(new AttackBehaviour());
+        setBehaviours();
         this.pregnantTick = PREGNANT_TICK;
         maxHitPoints = MAX_HITPOINTS;
     }
@@ -72,6 +70,16 @@ public class Allosaur extends AdultDino {
         name = NAME;
         displayChar = DISPLAY_CHAR;
         maxHitPoints = MAX_HITPOINTS;
+    }
+
+    /**
+     * sets dinosaur behaviours
+     */
+    @Override
+    protected void setBehaviours() {
+        super.setBehaviours();
+        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
+        actionFactories.add(new AttackBehaviour());
     }
 
     /**

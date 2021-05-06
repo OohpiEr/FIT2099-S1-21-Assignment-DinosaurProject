@@ -44,6 +44,9 @@ public abstract class AdultDino extends Dinosaur {
         return isPregnant;
     }
 
+    /**
+     * sets dinosaur behaviours
+     */
     @Override
     protected void setBehaviours() {
         super.setBehaviours();

@@ -67,7 +67,12 @@ public class Stegosaur extends AdultDino {
         setBehaviours();
     }
 
+    /**
+     * sets dinosaur behaviours
+     */
+    @Override
     protected void setBehaviours() {
+        super.setBehaviours();
         actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
     }
 
