@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.interfaces.hasFood;
+import game.Player;
 import game.items.Fruit;
 
 /**
@@ -13,6 +14,7 @@ public class PickFruitAction extends Action {
 
     private hasFood object;
     private int quantity;
+    private final int ECO_POINT_REWARD = 10;
 
     /**
      * Constructor.
@@ -35,6 +37,9 @@ public class PickFruitAction extends Action {
         if (object.getFoodInstance().getClass() == Fruit.class && !object.isEmpty()){
             object.removeFood(1);
             actor.addItemToInventory(new Fruit());
+            if (actor instanceof Player){
+                Player.addEcoPoints(ECO_POINT_REWARD);
+            }
             return actor.toString() + " picks a fruit from " + object.toString();
         }
         return null;

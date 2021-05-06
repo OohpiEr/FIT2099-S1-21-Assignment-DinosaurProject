@@ -3,10 +3,13 @@ package game.items;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
+import game.Player;
 import game.dinosaurs.BabyAllosaur;
 import game.dinosaurs.BabyBrachiosaur;
 import game.dinosaurs.BabyStegosaur;
 import game.dinosaurs.DinosaurEnumType;
+
+import java.util.concurrent.TimeoutException;
 
 /**
  * A class representing a dinosaur egg. Has an enum attribute 'type' to represent what type of dinosaur egg it is
@@ -22,6 +25,10 @@ public class Egg extends PortableItem {
     private final int STEGOSAUR_TIME_TO_HATCH = 40;
     private final int BRANCHIOSAUR_TIME_TO_HATCH = 70;
     private final int ALLOSAUR_TIME_TO_HATCH = 50;
+
+    private final int STEGOSAUR_HATCH_ECO_POINT_REWARD = 100;
+    private final int BRACHIOSAUR_HATCH_ECO_POINT_REWARD = 100;
+    private final int ALLOSAUR_HATCH_ECO_POINT_REWARD = 100;
 
     /**
      * Constructor. Sets timeToHatch to the appropriate number of turns based on the dinosaur type
@@ -62,6 +69,7 @@ public class Egg extends PortableItem {
                     for (Exit exit : currentLocation.getExits()) {
                         if (exit.getDestination().canActorEnter(new BabyStegosaur())) {
                             exit.getDestination().addActor(new BabyStegosaur());
+                            Player.addEcoPoints(STEGOSAUR_HATCH_ECO_POINT_REWARD);
                             break;
                         }
                     }
@@ -73,6 +81,7 @@ public class Egg extends PortableItem {
                     for (Exit exit : currentLocation.getExits()) {
                         if (exit.getDestination().canActorEnter(new BabyBrachiosaur())) {
                             exit.getDestination().addActor(new BabyBrachiosaur());
+                            Player.addEcoPoints(BRACHIOSAUR_HATCH_ECO_POINT_REWARD);
                             break;
                         }
                     }
@@ -84,6 +93,7 @@ public class Egg extends PortableItem {
                     for (Exit exit : currentLocation.getExits()) {
                         if (exit.getDestination().canActorEnter(new BabyAllosaur())) {
                             exit.getDestination().addActor(new BabyAllosaur());
+                            Player.addEcoPoints(ALLOSAUR_HATCH_ECO_POINT_REWARD);
                             break;
                         }
                     }
@@ -109,6 +119,7 @@ public class Egg extends PortableItem {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyStegosaur())) {
                         exit.getDestination().addActor(new BabyStegosaur());
+                        Player.addEcoPoints(STEGOSAUR_HATCH_ECO_POINT_REWARD);
                         break;
                     }
                 }
@@ -116,6 +127,7 @@ public class Egg extends PortableItem {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyBrachiosaur())) {
                         exit.getDestination().addActor(new BabyBrachiosaur());
+                        Player.addEcoPoints(BRACHIOSAUR_HATCH_ECO_POINT_REWARD);
                         break;
                     }
                 }
@@ -123,6 +135,7 @@ public class Egg extends PortableItem {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyAllosaur())) {
                         exit.getDestination().addActor(new BabyAllosaur());
+                        Player.addEcoPoints(ALLOSAUR_HATCH_ECO_POINT_REWARD);
                         break;
                     }
                 }
