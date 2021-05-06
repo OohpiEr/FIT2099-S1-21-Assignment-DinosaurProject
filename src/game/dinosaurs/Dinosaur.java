@@ -49,7 +49,6 @@ public abstract class Dinosaur extends Actor {
 
     protected void setBehaviours() {
         actionFactories.add(new WanderBehaviour());
-        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
     }
 
 
