@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.dinosaurs.Allosaur;
+import game.dinosaurs.Stegosaur;
 import game.items.PortableItem;
 
 /**

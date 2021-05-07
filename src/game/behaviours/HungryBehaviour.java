@@ -69,37 +69,37 @@ public class HungryBehaviour implements Behaviour {
     public Location getFoodLocation(Location here, GameMap map, Class<?>[] foodClasses, HashMap<Class<?>, Class<?>[]> groundToFoodMap) {
 
         List<Location> locationsWithFood = new ArrayList<>();
-
-        for (int x : map.getXRange()) {
-            for (int y : map.getYRange()) {
-                if (groundToFoodMap.containsKey(map.at(x, y).getGround().getClass())) {
-                    List<Item> items = map.at(x, y).getItems();
-                    if (items != null) {
-                        for (Item item : items) {
-                            //TODO test if below if statement works
-                            if (Arrays.asList(foodClasses).contains(item.getClass())) {
-                                locationsWithFood.add(map.at(x, y));
+        Location closestFoodLocation = null;
+        if (groundToFoodMap != null) {
+            for (int x : map.getXRange()) {
+                for (int y : map.getYRange()) {
+                    if (groundToFoodMap.containsKey(map.at(x, y).getGround().getClass())) {
+                        List<Item> items = map.at(x, y).getItems();
+                        if (items != null) {
+                            for (Item item : items) {
+                                //TODO test if below if statement works
+                                if (Arrays.asList(foodClasses).contains(item.getClass())) {
+                                    locationsWithFood.add(map.at(x, y));
+                                }
                             }
                         }
-                    }
-                    if (map.at(x, y).getGround() instanceof hasFood && ((hasFood) map.at(x, y).getGround()).isEmpty()) {
-                        locationsWithFood.add(map.at(x, y));
+                        if (map.at(x, y).getGround() instanceof hasFood && ((hasFood) map.at(x, y).getGround()).isEmpty()) {
+                            locationsWithFood.add(map.at(x, y));
+                        }
                     }
                 }
             }
-        }
 
-        //compare distance of each location to actor
-        int distance = Integer.MAX_VALUE;
-        Location closestFoodLocation = null;
-        for (Location location : locationsWithFood) {
-            int newDistance = distance(location, here);
-            if (distance > newDistance) {
-                distance = newDistance;
-                closestFoodLocation = location;
+            //compare distance of each location to actor
+            int distance = Integer.MAX_VALUE;
+            for (Location location : locationsWithFood) {
+                int newDistance = distance(location, here);
+                if (distance > newDistance) {
+                    distance = newDistance;
+                    closestFoodLocation = location;
+                }
             }
         }
-
         return closestFoodLocation;
     }
 
