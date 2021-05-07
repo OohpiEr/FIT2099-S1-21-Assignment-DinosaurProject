@@ -3,10 +3,7 @@ package game.actions;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
-import game.dinosaurs.Allosaur;
-import game.dinosaurs.Dinosaur;
-import game.dinosaurs.DinosaurEnumType;
-import game.dinosaurs.Stegosaur;
+import game.dinosaurs.*;
 import game.items.Corpse;
 import game.items.PortableItem;
 
@@ -81,9 +78,11 @@ public class AttackAction extends Action {
 
         Weapon weapon = actor.getWeapon();
 
+/* todo rmb to uncomment
 		if (rand.nextBoolean()) {
 			return actor + " misses " + target + ".";
 		}
+*/
 
         int damage = weapon.damage();
         String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
@@ -125,7 +124,7 @@ public class AttackAction extends Action {
 
     @Override
     public Action getNextAction() {
-        if (corpse != null && attacker instanceof Allosaur) {
+        if (corpse != null && (attacker instanceof Allosaur || attacker instanceof BabyAllosaur) ) {
             return new EatAction(corpse, corpseLocation, 1);
         }
         return null;

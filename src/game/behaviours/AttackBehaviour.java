@@ -3,6 +3,7 @@ package game.behaviours;
 import edu.monash.fit2099.engine.*;
 import game.dinosaurs.Allosaur;
 import game.actions.AttackAction;
+import game.dinosaurs.BabyStegosaur;
 import game.dinosaurs.Stegosaur;
 
 import java.util.ArrayList;
@@ -33,14 +34,17 @@ public class AttackBehaviour implements Behaviour {
      * gets action for current behaviour
      *
      * @param attacker the Actor attacking
-     * @param map the GameMap containing the Actor
+     * @param map      the GameMap containing the Actor
      * @return
      */
     @Override
     public Action getAction(Actor attacker, GameMap map) {
         Action attackAction = null;
+        ArrayList<Class<?>> targetClasses = new ArrayList<>();
+        targetClasses.add(Stegosaur.class);
+        targetClasses.add(BabyStegosaur.class);
 
-        Actor target = getTargetsInExit(attacker, map, Stegosaur.class);
+        Actor target = getTargetsInExit(attacker, map, targetClasses);
         if (target != null) {
             attackAction = new AttackAction(attacker, target);
             addUnattackableActor(target);
@@ -52,19 +56,19 @@ public class AttackBehaviour implements Behaviour {
     /**
      * returns the first target of the provided class in the actor's exits
      *
-     * @param actor       actor that is going to attack
-     * @param map         map the actor is in
-     * @param targetClass the class of targets
+     * @param actor         actor that is going to attack
+     * @param map           map the actor is in
+     * @param targetClasses the class of targets
      * @return arraylist of targets
      */
-    private Actor getTargetsInExit(Actor actor, GameMap map, Class<?> targetClass) {
+    private Actor getTargetsInExit(Actor actor, GameMap map, ArrayList<Class<?>> targetClasses) {
         Location here = map.locationOf(actor);
         Actor target = null;
 
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor() &&
-                    destination.getActor().getClass() == targetClass &&
+                    isATarget(targetClasses, destination) &&
                     isAttackable(destination.getActor())) {
                 target = destination.getActor();
             }
@@ -73,10 +77,10 @@ public class AttackBehaviour implements Behaviour {
         return target;
     }
 
-
+    //todo comment
     private void addUnattackableActor(Actor actor) {
-        if (actor instanceof Stegosaur)
-            unattackableActors.put(actor,STEGOSAUR_UNATTACKABLE_TICK);
+        if (actor instanceof Stegosaur || actor instanceof BabyStegosaur)
+            unattackableActors.put(actor, STEGOSAUR_UNATTACKABLE_TICK);
     }
 
     /**
@@ -97,6 +101,20 @@ public class AttackBehaviour implements Behaviour {
         }
 
         return attackable;
+    }
+
+    /**
+     * todo comment
+     *
+     * @param targetClasses
+     * @return
+     */
+    private boolean isATarget(ArrayList<Class<?>> targetClasses, Location destination) {
+        for (Class<?> clazz : targetClasses) {
+            if (destination.getActor().getClass() == clazz)
+                return true;
+        }
+        return false;
     }
 
 }
