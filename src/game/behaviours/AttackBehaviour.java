@@ -42,7 +42,7 @@ public class AttackBehaviour implements Behaviour {
 
         Actor target = getTargetsInExit(attacker, map, Stegosaur.class);
         if (target != null) {
-            attackAction = new AttackAction(target);
+            attackAction = new AttackAction(attacker, target);
             addUnattackableActor(target);
         }
 

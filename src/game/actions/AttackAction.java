@@ -4,6 +4,7 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
 import game.dinosaurs.Allosaur;
+import game.dinosaurs.Dinosaur;
 import game.dinosaurs.Stegosaur;
 import game.items.PortableItem;
 
@@ -12,6 +13,10 @@ import game.items.PortableItem;
  */
 public class AttackAction extends Action {
 
+    /**
+     * The Actor that is to be attacked
+     */
+    private Actor attacker;
     /**
      * The Actor that is to be attacked
      */
@@ -40,6 +45,18 @@ public class AttackAction extends Action {
     }
 
     /**
+     * Constructor.
+     *
+     * @param target The Actor that is to be attacked
+     */
+    public AttackAction(Actor attacker, Actor target) {
+        this.target = target;
+        this.attacker = attacker;
+    }
+
+
+
+    /**
      * setter for corpse of target
      *
      * @param corpse
@@ -62,9 +79,9 @@ public class AttackAction extends Action {
 
         Weapon weapon = actor.getWeapon();
 
-		if (rand.nextBoolean()) {
-			return actor + " misses " + target + ".";
-		}
+        if (rand.nextBoolean()) {
+            return actor + " misses " + target + ".";
+        }
 
         int damage = weapon.damage();
         String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
@@ -102,7 +119,7 @@ public class AttackAction extends Action {
 
     @Override
     public Action getNextAction() {
-        if (corpse != null) {
+        if (corpse != null && attacker instanceof Allosaur) {
             return new EatAction(corpse, corpseLocation, 1);
         }
         return null;

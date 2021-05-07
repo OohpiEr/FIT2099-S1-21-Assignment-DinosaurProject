@@ -127,6 +127,7 @@ public class Stegosaur extends AdultDino {
      * @param map gamemap the actor is on
      * @return action to be performed this playturn
      */
+    @Override
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
 
@@ -155,7 +156,5 @@ public class Stegosaur extends AdultDino {
 
         return action;
     }
-
-
 
 }

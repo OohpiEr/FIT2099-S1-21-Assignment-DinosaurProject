@@ -118,6 +118,7 @@ public class Brachiosaur extends AdultDino {
      * @param map gamemap the actor is on
      * @return action to be performed this playturn
      */
+    @Override
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
 
@@ -147,23 +148,4 @@ public class Brachiosaur extends AdultDino {
         return action;
     }
 
-    /**
-     * Select and return an action to perform on the current turn.
-     *
-     * @see Actor#playTurn(Actions, Action, GameMap, Display)
-     */
-    @Override
-    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        Action action = super.playTurn(actions, lastAction, map, display);
-
-        if (action == null && lastAction.getNextAction() != null) {
-            action = lastAction.getNextAction();
-        } else if (action == null) {
-            action = determineBehaviour(map);
-            if (action == null) {
-                action = getBehaviourAction(WanderBehaviour.class, map);
-            }
-        }
-        return action;
-    }
 }

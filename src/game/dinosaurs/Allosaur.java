@@ -171,6 +171,7 @@ public class Allosaur extends AdultDino {
      * @param map gamemap the actor is on
      * @return action to be performed this playturn
      */
+    @Override
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
 
@@ -202,6 +203,5 @@ public class Allosaur extends AdultDino {
 
         return action;
     }
-
 
 }
