@@ -18,4 +18,9 @@ public abstract class BabyDino extends Dinosaur {
         super(name, displayChar, hitPoints);
     }
 
+    @Override
+    protected void setBehaviours() {
+        actionFactories.add(new WanderBehaviour());
+        actionFactories.add(new HungryBehaviour());
+    }
 }
