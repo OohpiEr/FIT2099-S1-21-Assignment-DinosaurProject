@@ -8,8 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
-import game.dinosaurs.Allosaur;
-import game.dinosaurs.Stegosaur;
+import game.dinosaurs.*;
 import game.grounds.*;
 
 /**
@@ -58,6 +57,11 @@ public class Application {
 		// Place a pair of stegosaurs in the middle of the map
 		gameMap.at(9, 6).addActor(new Stegosaur("Stegosaur", true));
 		gameMap.at(9, 7).addActor(new Stegosaur("Stegosaur", false));
+
+		gameMap.at(30, 15).addActor(new Brachiosaur("Brachiosaur", true));
+		gameMap.at(32, 15).addActor(new Brachiosaur("Brachiosaur", true));
+		gameMap.at(30, 16).addActor(new Brachiosaur("Brachiosaur", false));
+		gameMap.at(32, 16).addActor(new Brachiosaur("Brachiosaur", false));
 
 		world.run();
 	}
