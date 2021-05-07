@@ -103,7 +103,7 @@ public abstract class Dinosaur extends Actor {
         actions.add(new AttackAction(this));
         if (otherActor instanceof Player) {
             for (Item item : otherActor.getInventory()) {
-                for (Class<?> food : FOOD) {
+                for (Class<?> food : this.getFOOD()) {
                     if (item.getClass() == food) {
                         actions.add(new FeedAction(this, item, 1));
                     }

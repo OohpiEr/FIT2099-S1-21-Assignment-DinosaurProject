@@ -36,8 +36,6 @@ public class Stegosaur extends AdultDino {
         put(Ground.class, new Class[]{Fruit.class});
     }};
 
-    protected DinosaurEnumType dinoType = DinosaurEnumType.STEGOSAUR;
-
     /**
      * Constructor.
      * All Stegosaurs are represented by a 'S' and have 100 max hit points.
