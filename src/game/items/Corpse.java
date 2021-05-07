@@ -10,6 +10,16 @@ import game.dinosaurs.DinosaurEnumType;
 public class Corpse extends PortableItem {
 
     /**
+     * Constructor. Creates a new Corpse instance based on what dinosaur it is
+     *
+     * @param type The type of dinosaur corpse
+     */
+    public Corpse(DinosaurEnumType type) {
+        super(type.getName() + " corpse", '%');
+        this.type = type;
+    }
+
+    /**
      * Returns the type of corpse this is
      * @return  The type of corpse this is
      */
@@ -19,13 +29,5 @@ public class Corpse extends PortableItem {
 
     DinosaurEnumType type;
 
-    /**
-     * Constructor. Creates a new Corpse instance based on what dinosaur it is
-     *
-     * @param type The type of dinosaur corpse
-     */
-    public Corpse(DinosaurEnumType type) {
-        super(type.getName() + " corpse", 'C');
-        this.type = type;
-    }
+
 }

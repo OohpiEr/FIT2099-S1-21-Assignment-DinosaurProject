@@ -5,7 +5,9 @@ import java.util.Random;
 import edu.monash.fit2099.engine.*;
 import game.dinosaurs.Allosaur;
 import game.dinosaurs.Dinosaur;
+import game.dinosaurs.DinosaurEnumType;
 import game.dinosaurs.Stegosaur;
+import game.items.Corpse;
 import game.items.PortableItem;
 
 /**
@@ -79,9 +81,9 @@ public class AttackAction extends Action {
 
         Weapon weapon = actor.getWeapon();
 
-        if (rand.nextBoolean()) {
-            return actor + " misses " + target + ".";
-        }
+		if (rand.nextBoolean()) {
+			return actor + " misses " + target + ".";
+		}
 
         int damage = weapon.damage();
         String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
@@ -94,7 +96,11 @@ public class AttackAction extends Action {
 
 
         if (!target.isConscious()) {
-            Item corpse = new PortableItem("dead " + target, '%');
+            if (actor instanceof Dinosaur){
+                corpse = new Corpse(((Dinosaur) actor).getDinoType());
+            } else {
+                corpse = new PortableItem("dead " + target, '%');
+            }
             setCorpse(corpse);
             setCorpseLocation(map.locationOf(target));
             map.locationOf(target).addItem(corpse);

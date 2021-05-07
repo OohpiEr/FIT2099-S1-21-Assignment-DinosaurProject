@@ -69,6 +69,7 @@ public class Egg extends PortableItem {
                     for (Exit exit : currentLocation.getExits()) {
                         if (exit.getDestination().canActorEnter(new BabyStegosaur())) {
                             exit.getDestination().addActor(new BabyStegosaur());
+                            currentLocation.removeItem(this);
                             Player.addEcoPoints(STEGOSAUR_HATCH_ECO_POINT_REWARD);
                             break;
                         }
@@ -81,6 +82,7 @@ public class Egg extends PortableItem {
                     for (Exit exit : currentLocation.getExits()) {
                         if (exit.getDestination().canActorEnter(new BabyBrachiosaur())) {
                             exit.getDestination().addActor(new BabyBrachiosaur());
+                            currentLocation.removeItem(this);
                             Player.addEcoPoints(BRACHIOSAUR_HATCH_ECO_POINT_REWARD);
                             break;
                         }
@@ -93,6 +95,7 @@ public class Egg extends PortableItem {
                     for (Exit exit : currentLocation.getExits()) {
                         if (exit.getDestination().canActorEnter(new BabyAllosaur())) {
                             exit.getDestination().addActor(new BabyAllosaur());
+                            currentLocation.removeItem(this);
                             Player.addEcoPoints(ALLOSAUR_HATCH_ECO_POINT_REWARD);
                             break;
                         }
@@ -119,6 +122,7 @@ public class Egg extends PortableItem {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyStegosaur())) {
                         exit.getDestination().addActor(new BabyStegosaur());
+                        actor.removeItemFromInventory(this);
                         Player.addEcoPoints(STEGOSAUR_HATCH_ECO_POINT_REWARD);
                         break;
                     }
@@ -127,6 +131,7 @@ public class Egg extends PortableItem {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyBrachiosaur())) {
                         exit.getDestination().addActor(new BabyBrachiosaur());
+                        actor.removeItemFromInventory(this);
                         Player.addEcoPoints(BRACHIOSAUR_HATCH_ECO_POINT_REWARD);
                         break;
                     }
@@ -135,6 +140,7 @@ public class Egg extends PortableItem {
                 for (Exit exit : currentLocation.getExits()) {
                     if (exit.getDestination().canActorEnter(new BabyAllosaur())) {
                         exit.getDestination().addActor(new BabyAllosaur());
+                        actor.removeItemFromInventory(this);
                         Player.addEcoPoints(ALLOSAUR_HATCH_ECO_POINT_REWARD);
                         break;
                     }
