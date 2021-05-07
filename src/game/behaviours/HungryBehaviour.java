@@ -76,7 +76,6 @@ public class HungryBehaviour implements Behaviour {
         }
         return null;
 
-
     }
 
     /**

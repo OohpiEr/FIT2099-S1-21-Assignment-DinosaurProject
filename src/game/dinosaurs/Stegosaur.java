@@ -24,7 +24,7 @@ import java.util.Map;
 public class Stegosaur extends AdultDino {
 
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
-    private static final int STARTING_HITPOINTS = 20;
+    private static final int STARTING_HITPOINTS = 50;
     private static final int MAX_HITPOINTS = 100;
     private static final int PREGNANT_TICK = 10;
     private static final String NAME = "Stegosaur";
