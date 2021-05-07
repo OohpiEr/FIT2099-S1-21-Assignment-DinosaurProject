@@ -153,7 +153,8 @@ public class Bush extends Ground implements hasFood {
      * Returns the name of the Bush
      * @return  The name of the Bush
      */
-    public String getName(){
+    @Override
+    public String toString(){
         return NAME;
     }
 

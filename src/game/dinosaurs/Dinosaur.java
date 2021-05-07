@@ -2,6 +2,7 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.Player;
+import game.actions.AttackAction;
 import game.actions.FeedAction;
 import game.actions.LayEggAction;
 import game.behaviours.Behaviour;
@@ -51,7 +52,8 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Gets an array of classes of food the dinosaur eats
-     * @return  An array of classes of food the dinosaur eats
+     *
+     * @return An array of classes of food the dinosaur eats
      */
     public static Class<?>[] getFOOD() {
         return FOOD;
@@ -59,6 +61,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Gets a HashMap of Grounds the dinosaur eats from together with the foods they eat from them
+     *
      * @return
      */
     public static HashMap<Class<?>, Class<?>[]> getFROM_THESE_EATS_THESE() {
@@ -96,16 +99,18 @@ public abstract class Dinosaur extends Actor {
 
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+        Actions actions = super.getAllowableActions(otherActor, direction, map);
+        actions.add(new AttackAction(this));
         if (otherActor instanceof Player) {
             for (Item item : otherActor.getInventory()) {
                 for (Class<?> food : FOOD) {
                     if (item.getClass() == food) {
-                        return (new Actions(new FeedAction(this, item, 1)));
+                        actions.add(new FeedAction(this, item, 1));
                     }
                 }
             }
         }
-        return super.getAllowableActions(otherActor, direction, map);
+        return actions;
     }
 
     /**
@@ -121,7 +126,7 @@ public abstract class Dinosaur extends Actor {
      * gets the required behaviour from actionfactories and returns it's getAction
      *
      * @param clazz class of the Behaviour
-     * @param map gamemap the actor is on
+     * @param map   gamemap the actor is on
      * @return Action performed by the behaviour
      */
     protected Action getBehaviourAction(Class<?> clazz, GameMap map) {

@@ -157,7 +157,8 @@ public class Tree extends Ground implements hasFood {
      * Returns the name of the Tree
      * @return  The name of the Tree
      */
-    public String getName(){
+    @Override
+    public String toString(){
         return NAME;
     }
 

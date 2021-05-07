@@ -91,20 +91,6 @@ public class Stegosaur extends AdultDino {
         }
     }
 
-
-    /**
-     * Returns a collection of the Actions that the otherActor can do to the current Actor.
-     *
-     * @param otherActor the Actor that might be performing attack
-     * @param direction  String representing the direction of the other Actor
-     * @param map        current GameMap
-     * @return a collection of the Actions that the otherActor can do to the current Actor.
-     */
-    @Override
-    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        return new Actions(new AttackAction(this));
-    }
-
     /**
      * resets pregnant tick to stegosaur's maximum pregnant tick
      */
