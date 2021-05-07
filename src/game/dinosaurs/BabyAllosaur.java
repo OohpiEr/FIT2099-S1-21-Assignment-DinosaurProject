@@ -107,12 +107,19 @@ public class BabyAllosaur extends BabyDino {
             Location destination = exit.getDestination();
             if (destination.containsAnActor() && (destination.getActor() instanceof Stegosaur || destination.getActor() instanceof BabyStegosaur)) {
                 return true;
+
             }
         }
 
         return false;
     }
 
+    /**
+     * determines the highest priority behaviour based on probability
+     *
+     * @param map gamemap the actor is on
+     * @return action to be performed this playturn
+     */
     @Override
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
