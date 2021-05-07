@@ -3,6 +3,7 @@ package game.actions;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
 import game.dinosaurs.Dinosaur;
 import game.dinosaurs.DinosaurEnumType;
 import game.items.Corpse;
@@ -21,13 +22,14 @@ public class DieAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        Location actorLocation = map.locationOf(actor);
         if (actor instanceof Dinosaur){
             map.locationOf(actor).addItem(new Corpse(((Dinosaur) actor).getDinoType()));
         } else {
             map.locationOf(actor).addItem(new PortableItem("dead " + actor.toString(), '%'));
         }
         map.removeActor(actor);
-        return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") died!";
+        return actor + " at (" + actorLocation.x() + ", " + actorLocation.y() + ") died!";
     }
 
     /**
