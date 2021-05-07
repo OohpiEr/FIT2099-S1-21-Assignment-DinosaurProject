@@ -3,6 +3,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.actions.LayEggAction;
 import game.behaviours.HornyBehaviour;
+import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.items.Egg;
 
@@ -54,6 +55,7 @@ public abstract class AdultDino extends Dinosaur {
     @Override
     protected void setBehaviours() {
         actionFactories.add(new WanderBehaviour());
+        actionFactories.add(new HungryBehaviour());
         actionFactories.add(new HornyBehaviour());
     }
 

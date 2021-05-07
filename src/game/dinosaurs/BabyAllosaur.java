@@ -65,6 +65,17 @@ public class BabyAllosaur extends BabyDino {
         dinoType = DINO_TYPE;
     }
 
+    @Override
+    protected void setBehaviours() {
+        super.setBehaviours();
+        actionFactories.add(new AttackBehaviour());
+    }
+
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(20, "bites a chunk off");
+    }
+
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
      *
@@ -94,7 +105,7 @@ public class BabyAllosaur extends BabyDino {
 
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.containsAnActor() && destination.getActor().getClass() == Stegosaur.class) {
+            if (destination.containsAnActor() && (destination.getActor() instanceof Stegosaur || destination.getActor() instanceof BabyStegosaur)) {
                 return true;
             }
         }
