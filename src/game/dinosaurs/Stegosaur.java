@@ -26,8 +26,6 @@ public class Stegosaur extends AdultDino {
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private static final int STARTING_HITPOINTS = 50;
     private static final int MAX_HITPOINTS = 100;
-    private static final int HUNGRY_BEHAVIOUR = 1;
-    private static final int HORNY_BEHAVIOUR = 2;
     private static final int PREGNANT_TICK = 10;
     private static final String NAME = "Stegosaur";
     private static final char DISPLAY_CHAR = 'S';
@@ -74,6 +72,21 @@ public class Stegosaur extends AdultDino {
         fromTheseEatsThese = FROM_THESE_EATS_THESE;
         dinoType = DINO_TYPE;
     }
+
+    /**
+     * todo temp constructor for testing
+     * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
+     */
+    public Stegosaur(int hitPoints) {
+        super("Stegosaur", 'S', 50, false);
+        this.setFemale(Math.random() < 0.5);
+        name = NAME;
+        displayChar = DISPLAY_CHAR;
+        this.hitPoints = hitPoints;
+        maxHitPoints = MAX_HITPOINTS;
+        setBehaviours();
+    }
+
 
     /**
      * sets dinosaur behaviours
@@ -159,7 +172,7 @@ public class Stegosaur extends AdultDino {
         } else if (action == null) {
             action = determineBehaviour(map);
             if (action == null) {
-                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(WanderBehaviour.class, map);
             }
         }
         return action;

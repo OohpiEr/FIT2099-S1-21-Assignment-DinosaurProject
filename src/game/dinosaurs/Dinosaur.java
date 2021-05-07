@@ -26,7 +26,6 @@ public abstract class Dinosaur extends Actor {
 
     private static final int STARTING_HITPOINTS = 10;
     private static final int MAX_HITPOINTS = 100;
-    protected static final int WANDER_BEHAVIOUR = 0;
     protected static final Class<?>[] FOOD = {};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>();
 
