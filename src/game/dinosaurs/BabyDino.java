@@ -1,12 +1,22 @@
 package game.dinosaurs;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.GameMap;
+import game.actions.GrowUpAction;
+import game.behaviours.HungryBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.items.Corpse;
 
 /**
  * An abstract class to represent a baby dinosaur
  */
 public abstract class BabyDino extends Dinosaur {
+
+    /**
+     * number of turns needed to grow into adult
+     */
+    protected int growUpTick;
+
     /**
      * Constructor.
      *
@@ -14,8 +24,23 @@ public abstract class BabyDino extends Dinosaur {
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
      */
-    public BabyDino(String name, char displayChar, int hitPoints) {
+    public BabyDino(String name, char displayChar, int hitPoints, int growUpTick) {
         super(name, displayChar, hitPoints);
+        this.growUpTick = growUpTick;
+    }
+
+    public abstract void growUp(GameMap map);
+
+    @Override
+    protected Action tick(GameMap map) {
+        super.tick(map);
+        Action action = null;
+        growUpTick -= 1;
+
+        if (growUpTick <= 0) {
+            action = new GrowUpAction();
+        }
+        return action;
     }
 
     @Override
