@@ -2,12 +2,7 @@ package game.actions;
 
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Weapon;
+import edu.monash.fit2099.engine.*;
 import game.dinosaurs.Allosaur;
 import game.dinosaurs.Stegosaur;
 import game.items.PortableItem;
@@ -20,26 +15,20 @@ public class AttackAction extends Action {
     /**
      * The Actor that is to be attacked
      */
-    protected Actor target;
+    private Actor target;
     /**
-     * The Actor that is attacking
+     * corpse of target if they die during attack
      */
-    protected Actor attacker;
+    private Item corpse;
+    /**
+     * location of the corpse of target if they die during attack
+     */
+    private Location corpseLocation;
     /**
      * Random number generator
      */
-    protected Random rand = new Random();
+    private Random rand = new Random();
 
-    /**
-     * Constructor.
-     *
-     * @param attacker the Actor that is attacking
-     * @param target   The Actor that is to be attacked
-     */
-    public AttackAction(Actor attacker, Actor target) {
-        this.attacker = attacker;
-        this.target = target;
-    }
 
     /**
      * Constructor.
@@ -48,6 +37,24 @@ public class AttackAction extends Action {
      */
     public AttackAction(Actor target) {
         this.target = target;
+    }
+
+    /**
+     * setter for corpse of target
+     *
+     * @param corpse
+     */
+    private void setCorpse(Item corpse) {
+        this.corpse = corpse;
+    }
+
+    /**
+     * setter for location of target corpse
+     *
+     * @param corpseLocation
+     */
+    public void setCorpseLocation(Location corpseLocation) {
+        this.corpseLocation = corpseLocation;
     }
 
     @Override
@@ -71,6 +78,8 @@ public class AttackAction extends Action {
 
         if (!target.isConscious()) {
             Item corpse = new PortableItem("dead " + target, '%');
+            setCorpse(corpse);
+            setCorpseLocation(map.locationOf(target));
             map.locationOf(target).addItem(corpse);
 
             Actions dropActions = new Actions();
@@ -86,8 +95,16 @@ public class AttackAction extends Action {
         return result;
     }
 
-	@Override
-	public String menuDescription(Actor actor) {
-		return actor + " attacks " + target;
-	}
+    @Override
+    public String menuDescription(Actor actor) {
+        return actor + " attacks " + target;
+    }
+
+    @Override
+    public Action getNextAction() {
+        if (corpse != null) {
+            return new EatAction(corpse, corpseLocation, 1);
+        }
+        return null;
+    }
 }
