@@ -13,12 +13,24 @@ import game.dinosaurs.Dinosaur;
  */
 public class BreedAction extends Action {
 
+    /**
+     * target mate
+     */
     private AdultDino target;
 
+    /**
+     * constructor
+     * @param target target mate
+     */
     public BreedAction(AdultDino target) {
         this.target = target;
     }
 
+    /**
+     * resets pregnant tick of the female to it's maximum tick
+     *
+     * @param actor actor wanting to breed
+     */
     private void resetPregnantTick(AdultDino actor) {
         if (actor.isFemale() && actor.isPregnant()) {
             actor.resetPregnantTick();
@@ -27,6 +39,10 @@ public class BreedAction extends Action {
         }
     }
 
+    /**
+     * sets the isPregnant attribute in the female to true
+     * @param actor
+     */
     private void setPregnant(AdultDino actor) {
         if (actor.isFemale()) {
             actor.setPregnant(true);
@@ -35,6 +51,13 @@ public class BreedAction extends Action {
         }
     }
 
+    /**
+     * Perform the breed Action
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         if (actor instanceof AdultDino){
@@ -50,6 +73,11 @@ public class BreedAction extends Action {
         return null;
     }
 
+    /**
+     * Returns a descriptive string.
+     * @param actor The actor performing the action.
+     * @return
+     */
     @Override
     public String menuDescription(Actor actor) {
         return null;

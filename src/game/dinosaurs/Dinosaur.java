@@ -153,7 +153,8 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Inform a Dino the passage of time.
-     * This method is called once per turn
+     * This method is called once per turn.
+     * Actions that depend on time/number of turns will be returned if conditions are met
      *
      * @param map the map the actor is in
      * @return an action if applicable

@@ -73,16 +73,20 @@ public class AttackAction extends Action {
         this.corpseLocation = corpseLocation;
     }
 
+    /**
+     * executes attack action
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
 
         Weapon weapon = actor.getWeapon();
 
-/* todo rmb to uncomment
 		if (rand.nextBoolean()) {
 			return actor + " misses " + target + ".";
 		}
-*/
 
         int damage = weapon.damage();
         String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";

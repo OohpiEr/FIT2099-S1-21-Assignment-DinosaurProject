@@ -84,6 +84,13 @@ public abstract class AdultDino extends Dinosaur {
         }
     }
 
+    /**
+     * Inform a Dino the passage of time.
+     * This method is called once per turn
+     *
+     * @param map the map the actor is in
+     * @return an action if applicable
+     */
     @Override
     protected Action tick(GameMap map) {
         super.tick(map);
