@@ -18,6 +18,7 @@ import java.util.Map;
  */
 public class Brachiosaur extends AdultDino {
 
+    private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
     private static final int STARTING_HITPOINTS = 100;
     private static final int MAX_HITPOINTS = 160;
     private static final String NAME = "Brachiosaur";
@@ -32,8 +33,6 @@ public class Brachiosaur extends AdultDino {
         put(Tree.class, new Class[]{Fruit.class});
     }};
 
-    protected DinosaurEnumType dinoType = DinosaurEnumType.BRANCHIOSAUR;
-
     /**
      * Constructor.
      *
@@ -44,8 +43,7 @@ public class Brachiosaur extends AdultDino {
      */
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints, isFemale);
-        maxHitPoints = MAX_HITPOINTS;
-        pregnantTick = PREGNANT_TICK;
+        setDefaultValues();
         setBehaviours();
     }
 
@@ -58,8 +56,7 @@ public class Brachiosaur extends AdultDino {
      */
     public Brachiosaur(String name, boolean isFemale) {
         super(name, 'B', 100, isFemale);
-        maxHitPoints = MAX_HITPOINTS;
-        hitPoints = STARTING_HITPOINTS;
+        setDefaultValues();
         setBehaviours();
     }
 
@@ -69,12 +66,22 @@ public class Brachiosaur extends AdultDino {
     public Brachiosaur() {
         super("Brachiosaur", 'B', 100, false);
         this.setFemale(Math.random() < 0.5);
+        setDefaultValues();
+        setBehaviours();
+    }
+
+    /**
+     * Sets the dinosaur instance's variables to their default values as specified in the class
+     */
+    private void setDefaultValues(){
+        hitPoints = STARTING_HITPOINTS;
+        maxHitpoints = MAX_HITPOINTS;
+        pregnantTick = PREGNANT_TICK;
         name = NAME;
         displayChar = DISPLAY_CHAR;
-        this.hitPoints = STARTING_HITPOINTS;
-        maxHitPoints = MAX_HITPOINTS;
-        this.pregnantTick = PREGNANT_TICK;
-        setBehaviours();
+        food = FOOD;
+        fromTheseEatsThese = FROM_THESE_EATS_THESE;
+        dinoType = DINO_TYPE;
     }
 
     /**

@@ -38,8 +38,8 @@ public class HungryBehaviour implements Behaviour {
     public Action getAction(Actor actor, GameMap map) {
 
         if (actor instanceof Dinosaur) {
-            foodClasses = ((Dinosaur) actor).getFOOD();
-            groundToFoodMap = ((Dinosaur) actor).getFROM_THESE_EATS_THESE();
+            foodClasses = ((Dinosaur) actor).getFood();
+            groundToFoodMap = ((Dinosaur) actor).getFromTheseEatsThese();
             Location here = map.locationOf(actor);
             Location there = getFoodLocation(here, map, foodClasses, groundToFoodMap);
 

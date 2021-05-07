@@ -30,9 +30,6 @@ public class Allosaur extends AdultDino {
         put(Ground.class, new Class[]{Corpse.class});
     }};
 
-    protected DinosaurEnumType dinoType = DinosaurEnumType.ALLOSAUR;
-
-
     /**
      * Constructor.
      *
@@ -70,6 +67,20 @@ public class Allosaur extends AdultDino {
         name = NAME;
         displayChar = DISPLAY_CHAR;
         maxHitPoints = MAX_HITPOINTS;
+    }
+
+    /**
+     * Sets the dinosaur instance's variables to their default values as specified in the class
+     */
+    private void setDefaultValues(){
+        hitPoints = STARTING_HITPOINTS;
+        maxHitpoints = MAX_HITPOINTS;
+        pregnantTick = PREGNANT_TICK;
+        name = NAME;
+        displayChar = DISPLAY_CHAR;
+        food = FOOD;
+        fromTheseEatsThese = FROM_THESE_EATS_THESE;
+        dinoType = DINO_TYPE;
     }
 
     /**

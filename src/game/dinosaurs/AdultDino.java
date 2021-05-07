@@ -27,6 +27,10 @@ public abstract class AdultDino extends Dinosaur {
         setFemale(isFemale);
     }
 
+    public int getPregnantTick() {
+        return pregnantTick;
+    }
+
     public boolean isFemale() {
         return isFemale;
     }

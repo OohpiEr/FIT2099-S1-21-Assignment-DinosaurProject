@@ -18,6 +18,7 @@ import java.util.Map;
  */
 public class BabyBrachiosaur extends BabyDino {
 
+    private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
     private static final int STARTING_HITPOINTS = 10;
     private static final int MAX_HITPOINTS = 160;
     private static final String NAME = "Baby Brachiosaur";
@@ -49,6 +50,19 @@ public class BabyBrachiosaur extends BabyDino {
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
+    }
+
+    /**
+     * Sets the dinosaur instance's variables to their default values as specified in the class
+     */
+    private void setDefaultValues(){
+        hitPoints = STARTING_HITPOINTS;
+        maxHitpoints = MAX_HITPOINTS;
+        name = NAME;
+        displayChar = DISPLAY_CHAR;
+        food = FOOD;
+        fromTheseEatsThese = FROM_THESE_EATS_THESE;
+        dinoType = DINO_TYPE;
     }
 
     /**

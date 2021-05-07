@@ -23,6 +23,7 @@ import java.util.Map;
  */
 public class Stegosaur extends AdultDino {
 
+    private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private static final int STARTING_HITPOINTS = 50;
     private static final int MAX_HITPOINTS = 100;
     private static final int HUNGRY_BEHAVIOUR = 1;
@@ -45,8 +46,7 @@ public class Stegosaur extends AdultDino {
      */
     public Stegosaur(String name, boolean isFemale) {
         super(name, 'S', 50, isFemale);
-        maxHitPoints = MAX_HITPOINTS;
-        hitPoints = STARTING_HITPOINTS;
+        setDefaultValues();
         setBehaviours();
 
     }
@@ -57,11 +57,22 @@ public class Stegosaur extends AdultDino {
     public Stegosaur() {
         super("Stegosaur", 'S', 50, false);
         this.setFemale(Math.random() < 0.5);
+        setDefaultValues();
+        setBehaviours();
+    }
+
+    /**
+     * Sets the dinosaur instance's variables to their default values as specified in the class
+     */
+    private void setDefaultValues(){
+        hitPoints = STARTING_HITPOINTS;
+        maxHitpoints = MAX_HITPOINTS;
+        pregnantTick = PREGNANT_TICK;
         name = NAME;
         displayChar = DISPLAY_CHAR;
-        this.hitPoints = STARTING_HITPOINTS;
-        maxHitPoints = MAX_HITPOINTS;
-        setBehaviours();
+        food = FOOD;
+        fromTheseEatsThese = FROM_THESE_EATS_THESE;
+        dinoType = DINO_TYPE;
     }
 
     /**

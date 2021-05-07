@@ -17,6 +17,7 @@ import java.util.Map;
  */
 public class BabyStegosaur extends BabyDino {
 
+    private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private static final int STARTING_HITPOINTS = 10;
     private static final int MAX_HITPOINTS = 100;
     private static final String NAME = "Baby Stegosaur";
@@ -28,8 +29,6 @@ public class BabyStegosaur extends BabyDino {
         put(Ground.class, new Class[]{Fruit.class});
     }};
 
-    protected DinosaurEnumType dinoType = DinosaurEnumType.STEGOSAUR;
-
     /**
      * Constructor.
      *
@@ -39,7 +38,7 @@ public class BabyStegosaur extends BabyDino {
      */
     public BabyStegosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        maxHitPoints = MAX_HITPOINTS;
+        setDefaultValues();
     }
 
     /**
@@ -47,10 +46,20 @@ public class BabyStegosaur extends BabyDino {
      */
     public BabyStegosaur() {
         super("Baby Stegosaur", 's', 10);
+        setDefaultValues();
+    }
+
+    /**
+     * Sets the dinosaur instance's variables to their default values as specified in the class
+     */
+    private void setDefaultValues(){
+        hitPoints = STARTING_HITPOINTS;
+        maxHitpoints = MAX_HITPOINTS;
         name = NAME;
         displayChar = DISPLAY_CHAR;
-        this.hitPoints = STARTING_HITPOINTS;
-        maxHitPoints = MAX_HITPOINTS;
+        food = FOOD;
+        fromTheseEatsThese = FROM_THESE_EATS_THESE;
+        dinoType = DINO_TYPE;
     }
 
     /**

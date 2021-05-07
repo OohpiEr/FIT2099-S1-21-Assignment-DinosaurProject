@@ -35,7 +35,39 @@ public abstract class Dinosaur extends Actor {
      */
     protected List<Behaviour> actionFactories = new ArrayList<Behaviour>();
 
+    public DinosaurEnumType getDinoType() {
+        return dinoType;
+    }
+
+    public int getStartingHitpoints() {
+        return startingHitpoints;
+    }
+
+    public int getMaxHitpoints() {
+        return maxHitpoints;
+    }
+
+    @Override
+    public char getDisplayChar() {
+        return displayChar;
+    }
+
+    public Class<?>[] getFood() {
+        return food;
+    }
+
+    public HashMap<Class<?>, Class<?>[]> getFromTheseEatsThese() {
+        return fromTheseEatsThese;
+    }
+
     protected DinosaurEnumType dinoType;
+    protected int startingHitpoints;
+    protected int maxHitpoints;
+    protected String name;
+    protected char displayChar;
+    protected Class<?>[] food;
+    protected HashMap<Class<?>, Class<?>[]> fromTheseEatsThese;
+
 
     /**
      * Constructor.
@@ -48,24 +80,6 @@ public abstract class Dinosaur extends Actor {
         super(name, displayChar, hitPoints);
         this.maxHitPoints = MAX_HITPOINTS;
         setBehaviours();
-    }
-
-    /**
-     * Gets an array of classes of food the dinosaur eats
-     *
-     * @return An array of classes of food the dinosaur eats
-     */
-    public static Class<?>[] getFOOD() {
-        return FOOD;
-    }
-
-    /**
-     * Gets a HashMap of Grounds the dinosaur eats from together with the foods they eat from them
-     *
-     * @return
-     */
-    public static HashMap<Class<?>, Class<?>[]> getFROM_THESE_EATS_THESE() {
-        return FROM_THESE_EATS_THESE;
     }
 
     /**
@@ -103,7 +117,7 @@ public abstract class Dinosaur extends Actor {
         actions.add(new AttackAction(this));
         if (otherActor instanceof Player) {
             for (Item item : otherActor.getInventory()) {
-                for (Class<?> food : this.getFOOD()) {
+                for (Class<?> food : getFood()) {
                     if (item.getClass() == food) {
                         actions.add(new FeedAction(this, item, 1));
                     }
