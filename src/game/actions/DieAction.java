@@ -24,10 +24,10 @@ public class DieAction extends Action {
         if (actor instanceof Dinosaur){
             map.locationOf(actor).addItem(new Corpse(((Dinosaur) actor).getDinoType()));
         } else {
-            map.locationOf(actor).addItem(new PortableItem("Corpse", '%'));
+            map.locationOf(actor).addItem(new PortableItem("dead " + actor.toString(), '%'));
         }
         map.removeActor(actor);
-        return actor.toString() + " died!";
+        return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") died!";
     }
 
     /**

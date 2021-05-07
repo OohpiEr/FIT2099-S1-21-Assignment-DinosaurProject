@@ -131,6 +131,7 @@ public class Stegosaur extends AdultDino {
             }
         } else if (hitPoints >= 50 && hitPoints < 90) {
             //hungry, horny or wander behaviour
+            //TODO change the probability for horny
             if (!isPregnant() && Math.random() <= 1) {
                 action = getBehaviourAction(HornyBehaviour.class, map);
             } else if (Math.random() <= 0.5) {
