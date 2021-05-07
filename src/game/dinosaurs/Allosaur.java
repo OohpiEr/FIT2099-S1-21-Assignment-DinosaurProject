@@ -109,15 +109,14 @@ public class Allosaur extends AdultDino {
         }
     }
 
-
+    /**
+     * Creates and returns an intrinsic weapon for Allosaur.
+     *
+     * @return
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(20, "bites a chunk off");
-    }
-
-    @Override
-    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        return new Actions(new AttackAction(this));
     }
 
     private boolean isStegosaurInExits(GameMap map) {

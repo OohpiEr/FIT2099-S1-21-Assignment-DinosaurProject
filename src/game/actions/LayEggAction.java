@@ -7,22 +7,29 @@ import game.Util;
 import game.dinosaurs.AdultDino;
 import game.dinosaurs.Dinosaur;
 
+/**
+ * Lay egg action for dinosaurs laying eggs
+ */
 public class LayEggAction extends Action {
 
-    private AdultDino dinosaur;
-    private GameMap map;
-
-    public LayEggAction(AdultDino dinosaur, GameMap map) {
-        this.dinosaur = dinosaur;
-        this.map = map;
-    }
-
+    /**
+     * executes the lay egg action
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
-        dinosaur.layEgg(map);
-        return dinosaur + " lays an egg";
+        ((AdultDino) actor).layEgg(map);
+        return actor + " lays an egg";
     }
 
+    /**
+     * Returns a descriptive string for the menu
+     *
+     * @param actor The actor performing the action.
+     * @return
+     */
     @Override
     public String menuDescription(Actor actor) {
         return null;

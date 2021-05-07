@@ -79,6 +79,11 @@ public class BabyBrachiosaur extends BabyDino {
         }
     }
 
+    /**
+     *
+     * @param map gamemap the actor is on
+     * @return actor to perform this turn
+     */
     @Override
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
@@ -92,6 +97,11 @@ public class BabyBrachiosaur extends BabyDino {
         return action;
     }
 
+    /**
+     * replaces baby brachiosaur with adult brachiosaur
+     *
+     * @param map the map the actor is on
+     */
     @Override
     public void growUp(GameMap map) {
         Location actorLocation = map.locationOf(this);

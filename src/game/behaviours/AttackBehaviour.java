@@ -77,7 +77,11 @@ public class AttackBehaviour implements Behaviour {
         return target;
     }
 
-    //todo comment
+    /**
+     * adds attacked actor to unattackableActors Hashmap with the number of turns it will not be attackable
+     *
+     * @param actor
+     */
     private void addUnattackableActor(Actor actor) {
         if (actor instanceof Stegosaur || actor instanceof BabyStegosaur)
             unattackableActors.put(actor, STEGOSAUR_UNATTACKABLE_TICK);

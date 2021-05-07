@@ -29,6 +29,11 @@ public abstract class BabyDino extends Dinosaur {
         this.growUpTick = growUpTick;
     }
 
+    /**
+     * replaces baby dinosaur with adult dinosaur
+     *
+     * @param map the map the actor is on
+     */
     public abstract void growUp(GameMap map);
 
     /**
@@ -51,6 +56,9 @@ public abstract class BabyDino extends Dinosaur {
         return action;
     }
 
+    /**
+     *
+     */
     @Override
     protected void setBehaviours() {
         actionFactories.add(new WanderBehaviour());

@@ -97,7 +97,7 @@ public abstract class AdultDino extends Dinosaur {
         if (isPregnant() && pregnantTick > 0) {
             pregnantTick -= 1;
         } else if (pregnantTick == 0 && isPregnant == true) {
-            return new LayEggAction(this, map);
+            return new LayEggAction();
         }
         return null;
     }

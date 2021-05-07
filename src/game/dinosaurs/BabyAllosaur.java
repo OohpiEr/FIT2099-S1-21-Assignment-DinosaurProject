@@ -1,6 +1,7 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.HornyBehaviour;
 import game.behaviours.HungryBehaviour;
@@ -65,16 +66,24 @@ public class BabyAllosaur extends BabyDino {
         dinoType = DINO_TYPE;
     }
 
+    /**
+     * sets dinosaur behaviours
+     */
     @Override
     protected void setBehaviours() {
         super.setBehaviours();
         actionFactories.add(new AttackBehaviour());
     }
 
+    /**
+     * Creates and returns an intrinsic weapon.
+     * @return
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(20, "bites a chunk off");
     }
+
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
@@ -137,6 +146,10 @@ public class BabyAllosaur extends BabyDino {
         return action;
     }
 
+    /**
+     * replaces baby allosaur with adult allosaur
+     * @param map the map the actor is on
+     */
     @Override
     public void growUp(GameMap map) {
         Location actorLocation = map.locationOf(this);

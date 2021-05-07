@@ -81,7 +81,13 @@ public class BabyStegosaur extends BabyDino {
     }
 
 
-
+    /**
+     * abstract method to be implemented
+     * determines the highest priority behaviour
+     *
+     * @param map gamemap the actor is on
+     * @return action
+     */
     @Override
     protected Action determineBehaviour(GameMap map) {
         Action action = null;

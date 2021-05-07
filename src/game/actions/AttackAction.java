@@ -53,8 +53,6 @@ public class AttackAction extends Action {
         this.attacker = attacker;
     }
 
-
-
     /**
      * setter for corpse of target
      *
@@ -121,11 +119,21 @@ public class AttackAction extends Action {
         return result;
     }
 
+    /**
+     * Returns a descriptive string for the menu
+     * @param actor The actor performing the action.
+     * @return
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " attacks " + target;
     }
 
+    /**
+     * returns next action. Allosaur and BabyAllosaur will eat the corpse of target if they die.
+     *
+     * @return
+     */
     @Override
     public Action getNextAction() {
         if (corpse != null && (attacker instanceof Allosaur || attacker instanceof BabyAllosaur) ) {
