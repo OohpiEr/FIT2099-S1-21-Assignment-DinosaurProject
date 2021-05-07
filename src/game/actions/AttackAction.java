@@ -84,12 +84,12 @@ public class AttackAction extends Action {
 
         Weapon weapon = actor.getWeapon();
 
-		if (rand.nextBoolean()) {
-			return actor + " misses " + target + ".";
-		}
+        if (rand.nextBoolean()) {
+            return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") misses " + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") .";
+        }
 
         int damage = weapon.damage();
-        String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+        String result = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") " + weapon.verb() + " " + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") for " + damage + " damage.";
 
         target.hurt(damage);
 
@@ -99,7 +99,7 @@ public class AttackAction extends Action {
 
 
         if (!target.isConscious()) {
-            if (actor instanceof Dinosaur){
+            if (actor instanceof Dinosaur) {
                 corpse = new Corpse(((Dinosaur) actor).getDinoType());
             } else {
                 corpse = new PortableItem("dead " + target, '%');
@@ -115,7 +115,7 @@ public class AttackAction extends Action {
                 drop.execute(target, map);
             map.removeActor(target);
 
-            result += System.lineSeparator() + target + " is killed.";
+            result += System.lineSeparator() + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") is killed.";
         }
 
         return result;
