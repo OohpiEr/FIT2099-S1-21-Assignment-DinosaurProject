@@ -22,16 +22,16 @@ import java.util.Map;
  */
 public class Stegosaur extends AdultDino {
 
-    private final int STARTING_HITPOINTS = 50;
-    private final int MAX_HITPOINTS = 100;
-    private final int HUNGRY_BEHAVIOUR = 1;
-    private final int HORNY_BEHAVIOUR = 2;
-    private final int PREGNANT_TICK = 10;
-    private final String NAME = "Stegosaur";
-    private final char DISPLAY_CHAR = 'S';
+    private static final int STARTING_HITPOINTS = 50;
+    private static final int MAX_HITPOINTS = 100;
+    private static final int HUNGRY_BEHAVIOUR = 1;
+    private static final int HORNY_BEHAVIOUR = 2;
+    private static final int PREGNANT_TICK = 10;
+    private static final String NAME = "Stegosaur";
+    private static final char DISPLAY_CHAR = 'S';
 
-    private final Class<?>[] FOOD = {Fruit.class};
-    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
+    private static final Class<?>[] FOOD = {Fruit.class};
+    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Bush.class, new Class[]{Fruit.class});
         put(Ground.class, new Class[]{Fruit.class});
     }};

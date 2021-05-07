@@ -16,13 +16,13 @@ import java.util.Map;
  */
 public class BabyStegosaur extends BabyDino {
 
-    private final int STARTING_HITPOINTS = 10;
-    private final int MAX_HITPOINTS = 100;
-    private final String NAME = "Baby Stegosaur";
-    private final char DISPLAY_CHAR = 's';
+    private static final int STARTING_HITPOINTS = 10;
+    private static final int MAX_HITPOINTS = 100;
+    private static final String NAME = "Baby Stegosaur";
+    private static final char DISPLAY_CHAR = 's';
 
-    private final Class<?>[] FOOD = {Fruit.class};
-    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+    private static final Class<?>[] FOOD = {Fruit.class};
+    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Bush.class, new Class[]{Fruit.class});
         put(Ground.class, new Class[]{Fruit.class});
     }};

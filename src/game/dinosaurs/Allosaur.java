@@ -17,15 +17,15 @@ import java.util.HashMap;
  */
 public class Allosaur extends AdultDino {
 
-    private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.ALLOSAUR;
-    private final int STARTING_HITPOINTS = 100;
-    private final int MAX_HITPOINTS = 100;
-    private final String NAME = "Allosaur";
-    private final char DISPLAY_CHAR = 'A';
-    private final int PREGNANT_TICK = 20;
+    private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.ALLOSAUR;
+    private static final int STARTING_HITPOINTS = 100;
+    private static final int MAX_HITPOINTS = 100;
+    private static final String NAME = "Allosaur";
+    private static final char DISPLAY_CHAR = 'A';
+    private static final int PREGNANT_TICK = 20;
 
-    private final Class<?>[] FOOD = {Corpse.class};
-    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+    private static final Class<?>[] FOOD = {Corpse.class};
+    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Ground.class, new Class[]{Corpse.class});
     }};
 

@@ -17,17 +17,17 @@ import java.util.Map;
  */
 public class Brachiosaur extends AdultDino {
 
-    private final int STARTING_HITPOINTS = 100;
-    private final int MAX_HITPOINTS = 160;
-    private final String NAME = "Brachiosaur";
-    private final char DISPLAY_CHAR = 'B';
-    private final int PREGNANT_TICK = 30;
+    private static final int STARTING_HITPOINTS = 100;
+    private static final int MAX_HITPOINTS = 160;
+    private static final String NAME = "Brachiosaur";
+    private static final char DISPLAY_CHAR = 'B';
+    private static final int PREGNANT_TICK = 30;
 
-    private final int HUNGRY_BEHAVIOUR = 1;
-    private final int HORNY_BEHAVIOUR = 2;
+    private static final int HUNGRY_BEHAVIOUR = 1;
+    private static final int HORNY_BEHAVIOUR = 2;
 
-    private final Class<?>[] FOOD = {Fruit.class};
-    private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
+    private static final Class<?>[] FOOD = {Fruit.class};
+    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Tree.class, new Class[]{Fruit.class});
     }};
 

@@ -17,13 +17,13 @@ import java.util.Map;
  */
 public class BabyAllosaur extends BabyDino {
 
-    private final int STARTING_HITPOINTS = 20;
-    private final int MAX_HITPOINTS = 100;
-    private final String NAME = "Baby Allosaur";
-    private final char DISPLAY_CHAR = 'a';
+    private static final int STARTING_HITPOINTS = 20;
+    private static final int MAX_HITPOINTS = 100;
+    private static final String NAME = "Baby Allosaur";
+    private static final char DISPLAY_CHAR = 'a';
 
-    private final Item[] FOOD = {new Corpse(DinosaurEnumType.ALLOSAUR)};
-    private final HashMap<Class<?>, Item[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+    private static final Item[] FOOD = {new Corpse(DinosaurEnumType.ALLOSAUR)};
+    private static final HashMap<Class<?>, Item[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Tree.class, new Item[]{new Fruit()});
     }};
 
