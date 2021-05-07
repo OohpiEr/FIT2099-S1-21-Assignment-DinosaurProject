@@ -32,7 +32,7 @@ public class FeedAction extends Action {
     }
 
     /**
-     *
+     * Causes the provided actor to feed the target actor as detailed in the constructor
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return  A description of the action

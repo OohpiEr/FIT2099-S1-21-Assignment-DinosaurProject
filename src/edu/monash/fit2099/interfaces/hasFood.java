@@ -1,6 +1,7 @@
 package edu.monash.fit2099.interfaces;
 
 import edu.monash.fit2099.engine.Item;
+import game.dinosaurs.Dinosaur;
 
 import java.util.ArrayList;
 
@@ -15,11 +16,11 @@ public interface hasFood {
     boolean isEmpty();
 
     /**
-     * Called when some food is being eaten from the implementing object
+     * Called when some food is being eaten from the implementing object by a dinosaur
      * @param food      The food that is eaten
      * @param quantity  The quantity of the food that is eaten
      */
-    void eatFromThis(Item food, int quantity);
+    void eatFromThis(Dinosaur dinosaur, Item food, int quantity);
 
     /**
      * Returns an ArrayList of the food in the implementing object
@@ -29,7 +30,14 @@ public interface hasFood {
 
     /**
      * Returns an instance of the implementing object's food
-     * @return
+     * @return  An instance of the object's food
      */
     Item getFoodInstance();
+
+    /**
+     * Removes a specified quantity of food from the implementing object
+     * @param quantity  The number of food items to be removed
+     * @return  True if the operation was a success, false otherwise
+     */
+    boolean removeFood(int quantity);
 }

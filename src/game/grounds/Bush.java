@@ -1,15 +1,14 @@
 package game.grounds;
 
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 import edu.monash.fit2099.interfaces.hasFood;
 import game.Player;
+import game.actions.PickFruitAction;
 import game.dinosaurs.Brachiosaur;
+import game.dinosaurs.Dinosaur;
 import game.items.Fruit;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * A class that represents a bush
@@ -106,14 +105,16 @@ public class Bush extends Ground implements hasFood {
     }
 
     /**
-     * Removes the specified quantity of the specified food from this Bush
+     * Causes a dinosaur to eat a quantity of food from this object
+     * @param dinosaur  The dinosaur eating the food
      * @param food      The food that is eaten
      * @param quantity  The quantity of the food that is eaten
      */
     @Override
-    public void eatFromThis(Item food, int quantity) {
+    public void eatFromThis(Dinosaur dinosaur, Item food, int quantity) {
         if(food.getClass()==Fruit.class){
             removeFruits(quantity);
+            dinosaur.eat(food, quantity);
         }
     }
 
@@ -139,10 +140,36 @@ public class Bush extends Ground implements hasFood {
     }
 
     /**
+     * Removes the specified number of fruits to the Bush's fruits
+     *
+     * @return True if the operation was a success. False otherwise
+     */
+    @Override
+    public boolean removeFood(int quantity) {
+        return removeFruits(quantity);
+    }
+
+    /**
      * Returns the name of the Bush
      * @return  The name of the Bush
      */
     public String getName(){
         return NAME;
+    }
+
+    /**
+     * Returns the actions allowed by actors next to it.
+     *
+     * @param actor     the Actor acting
+     * @param location  the current Location
+     * @param direction the direction of the Ground from the Actor
+     * @return
+     */
+    @Override
+    public Actions allowableActions(Actor actor, Location location, String direction) {
+        if (actor instanceof Player && !isEmpty()){
+            return new Actions(new PickFruitAction(this, 1));
+        }
+        return null;
     }
 }

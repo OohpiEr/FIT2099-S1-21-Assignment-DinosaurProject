@@ -26,16 +26,17 @@ public class BabyStegosaur extends BabyDino {
         put(Ground.class, new Class[]{Fruit.class});
     }};
 
+    protected DinosaurEnumType dinoType = DinosaurEnumType.STEGOSAUR;
+
     /**
      * Constructor.
      *
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
-     * @param isFemale    whether the dinosaur is female
      */
     public BabyStegosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints, DinosaurEnumType.STEGOSAUR);
+        super(name, displayChar, hitPoints);
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -43,25 +44,11 @@ public class BabyStegosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyStegosaur() {
-        super("Baby Stegosaur", 's', 10, DinosaurEnumType.STEGOSAUR);
+        super("Baby Stegosaur", 's', 10);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
-    }
-
-    /**
-     * Checks if the baby Stegosaur is dead, and places a Stegosaur corpse on its location in its place if it is
-     *
-     * @param map the GameMap the dinosaur is in
-     * @see Corpse
-     */
-    @Override
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.STEGOSAUR));
-            map.removeActor(this);
-        }
     }
 
     /**

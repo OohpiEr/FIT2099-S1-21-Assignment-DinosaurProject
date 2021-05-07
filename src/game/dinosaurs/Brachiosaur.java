@@ -17,7 +17,6 @@ import java.util.Map;
  */
 public class Brachiosaur extends AdultDino {
 
-    private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
     private final int STARTING_HITPOINTS = 100;
     private final int MAX_HITPOINTS = 160;
     private final String NAME = "Brachiosaur";
@@ -32,6 +31,8 @@ public class Brachiosaur extends AdultDino {
         put(Tree.class, new Class[]{Fruit.class});
     }};
 
+    protected DinosaurEnumType dinoType = DinosaurEnumType.BRANCHIOSAUR;
+
     /**
      * Constructor.
      *
@@ -41,7 +42,7 @@ public class Brachiosaur extends AdultDino {
      * @param isFemale    whether the dinosaur is female
      */
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale, DinosaurEnumType.BRANCHIOSAUR);
+        super(name, displayChar, hitPoints, isFemale);
         maxHitPoints = MAX_HITPOINTS;
         pregnantTick = PREGNANT_TICK;
         setBehaviours();
@@ -55,8 +56,7 @@ public class Brachiosaur extends AdultDino {
      * @param isFemale whether the dinosaur is female
      */
     public Brachiosaur(String name, boolean isFemale) {
-        super(name, 'B', 100, isFemale, DinosaurEnumType.STEGOSAUR);
-        dinoType = DINO_TYPE;
+        super(name, 'B', 100, isFemale);
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
         setBehaviours();
@@ -66,7 +66,7 @@ public class Brachiosaur extends AdultDino {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Brachiosaur() {
-        super("Brachiosaur", 'B', 100, false, DinosaurEnumType.BRANCHIOSAUR);
+        super("Brachiosaur", 'B', 100, false);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -82,20 +82,6 @@ public class Brachiosaur extends AdultDino {
     protected void setBehaviours() {
         super.setBehaviours();
         actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
-    }
-
-    /**
-     * Checks if the Brachiosaur is dead, and places a Brachiosaur corpse on its location in its place if it is
-     *
-     * @param map the GameMap the dinosaur is in
-     * @see Corpse
-     */
-    @Override
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.BRANCHIOSAUR));
-            map.removeActor(this);
-        }
     }
 
     /**

@@ -2,9 +2,11 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
-import game.behaviours.*;
 import game.items.Corpse;
 import game.items.Fruit;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.HungryBehaviour;
+import game.behaviours.WanderBehaviour;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,11 +24,12 @@ public class Allosaur extends AdultDino {
     private final char DISPLAY_CHAR = 'A';
     private final int PREGNANT_TICK = 20;
 
-    private ArrayList<Stegosaur> offLimitsStegosaurs = new ArrayList<Stegosaur>();
     private final Class<?>[] FOOD = {Corpse.class};
     private final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Ground.class, new Class[]{Corpse.class});
     }};
+
+    protected DinosaurEnumType dinoType = DinosaurEnumType.ALLOSAUR;
 
 
     /**
@@ -165,7 +168,6 @@ public class Allosaur extends AdultDino {
      */
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
-
         if (nearStegosaur(map)) {
             //attack behaviour
             action = getBehaviourAction(AttackBehaviour.class, map);

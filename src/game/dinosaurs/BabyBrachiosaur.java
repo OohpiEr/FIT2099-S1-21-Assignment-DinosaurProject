@@ -26,16 +26,17 @@ public class BabyBrachiosaur extends BabyDino {
         put(Tree.class, new Class[]{Fruit.class});
     }};
 
+    protected DinosaurEnumType dinoType = DinosaurEnumType.BRANCHIOSAUR;
+
     /**
      * Constructor.
      *
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
-     * @param isFemale    whether the dinosaur is female
      */
-    public BabyBrachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, DinosaurEnumType.BRANCHIOSAUR);
+    public BabyBrachiosaur(String name, char displayChar, int hitPoints) {
+        super(name, displayChar, hitPoints);
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -43,25 +44,11 @@ public class BabyBrachiosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyBrachiosaur() {
-        super("Baby Branchiosaur", 'b', 10, DinosaurEnumType.BRANCHIOSAUR);
+        super("Baby Branchiosaur", 'b', 10);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
-    }
-
-    /**
-     * Checks if the baby Brachiosaur is dead, and places a Brachiosaur corpse on its location in its place if it is
-     *
-     * @param map the GameMap the dinosaur is in
-     * @see Corpse
-     */
-    @Override
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.BRANCHIOSAUR));
-            map.removeActor(this);
-        }
     }
 
     /**
