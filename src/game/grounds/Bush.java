@@ -167,9 +167,10 @@ public class Bush extends Ground implements hasFood {
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
+        Actions actions = new Actions();
         if (actor instanceof Player && !isEmpty()){
-            return new Actions(new PickFruitAction(this, 1));
+            actions.add(new PickFruitAction(this, 1));
         }
-        return null;
+        return actions;
     }
 }

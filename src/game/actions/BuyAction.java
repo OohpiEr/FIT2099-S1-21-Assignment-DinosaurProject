@@ -39,7 +39,7 @@ public class BuyAction extends Action {
         if (actor.getClass() == Player.class) {
             ((Player) actor).removeEcoPoints(getPrice());
             actor.addItemToInventory(item);
-            result = "Player bought " + item.toString() + " for " + getPrice();
+            result = "Player bought " + item.toString() + " for " + getPrice() + " eco points";
         }
         return result;
     }
@@ -52,7 +52,7 @@ public class BuyAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " buys " + item.toString();
+        return actor.toString() + " buys " + item.toString() + " for " + getPrice() + " eco points";
     }
 
     /**

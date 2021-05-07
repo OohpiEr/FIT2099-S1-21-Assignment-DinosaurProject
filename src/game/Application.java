@@ -9,10 +9,7 @@ import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.dinosaurs.Stegosaur;
-import game.grounds.Dirt;
-import game.grounds.Floor;
-import game.grounds.Tree;
-import game.grounds.Wall;
+import game.grounds.*;
 
 /**
  * The main class for the Jurassic World game.
@@ -23,14 +20,14 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new VendingMachine(), new Bush());
 		
 		List<String> map = Arrays.asList(
 		"................................................................................",
 		"................................................................................",
 		".....#######....................................................................",
 		".....#_____#....................................................................",
-		".....#_____#....................................................................",
+		".....#_$___#....................................................................",
 		".....###.###....................................................................",
 		"................................................................................",
 		"......................................+++.......................................",
@@ -60,8 +57,7 @@ public class Application {
 		// Place a pair of stegosaurs in the middle of the map
 		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur", true));
 		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", false));
-		
-			
+
 		world.run();
 	}
 }

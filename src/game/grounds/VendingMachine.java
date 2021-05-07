@@ -3,6 +3,9 @@ package game.grounds;
 import edu.monash.fit2099.engine.*;
 import game.Player;
 import game.actions.BuyAction;
+import game.dinosaurs.DinosaurEnumType;
+import game.dinosaurs.Stegosaur;
+import game.items.*;
 
 import java.util.HashMap;
 
@@ -19,8 +22,15 @@ public class VendingMachine extends Ground {
      */
     public VendingMachine() {
         super('$');
-        items = new HashMap<Item, Integer>() {
-        };
+        items = new HashMap<Item, Integer>() {{
+            put(new Fruit(), 30);
+            put(new VegetarianMealKit(), 100);
+            put(new CarnivoreMealKit(), 500);
+            put(new Egg(DinosaurEnumType.STEGOSAUR), 200);
+            put(new Egg(DinosaurEnumType.BRANCHIOSAUR), 500);
+            put(new Egg(DinosaurEnumType.ALLOSAUR), 1000);
+            put(new LaserGun(), 500);
+        }};
     }
 
     /**
@@ -55,9 +65,9 @@ public class VendingMachine extends Ground {
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
-        if (actor.getClass() == Player.class) {
+        if (actor instanceof Player) {
             items.forEach((k, v) -> {
-                if (((Player) actor).getEcoPoints() >= v) {
+                if (Player.getEcoPoints() >= v) {
                     actions.add(new BuyAction(k, v));
                 }
             });
