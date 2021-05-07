@@ -26,16 +26,17 @@ public class BabyAllosaur extends BabyDino {
         put(Tree.class, new Item[]{new Fruit()});
     }};
 
+    protected DinosaurEnumType dinoType = DinosaurEnumType.ALLOSAUR;
+
     /**
      * Constructor.
      *
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
-     * @param isFemale    whether the dinosaur is female
      */
     public BabyAllosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints,  DinosaurEnumType.ALLOSAUR);
+        super(name, displayChar, hitPoints);
         maxHitPoints = MAX_HITPOINTS;
     }
 
@@ -43,25 +44,11 @@ public class BabyAllosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 20 and randomises gender
      */
     public BabyAllosaur() {
-        super("Baby Allosaur", 'a', 20, DinosaurEnumType.ALLOSAUR);
+        super("Baby Allosaur", 'a', 20);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         this.hitPoints = STARTING_HITPOINTS;
         maxHitPoints = MAX_HITPOINTS;
-    }
-
-    /**
-     * Checks if the baby Allosaur is dead, and places an Allosaur corpse on its location in its place if it is
-     *
-     * @param map the GameMap the dinosaur is in
-     * @see Corpse
-     */
-    @Override
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.ALLOSAUR));
-            map.removeActor(this);
-        }
     }
 
     /**

@@ -22,6 +22,7 @@ import java.util.Map;
  */
 public abstract class Dinosaur extends Actor {
 
+
     private final int STARTING_HITPOINTS = 10;
     private final int MAX_HITPOINTS = 100;
     protected final int WANDER_BEHAVIOUR = 0;
@@ -42,9 +43,8 @@ public abstract class Dinosaur extends Actor {
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
      */
-    public Dinosaur(String name, char displayChar, int hitPoints, DinosaurEnumType dinoType) {
+    public Dinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        this.dinoType = dinoType;
         this.maxHitPoints = MAX_HITPOINTS;
         setBehaviours();
     }
@@ -55,11 +55,17 @@ public abstract class Dinosaur extends Actor {
 
 
     /**
-     * Used to check if a dinosaur is dead, and execute the required functions
+     * Checks if the Dinosaur is dead, and places a dinosaur corpse on of the right type at its location in its place if it is
      *
      * @param map the GameMap the dinosaur is in
+     * @see Corpse
      */
-    public abstract void checkDead(GameMap map);
+    public void checkDead(GameMap map) {
+        if (hitPoints <= 0 && dinoType != null) {
+            map.locationOf(this).addItem(new Corpse(dinoType));
+            map.removeActor(this);
+        }
+    }
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
@@ -71,10 +77,10 @@ public abstract class Dinosaur extends Actor {
 
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        if (otherActor instanceof Player){
-            for (Item item : otherActor.getInventory()){
-                for (Class<?> food : FOOD){
-                    if (item.getClass() == food){
+        if (otherActor instanceof Player) {
+            for (Item item : otherActor.getInventory()) {
+                for (Class<?> food : FOOD) {
+                    if (item.getClass() == food) {
                         return (new Actions(new FeedAction(this, item, 1)));
                     }
                 }

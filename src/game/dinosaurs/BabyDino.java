@@ -13,17 +13,9 @@ public abstract class BabyDino extends Dinosaur {
      * @param name        the name of the Actor
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
-     * @param isFemale    whether the dinosaur is female
      */
-    public BabyDino(String name, char displayChar, int hitPoints, DinosaurEnumType dinoType) {
-        super(name, displayChar, hitPoints, dinoType);
+    public BabyDino(String name, char displayChar, int hitPoints) {
+        super(name, displayChar, hitPoints);
     }
 
-    /**
-     * Used to check if a dinosaur is dead, and execute the required functions
-     *
-     * @param map the GameMap the dinosaur is in
-     */
-    @Override
-    public abstract void checkDead(GameMap map);
 }

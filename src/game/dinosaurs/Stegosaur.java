@@ -22,7 +22,6 @@ import java.util.Map;
  */
 public class Stegosaur extends AdultDino {
 
-    private final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private final int STARTING_HITPOINTS = 50;
     private final int MAX_HITPOINTS = 100;
     private final int HUNGRY_BEHAVIOUR = 1;
@@ -37,6 +36,8 @@ public class Stegosaur extends AdultDino {
         put(Ground.class, new Class[]{Fruit.class});
     }};
 
+    protected DinosaurEnumType dinoType = DinosaurEnumType.STEGOSAUR;
+
     /**
      * Constructor.
      * All Stegosaurs are represented by a 'S' and have 100 max hit points.
@@ -45,8 +46,7 @@ public class Stegosaur extends AdultDino {
      * @param isFemale whether the dinosaur is female
      */
     public Stegosaur(String name, boolean isFemale) {
-        super(name, 'S', 50, isFemale, DinosaurEnumType.STEGOSAUR);
-        dinoType = DINO_TYPE;
+        super(name, 'S', 50, isFemale);
         maxHitPoints = MAX_HITPOINTS;
         hitPoints = STARTING_HITPOINTS;
         setBehaviours();
@@ -57,8 +57,7 @@ public class Stegosaur extends AdultDino {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Stegosaur() {
-        super("Stegosaur", 'S', 50, false, DinosaurEnumType.STEGOSAUR);
-        dinoType = DINO_TYPE;
+        super("Stegosaur", 'S', 50, false);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -69,20 +68,6 @@ public class Stegosaur extends AdultDino {
 
     protected void setBehaviours() {
         actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
-    }
-
-    /**
-     * Checks if the Stegosaur is dead, and places a Stegosaur corpse on its location in its place if it is
-     *
-     * @param map the GameMap the dinosaur is in
-     * @see Corpse
-     */
-    @Override
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.STEGOSAUR));
-            map.removeActor(this);
-        }
     }
 
     /**

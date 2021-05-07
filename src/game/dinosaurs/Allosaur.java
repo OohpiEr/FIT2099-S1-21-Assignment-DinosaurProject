@@ -30,6 +30,8 @@ public class Allosaur extends AdultDino {
         put(Ground.class, new Class[]{Corpse.class});
     }};
 
+    protected DinosaurEnumType dinoType = DinosaurEnumType.ALLOSAUR;
+
 
     /**
      * Constructor.
@@ -40,7 +42,7 @@ public class Allosaur extends AdultDino {
      * @param isFemale    whether the dinosaur is female
      */
     public Allosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, 'A', 100, isFemale, DinosaurEnumType.ALLOSAUR);
+        super(name, 'A', 100, isFemale);
         actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
         actionFactories.add(new WanderBehaviour());
         actionFactories.add(new AttackBehaviour());
@@ -52,7 +54,7 @@ public class Allosaur extends AdultDino {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Allosaur() {
-        super("Allosaur", 'A', 100, false, DinosaurEnumType.ALLOSAUR);
+        super("Allosaur", 'A', 100, false);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -67,25 +69,11 @@ public class Allosaur extends AdultDino {
      * @param hitPoints the Allosaur's starting hitpoints
      */
     public Allosaur(int hitPoints) {
-        super("Allosaur", 'A', hitPoints, false, DinosaurEnumType.ALLOSAUR);
+        super("Allosaur", 'A', hitPoints, false);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
         maxHitPoints = MAX_HITPOINTS;
-    }
-
-    /**
-     * Checks if the Allosaur is dead, and places an Allosaur corpse on its location in its place if it is
-     *
-     * @param map the GameMap the dinosaur is in
-     * @see Corpse
-     */
-    @Override
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.ALLOSAUR));
-            map.removeActor(this);
-        }
     }
 
     /**

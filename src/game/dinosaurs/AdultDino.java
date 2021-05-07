@@ -18,10 +18,9 @@ public abstract class AdultDino extends Dinosaur {
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
-     * @param dinoType
      */
-    public AdultDino(String name, char displayChar, int hitPoints, boolean isFemale, DinosaurEnumType dinoType) {
-        super(name, displayChar, hitPoints, dinoType);
+    public AdultDino(String name, char displayChar, int hitPoints, boolean isFemale) {
+        super(name, displayChar, hitPoints);
         this.isFemale = isFemale;
         isPregnant = false;
         pregnantTick = 0;
