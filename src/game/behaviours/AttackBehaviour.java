@@ -32,16 +32,19 @@ public class AttackBehaviour implements Behaviour {
     /**
      * gets action for current behaviour
      *
-     * @param actor the Actor acting
+     * @param attacker the Actor attacking
      * @param map the GameMap containing the Actor
      * @return
      */
     @Override
-    public Action getAction(Actor actor, GameMap map) {
+    public Action getAction(Actor attacker, GameMap map) {
         Action attackAction = null;
 
-        Actor target = getTargetsInExit(actor, map, Stegosaur.class);
-        attackAction = new AttackAction(target);
+        Actor target = getTargetsInExit(attacker, map, Stegosaur.class);
+        if (target != null) {
+            attackAction = new AttackAction(target);
+            addUnattackableActor(target);
+        }
 
         return attackAction;
     }
