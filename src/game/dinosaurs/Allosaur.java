@@ -218,7 +218,7 @@ public class Allosaur extends AdultDino {
         } else if (action == null) {
             action = determineBehaviour(map);
             if (action == null) {
-                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(WanderBehaviour.class, map);
             }
         }
         return action;

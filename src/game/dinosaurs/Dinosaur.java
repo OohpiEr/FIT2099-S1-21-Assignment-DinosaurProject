@@ -77,7 +77,6 @@ public abstract class Dinosaur extends Actor {
      */
     public Dinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        this.maxHitPoints = MAX_HITPOINTS;
         setBehaviours();
     }
 

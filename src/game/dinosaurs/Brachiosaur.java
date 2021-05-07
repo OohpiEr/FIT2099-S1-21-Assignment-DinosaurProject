@@ -24,10 +24,6 @@ public class Brachiosaur extends AdultDino {
     private static final String NAME = "Brachiosaur";
     private static final char DISPLAY_CHAR = 'B';
     private static final int PREGNANT_TICK = 30;
-
-    private static final int HUNGRY_BEHAVIOUR = 1;
-    private static final int HORNY_BEHAVIOUR = 2;
-
     private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Tree.class, new Class[]{Fruit.class});
@@ -165,7 +161,7 @@ public class Brachiosaur extends AdultDino {
         } else if (action == null) {
             action = determineBehaviour(map);
             if (action == null) {
-                action = actionFactories.get(WANDER_BEHAVIOUR).getAction(this, map);
+                action = getBehaviourAction(WanderBehaviour.class, map);
             }
         }
         return action;
