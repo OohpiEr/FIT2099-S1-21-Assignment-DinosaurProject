@@ -6,8 +6,7 @@ import game.actions.AttackAction;
 import game.dinosaurs.BabyStegosaur;
 import game.dinosaurs.Stegosaur;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Attack Behaviour
@@ -119,6 +118,22 @@ public class AttackBehaviour implements Behaviour {
                 return true;
         }
         return false;
+    }
+
+    /**
+     * Ticks down each unattackable actor's number of turns of immunity. Removes the actor from the HashMap if the number of rounds is 0 or less
+     */
+    public void tick(){
+        ArrayList<Actor> removeThese = new ArrayList<>();
+        unattackableActors.forEach((k,v)->{
+            v--;
+            if (v<=0){
+                removeThese.add(k);
+            }
+        });
+        for (Actor actor : removeThese){
+            unattackableActors.remove(actor);
+        }
     }
 
 }

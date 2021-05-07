@@ -6,6 +6,7 @@ import game.actions.AttackAction;
 import game.actions.DieAction;
 import game.actions.FeedAction;
 import game.actions.LayEggAction;
+import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
@@ -161,6 +162,11 @@ public abstract class Dinosaur extends Actor {
      */
     protected Action tick(GameMap map) {
         hitPoints -= 1;
+        for (Behaviour behaviour : actionFactories){
+            if(behaviour instanceof AttackBehaviour){
+                ((AttackBehaviour) behaviour).tick();
+            }
+        }
         return null;
     }
 
