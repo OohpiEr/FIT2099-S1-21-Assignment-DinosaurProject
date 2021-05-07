@@ -3,6 +3,7 @@ package game.behaviours;
 import edu.monash.fit2099.engine.*;
 import game.actions.BreedAction;
 import game.actions.FollowAction;
+import game.dinosaurs.AdultDino;
 
 import static game.Util.distance;
 
@@ -37,7 +38,7 @@ public class FollowBehaviour implements Behaviour {
             if (destination.canActorEnter(actor)) {
                 int newDistance = distance(destination, there);
                 if (newDistance < currentDistance) {
-                    Action breedAction = new BreedAction(actor, target);
+                    Action breedAction = new BreedAction((AdultDino) target);
                     return new FollowAction(destination, exit.getName(), actor, target, breedAction, map);
                 }
             }
