@@ -174,7 +174,7 @@ public abstract class Dinosaur extends Actor {
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         checkDead(map);
         Action action = tick(map);
-        if (action == null && lastAction.getNextAction() != null) {
+        if (action == null && lastAction != null && lastAction.getNextAction() != null) {
             action = lastAction.getNextAction();
         } else if (action == null) {
             action = determineBehaviour(map);
