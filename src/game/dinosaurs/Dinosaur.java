@@ -3,6 +3,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.Player;
 import game.actions.AttackAction;
+import game.actions.DieAction;
 import game.actions.FeedAction;
 import game.actions.LayEggAction;
 import game.behaviours.Behaviour;
@@ -89,16 +90,16 @@ public abstract class Dinosaur extends Actor {
 
 
     /**
-     * Checks if the Dinosaur is dead, and places a dinosaur corpse on of the right type at its location in its place if it is
+     * Checks if the Dinosaur is dead
      *
-     * @param map the GameMap the dinosaur is in
+     * @return  True if the dinosaur is dead, False otherwise
      * @see Corpse
      */
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0 && dinoType != null) {
-            map.locationOf(this).addItem(new Corpse(dinoType));
-            map.removeActor(this);
+    public boolean isDead() {
+        if (hitPoints <= -20) {
+            return true;
         }
+        return false;
     }
 
     /**
@@ -172,17 +173,19 @@ public abstract class Dinosaur extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        checkDead(map);
         Action action = tick(map);
-        if (action == null && lastAction != null && lastAction.getNextAction() != null) {
-            action = lastAction.getNextAction();
-        } else if (action == null) {
-            action = determineBehaviour(map);
-            if (action == null) {
-                action = getBehaviourAction(WanderBehaviour.class, map);
+        if (isDead()) {
+            return new DieAction();
+        } else {
+            if (action == null && lastAction != null && lastAction.getNextAction() != null) {
+                action = lastAction.getNextAction();
+            } else if (action == null) {
+                action = determineBehaviour(map);
+                if (action == null) {
+                    action = getBehaviourAction(WanderBehaviour.class, map);
+                }
             }
+            return action;
         }
-        return action;
     }
-
 }
