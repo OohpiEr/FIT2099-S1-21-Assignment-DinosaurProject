@@ -46,7 +46,6 @@ public class Stegosaur extends AdultDino {
         super(name, 'S', 50, isFemale);
         setDefaultValues();
         setBehaviours();
-
     }
 
     /**
@@ -62,7 +61,7 @@ public class Stegosaur extends AdultDino {
     /**
      * Sets the dinosaur instance's variables to their default values as specified in the class
      */
-    private void setDefaultValues(){
+    private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
         pregnantTick = PREGNANT_TICK;
@@ -72,21 +71,6 @@ public class Stegosaur extends AdultDino {
         fromTheseEatsThese = FROM_THESE_EATS_THESE;
         dinoType = DINO_TYPE;
     }
-
-    /**
-     * todo temp constructor for testing
-     * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
-     */
-    public Stegosaur(int hitPoints) {
-        super("Stegosaur", 'S', 50, false);
-        this.setFemale(Math.random() < 0.5);
-        name = NAME;
-        displayChar = DISPLAY_CHAR;
-        this.hitPoints = hitPoints;
-        maxHitPoints = MAX_HITPOINTS;
-        setBehaviours();
-    }
-
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided

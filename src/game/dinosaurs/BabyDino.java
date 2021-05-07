@@ -8,7 +8,8 @@ import game.behaviours.WanderBehaviour;
 import game.items.Corpse;
 
 /**
- * An abstract class to represent a baby dinosaur
+ * An abstract class to represent a baby dinosaur.
+ * Dinosaurs of this class will be able to grow up into an adult dinosaur.
  */
 public abstract class BabyDino extends Dinosaur {
 
@@ -57,7 +58,7 @@ public abstract class BabyDino extends Dinosaur {
     }
 
     /**
-     *
+     * sets dinosaur behaviours
      */
     @Override
     protected void setBehaviours() {

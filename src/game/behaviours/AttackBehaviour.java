@@ -107,10 +107,10 @@ public class AttackBehaviour implements Behaviour {
     }
 
     /**
-     * todo comment
+     * checks if the actor at a location is a viable target given an ArrayList of attackable classes.
      *
-     * @param targetClasses
-     * @return
+     * @param targetClasses ArrayList of classes that the attacker can attack
+     * @return return true if actor at destination can be attacked
      */
     private boolean isATarget(ArrayList<Class<?>> targetClasses, Location destination) {
         for (Class<?> clazz : targetClasses) {
@@ -123,15 +123,15 @@ public class AttackBehaviour implements Behaviour {
     /**
      * Ticks down each unattackable actor's number of turns of immunity. Removes the actor from the HashMap if the number of rounds is 0 or less
      */
-    public void tick(){
+    public void tick() {
         ArrayList<Actor> removeThese = new ArrayList<>();
-        unattackableActors.forEach((k,v)->{
+        unattackableActors.forEach((k, v) -> {
             v--;
-            if (v<=0){
+            if (v <= 0) {
                 removeThese.add(k);
             }
         });
-        for (Actor actor : removeThese){
+        for (Actor actor : removeThese) {
             unattackableActors.remove(actor);
         }
     }

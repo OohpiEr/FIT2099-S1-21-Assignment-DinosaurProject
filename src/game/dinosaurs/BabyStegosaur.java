@@ -25,7 +25,7 @@ public class BabyStegosaur extends BabyDino {
     private static final char DISPLAY_CHAR = 's';
 
     private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
-    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Bush.class, new Class[]{Fruit.class});
         put(Ground.class, new Class[]{Fruit.class});
     }};
@@ -53,7 +53,7 @@ public class BabyStegosaur extends BabyDino {
     /**
      * Sets the dinosaur instance's variables to their default values as specified in the class
      */
-    private void setDefaultValues(){
+    private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
         name = NAME;
@@ -64,17 +64,17 @@ public class BabyStegosaur extends BabyDino {
     }
 
 
-
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
-     * @param food      The Item eaten
-     * @param quantity  The quantity of the food eaten
+     *
+     * @param food     The Item eaten
+     * @param quantity The quantity of the food eaten
      */
     @Override
     public void eat(Item food, int quantity) {
         final int FRUIT_HEAL = 10;
-        if(food.getClass()==Fruit.class){
-            for(int i=0;i<quantity;i++){
+        if (food.getClass() == Fruit.class) {
+            for (int i = 0; i < quantity; i++) {
                 heal(FRUIT_HEAL);
             }
         }
@@ -92,7 +92,7 @@ public class BabyStegosaur extends BabyDino {
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
 
-        if (hitPoints <= 90){
+        if (hitPoints <= 90) {
             action = getBehaviourAction(HungryBehaviour.class, map);
         } else {
             action = getBehaviourAction(WanderBehaviour.class, map);
@@ -101,6 +101,11 @@ public class BabyStegosaur extends BabyDino {
         return action;
     }
 
+    /**
+     * replaces baby stegosaur with new instance of Stegosaur
+     *
+     * @param map the map the actor is on
+     */
     @Override
     public void growUp(GameMap map) {
         Location actorLocation = map.locationOf(this);

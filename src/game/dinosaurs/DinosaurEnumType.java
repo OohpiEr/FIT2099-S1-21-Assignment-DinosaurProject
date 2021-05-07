@@ -12,6 +12,7 @@ public enum DinosaurEnumType {
 
     /**
      * Constructor.
+     *
      * @param name
      */
     DinosaurEnumType(String name) {
@@ -20,6 +21,7 @@ public enum DinosaurEnumType {
 
     /**
      * Gets the dinosaur type's name
+     *
      * @return The dinosaur type's name
      */
     public String getName() {

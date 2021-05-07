@@ -45,7 +45,6 @@ public class Brachiosaur extends AdultDino {
 
     /**
      * Constructor.
-     * TODO THIS IS TEMP - FOR TESTING
      *
      * @param name     the name of the Actor
      * @param isFemale whether the dinosaur is female
@@ -69,7 +68,7 @@ public class Brachiosaur extends AdultDino {
     /**
      * Sets the dinosaur instance's variables to their default values as specified in the class
      */
-    private void setDefaultValues(){
+    private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
         pregnantTick = PREGNANT_TICK;

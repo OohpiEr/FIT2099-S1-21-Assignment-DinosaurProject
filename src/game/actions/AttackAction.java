@@ -73,8 +73,9 @@ public class AttackAction extends Action {
 
     /**
      * executes attack action
+     *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return
      */
     @Override
@@ -93,7 +94,7 @@ public class AttackAction extends Action {
 
         if (actor instanceof Allosaur) {
             actor.heal(20);
-        } else if (actor instanceof BabyAllosaur){
+        } else if (actor instanceof BabyAllosaur) {
             actor.heal(10);
         }
 
@@ -123,6 +124,7 @@ public class AttackAction extends Action {
 
     /**
      * Returns a descriptive string for the menu
+     *
      * @param actor The actor performing the action.
      * @return
      */
@@ -138,7 +140,7 @@ public class AttackAction extends Action {
      */
     @Override
     public Action getNextAction() {
-        if (corpse != null && (attacker instanceof Allosaur || attacker instanceof BabyAllosaur) ) {
+        if (corpse != null && (attacker instanceof Allosaur || attacker instanceof BabyAllosaur)) {
             return new EatAction(corpse, corpseLocation, 1);
         }
         return null;

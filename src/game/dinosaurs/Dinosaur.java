@@ -25,47 +25,15 @@ import java.util.Map;
  */
 public abstract class Dinosaur extends Actor {
 
-
-    private static final int STARTING_HITPOINTS = 10;
-    private static final int MAX_HITPOINTS = 100;
-    protected static final Class<?>[] FOOD = {};
-    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>();
-
-    /**
-     * gender
-     */
-    protected List<Behaviour> actionFactories = new ArrayList<Behaviour>();
-
-    public DinosaurEnumType getDinoType() {
-        return dinoType;
-    }
-
-    public int getStartingHitpoints() {
-        return startingHitpoints;
-    }
-
-    public int getMaxHitpoints() {
-        return maxHitpoints;
-    }
-
-    @Override
-    public char getDisplayChar() {
-        return displayChar;
-    }
-
-    public Class<?>[] getFood() {
-        return food;
-    }
-
-    public HashMap<Class<?>, Class<?>[]> getFromTheseEatsThese() {
-        return fromTheseEatsThese;
-    }
-
     protected DinosaurEnumType dinoType;
     protected int startingHitpoints;
     protected int maxHitpoints;
     protected String name;
     protected char displayChar;
+
+    /**
+     * TODO should prolly explain these 2
+     */
     protected Class<?>[] food;
     protected HashMap<Class<?>, Class<?>[]> fromTheseEatsThese;
 
@@ -89,9 +57,69 @@ public abstract class Dinosaur extends Actor {
 
 
     /**
+     * list of behaviors that a dinosaur might exhibit
+     */
+    protected List<Behaviour> actionFactories = new ArrayList<Behaviour>();
+
+    /**
+     * getter for Dinosaur Enum Type
+     *
+     * @return DinosaurEnumType of dinosaur type
+     */
+    public DinosaurEnumType getDinoType() {
+        return dinoType;
+    }
+
+    /**
+     * getter for starting hitpoints
+     *
+     * @return returns the staring hitpoints of the dinosaur as an integer
+     */
+    public int getStartingHitpoints() {
+        return startingHitpoints;
+    }
+
+    /**
+     * getter for maximum hitpoints
+     *
+     * @return returns the maximum hitpoints of the dinosaur as an integer
+     */
+    public int getMaxHitpoints() {
+        return maxHitpoints;
+    }
+
+    /**
+     * getter for the display character of the dinosaur
+     *
+     * @return a char of the display character of the dinosaur
+     */
+    @Override
+    public char getDisplayChar() {
+        return displayChar;
+    }
+
+    /**
+     * TODO getter for the food?? what is this
+     *
+     * @return
+     */
+    public Class<?>[] getFood() {
+        return food;
+    }
+
+    /**
+     * TODO ?????? eat
+     *
+     * @return
+     */
+    public HashMap<Class<?>, Class<?>[]> getFromTheseEatsThese() {
+        return fromTheseEatsThese;
+    }
+
+    /**
      * Checks if the Dinosaur is dead
      *
-     * @return  True if the dinosaur is dead, False otherwise
+     * @return True if the dinosaur is dead, False otherwise
      * @see Corpse
      */
     public boolean isDead() {
@@ -162,8 +190,8 @@ public abstract class Dinosaur extends Actor {
      */
     protected Action tick(GameMap map) {
         hitPoints -= 1;
-        for (Behaviour behaviour : actionFactories){
-            if(behaviour instanceof AttackBehaviour){
+        for (Behaviour behaviour : actionFactories) {
+            if (behaviour instanceof AttackBehaviour) {
                 ((AttackBehaviour) behaviour).tick();
             }
         }

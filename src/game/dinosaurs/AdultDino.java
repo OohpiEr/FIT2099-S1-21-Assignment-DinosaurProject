@@ -7,10 +7,23 @@ import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.items.Egg;
 
+/**
+ * Abstract adult dinosaur class, dinosaurs of this class will be able to mate, get pregnant
+ * and exhibit horny behaviour
+ */
 public abstract class AdultDino extends Dinosaur {
 
+    /**
+     * whether dinosaur is female. True if they're female, false otherwise.
+     */
     protected boolean isFemale;
+    /**
+     * whether dinosaur is pregnant. True if they're pregnant, false otherwise.
+     */
     protected boolean isPregnant;
+    /**
+     * number of turns required for pregnancy. Dinosaur will lay an egg after this reaches 0.
+     */
     protected int pregnantTick;
 
     /**
@@ -29,22 +42,47 @@ public abstract class AdultDino extends Dinosaur {
         setFemale(isFemale);
     }
 
+    /**
+     * getter for pregantTick
+     *
+     * @return pregantTick
+     */
     public int getPregnantTick() {
         return pregnantTick;
     }
 
+    /**
+     * getter for isFemale
+     *
+     * @return true if dinosaur is female, false otherwise
+     */
     public boolean isFemale() {
         return isFemale;
     }
 
+    /**
+     * setter for isFemale
+     *
+     * @param female whether dinosaur is female
+     */
     public void setFemale(boolean female) {
         isFemale = female;
     }
 
+    /**
+     * setter for isPregnant
+     *
+     * @param pregnant whether dinosaur is pregnant
+     */
     public void setPregnant(boolean pregnant) {
         isPregnant = pregnant;
     }
 
+    /**
+     * getter for isPregnant
+     *
+     * @return True if dinosaur is pregnant, false otherwise
+     */
     public boolean isPregnant() {
         return isPregnant;
     }
@@ -87,6 +125,7 @@ public abstract class AdultDino extends Dinosaur {
     /**
      * Inform a Dino the passage of time.
      * This method is called once per turn
+     * Actions that depend on time/number of turns will be returned if conditions are met
      *
      * @param map the map the actor is in
      * @return an action if applicable

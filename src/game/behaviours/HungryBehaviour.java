@@ -30,9 +30,10 @@ public class HungryBehaviour implements Behaviour {
 
     /**
      * Gets the appropriate action for the hungry actor. Will automatically return null if the actor is not a Dinosaur
+     *
      * @param actor the Actor acting
-     * @param map the GameMap containing the Actor
-     * @return  An appropriate action that the actor can take
+     * @param map   the GameMap containing the Actor
+     * @return An appropriate action that the actor can take
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
@@ -80,11 +81,12 @@ public class HungryBehaviour implements Behaviour {
 
     /**
      * Gets the location of the nearest/most optimal source of food
-     * @param here              The actor's Location
-     * @param map               The GameMap the actor is on
-     * @param foodClasses       The classes of food the actor eats
-     * @param groundToFoodMap   The HashMap of Grounds the actor eats from, along the the foods they eat from those Grounds
-     * @return                  The location of the nearest/most optimal source of food
+     *
+     * @param here            The actor's Location
+     * @param map             The GameMap the actor is on
+     * @param foodClasses     The classes of food the actor eats
+     * @param groundToFoodMap The HashMap of Grounds the actor eats from, along the the foods they eat from those Grounds
+     * @return The location of the nearest/most optimal source of food
      */
     public Location getFoodLocation(Location here, GameMap map, Class<?>[] foodClasses, HashMap<Class<?>, Class<?>[]> groundToFoodMap) {
 

@@ -20,6 +20,7 @@ public class BreedAction extends Action {
 
     /**
      * constructor
+     *
      * @param target target mate
      */
     public BreedAction(AdultDino target) {
@@ -41,6 +42,7 @@ public class BreedAction extends Action {
 
     /**
      * sets the isPregnant attribute in the female to true
+     *
      * @param actor
      */
     private void setPregnant(AdultDino actor) {
@@ -55,12 +57,12 @@ public class BreedAction extends Action {
      * Perform the breed Action
      *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (actor instanceof AdultDino){
+        if (actor instanceof AdultDino) {
             setPregnant((AdultDino) actor);
             resetPregnantTick((AdultDino) actor);
 
@@ -75,6 +77,7 @@ public class BreedAction extends Action {
 
     /**
      * Returns a descriptive string.
+     *
      * @param actor The actor performing the action.
      * @return
      */

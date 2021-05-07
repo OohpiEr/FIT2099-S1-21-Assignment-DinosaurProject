@@ -13,6 +13,9 @@ import static game.Util.distance;
  */
 public class FollowBehaviour implements Behaviour {
 
+    /**
+     * target actor to be followed
+     */
     private Actor target;
 
     /**
@@ -24,6 +27,13 @@ public class FollowBehaviour implements Behaviour {
         this.target = subject;
     }
 
+    /**
+     * gets action for current behaviour
+     *
+     * @param actor the Actor following
+     * @param map   the GameMap containing the Actor
+     * @return returns the action for current behaviour
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         if (!map.contains(target) || !map.contains(actor))

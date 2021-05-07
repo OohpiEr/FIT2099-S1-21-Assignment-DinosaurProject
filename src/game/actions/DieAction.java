@@ -15,13 +15,14 @@ public class DieAction extends Action {
 
     /**
      * Removes an actor from the map and places a corpse at its location
+     *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
-     * @return  An appropriate menu description of the action
+     * @param map   The map the actor is on.
+     * @return An appropriate menu description of the action
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (actor instanceof Dinosaur){
+        if (actor instanceof Dinosaur) {
             map.locationOf(actor).addItem(new Corpse(((Dinosaur) actor).getDinoType()));
         } else {
             map.locationOf(actor).addItem(new PortableItem("dead " + actor.toString(), '%'));
@@ -32,8 +33,9 @@ public class DieAction extends Action {
 
     /**
      * Returns an appropriate menu description of the action
+     *
      * @param actor The actor performing the action.
-     * @return  An appropriate menu description of the action
+     * @return An appropriate menu description of the action
      */
     @Override
     public String menuDescription(Actor actor) {

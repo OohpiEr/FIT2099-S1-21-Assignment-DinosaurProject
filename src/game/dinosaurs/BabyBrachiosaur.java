@@ -98,7 +98,7 @@ public class BabyBrachiosaur extends BabyDino {
     }
 
     /**
-     * replaces baby brachiosaur with adult brachiosaur
+     * replaces baby brachiosaur with new instance of Brachiosaur
      *
      * @param map the map the actor is on
      */

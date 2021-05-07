@@ -21,11 +21,12 @@ public class FeedAction extends Action {
 
     /**
      * Constructor.
-     * @param target    The actor being fed the food
-     * @param food      The food being fed to the target
-     * @param quantity  The quantity of food being fed to the target
+     *
+     * @param target   The actor being fed the food
+     * @param food     The food being fed to the target
+     * @param quantity The quantity of food being fed to the target
      */
-    public FeedAction(Actor target, Item food, int quantity){
+    public FeedAction(Actor target, Item food, int quantity) {
         this.target = target;
         this.food = food;
         this.quantity = quantity;
@@ -33,17 +34,18 @@ public class FeedAction extends Action {
 
     /**
      * Causes the provided actor to feed the target actor as detailed in the constructor
+     *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
-     * @return  A description of the action
+     * @param map   The map the actor is on.
+     * @return A description of the action
      */
     @Override
     public String execute(Actor actor, GameMap map) {
         actor.removeItemFromInventory(food);
-        if (target instanceof Dinosaur){
+        if (target instanceof Dinosaur) {
             ((Dinosaur) target).eat(food, quantity);
         }
-        if (actor instanceof Player){
+        if (actor instanceof Player) {
             Player.addEcoPoints(ECO_POINT_REWARD);
         }
         return actor + " feeds " + quantity + " " + food.toString() + "(s) to " + target.toString() + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ")";
@@ -51,8 +53,9 @@ public class FeedAction extends Action {
 
     /**
      * Returns a suitable menu description of the action
+     *
      * @param actor The actor performing the action.
-     * @return  A suitable menu description of the action
+     * @return A suitable menu description of the action
      */
     @Override
     public String menuDescription(Actor actor) {

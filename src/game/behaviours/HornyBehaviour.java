@@ -3,20 +3,21 @@ package game.behaviours;
 import edu.monash.fit2099.engine.*;
 import game.actions.BreedAction;
 import game.dinosaurs.AdultDino;
-import game.dinosaurs.Dinosaur;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static game.Util.distance;
 
+/**
+ * A Behaviour for dinosaurs being horny and wanting to mate
+ */
 public class HornyBehaviour implements Behaviour {
 
     FollowBehaviour followBehaviour;
 
-
     /**
-     * Get action for horny behaviour
+     * Gets the action for horny behaviour
      *
      * @param actor the Actor acting
      * @param map   the GameMap containing the Actor

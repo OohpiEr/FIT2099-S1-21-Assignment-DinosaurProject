@@ -77,7 +77,8 @@ public class BabyAllosaur extends BabyDino {
 
     /**
      * Creates and returns an intrinsic weapon.
-     * @return
+     *
+     * @return returns an intrinsic weapon for BabyAllosaur.
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
@@ -109,6 +110,12 @@ public class BabyAllosaur extends BabyDino {
         }
     }
 
+    /**
+     * Checks if there is a stegosaur or a baby stegosaur in the exits
+     *
+     * @param map the map the current dinosaur is on
+     * @return true if there is a stegosaur or a baby stegosaur in the exits
+     */
     private boolean isStegosaurInExits(GameMap map) {
         Location here = map.locationOf(this);
 
@@ -147,7 +154,8 @@ public class BabyAllosaur extends BabyDino {
     }
 
     /**
-     * replaces baby allosaur with adult allosaur
+     * replaces baby allosaur with new instance of Allosaur
+     *
      * @param map the map the actor is on
      */
     @Override

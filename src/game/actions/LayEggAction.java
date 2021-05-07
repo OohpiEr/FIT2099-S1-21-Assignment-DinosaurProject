@@ -14,16 +14,15 @@ public class LayEggAction extends Action {
 
     /**
      * executes the lay egg action
+     *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return
      */
     @Override
     public String execute(Actor actor, GameMap map) {
         ((AdultDino) actor).layEgg(map);
-        return actor + " lays an egg";
-        dinosaur.layEgg(map);
-        return dinosaur + " at (" + map.locationOf(dinosaur).x() + ", " + map.locationOf(dinosaur).y() + ") lays an egg";
+        return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") lays an egg";
     }
 
     /**
@@ -34,6 +33,6 @@ public class LayEggAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return dinosaur + " at (" + map.locationOf(dinosaur).x() + ", " + map.locationOf(dinosaur).y() + ") lays an egg";
+        return null;
     }
 }

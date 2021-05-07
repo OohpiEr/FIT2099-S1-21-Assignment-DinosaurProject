@@ -14,13 +14,13 @@ public class GrowUpAction extends Action {
      * Perform the growing up Action.
      *
      * @param actor The actor growing up.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return
      */
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        if (actor instanceof BabyDino){
+        if (actor instanceof BabyDino) {
             ((BabyDino) actor).growUp(map);
         }
 

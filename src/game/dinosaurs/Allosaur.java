@@ -112,7 +112,7 @@ public class Allosaur extends AdultDino {
     /**
      * Creates and returns an intrinsic weapon for Allosaur.
      *
-     * @return
+     * @return returns an intrinsic weapon for Allosaur.
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
