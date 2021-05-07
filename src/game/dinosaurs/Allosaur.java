@@ -2,6 +2,7 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
+import game.behaviours.HornyBehaviour;
 import game.items.Corpse;
 import game.items.Fruit;
 import game.behaviours.AttackBehaviour;
@@ -10,7 +11,6 @@ import game.behaviours.WanderBehaviour;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A carnivorous dinosaur
@@ -39,7 +39,7 @@ public class Allosaur extends AdultDino {
      * @param isFemale    whether the dinosaur is female
      */
     public Allosaur(String name, boolean isFemale) {
-        super(name, 'A', 100, isFemale, DinosaurEnumType.ALLOSAUR);
+        super(name, 'A', 100, isFemale);
         setBehaviours();
         this.pregnantTick = PREGNANT_TICK;
         maxHitPoints = MAX_HITPOINTS;
@@ -49,7 +49,7 @@ public class Allosaur extends AdultDino {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Allosaur() {
-        super("Allosaur", 'A', 100, false, DinosaurEnumType.ALLOSAUR);
+        super("Allosaur", 'A', 100, false);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -64,7 +64,7 @@ public class Allosaur extends AdultDino {
      * @param hitPoints the Allosaur's starting hitpoints
      */
     public Allosaur(int hitPoints) {
-        super("Allosaur", 'A', hitPoints, false, DinosaurEnumType.ALLOSAUR);
+        super("Allosaur", 'A', hitPoints, false);
         this.setFemale(Math.random() < 0.5);
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -121,13 +121,6 @@ public class Allosaur extends AdultDino {
 
 
 
-    public ArrayList<Stegosaur> getOffLimitsStegosaurs() {
-        return offLimitsStegosaurs;
-    }
-
-    public void addOffLimitsStegosaurs(Stegosaur stegosaur) {
-        this.offLimitsStegosaurs.add(stegosaur);
-    }
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
@@ -139,7 +132,7 @@ public class Allosaur extends AdultDino {
         return new Actions(new AttackAction(this));
     }
 
-    private boolean nearStegosaur(GameMap map) {
+    private boolean isStegosaurInExits(GameMap map) {
         Location here = map.locationOf(this);
 
         for (Exit exit : here.getExits()) {
@@ -168,7 +161,8 @@ public class Allosaur extends AdultDino {
      */
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
-        if (nearStegosaur(map)) {
+
+        if (isStegosaurInExits(map)) {
             //attack behaviour
             action = getBehaviourAction(AttackBehaviour.class, map);
         } else if (hitPoints >= 90 && hitPoints <= 100) {

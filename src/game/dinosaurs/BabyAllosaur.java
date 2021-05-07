@@ -1,5 +1,6 @@
 package game.dinosaurs;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
@@ -25,8 +26,6 @@ public class BabyAllosaur extends BabyDino {
     private final HashMap<Class<?>, Item[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Tree.class, new Item[]{new Fruit()});
     }};
-
-    protected DinosaurEnumType dinoType = DinosaurEnumType.ALLOSAUR;
 
     /**
      * Constructor.
@@ -73,5 +72,10 @@ public class BabyAllosaur extends BabyDino {
                 }
             }
         }
+    }
+
+    @Override
+    protected Action determineBehaviour(GameMap map) {
+        return null;
     }
 }

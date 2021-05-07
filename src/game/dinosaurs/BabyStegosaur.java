@@ -1,5 +1,6 @@
 package game.dinosaurs;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
@@ -65,4 +66,10 @@ public class BabyStegosaur extends BabyDino {
             }
         }
     }
+
+    @Override
+    protected Action determineBehaviour(GameMap map) {
+        return null;
+    }
+
 }

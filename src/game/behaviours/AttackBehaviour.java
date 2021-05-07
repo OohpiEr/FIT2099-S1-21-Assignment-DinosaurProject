@@ -6,42 +6,94 @@ import game.actions.AttackAction;
 import game.dinosaurs.Stegosaur;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+/**
+ * Attack Behaviour
+ */
 public class AttackBehaviour implements Behaviour {
+
+    /**
+     * hashmap of actors that can't be attacked currently and the number of turns left for it to be attackable again
+     */
+    private HashMap<Actor, Integer> unattackableActors;
+    /**
+     * max number of turns to wait until stegosaur can be attacked again
+     */
+    private final int STEGOSAUR_UNATTACKABLE_TICK = 20;
+
+    /**
+     * constructor
+     */
+    public AttackBehaviour() {
+        unattackableActors = new HashMap<>();
+    }
+
+    /**
+     * gets action for current behaviour
+     *
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Action attackAction = null;
-        Actor stegosaur = getNearbyStegosaur(actor, map);
-        Boolean isOffLimits = false;
 
-        ArrayList<Stegosaur> offLimitsStegosaurs = ((Allosaur) actor).getOffLimitsStegosaurs();
-        for (Stegosaur offLimitsStegosaur : offLimitsStegosaurs) {
-            if (stegosaur == offLimitsStegosaur) {
-                isOffLimits = true;
-            }
-        }
-
-        if (!isOffLimits) {
-            attackAction = new AttackAction(stegosaur);
-            //TODO attackAction might miss
-            actor.heal(20);
-            ((Allosaur) actor).addOffLimitsStegosaurs((Stegosaur) stegosaur);
-        }
+        Actor target = getTargetsInExit(actor, map, Stegosaur.class);
+        attackAction = new AttackAction(target);
 
         return attackAction;
     }
 
-    public Actor getNearbyStegosaur(Actor actor, GameMap map) {
+    /**
+     * returns the first target of the provided class in the actor's exits
+     *
+     * @param actor       actor that is going to attack
+     * @param map         map the actor is in
+     * @param targetClass the class of targets
+     * @return arraylist of targets
+     */
+    private Actor getTargetsInExit(Actor actor, GameMap map, Class<?> targetClass) {
         Location here = map.locationOf(actor);
+        Actor target = null;
 
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.getActor().getClass() == Stegosaur.class) {
-                return destination.getActor();
+            if (destination.containsAnActor() &&
+                    destination.getActor().getClass() == targetClass &&
+                    isAttackable(destination.getActor())) {
+                target = destination.getActor();
             }
         }
 
-        return null;
-
+        return target;
     }
+
+
+    private void addUnattackableActor(Actor actor) {
+        if (actor instanceof Stegosaur)
+            unattackableActors.put(actor,STEGOSAUR_UNATTACKABLE_TICK);
+    }
+
+    /**
+     * Checks if the target actor is attackable
+     * returns false if target is found in unattackableActors
+     *
+     * @param target the target actor
+     * @return false if target is found in unattackableActors
+     */
+    private boolean isAttackable(Actor target) {
+        Boolean attackable = true;
+
+        for (Actor unattackableActor : unattackableActors.keySet()) {
+            if (target == unattackableActor) {
+                attackable = false;
+                break;
+            }
+        }
+
+        return attackable;
+    }
+
 }
