@@ -12,7 +12,8 @@ import edu.monash.fit2099.engine.Menu;
  */
 public class Player extends Actor {
 
-	private static int ecoPoints = 1000;
+	//TODO: Set starting ecoPoints back to 0 after testing
+	private static int ecoPoints = 99999;
 	private Menu menu = new Menu();
 
 	/**
