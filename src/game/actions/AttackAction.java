@@ -16,11 +16,11 @@ public class AttackAction extends Action {
     /**
      * The Actor that is to be attacked
      */
-    private Actor attacker;
+    private Actor target;
     /**
      * The Actor that is to be attacked
      */
-    private Actor target;
+    private Actor attacker;
     /**
      * corpse of target if they die during attack
      */
