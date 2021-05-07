@@ -50,6 +50,22 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
+     * Gets an array of classes of food the dinosaur eats
+     * @return  An array of classes of food the dinosaur eats
+     */
+    public static Class<?>[] getFOOD() {
+        return FOOD;
+    }
+
+    /**
+     * Gets a HashMap of Grounds the dinosaur eats from together with the foods they eat from them
+     * @return
+     */
+    public static HashMap<Class<?>, Class<?>[]> getFROM_THESE_EATS_THESE() {
+        return FROM_THESE_EATS_THESE;
+    }
+
+    /**
      * sets dinosaur behaviours
      */
     protected void setBehaviours() {

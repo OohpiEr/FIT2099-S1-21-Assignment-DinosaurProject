@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import game.grounds.Bush;
 import game.grounds.Tree;
+import game.items.CarnivoreMealKit;
 import game.items.Corpse;
 import game.items.Fruit;
 
@@ -22,9 +23,9 @@ public class BabyAllosaur extends BabyDino {
     private static final String NAME = "Baby Allosaur";
     private static final char DISPLAY_CHAR = 'a';
 
-    private static final Item[] FOOD = {new Corpse(DinosaurEnumType.ALLOSAUR)};
-    private static final HashMap<Class<?>, Item[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
-        put(Tree.class, new Item[]{new Fruit()});
+    private static final Class<?>[] FOOD = {Corpse.class, CarnivoreMealKit.class};
+    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+        put(Ground.class, new Class[]{Corpse.class});
     }};
 
     /**

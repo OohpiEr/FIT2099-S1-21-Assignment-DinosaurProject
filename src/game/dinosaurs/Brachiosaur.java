@@ -8,6 +8,7 @@ import game.grounds.Bush;
 import game.grounds.Tree;
 import game.items.Corpse;
 import game.items.Fruit;
+import game.items.VegetarianMealKit;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class Brachiosaur extends AdultDino {
     private static final int HUNGRY_BEHAVIOUR = 1;
     private static final int HORNY_BEHAVIOUR = 2;
 
-    private static final Class<?>[] FOOD = {Fruit.class};
+    private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Tree.class, new Class[]{Fruit.class});
     }};
@@ -81,7 +82,7 @@ public class Brachiosaur extends AdultDino {
      */
     protected void setBehaviours() {
         super.setBehaviours();
-        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
+        actionFactories.add(new HungryBehaviour());
     }
 
     /**

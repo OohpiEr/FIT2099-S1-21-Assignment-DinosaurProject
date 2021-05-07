@@ -8,6 +8,7 @@ import game.grounds.Bush;
 import game.grounds.Tree;
 import game.items.Corpse;
 import game.items.Fruit;
+import game.items.VegetarianMealKit;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class BabyBrachiosaur extends BabyDino {
     private static final String NAME = "Baby Brachiosaur";
     private static final char DISPLAY_CHAR = 'b';
 
-    private static final Class<?>[] FOOD = {Fruit.class};
+    private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Tree.class, new Class[]{Fruit.class});
     }};

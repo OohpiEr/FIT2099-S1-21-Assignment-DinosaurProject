@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.Item;
 import game.grounds.Bush;
 import game.items.Corpse;
 import game.items.Fruit;
+import game.items.VegetarianMealKit;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class BabyStegosaur extends BabyDino {
     private static final String NAME = "Baby Stegosaur";
     private static final char DISPLAY_CHAR = 's';
 
-    private static final Class<?>[] FOOD = {Fruit.class};
+    private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Bush.class, new Class[]{Fruit.class});
         put(Ground.class, new Class[]{Fruit.class});

@@ -3,6 +3,7 @@ package game.dinosaurs;
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
 import game.behaviours.HornyBehaviour;
+import game.items.CarnivoreMealKit;
 import game.items.Corpse;
 import game.items.Fruit;
 import game.behaviours.AttackBehaviour;
@@ -24,7 +25,7 @@ public class Allosaur extends AdultDino {
     private static final char DISPLAY_CHAR = 'A';
     private static final int PREGNANT_TICK = 20;
 
-    private static final Class<?>[] FOOD = {Corpse.class};
+    private static final Class<?>[] FOOD = {Corpse.class, CarnivoreMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
         put(Ground.class, new Class[]{Corpse.class});
     }};
@@ -77,7 +78,7 @@ public class Allosaur extends AdultDino {
     @Override
     protected void setBehaviours() {
         super.setBehaviours();
-        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
+        actionFactories.add(new HungryBehaviour());
         actionFactories.add(new AttackBehaviour());
     }
 

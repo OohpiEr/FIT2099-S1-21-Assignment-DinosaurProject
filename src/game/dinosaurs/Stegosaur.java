@@ -12,6 +12,7 @@ import game.items.Corpse;
 import game.items.Egg;
 import game.items.Fruit;
 import game.behaviours.HungryBehaviour;
+import game.items.VegetarianMealKit;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -29,8 +30,7 @@ public class Stegosaur extends AdultDino {
     private static final int PREGNANT_TICK = 10;
     private static final String NAME = "Stegosaur";
     private static final char DISPLAY_CHAR = 'S';
-
-    private static final Class<?>[] FOOD = {Fruit.class};
+    private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Bush.class, new Class[]{Fruit.class});
         put(Ground.class, new Class[]{Fruit.class});
@@ -72,7 +72,7 @@ public class Stegosaur extends AdultDino {
     @Override
     protected void setBehaviours() {
         super.setBehaviours();
-        actionFactories.add(new HungryBehaviour(FOOD, FROM_THESE_EATS_THESE));
+        actionFactories.add(new HungryBehaviour());
     }
 
     /**
