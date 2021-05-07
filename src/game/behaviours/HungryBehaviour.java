@@ -95,14 +95,14 @@ public class HungryBehaviour implements Behaviour {
             for (int y : map.getYRange()) {
                 if (groundToFoodMap.containsKey(map.at(x, y).getGround().getClass())) {
                     List<Item> items = map.at(x, y).getItems();
-                    if (items != null) {
+                    if (items != null && items.size() > 0) {
                         for (Item item : items) {
                             if (Arrays.asList(foodClasses).contains(item.getClass())) {
                                 locationsWithFood.add(map.at(x, y));
                             }
                         }
                     }
-                    if (map.at(x, y).getGround() instanceof hasFood && ((hasFood) map.at(x, y).getGround()).isEmpty()) {
+                    if (map.at(x, y).getGround() instanceof hasFood && !((hasFood) map.at(x, y).getGround()).isEmpty()) {
                         locationsWithFood.add(map.at(x, y));
                     }
                 }
