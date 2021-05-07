@@ -13,17 +13,13 @@ import game.dinosaurs.Dinosaur;
  */
 public class BreedAction extends Action {
 
-    private AdultDino actor;
     private AdultDino target;
 
-    public BreedAction(Actor actor, Actor target) {
-        setActor(actor);
-        setTarget(target);
-        setPregnant();
-        resetPregnantTick();
+    public BreedAction(AdultDino target) {
+        this.target = target;
     }
 
-    private void resetPregnantTick() {
+    private void resetPregnantTick(AdultDino actor) {
         if (actor.isFemale() && actor.isPregnant()) {
             actor.resetPregnantTick();
         } else if (target.isFemale() && target.isPregnant()) {
@@ -31,7 +27,7 @@ public class BreedAction extends Action {
         }
     }
 
-    private void setPregnant() {
+    private void setPregnant(AdultDino actor) {
         if (actor.isFemale()) {
             actor.setPregnant(true);
         } else {
@@ -39,21 +35,19 @@ public class BreedAction extends Action {
         }
     }
 
-    public void setActor(Actor actor) {
-        this.actor = (AdultDino) actor;
-    }
-
-    public void setTarget(Actor target) {
-        this.target = (AdultDino) target;
-    }
-
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (Math.random() <= 0.9) {
-            return actor + " breeds with " + actor;
-        } else {
-            return actor + " woohoo in the bushes with " + actor;
+        if (actor instanceof AdultDino){
+            setPregnant((AdultDino) actor);
+            resetPregnantTick((AdultDino) actor);
+
+            if (Math.random() <= 0.9) {
+                return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") breeds with " + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ")";
+            } else {
+                return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") woohoo in the bushes with " + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ")";
+            }
         }
+        return null;
     }
 
     @Override

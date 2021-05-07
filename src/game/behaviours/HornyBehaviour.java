@@ -41,7 +41,7 @@ public class HornyBehaviour implements Behaviour {
             if (target != null) {
 
                 if (isTargetInExit(target, dino, map)) {
-                    returnAction = new BreedAction(dino, target);
+                    returnAction = new BreedAction(target);
                 } else {
                     followBehaviour = new FollowBehaviour(target);
                     returnAction = followBehaviour.getAction(dino, map);

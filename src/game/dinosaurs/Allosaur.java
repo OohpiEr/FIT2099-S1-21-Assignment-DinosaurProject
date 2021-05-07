@@ -86,20 +86,6 @@ public class Allosaur extends AdultDino {
     }
 
     /**
-     * Checks if the Allosaur is dead, and places an Allosaur corpse on its location in its place if it is
-     *
-     * @param map the GameMap the dinosaur is in
-     * @see Corpse
-     */
-    @Override
-    public void checkDead(GameMap map) {
-        if (hitPoints <= 0) {
-            map.locationOf(this).addItem(new Corpse(DinosaurEnumType.ALLOSAUR));
-            map.removeActor(this);
-        }
-    }
-
-    /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
      *
      * @param food     The Item eaten
