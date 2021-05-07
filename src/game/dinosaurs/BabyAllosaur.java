@@ -118,4 +118,11 @@ public class BabyAllosaur extends BabyDino {
 
         return action;
     }
+
+    @Override
+    public void growUp(GameMap map) {
+        Location actorLocation = map.locationOf(this);
+        map.removeActor(this);
+        map.addActor(new Allosaur(), actorLocation);
+    }
 }

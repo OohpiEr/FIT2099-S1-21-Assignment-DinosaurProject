@@ -91,4 +91,11 @@ public class BabyBrachiosaur extends BabyDino {
 
         return action;
     }
+
+    @Override
+    public void growUp(GameMap map) {
+        Location actorLocation = map.locationOf(this);
+        map.removeActor(this);
+        map.addActor(new Brachiosaur(), actorLocation);
+    }
 }
