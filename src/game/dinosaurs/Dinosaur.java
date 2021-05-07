@@ -84,9 +84,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * sets dinosaur behaviours
      */
-    protected void setBehaviours() {
-        actionFactories.add(new WanderBehaviour());
-    }
+    protected abstract void setBehaviours();
 
 
     /**

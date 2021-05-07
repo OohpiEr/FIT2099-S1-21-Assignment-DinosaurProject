@@ -61,11 +61,5 @@ public class BreedAction extends Action {
         return null;
     }
 
-    @Override
-    public Action getNextAction() {
-        //TODO GET NEXT ACTION
-        return super.getNextAction();
-    }
-
 
 }

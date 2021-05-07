@@ -1,9 +1,10 @@
 package game.dinosaurs;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.HornyBehaviour;
+import game.behaviours.HungryBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
 import game.grounds.Tree;
 import game.items.CarnivoreMealKit;
@@ -21,11 +22,12 @@ public class BabyAllosaur extends BabyDino {
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
     private static final int STARTING_HITPOINTS = 20;
     private static final int MAX_HITPOINTS = 100;
+    private static final int ALLOSAUR_GROW_UP_TICK = 20;
     private static final String NAME = "Baby Allosaur";
     private static final char DISPLAY_CHAR = 'a';
 
     private static final Class<?>[] FOOD = {Corpse.class, CarnivoreMealKit.class};
-    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Ground.class, new Class[]{Corpse.class});
     }};
 
@@ -37,22 +39,23 @@ public class BabyAllosaur extends BabyDino {
      * @param hitPoints   the Actor's starting hit points
      */
     public BabyAllosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints);
+        super(name, displayChar, hitPoints, ALLOSAUR_GROW_UP_TICK);
         setDefaultValues();
     }
+
 
     /**
      * Constructor. Sets initial hitPoints to 20 and randomises gender
      */
     public BabyAllosaur() {
-        super("Baby Allosaur", 'a', 20);
+        super("Baby Allosaur", 'a', 20, ALLOSAUR_GROW_UP_TICK);
         setDefaultValues();
     }
 
     /**
      * Sets the dinosaur instance's variables to their default values as specified in the class
      */
-    private void setDefaultValues(){
+    private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
         name = NAME;
@@ -86,8 +89,40 @@ public class BabyAllosaur extends BabyDino {
         }
     }
 
+    private boolean isStegosaurInExits(GameMap map) {
+        Location here = map.locationOf(this);
+
+        for (Exit exit : here.getExits()) {
+            Location destination = exit.getDestination();
+            if (destination.containsAnActor() && destination.getActor().getClass() == Stegosaur.class) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @Override
     protected Action determineBehaviour(GameMap map) {
-        return null;
+        Action action = null;
+
+        if (isStegosaurInExits(map)) {
+            //attack behaviour
+            action = getBehaviourAction(AttackBehaviour.class, map);
+        } else if (hitPoints <= 90) {
+            //hungry behaviour
+            action = getBehaviourAction(HungryBehaviour.class, map);
+        } else {
+            action = getBehaviourAction(WanderBehaviour.class, map);
+        }
+
+        return action;
+    }
+
+    @Override
+    public void growUp(GameMap map) {
+        Location actorLocation = map.locationOf(this);
+        map.removeActor(this);
+        map.addActor(new Allosaur(), actorLocation);
     }
 }

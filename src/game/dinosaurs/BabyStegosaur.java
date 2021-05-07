@@ -1,9 +1,9 @@
 package game.dinosaurs;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
+import game.behaviours.HornyBehaviour;
+import game.behaviours.HungryBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.grounds.Bush;
 import game.items.Corpse;
 import game.items.Fruit;
@@ -20,6 +20,7 @@ public class BabyStegosaur extends BabyDino {
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private static final int STARTING_HITPOINTS = 10;
     private static final int MAX_HITPOINTS = 100;
+    private static final int STEGOSAUR_GROW_UP_TICK = 10;
     private static final String NAME = "Baby Stegosaur";
     private static final char DISPLAY_CHAR = 's';
 
@@ -37,7 +38,7 @@ public class BabyStegosaur extends BabyDino {
      * @param hitPoints   the Actor's starting hit points
      */
     public BabyStegosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints);
+        super(name, displayChar, hitPoints, STEGOSAUR_GROW_UP_TICK);
         setDefaultValues();
     }
 
@@ -45,7 +46,7 @@ public class BabyStegosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyStegosaur() {
-        super("Baby Stegosaur", 's', 10);
+        super("Baby Stegosaur", 's', 10, STEGOSAUR_GROW_UP_TICK);
         setDefaultValues();
     }
 
@@ -62,6 +63,8 @@ public class BabyStegosaur extends BabyDino {
         dinoType = DINO_TYPE;
     }
 
+
+
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
      * @param food      The Item eaten
@@ -77,9 +80,25 @@ public class BabyStegosaur extends BabyDino {
         }
     }
 
+
+
     @Override
     protected Action determineBehaviour(GameMap map) {
-        return null;
+        Action action = null;
+
+        if (hitPoints <= 90){
+            action = getBehaviourAction(HungryBehaviour.class, map);
+        } else {
+            action = getBehaviourAction(WanderBehaviour.class, map);
+        }
+
+        return action;
     }
 
+    @Override
+    public void growUp(GameMap map) {
+        Location actorLocation = map.locationOf(this);
+        map.removeActor(this);
+        map.addActor(new Stegosaur(), actorLocation);
+    }
 }
