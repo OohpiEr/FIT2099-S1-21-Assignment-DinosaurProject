@@ -38,9 +38,8 @@ public class Allosaur extends AdultDino {
      */
     public Allosaur(String name, boolean isFemale) {
         super(name, 'A', 100, isFemale);
+        setDefaultValues();
         setBehaviours();
-        this.pregnantTick = PREGNANT_TICK;
-        maxHitPoints = MAX_HITPOINTS;
     }
 
     /**
@@ -49,11 +48,7 @@ public class Allosaur extends AdultDino {
     public Allosaur() {
         super("Allosaur", 'A', 100, false);
         this.setFemale(Math.random() < 0.5);
-        name = NAME;
-        displayChar = DISPLAY_CHAR;
-        this.hitPoints = STARTING_HITPOINTS;
-        maxHitPoints = MAX_HITPOINTS;
-        this.pregnantTick = PREGNANT_TICK;
+        setDefaultValues();
     }
 
     /**
@@ -64,9 +59,7 @@ public class Allosaur extends AdultDino {
     public Allosaur(int hitPoints) {
         super("Allosaur", 'A', hitPoints, false);
         this.setFemale(Math.random() < 0.5);
-        name = NAME;
-        displayChar = DISPLAY_CHAR;
-        maxHitPoints = MAX_HITPOINTS;
+        setDefaultValues();
     }
 
     /**

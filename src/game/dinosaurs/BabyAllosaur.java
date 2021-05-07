@@ -38,7 +38,7 @@ public class BabyAllosaur extends BabyDino {
      */
     public BabyAllosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        maxHitPoints = MAX_HITPOINTS;
+        setDefaultValues();
     }
 
     /**
@@ -46,10 +46,7 @@ public class BabyAllosaur extends BabyDino {
      */
     public BabyAllosaur() {
         super("Baby Allosaur", 'a', 20);
-        name = NAME;
-        displayChar = DISPLAY_CHAR;
-        this.hitPoints = STARTING_HITPOINTS;
-        maxHitPoints = MAX_HITPOINTS;
+        setDefaultValues();
     }
 
     /**
