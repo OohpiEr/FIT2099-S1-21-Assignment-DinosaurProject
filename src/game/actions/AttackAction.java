@@ -91,8 +91,10 @@ public class AttackAction extends Action {
 
         target.hurt(damage);
 
-        if (actor instanceof Allosaur && target instanceof Stegosaur) {
+        if (actor instanceof Allosaur) {
             actor.heal(20);
+        } else if (actor instanceof BabyAllosaur){
+            actor.heal(10);
         }
 
 

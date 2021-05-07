@@ -81,7 +81,7 @@ public class BabyAllosaur extends BabyDino {
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(20, "bites a chunk off");
+        return new IntrinsicWeapon(10, "bites a chunk off");
     }
 
 
