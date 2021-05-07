@@ -90,7 +90,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * Checks if the Dinosaur is dead
      *
-     * @return True if the dinosaur is dead, False otherwise
+     * @return  True if the dinosaur is dead, False otherwise
      * @see Corpse
      */
     public boolean isDead() {
@@ -172,23 +172,18 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         Action action = tick(map);
-        if (hitPoints == 89) {
-            display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting hungry!");
-        }
         if (isDead()) {
             return new DieAction();
-        } else if (!isConscious()) {
-            display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is unconscious");
-            return new DoNothingAction();
-        }
-        if (action == null && lastAction != null && lastAction.getNextAction() != null) {
-            action = lastAction.getNextAction();
-        } else if (action == null) {
-            action = determineBehaviour(map);
-            if (action == null) {
-                action = getBehaviourAction(WanderBehaviour.class, map);
+        } else {
+            if (action == null && lastAction != null && lastAction.getNextAction() != null) {
+                action = lastAction.getNextAction();
+            } else if (action == null) {
+                action = determineBehaviour(map);
+                if (action == null) {
+                    action = getBehaviourAction(WanderBehaviour.class, map);
+                }
             }
+            return action;
         }
-        return action;
     }
 }

@@ -58,11 +58,11 @@ public class EatAction extends Action {
                     location.removeItem(food);
                 }
 
-                result = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") eats " + quantity + " " + food.toString() + "(s) from the ground";
+                result = actor.toString() + " eats " + quantity + " " + food.toString() + "(s) from the ground";
             } else if (location == null) {
                 object.eatFromThis((Dinosaur) actor, food, quantity);
 
-                result = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") eats " + quantity + " " + food.toString() + "(s) from a " + object.toString();
+                result = actor.toString() + " eats " + quantity + " " + food.toString() + "(s) from a " + object.toString();
             }
         }
         return result;

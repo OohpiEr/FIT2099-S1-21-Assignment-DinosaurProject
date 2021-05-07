@@ -3,10 +3,7 @@ package game.actions;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
-import game.dinosaurs.Allosaur;
-import game.dinosaurs.Dinosaur;
-import game.dinosaurs.DinosaurEnumType;
-import game.dinosaurs.Stegosaur;
+import game.dinosaurs.*;
 import game.items.Corpse;
 import game.items.PortableItem;
 
@@ -57,6 +54,7 @@ public class AttackAction extends Action {
     }
 
 
+
     /**
      * setter for corpse of target
      *
@@ -80,12 +78,14 @@ public class AttackAction extends Action {
 
         Weapon weapon = actor.getWeapon();
 
-        if (rand.nextBoolean()) {
-            return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") misses " + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") .";
-        }
+/* todo rmb to uncomment
+		if (rand.nextBoolean()) {
+			return actor + " misses " + target + ".";
+		}
+*/
 
         int damage = weapon.damage();
-        String result = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") " + weapon.verb() + " " + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") for " + damage + " damage.";
+        String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
         target.hurt(damage);
 
@@ -93,8 +93,9 @@ public class AttackAction extends Action {
             actor.heal(20);
         }
 
+
         if (!target.isConscious()) {
-            if (actor instanceof Dinosaur) {
+            if (actor instanceof Dinosaur){
                 corpse = new Corpse(((Dinosaur) actor).getDinoType());
             } else {
                 corpse = new PortableItem("dead " + target, '%');
@@ -110,7 +111,7 @@ public class AttackAction extends Action {
                 drop.execute(target, map);
             map.removeActor(target);
 
-            result += System.lineSeparator() + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") is killed.";
+            result += System.lineSeparator() + target + " is killed.";
         }
 
         return result;
@@ -123,7 +124,7 @@ public class AttackAction extends Action {
 
     @Override
     public Action getNextAction() {
-        if (corpse != null && attacker instanceof Allosaur) {
+        if (corpse != null && (attacker instanceof Allosaur || attacker instanceof BabyAllosaur) ) {
             return new EatAction(corpse, corpseLocation, 1);
         }
         return null;

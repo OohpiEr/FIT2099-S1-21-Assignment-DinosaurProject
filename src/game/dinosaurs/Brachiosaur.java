@@ -80,13 +80,6 @@ public class Brachiosaur extends AdultDino {
         dinoType = DINO_TYPE;
     }
 
-    /**
-     * sets dinosaur behaviours
-     */
-    protected void setBehaviours() {
-        super.setBehaviours();
-        actionFactories.add(new HungryBehaviour());
-    }
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided

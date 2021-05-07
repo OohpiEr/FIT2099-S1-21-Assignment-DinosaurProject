@@ -26,15 +26,15 @@ public class Allosaur extends AdultDino {
     private static final int PREGNANT_TICK = 20;
 
     private static final Class<?>[] FOOD = {Corpse.class, CarnivoreMealKit.class};
-    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>(){{
+    private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Ground.class, new Class[]{Corpse.class});
     }};
 
     /**
      * Constructor.
      *
-     * @param name        the name of the Actor
-     * @param isFemale    whether the dinosaur is female
+     * @param name     the name of the Actor
+     * @param isFemale whether the dinosaur is female
      */
     public Allosaur(String name, boolean isFemale) {
         super(name, 'A', 100, isFemale);
@@ -65,7 +65,7 @@ public class Allosaur extends AdultDino {
     /**
      * Sets the dinosaur instance's variables to their default values as specified in the class
      */
-    private void setDefaultValues(){
+    private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
         pregnantTick = PREGNANT_TICK;
@@ -82,7 +82,6 @@ public class Allosaur extends AdultDino {
     @Override
     protected void setBehaviours() {
         super.setBehaviours();
-        actionFactories.add(new HungryBehaviour());
         actionFactories.add(new AttackBehaviour());
     }
 
@@ -111,8 +110,6 @@ public class Allosaur extends AdultDino {
     }
 
 
-
-
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(20, "bites a chunk off");
@@ -128,7 +125,8 @@ public class Allosaur extends AdultDino {
 
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.containsAnActor() && destination.getActor().getClass() == Stegosaur.class) {
+            if (destination.containsAnActor() &&
+                    (destination.getActor() instanceof Stegosaur || destination.getActor() instanceof BabyStegosaur)) {
                 return true;
             }
         }

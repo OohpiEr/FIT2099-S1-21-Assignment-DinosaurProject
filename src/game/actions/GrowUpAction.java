@@ -15,7 +15,7 @@ public class GrowUpAction extends Action {
             ((BabyDino) actor).growUp(map);
         }
 
-        return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") grew up";
+        return actor + " grew up";
     }
 
     @Override

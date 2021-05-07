@@ -30,7 +30,6 @@ public class Player extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
-		display.println("Eco Points: " + getEcoPoints());
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);

@@ -46,7 +46,7 @@ public class FeedAction extends Action {
         if (actor instanceof Player){
             Player.addEcoPoints(ECO_POINT_REWARD);
         }
-        return actor + " feeds " + quantity + " " + food.toString() + "(s) to " + target.toString() + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ")";
+        return actor.toString() + " feeds " + quantity + " " + food.toString() + "(s) to " + target.toString();
     }
 
     /**
