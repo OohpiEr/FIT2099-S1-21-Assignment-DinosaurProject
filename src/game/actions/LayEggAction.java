@@ -15,7 +15,7 @@ public class LayEggAction extends Action {
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
-     * @return
+     * @return  A description of the action
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -27,7 +27,7 @@ public class LayEggAction extends Action {
      * Returns a descriptive string for the menu
      *
      * @param actor The actor performing the action.
-     * @return
+     * @return  A suitable menu description of the action
      */
     @Override
     public String menuDescription(Actor actor) {

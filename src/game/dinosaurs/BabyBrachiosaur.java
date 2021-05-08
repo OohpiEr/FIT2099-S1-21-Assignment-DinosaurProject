@@ -80,6 +80,7 @@ public class BabyBrachiosaur extends BabyDino {
     }
 
     /**
+     * determines the highest priority behaviour
      *
      * @param map gamemap the actor is on
      * @return actor to perform this turn

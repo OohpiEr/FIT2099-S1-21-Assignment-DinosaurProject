@@ -79,7 +79,7 @@ public class HornyBehaviour implements Behaviour {
      * @param actor                the actor itself
      * @param map                  the map the actor in in
      * @param locationsWithTargets list of locations with possible targets
-     * @return target actor
+     * @return The target actor
      */
     private Actor getNearestTarget(Actor actor, GameMap map, List<Location> locationsWithTargets) {
         Location closestActorLocation = null;

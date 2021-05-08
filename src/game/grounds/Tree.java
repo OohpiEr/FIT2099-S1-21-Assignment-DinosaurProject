@@ -168,7 +168,7 @@ public class Tree extends Ground implements hasFood {
      * @param actor     the Actor acting
      * @param location  the current Location
      * @param direction the direction of the Ground from the Actor
-     * @return
+     * @return  The actions the actor can perform on this
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {

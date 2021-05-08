@@ -76,7 +76,7 @@ public class AttackAction extends Action {
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
-     * @return
+     * @return  A description of the action
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -126,7 +126,7 @@ public class AttackAction extends Action {
      * Returns a descriptive string for the menu
      *
      * @param actor The actor performing the action.
-     * @return
+     * @return  A suitable menu description of the action
      */
     @Override
     public String menuDescription(Actor actor) {
@@ -136,7 +136,7 @@ public class AttackAction extends Action {
     /**
      * returns next action. Allosaur and BabyAllosaur will eat the corpse of target if they die.
      *
-     * @return
+     * @return  The next action that the actor should perform, if appropriate
      */
     @Override
     public Action getNextAction() {

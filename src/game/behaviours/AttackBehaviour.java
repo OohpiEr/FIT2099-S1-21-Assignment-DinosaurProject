@@ -33,7 +33,7 @@ public class AttackBehaviour implements Behaviour {
      *
      * @param attacker the Actor attacking
      * @param map      the GameMap containing the Actor
-     * @return
+     * @return  The action to be taken by the actor
      */
     @Override
     public Action getAction(Actor attacker, GameMap map) {
@@ -78,7 +78,7 @@ public class AttackBehaviour implements Behaviour {
     /**
      * adds attacked actor to unattackableActors Hashmap with the number of turns it will not be attackable
      *
-     * @param actor
+     * @param actor The actor to be made unnattackable
      */
     private void addUnattackableActor(Actor actor) {
         if (actor instanceof Stegosaur || actor instanceof BabyStegosaur)
@@ -109,7 +109,7 @@ public class AttackBehaviour implements Behaviour {
      * checks if the actor at a location is a viable target given an ArrayList of attackable classes.
      *
      * @param targetClasses ArrayList of classes that the attacker can attack
-     * @return return true if actor at destination can be attacked
+     * @return True if actor at destination can be attacked, False otherwise
      */
     private boolean isATarget(ArrayList<Class<?>> targetClasses, Location destination) {
         for (Class<?> clazz : targetClasses) {

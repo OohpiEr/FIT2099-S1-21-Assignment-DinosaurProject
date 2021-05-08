@@ -43,9 +43,9 @@ public abstract class AdultDino extends Dinosaur {
     }
 
     /**
-     * getter for pregantTick
+     * Gets the number of turns the dinosaur will remain pregnant for, pregnantTick
      *
-     * @return pregantTick
+     * @return The number of turns the dinosaur will remain pregnant for, pregnantTick
      */
     public int getPregnantTick() {
         return pregnantTick;
@@ -63,7 +63,7 @@ public abstract class AdultDino extends Dinosaur {
     /**
      * setter for isFemale
      *
-     * @param female whether dinosaur is female
+     * @param female true if dinosaur is female, false otherwise
      */
     public void setFemale(boolean female) {
         isFemale = female;
@@ -72,7 +72,7 @@ public abstract class AdultDino extends Dinosaur {
     /**
      * setter for isPregnant
      *
-     * @param pregnant whether dinosaur is pregnant
+     * @param pregnant True if dinosaur is pregnant, false otherwise
      */
     public void setPregnant(boolean pregnant) {
         isPregnant = pregnant;
@@ -104,6 +104,8 @@ public abstract class AdultDino extends Dinosaur {
 
     /**
      * lays egg on nearest possible ground
+     *
+     * @param map The GameMap the egg is on
      */
     public void layEgg(GameMap map) {
         if (isPregnant() && pregnantTick == 0) {

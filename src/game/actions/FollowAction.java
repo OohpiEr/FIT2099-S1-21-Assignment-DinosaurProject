@@ -59,7 +59,7 @@ public class FollowAction extends MoveActorAction {
     /**
      * Returns next action to be performed after current action
      *
-     * @return null
+     * @return The next action that the actor should perform, if appropriate
      */
     @Override
     public Action getNextAction() {

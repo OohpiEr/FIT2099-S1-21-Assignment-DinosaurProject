@@ -33,7 +33,7 @@ public class Egg extends PortableItem {
     /**
      * Constructor. Sets timeToHatch to the appropriate number of turns based on the dinosaur type
      *
-     * @param type
+     * @param type  The type of dinosaur egg this is
      */
     public Egg(DinosaurEnumType type) {
         super(type.getName() + " egg", 'e');
@@ -41,6 +41,9 @@ public class Egg extends PortableItem {
         setTimeToHatch();
     }
 
+    /**
+     * Sets the egg's number of turns before hatching based on its dinosaur type
+     */
     public void setTimeToHatch() {
         if (type == DinosaurEnumType.STEGOSAUR) {
             this.timeToHatch = STEGOSAUR_TIME_TO_HATCH;

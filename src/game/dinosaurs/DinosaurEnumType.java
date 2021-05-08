@@ -13,7 +13,7 @@ public enum DinosaurEnumType {
     /**
      * Constructor.
      *
-     * @param name
+     * @param name  The dinosaur type's name
      */
     DinosaurEnumType(String name) {
         this.name = name;
