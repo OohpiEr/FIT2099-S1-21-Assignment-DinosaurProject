@@ -27,12 +27,4 @@ public final class Util {
         return randNum;
     }
 
-//    /**
-//     * Get random boolean value based on probability given
-//     * @param probability probability from 0 to 1
-//     * @return boolean True or False
-//     */
-//    public static boolean getBooleanProbability(double probability){
-//        return Math.random() <= probability;
-//    }
 }

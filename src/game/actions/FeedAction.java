@@ -6,7 +6,6 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.Player;
 import game.dinosaurs.Dinosaur;
-import game.dinosaurs.Stegosaur;
 
 /**
  * A class that lets an actor feed another actor a quantity of a food
