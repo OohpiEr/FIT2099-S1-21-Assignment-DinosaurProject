@@ -33,7 +33,7 @@ public class AttackBehaviour implements Behaviour {
      *
      * @param attacker the Actor attacking
      * @param map      the GameMap containing the Actor
-     * @return  The action to be taken by the actor
+     * @return The action to be taken by the actor
      */
     @Override
     public Action getAction(Actor attacker, GameMap map) {

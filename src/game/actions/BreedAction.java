@@ -55,7 +55,7 @@ public class BreedAction extends Action {
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
-     * @return  A description of the action
+     * @return A description of the action
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -76,7 +76,7 @@ public class BreedAction extends Action {
      * Returns a descriptive string.
      *
      * @param actor The actor performing the action.
-     * @return  A suitable menu description of the action
+     * @return A suitable menu description of the action
      */
     @Override
     public String menuDescription(Actor actor) {

@@ -2,8 +2,6 @@ package game;
 
 import edu.monash.fit2099.engine.Location;
 
-import java.util.Random;
-
 public final class Util {
 
     /**
