@@ -21,13 +21,15 @@ public class DieAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        String message = "";
         if (actor instanceof Dinosaur) {
             map.locationOf(actor).addItem(new Corpse(((Dinosaur) actor).getDinoType()));
         } else {
             map.locationOf(actor).addItem(new PortableItem("dead " + actor.toString(), '%'));
         }
+        message = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") died!";
         map.removeActor(actor);
-        return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") died!";
+        return message;
     }
 
     /**

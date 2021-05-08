@@ -18,8 +18,7 @@ import java.util.HashMap;
 public class Allosaur extends AdultDino {
 
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.ALLOSAUR;
-    //TODO: Change back to default 100
-    private static final int STARTING_HITPOINTS = 10;
+    private static final int STARTING_HITPOINTS = 100;
     private static final int MAX_HITPOINTS = 100;
     private static final String NAME = "Allosaur";
     private static final char DISPLAY_CHAR = 'A';

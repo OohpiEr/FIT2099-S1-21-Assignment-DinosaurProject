@@ -49,7 +49,7 @@ public class HungryBehaviour implements Behaviour {
             }
 
             if (there == here) {
-                if (there.getGround() instanceof hasFood && !((hasFood) there.getGround()).isEmpty()) {
+                if (there.getGround() instanceof hasFood && !((hasFood) there.getGround()).isEmpty() && groundToFoodMap.containsKey(there.getGround().getClass())) {
                     hasFood ground = (hasFood) there.getGround();
                     if ((actor.getClass() == Brachiosaur.class || actor.getClass() == BabyBrachiosaur.class) && ground.getClass() == Tree.class) {
                         return new EatAction((ground.getFoodInstance()), ground, ground.getFood().size());
@@ -94,8 +94,8 @@ public class HungryBehaviour implements Behaviour {
         Location closestFoodLocation = null;
         for (int x : map.getXRange()) {
             for (int y : map.getYRange()) {
-                if (groundToFoodMap.containsKey(map.at(x, y).getGround().getClass())) {
-                    if (!(map.at(x, y).getGround() instanceof hasFood) && map.at(x, y).getItems() != null && map.at(x, y).getItems().size() > 0) {
+                if (groundToFoodMap.containsKey(Ground.class)) {
+                    if (map.at(x, y).getItems() != null && map.at(x, y).getItems().size() > 0) {
                         List<Item> items = map.at(x, y).getItems();
                         for (Item item : items) {
                             if (Arrays.asList(foodClasses).contains(item.getClass())) {
@@ -104,6 +104,9 @@ public class HungryBehaviour implements Behaviour {
                         }
                     } else if (map.at(x, y).getGround() instanceof hasFood && !((hasFood) map.at(x, y).getGround()).isEmpty())
                         locationsWithFood.add(map.at(x, y));
+                }
+                if (map.at(x, y).getGround() instanceof hasFood && groundToFoodMap.containsKey(map.at(x, y).getGround().getClass()) && !((hasFood) map.at(x, y).getGround()).isEmpty()) {
+                    locationsWithFood.add(map.at(x, y));
                 }
             }
         }
