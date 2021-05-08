@@ -102,8 +102,7 @@ public class HungryBehaviour implements Behaviour {
                                 locationsWithFood.add(map.at(x, y));
                             }
                         }
-                    } else if (map.at(x, y).getGround() instanceof hasFood && !((hasFood) map.at(x, y).getGround()).isEmpty())
-                        locationsWithFood.add(map.at(x, y));
+                    }
                 }
                 if (map.at(x, y).getGround() instanceof hasFood && groundToFoodMap.containsKey(map.at(x, y).getGround().getClass()) && !((hasFood) map.at(x, y).getGround()).isEmpty()) {
                     locationsWithFood.add(map.at(x, y));

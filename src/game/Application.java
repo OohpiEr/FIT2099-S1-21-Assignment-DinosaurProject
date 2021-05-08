@@ -58,7 +58,7 @@ public class Application {
 		gameMap.at(10, 10).addActor(new Stegosaur("Stegosaur", true));
 		gameMap.at(20, 20).addActor(new Stegosaur("Stegosaur", false));
 
-		gameMap.at(30, 30).addActor(new Brachiosaur("Brachiosaur", false));
+		gameMap.at(21, 21).addActor(new Brachiosaur("Brachiosaur", false));
 		gameMap.at(11, 11).addActor(new Brachiosaur("Brachiosaur", false));
 		gameMap.at(15, 15).addActor(new Brachiosaur("Brachiosaur", true));
 		gameMap.at(18, 18).addActor(new Brachiosaur("Brachiosaur", true));
