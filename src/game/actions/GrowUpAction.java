@@ -16,7 +16,7 @@ public class GrowUpAction extends Action {
      *
      * @param actor The actor growing up.
      * @param map   The map the actor is on.
-     * @return
+     * @return  A description of the action
      */
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -32,7 +32,7 @@ public class GrowUpAction extends Action {
      * Returns a description of this movement suitable to display in the menu.
      *
      * @param actor The actor performing the action.
-     * @return
+     * @return  A suitable menu description of the action
      */
     @Override
     public String menuDescription(Actor actor) {
