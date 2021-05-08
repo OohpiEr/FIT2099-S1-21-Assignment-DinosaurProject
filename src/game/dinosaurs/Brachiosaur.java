@@ -56,7 +56,7 @@ public class Brachiosaur extends AdultDino {
     }
 
     /**
-     * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
+     * Constructor. Randomises gender
      */
     public Brachiosaur() {
         super("Brachiosaur", 'B', 100, false);

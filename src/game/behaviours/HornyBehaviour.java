@@ -59,7 +59,7 @@ public class HornyBehaviour implements Behaviour {
      * @param target target actor
      * @param actor  the actor itself
      * @param map    the map the actor in in
-     * @return true if the target is in exit
+     * @return true if the target is in exit, false otherwise
      */
     private boolean isTargetInExit(Actor target, Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
