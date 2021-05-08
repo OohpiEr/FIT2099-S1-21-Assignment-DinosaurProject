@@ -12,7 +12,7 @@ public class FollowAction extends MoveActorAction {
     private Actor actor;
     private Actor target;
     private GameMap map;
-    Action finalAction;
+    private Action finalAction;
 
     /**
      * Constructor
