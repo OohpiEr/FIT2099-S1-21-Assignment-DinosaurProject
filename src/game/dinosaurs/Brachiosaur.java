@@ -19,7 +19,7 @@ import java.util.Map;
 public class Brachiosaur extends AdultDino {
 
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
-    private static final int STARTING_HITPOINTS = 100;
+    private static final int STARTING_HITPOINTS = 50;
     private static final int MAX_HITPOINTS = 160;
     private static final String NAME = "Brachiosaur";
     private static final char DISPLAY_CHAR = 'B';

@@ -20,12 +20,14 @@ public class GrowUpAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
+        String message = "";
 
         if (actor instanceof BabyDino) {
+            message = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") grew up";
             ((BabyDino) actor).growUp(map);
         }
 
-        return actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") grew up";
+        return message;
     }
 
     /**
