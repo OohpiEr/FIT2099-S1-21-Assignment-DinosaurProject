@@ -7,6 +7,7 @@ import game.items.Corpse;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.items.VegetarianMealKit;
 
 import java.util.HashMap;
 
@@ -93,6 +94,7 @@ public class Allosaur extends AdultDino {
         final int ALLOSAUR_CORPSE_HEAL = 50;
         final int STEGOSAUR_CORPSE_HEAL = 50;
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
+        final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
                 if (((Corpse) food).getType() == DinosaurEnumType.STEGOSAUR) {
@@ -102,6 +104,10 @@ public class Allosaur extends AdultDino {
                 } else if (((Corpse) food).getType() == DinosaurEnumType.BRANCHIOSAUR) {
                     heal(BRACHIOSAUR_CORPSE_HEAL);
                 }
+            }
+        } else if (food.getClass() == VegetarianMealKit.class){
+            for (int i = 0; i < quantity; i++) {
+                heal(CARNIVORE_MEAL_KIT_HEAL);
             }
         }
     }

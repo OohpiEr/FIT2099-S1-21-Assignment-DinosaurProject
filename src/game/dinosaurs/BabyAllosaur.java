@@ -11,6 +11,7 @@ import game.grounds.Tree;
 import game.items.CarnivoreMealKit;
 import game.items.Corpse;
 import game.items.Fruit;
+import game.items.VegetarianMealKit;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,6 +98,7 @@ public class BabyAllosaur extends BabyDino {
         final int ALLOSAUR_CORPSE_HEAL = 50;
         final int STEGOSAUR_CORPSE_HEAL = 50;
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
+        final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
                 if (((Corpse) food).getType() == DinosaurEnumType.STEGOSAUR) {
@@ -106,6 +108,10 @@ public class BabyAllosaur extends BabyDino {
                 } else if (((Corpse) food).getType() == DinosaurEnumType.BRANCHIOSAUR) {
                     heal(BRACHIOSAUR_CORPSE_HEAL);
                 }
+            }
+        } else if (food.getClass() == VegetarianMealKit.class){
+            for (int i = 0; i < quantity; i++) {
+                heal(CARNIVORE_MEAL_KIT_HEAL);
             }
         }
     }
