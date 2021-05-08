@@ -2,7 +2,6 @@ package game.actions;
 
 import edu.monash.fit2099.engine.*;
 import game.behaviours.FollowBehaviour;
-import game.dinosaurs.AdultDino;
 
 /**
  * Moves an actor towards a target and does an action after following
@@ -12,7 +11,7 @@ public class FollowAction extends MoveActorAction {
     private Actor actor;
     private Actor target;
     private GameMap map;
-    Action finalAction;
+    private Action finalAction;
 
     /**
      * Constructor
@@ -66,8 +65,8 @@ public class FollowAction extends MoveActorAction {
     public Action getNextAction() {
         Action action = new FollowBehaviour(target).getAction(actor, map);
 
-        if (action == null && target instanceof AdultDino)
-            action = new BreedAction((AdultDino) target);
+        if (action == null)
+            action = finalAction;
 
         return action;
     }
