@@ -1,16 +1,13 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
-import game.actions.AttackAction;
 import game.behaviours.HornyBehaviour;
 import game.items.CarnivoreMealKit;
 import game.items.Corpse;
-import game.items.Fruit;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**

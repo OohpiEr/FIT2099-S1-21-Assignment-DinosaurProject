@@ -5,20 +5,14 @@ import game.Player;
 import game.actions.AttackAction;
 import game.actions.DieAction;
 import game.actions.FeedAction;
-import game.actions.LayEggAction;
-import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
-import game.behaviours.HungryBehaviour;
+import game.behaviours.AttackBehaviour;
 import game.behaviours.WanderBehaviour;
-import game.grounds.Bush;
 import game.items.Corpse;
-import game.items.Egg;
-import game.items.Fruit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * An abstract class to represent a dinosaur

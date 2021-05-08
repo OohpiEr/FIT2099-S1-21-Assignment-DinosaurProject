@@ -1,7 +1,6 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
-import game.dinosaurs.Allosaur;
 import game.actions.AttackAction;
 import game.dinosaurs.BabyStegosaur;
 import game.dinosaurs.Stegosaur;
@@ -94,7 +93,7 @@ public class AttackBehaviour implements Behaviour {
      * @return false if target is found in unattackableActors
      */
     private boolean isAttackable(Actor target) {
-        Boolean attackable = true;
+        boolean attackable = true;
 
         for (Actor unattackableActor : unattackableActors.keySet()) {
             if (target == unattackableActor) {
