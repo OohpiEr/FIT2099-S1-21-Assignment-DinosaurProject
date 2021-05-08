@@ -7,6 +7,7 @@ import game.items.Corpse;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.items.Egg;
 import game.items.VegetarianMealKit;
 
 import java.util.HashMap;
@@ -17,15 +18,16 @@ import java.util.HashMap;
 public class Allosaur extends AdultDino {
 
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.ALLOSAUR;
-    private static final int STARTING_HITPOINTS = 100;
+    //TODO: Change back to default 100
+    private static final int STARTING_HITPOINTS = 10;
     private static final int MAX_HITPOINTS = 100;
     private static final String NAME = "Allosaur";
     private static final char DISPLAY_CHAR = 'A';
     private static final int PREGNANT_TICK = 20;
-
-    private static final Class<?>[] FOOD = {Corpse.class, CarnivoreMealKit.class};
+    public static final int HUNGRY_THRESHOLD = 90;
+    private static final Class<?>[] FOOD = {Corpse.class, Egg.class, CarnivoreMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
-        put(Ground.class, new Class[]{Corpse.class});
+        put(Ground.class, new Class[]{Corpse.class, Egg.class});
     }};
 
     /**
@@ -69,6 +71,7 @@ public class Allosaur extends AdultDino {
         pregnantTick = PREGNANT_TICK;
         name = NAME;
         displayChar = DISPLAY_CHAR;
+        hungryThreshold = HUNGRY_THRESHOLD;
         food = FOOD;
         fromTheseEatsThese = FROM_THESE_EATS_THESE;
         dinoType = DINO_TYPE;
@@ -95,6 +98,7 @@ public class Allosaur extends AdultDino {
         final int STEGOSAUR_CORPSE_HEAL = 50;
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
         final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
+        final int EGG_HEAL = 10;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
                 if (((Corpse) food).getType() == DinosaurEnumType.STEGOSAUR) {
@@ -108,6 +112,10 @@ public class Allosaur extends AdultDino {
         } else if (food.getClass() == VegetarianMealKit.class){
             for (int i = 0; i < quantity; i++) {
                 heal(CARNIVORE_MEAL_KIT_HEAL);
+            }
+        } else if (food.getClass() == Egg.class){
+            for (int i = 0; i < quantity; i++) {
+                heal(EGG_HEAL);
             }
         }
     }

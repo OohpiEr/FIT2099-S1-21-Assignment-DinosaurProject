@@ -11,8 +11,8 @@ import edu.monash.fit2099.engine.Menu;
  * Class representing the Player.
  */
 public class Player extends Actor {
-
-	private static int ecoPoints = 0;
+	//TODO: Change back to default 0
+	private static int ecoPoints = 99999;
 	private Menu menu = new Menu();
 
 	/**
@@ -29,6 +29,7 @@ public class Player extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
+		display.println("Eco Points: " + getEcoPoints());
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);

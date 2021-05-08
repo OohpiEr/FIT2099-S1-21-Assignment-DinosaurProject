@@ -24,9 +24,11 @@ public abstract class Dinosaur extends Actor {
     protected int maxHitpoints;
     protected String name;
     protected char displayChar;
+    protected int hungryThreshold;
 
     /**
-     * TODO should prolly explain these 2
+     * food stores the classes that the dinosaur eats as food
+     * fromTheseEatsThese is a HashMap with Ground classes that the dinosaur eats from, which values are the foods that they eat from them
      */
     protected Class<?>[] food;
     protected HashMap<Class<?>, Class<?>[]> fromTheseEatsThese;
@@ -194,15 +196,21 @@ public abstract class Dinosaur extends Actor {
 
 
     /**
-     * Select and return an action to perform on the current turn.
+     * Select and return an action to perform on the current turn. Also tells the player when the dinosaur starts to get hungry.
      *
      * @see Actor#playTurn(Actions, Action, GameMap, Display)
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        if (hitPoints == hungryThreshold - 1) {
+            display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting hungry!");
+        }
         Action action = tick(map);
         if (isDead()) {
             return new DieAction();
+        } else if (!isConscious()) {
+            display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is unconscious");
+            return new DoNothingAction();
         } else {
             if (action == null && lastAction != null && lastAction.getNextAction() != null) {
                 action = lastAction.getNextAction();

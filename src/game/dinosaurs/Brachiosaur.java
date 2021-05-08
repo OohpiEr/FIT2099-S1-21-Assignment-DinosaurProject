@@ -19,11 +19,12 @@ import java.util.Map;
 public class Brachiosaur extends AdultDino {
 
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
-    private static final int STARTING_HITPOINTS = 50;
+    private static final int STARTING_HITPOINTS = 100;
     private static final int MAX_HITPOINTS = 160;
     private static final String NAME = "Brachiosaur";
     private static final char DISPLAY_CHAR = 'B';
     private static final int PREGNANT_TICK = 30;
+    public static final int HUNGRY_THRESHOLD = 140;
     private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Tree.class, new Class[]{Fruit.class});
@@ -74,6 +75,7 @@ public class Brachiosaur extends AdultDino {
         pregnantTick = PREGNANT_TICK;
         name = NAME;
         displayChar = DISPLAY_CHAR;
+        hungryThreshold = HUNGRY_THRESHOLD;
         food = FOOD;
         fromTheseEatsThese = FROM_THESE_EATS_THESE;
         dinoType = DINO_TYPE;

@@ -23,7 +23,7 @@ public class BabyBrachiosaur extends BabyDino {
     private static final int BRACHIOSAUR_GROW_UP_TICK = 10;
     private static final String NAME = "Baby Brachiosaur";
     private static final char DISPLAY_CHAR = 'b';
-
+    public static final int HUNGRY_THRESHOLD = 140;
     private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Tree.class, new Class[]{Fruit.class});
@@ -58,6 +58,7 @@ public class BabyBrachiosaur extends BabyDino {
         maxHitpoints = MAX_HITPOINTS;
         name = NAME;
         displayChar = DISPLAY_CHAR;
+        hungryThreshold = HUNGRY_THRESHOLD;
         food = FOOD;
         fromTheseEatsThese = FROM_THESE_EATS_THESE;
         dinoType = DINO_TYPE;

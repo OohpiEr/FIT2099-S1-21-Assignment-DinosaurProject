@@ -29,6 +29,7 @@ public class Stegosaur extends AdultDino {
     private static final int PREGNANT_TICK = 10;
     private static final String NAME = "Stegosaur";
     private static final char DISPLAY_CHAR = 'S';
+    private static final int HUNGRY_THRESHOLD = 90;
     private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Bush.class, new Class[]{Fruit.class});
@@ -67,6 +68,7 @@ public class Stegosaur extends AdultDino {
         pregnantTick = PREGNANT_TICK;
         name = NAME;
         displayChar = DISPLAY_CHAR;
+        hungryThreshold = HUNGRY_THRESHOLD;
         food = FOOD;
         fromTheseEatsThese = FROM_THESE_EATS_THESE;
         dinoType = DINO_TYPE;

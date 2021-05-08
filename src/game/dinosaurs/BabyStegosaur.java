@@ -23,7 +23,7 @@ public class BabyStegosaur extends BabyDino {
     private static final int STEGOSAUR_GROW_UP_TICK = 10;
     private static final String NAME = "Baby Stegosaur";
     private static final char DISPLAY_CHAR = 's';
-
+    public static final int HUNGRY_THRESHOLD = 90;
     private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Bush.class, new Class[]{Fruit.class});
@@ -59,6 +59,7 @@ public class BabyStegosaur extends BabyDino {
         name = NAME;
         displayChar = DISPLAY_CHAR;
         food = FOOD;
+        hungryThreshold = HUNGRY_THRESHOLD;
         fromTheseEatsThese = FROM_THESE_EATS_THESE;
         dinoType = DINO_TYPE;
     }
