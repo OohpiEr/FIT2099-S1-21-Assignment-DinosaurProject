@@ -17,6 +17,65 @@ Design Rationale:
 - Dinosaur, BabyDinosaur, Stegosaur, Brachiosaur, Allosaur, Behaviors, AttackBehavior, HungryBehavior and HornyBehavior: Er Tian Ru
   - Due: 22/4
   - Review: Jeremy Yoon (Due 23/4)
+  
+Implementation:
+-   actions
+    -   AttackAction
+        -   Code adjustments and display: Jeremy Yoon
+    -   BreedAction
+        -   Base code: Er Tian Ru
+        -   Clean up/Restructuring: Jeremy Yoon
+    -   BuyAction: Jeremy Yoon
+    -   DieAction: Jeremy Yoon
+    -   EatAction: Jeremy Yoon
+    -   FeedAction: Jeremy Yoon
+    -   FollowAction: Er Tian Ru
+    -   GrowUpAction: Er Tian Ru
+    -   LayEggAction: Er Tian Ru
+    -   PickFruitAction: Jeremy Yoon
+    
+-   behavior
+    -   AttackBehavior
+        -   Er Tian Ru
+    -   FollowBehavior
+        -   Er Tian Ru
+    -   HornyBehavior
+        -   Er Tian Ru
+    -   HungryBehavior
+        -   Jeremy Yoon
+    -   WanderBehavior
+        -   Er Tian Ru
+        
+-   dinosaur
+    -   AdultDino
+        -   Er Tian Ru
+    -   Allosaur
+        -   Constructors, setDefaultValues, eat: Jeremy Yoon
+        -   Pregnancy, Behaviours, isStegosaurInExits: Er Tian Ru
+    -   BabyAllosaur
+        -   Constructors, setDefaultValues, eat: Jeremy Yoon
+        -   Behaviours, isStegosaurInExits, growUp: Er Tian Ru
+    -   BabyBrachiosaur
+        -   Constructors, setDefaultValues, eat: Jeremy Yoon
+        -   Behaviours, growUp: Er Tian Ru
+    -   BabyDino: Er Tian Ru
+    -   BabyStegosaur
+        -   Constructors, setDefaultValues, eat: Jeremy Yoon
+        -   Behaviours, growUp: Er Tian Ru
+    -   Brachiosaur
+        -   Constructors, setDefaultValues, eat: Jeremy Yoon
+        -   Pregnancy, Behaviours: Er Tian Ru
+    -   Dinosaur
+        -   tick, isDead, getAllowableActions, attributes, food stuff: Jeremy Yoon
+        -   Behaviours: Er Tian Ru
+    -   DinosaurEnumType: Jeremy Yoon
+    -   Stegosaur
+        -   Constructors, setDefaultValues, eat: Jeremy Yoon
+        -   Pregnancy, Behaviours: Er Tian Ru    
+    
+-   grounds: Jeremy Yoon
+
+-   items:  Jeremy Yoon
 
 I accept this WBA (Jeremy Yoon)
 I accept this WBA (Er Tian Ru)
