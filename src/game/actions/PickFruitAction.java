@@ -37,12 +37,17 @@ public class PickFruitAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (object.getFoodInstance().getClass() == Fruit.class && !object.isEmpty()) {
-            object.removeFood(1);
-            actor.addItemToInventory(new Fruit());
-            if (actor instanceof Player) {
-                Player.addEcoPoints(ECO_POINT_REWARD);
+            if (Math.random()<0.4){
+                object.removeFood(1);
+                actor.addItemToInventory(new Fruit());
+                if (actor instanceof Player) {
+                    Player.addEcoPoints(ECO_POINT_REWARD);
+                }
+                return actor + " picks a fruit from " + object.toString();
+            } else {
+                return actor + " searches the " + object.toString() + " for fruit, but couldn't find any ripe ones.";
             }
-            return actor.toString() + " picks a fruit from " + object.toString();
+
         }
         return null;
     }
