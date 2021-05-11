@@ -28,7 +28,7 @@ public class PickFruitAction extends Action {
     }
 
     /**
-     * Causes the provided actor to pick a fruit from the provided object if possible
+     * Causes the provided actor to pick a fruit from the provided object if possible. Has a 60% chance to fail
      *
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
