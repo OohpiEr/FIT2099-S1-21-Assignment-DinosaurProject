@@ -4,15 +4,9 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
-/**
- * A class that represents an adult Pterodactyl
- */
-public class Pterodactyl extends AdultDino{
-
-
-
+public class BabyPterodactyl extends BabyDino{
     @Override
-    public void resetPregnantTick() {
+    public void growUp(GameMap map) {
 
     }
 
