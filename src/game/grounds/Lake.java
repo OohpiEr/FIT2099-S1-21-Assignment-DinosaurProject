@@ -19,6 +19,7 @@ public class Lake extends Ground {
     private static final int DEFAULT_RAIN_TIMER = 10;
     private static int rainTimer;
     private static double rainfall = 0;
+    private final String NAME = "lake";
 
     /**
      * Constructor.
@@ -59,9 +60,23 @@ public class Lake extends Ground {
                 }
             }
         }
-        sips += 20*rainfall;
-        if (sips>maxSips){
-            sips = maxSips;
+        adjustSips((int)Math.round(20*rainfall));
+    }
+
+    /**
+     * Adjusts the Lake's sips by the provided amount. The Lake's sips cannot exceed its maximum capacity of sips
+     *
+     * @param sips  The number of sips to adjust the Lake's sips by
+     */
+    public void adjustSips(int sips){
+        this.sips += sips;
+        if (this.sips>maxSips){
+            this.sips = maxSips;
         }
+    }
+
+    @Override
+    public String toString() {
+        return NAME;
     }
 }
