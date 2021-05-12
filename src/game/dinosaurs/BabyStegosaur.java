@@ -20,6 +20,8 @@ public class BabyStegosaur extends BabyDino {
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private static final int STARTING_HITPOINTS = 10;
     private static final int MAX_HITPOINTS = 100;
+    private static final int STARTING_WATER_LEVEL = 60;
+    private static final int MAX_WATER_LEVEL = 100;
     private static final int STEGOSAUR_GROW_UP_TICK = 10;
     private static final String NAME = "Baby Stegosaur";
     private static final char DISPLAY_CHAR = 's';
@@ -56,6 +58,8 @@ public class BabyStegosaur extends BabyDino {
     private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
+        maxWaterLevel = MAX_WATER_LEVEL;
+        startingWaterLevel = STARTING_WATER_LEVEL;
         name = NAME;
         displayChar = DISPLAY_CHAR;
         food = FOOD;
@@ -84,6 +88,11 @@ public class BabyStegosaur extends BabyDino {
                 heal(VEGETARIAN_MEAL_KIT_HEAL);
             }
         }
+    }
+
+    @Override
+    public void drink(int sips) {
+        adjustWaterLevel(30);
     }
 
 

@@ -26,6 +26,8 @@ public class Stegosaur extends AdultDino {
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.STEGOSAUR;
     private static final int STARTING_HITPOINTS = 50;
     private static final int MAX_HITPOINTS = 100;
+    private static final int STARTING_WATER_LEVEL = 60;
+    private static final int MAX_WATER_LEVEL = 100;
     private static final int PREGNANT_TICK = 10;
     private static final String NAME = "Stegosaur";
     private static final char DISPLAY_CHAR = 'S';
@@ -65,6 +67,8 @@ public class Stegosaur extends AdultDino {
     private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
+        maxWaterLevel = MAX_WATER_LEVEL;
+        startingWaterLevel = STARTING_WATER_LEVEL;
         pregnantTick = PREGNANT_TICK;
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -93,6 +97,11 @@ public class Stegosaur extends AdultDino {
                 heal(VEGETARIAN_MEAL_KIT_HEAL);
             }
         }
+    }
+
+    @Override
+    public void drink(int sips) {
+        adjustWaterLevel(30);
     }
 
     /**

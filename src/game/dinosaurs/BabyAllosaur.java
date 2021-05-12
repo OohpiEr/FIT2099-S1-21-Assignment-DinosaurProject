@@ -21,6 +21,8 @@ public class BabyAllosaur extends BabyDino {
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
     private static final int STARTING_HITPOINTS = 20;
     private static final int MAX_HITPOINTS = 100;
+    private static final int STARTING_WATER_LEVEL = 60;
+    private static final int MAX_WATER_LEVEL = 100;
     private static final int ALLOSAUR_GROW_UP_TICK = 20;
     public static final int HUNGRY_THRESHOLD = 90;
     private static final String NAME = "Baby Allosaur";
@@ -58,6 +60,8 @@ public class BabyAllosaur extends BabyDino {
     private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
+        maxWaterLevel = MAX_WATER_LEVEL;
+        startingWaterLevel = STARTING_WATER_LEVEL;
         name = NAME;
         displayChar = DISPLAY_CHAR;
         hungryThreshold = HUNGRY_THRESHOLD;
@@ -118,6 +122,11 @@ public class BabyAllosaur extends BabyDino {
                 heal(EGG_HEAL);
             }
         }
+    }
+
+    @Override
+    public void drink(int sips) {
+        adjustWaterLevel(30);
     }
 
     /**

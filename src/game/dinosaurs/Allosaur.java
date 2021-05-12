@@ -20,6 +20,8 @@ public class Allosaur extends AdultDino {
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.ALLOSAUR;
     private static final int STARTING_HITPOINTS = 100;
     private static final int MAX_HITPOINTS = 100;
+    private static final int STARTING_WATER_LEVEL = 60;
+    private static final int MAX_WATER_LEVEL = 100;
     private static final String NAME = "Allosaur";
     private static final char DISPLAY_CHAR = 'A';
     private static final int PREGNANT_TICK = 20;
@@ -28,6 +30,13 @@ public class Allosaur extends AdultDino {
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Ground.class, new Class[]{Corpse.class, Egg.class});
     }};
+
+    /**
+     * food stores the classes that the dinosaur eats as food
+     * fromTheseEatsThese is a HashMap with Ground classes that the dinosaur eats from, which values are the foods that they eat from them
+     */
+    protected Class<?>[] food;
+    protected HashMap<Class<?>, Class<?>[]> fromTheseEatsThese;
 
     /**
      * Constructor.
@@ -67,6 +76,8 @@ public class Allosaur extends AdultDino {
     private void setDefaultValues() {
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
+        maxWaterLevel = MAX_WATER_LEVEL;
+        startingWaterLevel = STARTING_WATER_LEVEL;
         pregnantTick = PREGNANT_TICK;
         name = NAME;
         displayChar = DISPLAY_CHAR;
@@ -117,6 +128,11 @@ public class Allosaur extends AdultDino {
                 heal(EGG_HEAL);
             }
         }
+    }
+
+    @Override
+    public void drink(int sips) {
+        adjustWaterLevel(30);
     }
 
     /**

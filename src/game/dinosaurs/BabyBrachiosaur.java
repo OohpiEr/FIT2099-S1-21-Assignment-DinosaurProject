@@ -20,6 +20,8 @@ public class BabyBrachiosaur extends BabyDino {
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
     private static final int STARTING_HITPOINTS = 10;
     private static final int MAX_HITPOINTS = 160;
+    private static final int STARTING_WATER_LEVEL = 60;
+    private static final int MAX_WATER_LEVEL = 200;
     private static final int BRACHIOSAUR_GROW_UP_TICK = 10;
     private static final String NAME = "Baby Brachiosaur";
     private static final char DISPLAY_CHAR = 'b';
@@ -56,6 +58,8 @@ public class BabyBrachiosaur extends BabyDino {
     private void setDefaultValues(){
         hitPoints = STARTING_HITPOINTS;
         maxHitpoints = MAX_HITPOINTS;
+        maxWaterLevel = MAX_WATER_LEVEL;
+        startingWaterLevel = STARTING_WATER_LEVEL;
         name = NAME;
         displayChar = DISPLAY_CHAR;
         hungryThreshold = HUNGRY_THRESHOLD;
@@ -83,6 +87,11 @@ public class BabyBrachiosaur extends BabyDino {
                 heal(VEGETARIAN_MEAL_KIT_HEAL);
             }
         }
+    }
+
+    @Override
+    public void drink(int sips) {
+        adjustWaterLevel(80);
     }
 
     /**

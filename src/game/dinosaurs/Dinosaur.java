@@ -25,6 +25,9 @@ public abstract class Dinosaur extends Actor {
     protected String name;
     protected char displayChar;
     protected int hungryThreshold;
+    protected int waterLevel;
+    protected int startingWaterLevel;
+    protected int maxWaterLevel;
 
     /**
      * food stores the classes that the dinosaur eats as food
@@ -44,6 +47,7 @@ public abstract class Dinosaur extends Actor {
     public Dinosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         setBehaviours();
+        waterLevel = startingWaterLevel;
     }
 
     /**
@@ -85,6 +89,24 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
+     * getter for water level
+     *
+     * @return  the dinosaur's water level
+     */
+    public int getWaterLevel() {
+        return waterLevel;
+    }
+
+    /**
+     * adjusts the dinosaur's water level
+     *
+     * @param waterLevel    the amount to adjust the dinosaur's water level by. Can be negative
+     */
+    public void adjustWaterLevel(int waterLevel) {
+        this.waterLevel += waterLevel;
+    }
+
+    /**
      * getter for the display character of the dinosaur
      *
      * @return a char of the display character of the dinosaur
@@ -95,18 +117,18 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     * TODO getter for the food?? what is this
+     * Gets an array of foods the dinosaur eats
      *
-     * @return
+     * @return  An array of foods the dinosaur eats
      */
     public Class<?>[] getFood() {
         return food;
     }
 
     /**
-     * TODO ?????? eat
+     * Gets a HaspMap of Grounds the dinosaur eats from as keys, each with an array of foods that it eats from those grounds as values
      *
-     * @return
+     * @return  A HaspMap of Grounds the dinosaur eats from as keys, each with an array of foods that it eats from those grounds as values
      */
     public HashMap<Class<?>, Class<?>[]> getFromTheseEatsThese() {
         return fromTheseEatsThese;
@@ -133,6 +155,21 @@ public abstract class Dinosaur extends Actor {
      */
     public abstract void eat(Item food, int quantity);
 
+    /**
+     * Used to let the dinosaur drink a number of sips of water. Adjusts waterLevel accordingly
+     *
+     * @param sips  The number of sips taken
+     */
+    public abstract void drink(int sips);
+
+    /**
+     * Returns a collection of the Actions that the otherActor can do to the current Actor.
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return  A collection of the Actions that the otherActor can do to the current Actor.
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = super.getAllowableActions(otherActor, direction, map);
