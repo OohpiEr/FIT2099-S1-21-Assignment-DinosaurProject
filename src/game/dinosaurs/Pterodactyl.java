@@ -1,12 +1,11 @@
 package game.dinosaurs;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.*;
+import game.grounds.Lake;
 import game.items.CarnivoreMealKit;
 import game.items.Corpse;
 import game.items.Egg;
+import game.items.Fish;
 
 import java.util.HashMap;
 
@@ -25,7 +24,7 @@ public class Pterodactyl extends AdultDino{
     private static final char DISPLAY_CHAR = 'P';
     private static final int MAX_PREGNANT_TICK = 10;
     public static final int HUNGRY_THRESHOLD = 50;
-    private static final Class<?>[] FOOD = {Corpse.class, CarnivoreMealKit.class};
+    private static final Class<?>[] FOOD = {Corpse.class, CarnivoreMealKit.class, Fish.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Ground.class, new Class[]{Corpse.class});
     }};
@@ -56,6 +55,7 @@ public class Pterodactyl extends AdultDino{
     public void eat(Item food, int quantity) {
         final int CORPSE_HEAL = 10;
         final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
+        final int FISH_HEAL = 5;
         if (food.getClass() == Corpse.class){
             for (int i=0;i<quantity;i++){
                 ((Corpse) food).eat(CORPSE_HEAL);
@@ -63,6 +63,10 @@ public class Pterodactyl extends AdultDino{
         } else if (food.getClass() == CarnivoreMealKit.class) {
             for (int i = 0; i < quantity; i++) {
                 heal(CARNIVORE_MEAL_KIT_HEAL);
+            }
+        } else if (food.getClass() == Fish.class){
+            for (int i = 0; i < quantity; i++) {
+                heal(FISH_HEAL);
             }
         }
     }
@@ -75,5 +79,13 @@ public class Pterodactyl extends AdultDino{
     @Override
     protected Action determineBehaviour(GameMap map) {
         return null;
+    }
+
+    @Override
+    public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        if (map.locationOf(this).getGround() instanceof Lake && hitPoints<maxHitpoints){
+            eat(new Fish(),((Lake) map.locationOf(this).getGround()).eatFish((int) (Math.round(Math.random()*3))));
+        }
+        return super.playTurn(actions, lastAction, map, display);
     }
 }

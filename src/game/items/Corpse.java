@@ -50,8 +50,9 @@ public class Corpse extends PortableItem {
             foodPoints -= amount;
             return amount;
         } else {
+            int points = foodPoints;
             foodPoints = 0;
-            return foodPoints;
+            return points;
         }
     }
 

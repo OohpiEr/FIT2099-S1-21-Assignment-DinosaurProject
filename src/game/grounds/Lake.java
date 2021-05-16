@@ -89,14 +89,17 @@ public class Lake extends Ground {
     /**
      * Eats a fish from the lake if there are fish in the lake.
      *
-     * @return  True if the process is successful, False otherwise
+     * @param quantity The number of fishes to be eaten from the Lake
+     * @return  The number of fishes actually eaten
      */
-    public boolean eatFish(){
-        if (numFish>0){
-            numFish--;
-            return true;
+    public int eatFish(int quantity){
+        if (numFish>=quantity){
+            numFish-=quantity;
+            return quantity;
         } else {
-            return false;
+            int fish = numFish;
+            numFish = 0;
+            return fish;
         }
 
     }
