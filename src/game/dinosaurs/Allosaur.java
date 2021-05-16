@@ -22,6 +22,7 @@ public class Allosaur extends AdultDino {
     private static final int MAX_HITPOINTS = 100;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 100;
+    private static final int THIRSTY_THRESHOLD = 50;
     private static final String NAME = "Allosaur";
     private static final char DISPLAY_CHAR = 'A';
     private static final int MAX_PREGNANT_TICK = 20;
@@ -38,7 +39,7 @@ public class Allosaur extends AdultDino {
      * @param isFemale whether the dinosaur is female
      */
     public Allosaur(String name, boolean isFemale) {
-        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE ,isFemale);
+        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE ,isFemale, MAX_PREGNANT_TICK);
         setBehaviours();
     }
 
@@ -46,7 +47,7 @@ public class Allosaur extends AdultDino {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Allosaur() {
-        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , false);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , false, MAX_PREGNANT_TICK);
         this.setFemale(Math.random() < 0.5);
     }
 
@@ -56,7 +57,7 @@ public class Allosaur extends AdultDino {
      * @param hitPoints the Allosaur's starting hitpoints
      */
     public Allosaur(int hitPoints) {
-        super(NAME, DISPLAY_CHAR, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , false);
+        super(NAME, DISPLAY_CHAR, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , false, MAX_PREGNANT_TICK);
         this.setFemale(Math.random() < 0.5);
     }
 
@@ -90,7 +91,7 @@ public class Allosaur extends AdultDino {
                     case BRANCHIOSAUR: heal(((Corpse) food).eat(BRACHIOSAUR_CORPSE_HEAL));
                 }
             }
-        } else if (food.getClass() == VegetarianMealKit.class){
+        } else if (food.getClass() == CarnivoreMealKit.class){
             for (int i = 0; i < quantity; i++) {
                 heal(CARNIVORE_MEAL_KIT_HEAL);
             }

@@ -23,6 +23,7 @@ public class Brachiosaur extends AdultDino {
     private static final int MAX_HITPOINTS = 160;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 200;
+    private static final int THIRSTY_THRESHOLD = 50;
     private static final String NAME = "Brachiosaur";
     private static final char DISPLAY_CHAR = 'B';
     private static final int MAX_PREGNANT_TICK = 30;
@@ -41,7 +42,7 @@ public class Brachiosaur extends AdultDino {
      * @param isFemale    whether the dinosaur is female
      */
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , isFemale);
+        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , isFemale, MAX_PREGNANT_TICK);
         setBehaviours();
     }
 
@@ -52,7 +53,7 @@ public class Brachiosaur extends AdultDino {
      * @param isFemale whether the dinosaur is female
      */
     public Brachiosaur(String name, boolean isFemale) {
-        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , isFemale);
+        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , isFemale, MAX_PREGNANT_TICK);
         setBehaviours();
     }
 
@@ -60,7 +61,7 @@ public class Brachiosaur extends AdultDino {
      * Constructor. Randomises gender
      */
     public Brachiosaur() {
-        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS, DINO_TYPE, MAX_HITPOINTS, HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD, FROM_THESE_EATS_THESE, false);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS, DINO_TYPE, MAX_HITPOINTS, HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD, FROM_THESE_EATS_THESE, false, MAX_PREGNANT_TICK);
         this.setFemale(Math.random() < 0.5);
         setBehaviours();
     }

@@ -54,15 +54,18 @@ public abstract class AdultDino extends Dinosaur {
      * @param hungryThreshold       the Actor's threshold of hunger
      * @param startingWaterLevel    the Actor's starting water level
      * @param maxWaterLevel         the Actor's maximum water level
+     * @param thirstyThreshold      the Actor's threshold of thirst
      * @param food                  an array of classes the Actor eats as food
      * @param fromTheseEatsThese    a HashMap with keys of Grounds that the Actor eats from, and values of the foods that it eats from said Grounds
      * @param isFemale              whether the Actor is female
+     * @param maxPregnantTick       the number of turns it takes the Actor to lay an egg after getting pregnant
      */
-    public AdultDino(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese, boolean isFemale) {
-        super(name, displayChar, startingHitpoints, dinoType, maxHitpoints, hungryThreshold, startingWaterLevel, maxWaterLevel, food, fromTheseEatsThese);
+    public AdultDino(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel,int thirstyThreshold ,Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese, boolean isFemale, int maxPregnantTick) {
+        super(name, displayChar, startingHitpoints, dinoType, maxHitpoints, hungryThreshold, startingWaterLevel, maxWaterLevel,thirstyThreshold, food, fromTheseEatsThese);
         this.isFemale = isFemale;
         isPregnant = false;
         pregnantTick = 0;
+        this.maxPregnantTick = maxPregnantTick;
         setFemale(isFemale);
     }
 

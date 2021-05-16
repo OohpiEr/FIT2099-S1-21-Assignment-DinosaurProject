@@ -22,6 +22,7 @@ public class BabyBrachiosaur extends BabyDino {
     private static final int MAX_HITPOINTS = 160;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 200;
+    private static final int THIRSTY_THRESHOLD = 50;
     private static final int BRACHIOSAUR_GROW_UP_TICK = 10;
     private static final String NAME = "Baby Brachiosaur";
     private static final char DISPLAY_CHAR = 'b';
@@ -39,7 +40,7 @@ public class BabyBrachiosaur extends BabyDino {
      * @param hitPoints   the Actor's starting hit points
      */
     public BabyBrachiosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , BRACHIOSAUR_GROW_UP_TICK);
+        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD ,FOOD,FROM_THESE_EATS_THESE , BRACHIOSAUR_GROW_UP_TICK);
     }
 
 
@@ -47,7 +48,7 @@ public class BabyBrachiosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyBrachiosaur() {
-        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , BRACHIOSAUR_GROW_UP_TICK);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD ,FOOD,FROM_THESE_EATS_THESE , BRACHIOSAUR_GROW_UP_TICK);
     }
 
     /**

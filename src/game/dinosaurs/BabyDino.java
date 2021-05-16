@@ -31,12 +31,13 @@ public abstract class BabyDino extends Dinosaur {
      * @param hungryThreshold       the Actor's threshold of hunger
      * @param startingWaterLevel    the Actor's starting water level
      * @param maxWaterLevel         the Actor's maximum water level
+     * @param thirstyThreshold      the Actor's threshold of thirst
      * @param food                  an array of classes the Actor eats as food
      * @param fromTheseEatsThese    a HashMap with keys of Grounds that the Actor eats from, and values of the foods that it eats from said Grounds
      * @param growUpTick            a tracker for the number of turns until the Dinosaur grows up
      */
-    public BabyDino(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese, int growUpTick) {
-        super(name, displayChar, startingHitpoints, dinoType, maxHitpoints, hungryThreshold, startingWaterLevel, maxWaterLevel, food, fromTheseEatsThese);
+    public BabyDino(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, int thirstyThreshold, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese, int growUpTick) {
+        super(name, displayChar, startingHitpoints, dinoType, maxHitpoints, hungryThreshold, startingWaterLevel,thirstyThreshold ,maxWaterLevel, food, fromTheseEatsThese);
         this.growUpTick = growUpTick;
     }
 

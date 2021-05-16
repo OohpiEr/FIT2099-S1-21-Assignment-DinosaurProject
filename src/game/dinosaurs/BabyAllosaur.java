@@ -23,6 +23,7 @@ public class BabyAllosaur extends BabyDino {
     private static final int MAX_HITPOINTS = 100;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 100;
+    private static final int THIRSTY_THRESHOLD = 50;
     private static final int ALLOSAUR_GROW_UP_TICK = 20;
     public static final int HUNGRY_THRESHOLD = 90;
     private static final String NAME = "Baby Allosaur";
@@ -41,7 +42,7 @@ public class BabyAllosaur extends BabyDino {
      * @param hitPoints   the Actor's starting hit points
      */
     public BabyAllosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , ALLOSAUR_GROW_UP_TICK);
+        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD ,FOOD,FROM_THESE_EATS_THESE , ALLOSAUR_GROW_UP_TICK);
     }
 
 
@@ -49,7 +50,7 @@ public class BabyAllosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 20 and randomises gender
      */
     public BabyAllosaur() {
-        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , ALLOSAUR_GROW_UP_TICK);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD ,FOOD,FROM_THESE_EATS_THESE , ALLOSAUR_GROW_UP_TICK);
     }
 
     /**
@@ -93,7 +94,7 @@ public class BabyAllosaur extends BabyDino {
                     case BRANCHIOSAUR: heal(((Corpse) food).eat(BRACHIOSAUR_CORPSE_HEAL));
                 }
             }
-        } else if (food.getClass() == VegetarianMealKit.class){
+        } else if (food.getClass() == CarnivoreMealKit.class){
             for (int i = 0; i < quantity; i++) {
                 heal(CARNIVORE_MEAL_KIT_HEAL);
             }

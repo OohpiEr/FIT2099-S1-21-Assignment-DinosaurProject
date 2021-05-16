@@ -28,6 +28,7 @@ public class Stegosaur extends AdultDino {
     private static final int MAX_HITPOINTS = 100;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 100;
+    private static final int THIRSTY_THRESHOLD = 50;
     private static final int MAX_PREGNANT_TICK = 10;
     private static final String NAME = "Stegosaur";
     private static final char DISPLAY_CHAR = 'S';
@@ -46,7 +47,7 @@ public class Stegosaur extends AdultDino {
      * @param isFemale whether the dinosaur is female
      */
     public Stegosaur(String name, boolean isFemale) {
-        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , isFemale);
+        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , isFemale, MAX_PREGNANT_TICK);
         setBehaviours();
     }
 
@@ -54,17 +55,11 @@ public class Stegosaur extends AdultDino {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Stegosaur() {
-        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , false);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , false, MAX_PREGNANT_TICK);
         this.setFemale(Math.random() < 0.5);
         setBehaviours();
     }
 
-    /**
-     * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
-     *
-     * @param food     The Item eaten
-     * @param quantity The quantity of the food eaten
-     */
     @Override
     public void eat(Item food, int quantity) {
         final int FRUIT_HEAL = 10;

@@ -22,6 +22,7 @@ public class BabyStegosaur extends BabyDino {
     private static final int MAX_HITPOINTS = 100;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 100;
+    private static final int THIRSTY_THRESHOLD = 50;
     private static final int STEGOSAUR_GROW_UP_TICK = 10;
     private static final String NAME = "Baby Stegosaur";
     private static final char DISPLAY_CHAR = 's';
@@ -40,14 +41,14 @@ public class BabyStegosaur extends BabyDino {
      * @param hitPoints   the Actor's starting hit points
      */
     public BabyStegosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , STEGOSAUR_GROW_UP_TICK);
+        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , STEGOSAUR_GROW_UP_TICK);
     }
 
     /**
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyStegosaur() {
-        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , STEGOSAUR_GROW_UP_TICK);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , STEGOSAUR_GROW_UP_TICK);
     }
 
 

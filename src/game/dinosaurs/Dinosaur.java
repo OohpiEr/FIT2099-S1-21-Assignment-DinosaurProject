@@ -28,6 +28,7 @@ public abstract class Dinosaur extends Actor {
     protected int waterLevel;
     protected int startingWaterLevel;
     protected int maxWaterLevel;
+    protected int thirstyThreshold;
 
     /**
      * food stores the classes that the dinosaur eats as food
@@ -47,16 +48,18 @@ public abstract class Dinosaur extends Actor {
      * @param hungryThreshold       the Actor's threshold of hunger
      * @param startingWaterLevel    the Actor's starting water level
      * @param maxWaterLevel         the Actor's maximum water level
+     * @param thirstyThreshold      the Actor's threshold of thirst
      * @param food                  an array of classes the Actor eats as food
      * @param fromTheseEatsThese    a HashMap with keys of Grounds that the Actor eats from, and values of the foods that it eats from said Grounds
      */
-    public Dinosaur(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese) {
+    public Dinosaur(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, int thirstyThreshold, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese) {
         super(name, displayChar, startingHitpoints);
         this.dinoType = dinoType;
         this.maxHitpoints = maxHitpoints;
         this.hungryThreshold = hungryThreshold;
         this.waterLevel = startingWaterLevel;
         this.maxWaterLevel = maxWaterLevel;
+        this.thirstyThreshold = thirstyThreshold;
         this.food = food;
         this.fromTheseEatsThese = fromTheseEatsThese;
         setBehaviours();
@@ -146,6 +149,11 @@ public abstract class Dinosaur extends Actor {
         return fromTheseEatsThese;
     }
 
+    @Override
+    public boolean isConscious() {
+        return (super.isConscious() && waterLevel>0);
+    }
+
     /**
      * Checks if the Dinosaur is dead
      *
@@ -153,7 +161,7 @@ public abstract class Dinosaur extends Actor {
      * @see Corpse
      */
     public boolean isDead() {
-        if (hitPoints <= -20) {
+        if (hitPoints <= -20 || waterLevel <= -15) {
             return true;
         }
         return false;
@@ -253,6 +261,9 @@ public abstract class Dinosaur extends Actor {
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         if (hitPoints == hungryThreshold - 1) {
             display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting hungry!");
+        }
+        if (waterLevel == thirstyThreshold-1) {
+            display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting thirsty!");
         }
         Action action = tick(map);
         if (isDead()) {
