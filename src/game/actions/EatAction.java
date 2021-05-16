@@ -3,6 +3,7 @@ package game.actions;
 import edu.monash.fit2099.engine.*;
 import edu.monash.fit2099.interfaces.hasFood;
 import game.dinosaurs.Dinosaur;
+import game.items.Corpse;
 
 /**
  * A class that lets an actor eat a quantity of food from somewhere/something
@@ -55,7 +56,9 @@ public class EatAction extends Action {
             if (object == null) {
                 ((Dinosaur) actor).eat(food, quantity);
                 for (int i = 0; i < quantity; i++) {
-                    location.removeItem(food);
+                    if (food.getClass() != Corpse.class){
+                        location.removeItem(food);
+                    }
                 }
 
                 result = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") eats " + quantity + " " + food.toString() + "(s) from the ground";
