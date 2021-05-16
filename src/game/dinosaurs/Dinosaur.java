@@ -36,18 +36,30 @@ public abstract class Dinosaur extends Actor {
     protected Class<?>[] food;
     protected HashMap<Class<?>, Class<?>[]> fromTheseEatsThese;
 
-
     /**
-     * Constructor.
+     * Constructor for a Dinosaur with all its starting values
      *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     * @param hitPoints   the Actor's starting hit points
+     * @param name                  the name of the Actor
+     * @param displayChar           the character that will represent the Actor in the display
+     * @param startingHitpoints     the Actor's starting hit points
+     * @param dinoType              the Actor's dinosaur type
+     * @param maxHitpoints          the Actor's maximum hit points
+     * @param hungryThreshold       the Actor's threshold of hunger
+     * @param startingWaterLevel    the Actor's starting water level
+     * @param maxWaterLevel         the Actor's maximum water level
+     * @param food                  an array of classes the Actor eats as food
+     * @param fromTheseEatsThese    a HashMap with keys of Grounds that the Actor eats from, and values of the foods that it eats from said Grounds
      */
-    public Dinosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints);
+    public Dinosaur(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese) {
+        super(name, displayChar, startingHitpoints);
+        this.dinoType = dinoType;
+        this.maxHitpoints = maxHitpoints;
+        this.hungryThreshold = hungryThreshold;
+        this.waterLevel = startingWaterLevel;
+        this.maxWaterLevel = maxWaterLevel;
+        this.food = food;
+        this.fromTheseEatsThese = fromTheseEatsThese;
         setBehaviours();
-        waterLevel = startingWaterLevel;
     }
 
     /**

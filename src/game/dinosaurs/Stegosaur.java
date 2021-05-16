@@ -28,7 +28,7 @@ public class Stegosaur extends AdultDino {
     private static final int MAX_HITPOINTS = 100;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 100;
-    private static final int PREGNANT_TICK = 10;
+    private static final int MAX_PREGNANT_TICK = 10;
     private static final String NAME = "Stegosaur";
     private static final char DISPLAY_CHAR = 'S';
     private static final int HUNGRY_THRESHOLD = 90;
@@ -46,7 +46,7 @@ public class Stegosaur extends AdultDino {
      * @param isFemale whether the dinosaur is female
      */
     public Stegosaur(String name, boolean isFemale) {
-        super(name, 'S', 50, isFemale);
+        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , isFemale);
         setDefaultValues();
         setBehaviours();
     }
@@ -55,7 +55,7 @@ public class Stegosaur extends AdultDino {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Stegosaur() {
-        super("Stegosaur", 'S', 50, false);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , false);
         this.setFemale(Math.random() < 0.5);
         setDefaultValues();
         setBehaviours();
@@ -69,7 +69,8 @@ public class Stegosaur extends AdultDino {
         maxHitpoints = MAX_HITPOINTS;
         maxWaterLevel = MAX_WATER_LEVEL;
         startingWaterLevel = STARTING_WATER_LEVEL;
-        pregnantTick = PREGNANT_TICK;
+        maxPregnantTick = MAX_PREGNANT_TICK;
+        pregnantTick = maxPregnantTick;
         name = NAME;
         displayChar = DISPLAY_CHAR;
         hungryThreshold = HUNGRY_THRESHOLD;
@@ -102,14 +103,6 @@ public class Stegosaur extends AdultDino {
     @Override
     public void drink(int sips) {
         adjustWaterLevel(30);
-    }
-
-    /**
-     * resets pregnant tick to stegosaur's maximum pregnant tick
-     */
-    @Override
-    public void resetPregnantTick() {
-        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**

@@ -7,6 +7,8 @@ import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.items.Corpse;
 
+import java.util.HashMap;
+
 /**
  * An abstract class to represent a baby dinosaur.
  * Dinosaurs of this class will be able to grow up into an adult dinosaur.
@@ -19,14 +21,22 @@ public abstract class BabyDino extends Dinosaur {
     protected int growUpTick;
 
     /**
-     * Constructor.
+     * Constructor for a baby Dinosaur with all its default values
      *
-     * @param name        the name of the Actor
-     * @param displayChar the character that will represent the Actor in the display
-     * @param hitPoints   the Actor's starting hit points
+     * @param name                  the name of the Actor
+     * @param displayChar           the character that will represent the Actor in the display
+     * @param startingHitpoints     the Actor's starting hit points
+     * @param dinoType              the Actor's dinosaur type
+     * @param maxHitpoints          the Actor's maximum hit points
+     * @param hungryThreshold       the Actor's threshold of hunger
+     * @param startingWaterLevel    the Actor's starting water level
+     * @param maxWaterLevel         the Actor's maximum water level
+     * @param food                  an array of classes the Actor eats as food
+     * @param fromTheseEatsThese    a HashMap with keys of Grounds that the Actor eats from, and values of the foods that it eats from said Grounds
+     * @param growUpTick            a tracker for the number of turns until the Dinosaur grows up
      */
-    public BabyDino(String name, char displayChar, int hitPoints, int growUpTick) {
-        super(name, displayChar, hitPoints);
+    public BabyDino(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese, int growUpTick) {
+        super(name, displayChar, startingHitpoints, dinoType, maxHitpoints, hungryThreshold, startingWaterLevel, maxWaterLevel, food, fromTheseEatsThese);
         this.growUpTick = growUpTick;
     }
 

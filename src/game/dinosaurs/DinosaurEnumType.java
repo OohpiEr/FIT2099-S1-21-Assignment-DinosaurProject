@@ -6,7 +6,8 @@ package game.dinosaurs;
 public enum DinosaurEnumType {
     STEGOSAUR("Stegosaur"),
     BRANCHIOSAUR("Branchiosaur"),
-    ALLOSAUR("Allosaur");
+    ALLOSAUR("Allosaur"),
+    PTERODACTYL("Pterodactyl");
 
     private String name;
 

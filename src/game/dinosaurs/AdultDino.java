@@ -7,6 +7,8 @@ import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
 import game.items.Egg;
 
+import java.util.HashMap;
+
 /**
  * Abstract adult dinosaur class, dinosaurs of this class will be able to mate, get pregnant
  * and exhibit horny behaviour
@@ -21,10 +23,16 @@ public abstract class AdultDino extends Dinosaur {
      * whether dinosaur is pregnant. True if they're pregnant, false otherwise.
      */
     protected boolean isPregnant;
+
     /**
-     * number of turns required for pregnancy. Dinosaur will lay an egg after this reaches 0.
+     * a counter to track the dinosaur's turn of pregnancy. Dinosaur will lay an egg after this reaches 0.
      */
     protected int pregnantTick;
+
+    /**
+     * number of turns required for pregnancy.
+     */
+    protected int maxPregnantTick;
 
     /**
      * Constructor.
@@ -34,8 +42,24 @@ public abstract class AdultDino extends Dinosaur {
      * @param hitPoints   the Actor's starting hit points
      * @param isFemale    whether the dinosaur is female
      */
-    public AdultDino(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints);
+
+    /**
+     * Constructor for an adult Dinosaur with all its default values
+     *
+     * @param name                  the name of the Actor
+     * @param displayChar           the character that will represent the Actor in the display
+     * @param startingHitpoints     the Actor's starting hit points
+     * @param dinoType              the Actor's dinosaur type
+     * @param maxHitpoints          the Actor's maximum hit points
+     * @param hungryThreshold       the Actor's threshold of hunger
+     * @param startingWaterLevel    the Actor's starting water level
+     * @param maxWaterLevel         the Actor's maximum water level
+     * @param food                  an array of classes the Actor eats as food
+     * @param fromTheseEatsThese    a HashMap with keys of Grounds that the Actor eats from, and values of the foods that it eats from said Grounds
+     * @param isFemale              whether the Actor is female
+     */
+    public AdultDino(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese, boolean isFemale) {
+        super(name, displayChar, startingHitpoints, dinoType, maxHitpoints, hungryThreshold, startingWaterLevel, maxWaterLevel, food, fromTheseEatsThese);
         this.isFemale = isFemale;
         isPregnant = false;
         pregnantTick = 0;
@@ -100,7 +124,9 @@ public abstract class AdultDino extends Dinosaur {
     /**
      * resets pregnant tick to it's maximum tick
      */
-    public abstract void resetPregnantTick();
+    public void resetPregnantTick(){
+        pregnantTick = maxPregnantTick;
+    };
 
     /**
      * lays egg on nearest possible ground

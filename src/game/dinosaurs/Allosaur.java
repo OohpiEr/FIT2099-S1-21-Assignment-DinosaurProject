@@ -24,19 +24,12 @@ public class Allosaur extends AdultDino {
     private static final int MAX_WATER_LEVEL = 100;
     private static final String NAME = "Allosaur";
     private static final char DISPLAY_CHAR = 'A';
-    private static final int PREGNANT_TICK = 20;
+    private static final int MAX_PREGNANT_TICK = 20;
     public static final int HUNGRY_THRESHOLD = 90;
     private static final Class<?>[] FOOD = {Corpse.class, Egg.class, CarnivoreMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Ground.class, new Class[]{Corpse.class, Egg.class});
     }};
-
-    /**
-     * food stores the classes that the dinosaur eats as food
-     * fromTheseEatsThese is a HashMap with Ground classes that the dinosaur eats from, which values are the foods that they eat from them
-     */
-    protected Class<?>[] food;
-    protected HashMap<Class<?>, Class<?>[]> fromTheseEatsThese;
 
     /**
      * Constructor.
@@ -45,8 +38,7 @@ public class Allosaur extends AdultDino {
      * @param isFemale whether the dinosaur is female
      */
     public Allosaur(String name, boolean isFemale) {
-        super(name, 'A', 100, isFemale);
-        setDefaultValues();
+        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE ,isFemale);
         setBehaviours();
     }
 
@@ -54,9 +46,8 @@ public class Allosaur extends AdultDino {
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Allosaur() {
-        super("Allosaur", 'A', 100, false);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , false);
         this.setFemale(Math.random() < 0.5);
-        setDefaultValues();
     }
 
     /**
@@ -65,26 +56,8 @@ public class Allosaur extends AdultDino {
      * @param hitPoints the Allosaur's starting hitpoints
      */
     public Allosaur(int hitPoints) {
-        super("Allosaur", 'A', hitPoints, false);
+        super(NAME, DISPLAY_CHAR, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , false);
         this.setFemale(Math.random() < 0.5);
-        setDefaultValues();
-    }
-
-    /**
-     * Sets the dinosaur instance's variables to their default values as specified in the class
-     */
-    private void setDefaultValues() {
-        hitPoints = STARTING_HITPOINTS;
-        maxHitpoints = MAX_HITPOINTS;
-        maxWaterLevel = MAX_WATER_LEVEL;
-        startingWaterLevel = STARTING_WATER_LEVEL;
-        pregnantTick = PREGNANT_TICK;
-        name = NAME;
-        displayChar = DISPLAY_CHAR;
-        hungryThreshold = HUNGRY_THRESHOLD;
-        food = FOOD;
-        fromTheseEatsThese = FROM_THESE_EATS_THESE;
-        dinoType = DINO_TYPE;
     }
 
     /**
@@ -111,12 +84,10 @@ public class Allosaur extends AdultDino {
         final int EGG_HEAL = 10;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
-                if (((Corpse) food).getType() == DinosaurEnumType.STEGOSAUR) {
-                    heal(STEGOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == DinosaurEnumType.ALLOSAUR) {
-                    heal(ALLOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == DinosaurEnumType.BRANCHIOSAUR) {
-                    heal(BRACHIOSAUR_CORPSE_HEAL);
+                switch (((Corpse) food).getType()){
+                    case STEGOSAUR: heal(((Corpse) food).eat(STEGOSAUR_CORPSE_HEAL));
+                    case ALLOSAUR: heal(((Corpse) food).eat(ALLOSAUR_CORPSE_HEAL));
+                    case BRANCHIOSAUR: heal(((Corpse) food).eat(BRACHIOSAUR_CORPSE_HEAL));
                 }
             }
         } else if (food.getClass() == VegetarianMealKit.class){
@@ -157,14 +128,6 @@ public class Allosaur extends AdultDino {
         }
 
         return false;
-    }
-
-    /**
-     * resets pregnant tick to Allosaur's maximum pregnant tick
-     */
-    @Override
-    public void resetPregnantTick() {
-        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**

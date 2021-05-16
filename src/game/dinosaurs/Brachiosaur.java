@@ -25,7 +25,7 @@ public class Brachiosaur extends AdultDino {
     private static final int MAX_WATER_LEVEL = 200;
     private static final String NAME = "Brachiosaur";
     private static final char DISPLAY_CHAR = 'B';
-    private static final int PREGNANT_TICK = 30;
+    private static final int MAX_PREGNANT_TICK = 30;
     public static final int HUNGRY_THRESHOLD = 140;
     private static final Class<?>[] FOOD = {Fruit.class, VegetarianMealKit.class};
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
@@ -41,7 +41,7 @@ public class Brachiosaur extends AdultDino {
      * @param isFemale    whether the dinosaur is female
      */
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
-        super(name, displayChar, hitPoints, isFemale);
+        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , isFemale);
         setDefaultValues();
         setBehaviours();
     }
@@ -53,7 +53,7 @@ public class Brachiosaur extends AdultDino {
      * @param isFemale whether the dinosaur is female
      */
     public Brachiosaur(String name, boolean isFemale) {
-        super(name, 'B', 100, isFemale);
+        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , isFemale);
         setDefaultValues();
         setBehaviours();
     }
@@ -62,7 +62,7 @@ public class Brachiosaur extends AdultDino {
      * Constructor. Randomises gender
      */
     public Brachiosaur() {
-        super("Brachiosaur", 'B', 100, false);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , false);
         this.setFemale(Math.random() < 0.5);
         setDefaultValues();
         setBehaviours();
@@ -76,7 +76,8 @@ public class Brachiosaur extends AdultDino {
         maxHitpoints = MAX_HITPOINTS;
         maxWaterLevel = MAX_WATER_LEVEL;
         startingWaterLevel = STARTING_WATER_LEVEL;
-        pregnantTick = PREGNANT_TICK;
+        maxPregnantTick = MAX_PREGNANT_TICK;
+        pregnantTick = maxPregnantTick;
         name = NAME;
         displayChar = DISPLAY_CHAR;
         hungryThreshold = HUNGRY_THRESHOLD;
@@ -110,14 +111,6 @@ public class Brachiosaur extends AdultDino {
     @Override
     public void drink(int sips) {
         adjustWaterLevel(80);
-    }
-
-    /**
-     * resets pregnant tick to Brachiosaur's maximum pregnant tick
-     */
-    @Override
-    public void resetPregnantTick() {
-        this.pregnantTick = PREGNANT_TICK;
     }
 
     /**

@@ -40,7 +40,7 @@ public class BabyStegosaur extends BabyDino {
      * @param hitPoints   the Actor's starting hit points
      */
     public BabyStegosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints, STEGOSAUR_GROW_UP_TICK);
+        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , STEGOSAUR_GROW_UP_TICK);
         setDefaultValues();
     }
 
@@ -48,7 +48,7 @@ public class BabyStegosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 10 and randomises gender
      */
     public BabyStegosaur() {
-        super("Baby Stegosaur", 's', 10, STEGOSAUR_GROW_UP_TICK);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , STEGOSAUR_GROW_UP_TICK);
         setDefaultValues();
     }
 

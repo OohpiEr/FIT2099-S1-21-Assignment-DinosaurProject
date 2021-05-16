@@ -1,5 +1,6 @@
 package game.items;
 
+import edu.monash.fit2099.engine.Location;
 import game.dinosaurs.DinosaurEnumType;
 
 /**
@@ -9,6 +10,13 @@ import game.dinosaurs.DinosaurEnumType;
  */
 public class Corpse extends PortableItem {
 
+    private static final int STEGOSAUR_CORPSE_FOODPOINTS = 60;
+    private static final int ALLOSAUR_CORPSE_FOODPOINTS = 60;
+    private static final int BRACHIOSAUR_CORPSE_FOODPOINTS = 100;
+
+    private int foodPoints;
+    DinosaurEnumType type;
+
     /**
      * Constructor. Creates a new Corpse instance based on what dinosaur it is
      *
@@ -17,6 +25,11 @@ public class Corpse extends PortableItem {
     public Corpse(DinosaurEnumType type) {
         super(type.getName() + " corpse", '%');
         this.type = type;
+        switch (type){
+            case STEGOSAUR: foodPoints = STEGOSAUR_CORPSE_FOODPOINTS;
+            case ALLOSAUR: foodPoints = ALLOSAUR_CORPSE_FOODPOINTS;
+            case BRANCHIOSAUR: foodPoints = BRACHIOSAUR_CORPSE_FOODPOINTS;
+        }
     }
 
     /**
@@ -27,7 +40,29 @@ public class Corpse extends PortableItem {
         return type;
     }
 
-    DinosaurEnumType type;
+    /**
+     * Allows an amount of foodPoints to be eaten from this corpse, up to a maximum of the food points it has left
+     * @param amount    The amount of food points attempted to be eaten
+     * @return  The amount of food points eaten
+     */
+    public int eat(int amount){
+        if (foodPoints>=amount){
+            foodPoints -= amount;
+            return amount;
+        } else {
+            foodPoints = 0;
+            return foodPoints;
+        }
+    }
 
-
+    /**
+     * Check if the Corpse has been fully eaten. Removes it from the ground if so
+     * @param currentLocation The location of the ground on which we lie.
+     */
+    @Override
+    public void tick(Location currentLocation) {
+        if (foodPoints<=0){
+            currentLocation.removeItem(this);
+        }
+    }
 }

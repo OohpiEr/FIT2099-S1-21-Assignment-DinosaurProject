@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class BabyAllosaur extends BabyDino {
 
-    private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.BRANCHIOSAUR;
+    private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.ALLOSAUR;
     private static final int STARTING_HITPOINTS = 20;
     private static final int MAX_HITPOINTS = 100;
     private static final int STARTING_WATER_LEVEL = 60;
@@ -41,7 +41,7 @@ public class BabyAllosaur extends BabyDino {
      * @param hitPoints   the Actor's starting hit points
      */
     public BabyAllosaur(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints, ALLOSAUR_GROW_UP_TICK);
+        super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , ALLOSAUR_GROW_UP_TICK);
         setDefaultValues();
     }
 
@@ -50,7 +50,7 @@ public class BabyAllosaur extends BabyDino {
      * Constructor. Sets initial hitPoints to 20 and randomises gender
      */
     public BabyAllosaur() {
-        super("Baby Allosaur", 'a', 20, ALLOSAUR_GROW_UP_TICK);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , ALLOSAUR_GROW_UP_TICK);
         setDefaultValues();
     }
 
@@ -105,12 +105,10 @@ public class BabyAllosaur extends BabyDino {
         final int EGG_HEAL = 10;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
-                if (((Corpse) food).getType() == DinosaurEnumType.STEGOSAUR) {
-                    heal(STEGOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == DinosaurEnumType.ALLOSAUR) {
-                    heal(ALLOSAUR_CORPSE_HEAL);
-                } else if (((Corpse) food).getType() == DinosaurEnumType.BRANCHIOSAUR) {
-                    heal(BRACHIOSAUR_CORPSE_HEAL);
+                switch (((Corpse) food).getType()){
+                    case STEGOSAUR: heal(((Corpse) food).eat(STEGOSAUR_CORPSE_HEAL));
+                    case ALLOSAUR: heal(((Corpse) food).eat(ALLOSAUR_CORPSE_HEAL));
+                    case BRANCHIOSAUR: heal(((Corpse) food).eat(BRACHIOSAUR_CORPSE_HEAL));
                 }
             }
         } else if (food.getClass() == VegetarianMealKit.class){
