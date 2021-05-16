@@ -42,7 +42,6 @@ public class Brachiosaur extends AdultDino {
      */
     public Brachiosaur(String name, char displayChar, int hitPoints, boolean isFemale) {
         super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , isFemale);
-        setDefaultValues();
         setBehaviours();
     }
 
@@ -54,7 +53,6 @@ public class Brachiosaur extends AdultDino {
      */
     public Brachiosaur(String name, boolean isFemale) {
         super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , isFemale);
-        setDefaultValues();
         setBehaviours();
     }
 
@@ -62,30 +60,10 @@ public class Brachiosaur extends AdultDino {
      * Constructor. Randomises gender
      */
     public Brachiosaur() {
-        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , false);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS, DINO_TYPE, MAX_HITPOINTS, HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD, FROM_THESE_EATS_THESE, false);
         this.setFemale(Math.random() < 0.5);
-        setDefaultValues();
         setBehaviours();
     }
-
-    /**
-     * Sets the dinosaur instance's variables to their default values as specified in the class
-     */
-    private void setDefaultValues() {
-        hitPoints = STARTING_HITPOINTS;
-        maxHitpoints = MAX_HITPOINTS;
-        maxWaterLevel = MAX_WATER_LEVEL;
-        startingWaterLevel = STARTING_WATER_LEVEL;
-        maxPregnantTick = MAX_PREGNANT_TICK;
-        pregnantTick = maxPregnantTick;
-        name = NAME;
-        displayChar = DISPLAY_CHAR;
-        hungryThreshold = HUNGRY_THRESHOLD;
-        food = FOOD;
-        fromTheseEatsThese = FROM_THESE_EATS_THESE;
-        dinoType = DINO_TYPE;
-    }
-
 
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided

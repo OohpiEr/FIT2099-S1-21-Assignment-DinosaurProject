@@ -37,7 +37,6 @@ public class BabyPterodactyl extends BabyDino{
      */
     public BabyPterodactyl(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , PTERODACTYL_GROW_UP_TICK);
-        setDefaultValues();
     }
 
 
@@ -46,23 +45,6 @@ public class BabyPterodactyl extends BabyDino{
      */
     public BabyPterodactyl() {
         super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , PTERODACTYL_GROW_UP_TICK);
-        setDefaultValues();
-    }
-
-    /**
-     * Sets the dinosaur instance's variables to their default values as specified in the class
-     */
-    private void setDefaultValues() {
-        hitPoints = STARTING_HITPOINTS;
-        maxHitpoints = MAX_HITPOINTS;
-        maxWaterLevel = MAX_WATER_LEVEL;
-        startingWaterLevel = STARTING_WATER_LEVEL;
-        name = NAME;
-        displayChar = DISPLAY_CHAR;
-        hungryThreshold = HUNGRY_THRESHOLD;
-        food = FOOD;
-        fromTheseEatsThese = FROM_THESE_EATS_THESE;
-        dinoType = DINO_TYPE;
     }
 
     @Override

@@ -41,7 +41,6 @@ public class BabyStegosaur extends BabyDino {
      */
     public BabyStegosaur(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , STEGOSAUR_GROW_UP_TICK);
-        setDefaultValues();
     }
 
     /**
@@ -49,23 +48,6 @@ public class BabyStegosaur extends BabyDino {
      */
     public BabyStegosaur() {
         super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, FOOD,FROM_THESE_EATS_THESE , STEGOSAUR_GROW_UP_TICK);
-        setDefaultValues();
-    }
-
-    /**
-     * Sets the dinosaur instance's variables to their default values as specified in the class
-     */
-    private void setDefaultValues() {
-        hitPoints = STARTING_HITPOINTS;
-        maxHitpoints = MAX_HITPOINTS;
-        maxWaterLevel = MAX_WATER_LEVEL;
-        startingWaterLevel = STARTING_WATER_LEVEL;
-        name = NAME;
-        displayChar = DISPLAY_CHAR;
-        food = FOOD;
-        hungryThreshold = HUNGRY_THRESHOLD;
-        fromTheseEatsThese = FROM_THESE_EATS_THESE;
-        dinoType = DINO_TYPE;
     }
 
 
