@@ -51,6 +51,13 @@ public class BabyBrachiosaur extends BabyDino {
         super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD ,FOOD,FROM_THESE_EATS_THESE , BRACHIOSAUR_GROW_UP_TICK);
     }
 
+    public boolean isDead() {
+        if (hitPoints <= -15 || waterLevel <= -15) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
      *

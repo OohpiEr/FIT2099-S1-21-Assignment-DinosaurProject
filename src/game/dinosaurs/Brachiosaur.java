@@ -66,6 +66,13 @@ public class Brachiosaur extends AdultDino {
         setBehaviours();
     }
 
+    public boolean isDead() {
+        if (hitPoints <= -15 || waterLevel <= -15) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Used to let the dinosaur eat a quantity of a food Item. Adjusts hitpoints according to the food provided
      *
