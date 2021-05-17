@@ -13,7 +13,13 @@ public class Corpse extends PortableItem {
     private static final int STEGOSAUR_CORPSE_FOODPOINTS = 60;
     private static final int ALLOSAUR_CORPSE_FOODPOINTS = 60;
     private static final int BRACHIOSAUR_CORPSE_FOODPOINTS = 100;
+    private static final int PTERODACTYL_CORPSE_FOODPOINTS = 100;
+    private static final int STEGOSAUR_ROT_TIME = 20;
+    private static final int ALLOSAUR_ROT_TIME = 20;
+    private static final int BRACHIOSAUR_ROT_TIME = 40;
+    private static final int PTERODACTYL_ROT_TIME = 10;
 
+    private int rotTimer;
     private int foodPoints;
     DinosaurEnumType type;
 
@@ -26,9 +32,10 @@ public class Corpse extends PortableItem {
         super(type.getName() + " corpse", '%');
         this.type = type;
         switch (type){
-            case STEGOSAUR: foodPoints = STEGOSAUR_CORPSE_FOODPOINTS;
-            case ALLOSAUR: foodPoints = ALLOSAUR_CORPSE_FOODPOINTS;
-            case BRANCHIOSAUR: foodPoints = BRACHIOSAUR_CORPSE_FOODPOINTS;
+            case STEGOSAUR: {foodPoints = STEGOSAUR_CORPSE_FOODPOINTS; rotTimer = STEGOSAUR_ROT_TIME;}
+            case ALLOSAUR: {foodPoints = ALLOSAUR_CORPSE_FOODPOINTS; rotTimer = ALLOSAUR_ROT_TIME;}
+            case BRANCHIOSAUR: {foodPoints = BRACHIOSAUR_CORPSE_FOODPOINTS; rotTimer = BRACHIOSAUR_ROT_TIME;}
+            case PTERODACTYL: {foodPoints = PTERODACTYL_CORPSE_FOODPOINTS; rotTimer = PTERODACTYL_ROT_TIME;}
         }
     }
 
@@ -63,6 +70,10 @@ public class Corpse extends PortableItem {
     @Override
     public void tick(Location currentLocation) {
         if (foodPoints<=0){
+            currentLocation.removeItem(this);
+        }
+        rotTimer--;
+        if (rotTimer<=0){
             currentLocation.removeItem(this);
         }
     }
