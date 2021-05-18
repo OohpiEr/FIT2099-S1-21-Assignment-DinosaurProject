@@ -13,7 +13,7 @@ import java.util.HashMap;
 /**
  * A class that represents an adult Pterodactyl
  */
-public class Pterodactyl extends AdultDino{
+public class Pterodactyl extends AdultDino {
 
     private static final DinosaurEnumType DINO_TYPE = DinosaurEnumType.PTERODACTYL;
     private static final int STARTING_HITPOINTS = 30;
@@ -41,7 +41,7 @@ public class Pterodactyl extends AdultDino{
      * @param isFemale whether the dinosaur is female
      */
     public Pterodactyl(String name, boolean isFemale) {
-        super(name, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , isFemale, MAX_PREGNANT_TICK);
+        super(name, DISPLAY_CHAR, STARTING_HITPOINTS, DINO_TYPE, MAX_HITPOINTS, HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, THIRSTY_THRESHOLD, FOOD, FROM_THESE_EATS_THESE, isFemale, MAX_PREGNANT_TICK);
         setBehaviours();
     }
 
@@ -49,7 +49,7 @@ public class Pterodactyl extends AdultDino{
      * Constructor. Provides default values for name, displayChar and hitPoints. Randomises gender
      */
     public Pterodactyl() {
-        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS,DINO_TYPE,MAX_HITPOINTS,HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL,THIRSTY_THRESHOLD, FOOD,FROM_THESE_EATS_THESE , false, MAX_PREGNANT_TICK);
+        super(NAME, DISPLAY_CHAR, STARTING_HITPOINTS, DINO_TYPE, MAX_HITPOINTS, HUNGRY_THRESHOLD, STARTING_WATER_LEVEL, MAX_WATER_LEVEL, THIRSTY_THRESHOLD, FOOD, FROM_THESE_EATS_THESE, false, MAX_PREGNANT_TICK);
         this.setFemale(Math.random() < 0.5);
         setBehaviours();
     }
@@ -59,15 +59,15 @@ public class Pterodactyl extends AdultDino{
         final int CORPSE_HEAL = 10;
         final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
         final int FISH_HEAL = 5;
-        if (food.getClass() == Corpse.class){
-            for (int i=0;i<quantity;i++){
+        if (food.getClass() == Corpse.class) {
+            for (int i = 0; i < quantity; i++) {
                 ((Corpse) food).eat(CORPSE_HEAL);
             }
         } else if (food.getClass() == CarnivoreMealKit.class) {
             for (int i = 0; i < quantity; i++) {
                 heal(CARNIVORE_MEAL_KIT_HEAL);
             }
-        } else if (food.getClass() == Fish.class){
+        } else if (food.getClass() == Fish.class) {
             for (int i = 0; i < quantity; i++) {
                 heal(FISH_HEAL);
             }
@@ -87,22 +87,22 @@ public class Pterodactyl extends AdultDino{
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         Location actorLocation = map.locationOf(this);
-        if (actorLocation.getGround() instanceof Lake && hitPoints<maxHitpoints){
-            eat(new Fish(),((Lake) actorLocation.getGround()).eatFish((int) (Math.round(Math.random()*3))));
+        if (actorLocation.getGround() instanceof Lake && hitPoints < maxHitpoints) {
+            eat(new Fish(), ((Lake) actorLocation.getGround()).eatFish((int) (Math.round(Math.random() * 3))));
         }
-        if (flightTimeCounter>0){
+        if (flightTimeCounter > 0) {
             flightTimeCounter--;
         }
-        if (actorLocation.getGround() instanceof Tree){
+        if (actorLocation.getGround() instanceof Tree) {
             flightTimeCounter = MAX_FLIGHT_TIME;
         } else {
-            for (Item item : actorLocation.getItems()){
-                if (item.getClass() == Corpse.class){
+            for (Item item : actorLocation.getItems()) {
+                if (item.getClass() == Corpse.class) {
                     flightTimeCounter = MAX_FLIGHT_TIME;
                 }
             }
         }
-        if(flightTimeCounter<=0){
+        if (flightTimeCounter <= 0) {
             flying = false;
         } else {
             flying = true;

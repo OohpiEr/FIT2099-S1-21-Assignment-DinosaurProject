@@ -3,7 +3,6 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
-import edu.monash.fit2099.demo.mars.MartianItem;
 import edu.monash.fit2099.engine.*;
 import game.dinosaurs.*;
 import game.grounds.*;
@@ -92,7 +91,6 @@ public class Application {
                     mainMapDestination, "further South!");
             currentLocation.addItem(invisibleTeleporter);
         }
-
 
         Actor player = new Player("Player", '@', 100);
         world.addPlayer(player, gameMap.at(1, 1));

@@ -29,8 +29,16 @@ public class Teleporter extends Item {
      */
     public Teleporter(String name, Location teleporterLocation, Location destination, String direction) {
         super(name, '^', false);
-        this.displayChar = getInvisibleDisplayChar(teleporterLocation);
+        setDisplayChar(getInvisibleDisplayChar(teleporterLocation));
         addTeleportAction(destination, direction);
+    }
+
+    /**
+     * Setter for displayChar
+     * @param displayChar char of item to display
+     */
+    private void setDisplayChar(char displayChar) {
+        this.displayChar = displayChar;
     }
 
     /**
@@ -54,7 +62,7 @@ public class Teleporter extends Item {
         char dispChar;
 
         List<Item> items = teleporterLocation.getItems();
-        if (items.size() != 0) {
+        if (items.size() > 1) {
             dispChar = items.get(items.size() - 1).getDisplayChar();
         } else {
             dispChar = teleporterLocation.getGround().getDisplayChar();
@@ -63,4 +71,15 @@ public class Teleporter extends Item {
         return dispChar;
     }
 
+    /**
+     * Inform an Item on the ground of the passage of time.
+     * This method is called once per turn, if the item rests upon the ground.
+     *
+     * @param currentLocation The location of the ground on which we lie.
+     */
+    @Override
+    public void tick(Location currentLocation) {
+        super.tick(currentLocation);
+        setDisplayChar(getInvisibleDisplayChar(currentLocation));
+    }
 }
