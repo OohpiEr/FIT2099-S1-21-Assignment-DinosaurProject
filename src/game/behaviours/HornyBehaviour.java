@@ -10,6 +10,7 @@ import game.grounds.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static game.Util.distance;
 
@@ -46,13 +47,13 @@ public class HornyBehaviour implements Behaviour {
             if (target != null) {
                 if (actor instanceof Pterodactyl) {
                     if (dino.isFemale()) {
-                        return goToNearestTree(dino, map);
+                        return goToNearestTree((Pterodactyl) dino, map);
                     } else {
                         if (isTargetInExit(target, dino, map)) {
                             if (map.locationOf(dino).getGround() instanceof Tree){
                                 returnAction = new BreedAction(target);
                             } else {
-                                return goToNearestTree(dino, map);
+                                return goToNearestTree((Pterodactyl) dino, map);
                             }
                         } else {
                             followBehaviour = new FollowBehaviour(target);
@@ -150,13 +151,13 @@ public class HornyBehaviour implements Behaviour {
     }
 
     /**
-     * Returns an action to let the actor go towards the nearest Tree with an adjacent Tree. The actor does nothing if it is already on a Tree
+     * Returns an action to let the Pterodactyl go towards the nearest Tree with an adjacent Tree. The Pterodactyl does nothing if it is already on a Tree. If the Pterodactyl is a male, it also checks if there is a female on an adjacent Tree
      *
-     * @param actor The actor to be moved
+     * @param actor The Pterodactyl to be moved
      * @param map   The map the actor is on
      * @return An appropriate action
      */
-    private Action goToNearestTree(AdultDino actor, GameMap map) {
+    private Action goToNearestTree(Pterodactyl actor, GameMap map) {
         if (!(map.locationOf(actor).getGround() instanceof Tree)) {
             Location closestTree = null;
             Location here = map.locationOf(actor);
