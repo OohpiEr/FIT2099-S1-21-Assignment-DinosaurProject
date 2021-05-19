@@ -1,7 +1,9 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
+import game.Util;
 import game.actions.EatAction;
+import game.actions.LayEggAction;
 import game.behaviours.HornyBehaviour;
 import game.behaviours.HungryBehaviour;
 import game.behaviours.WanderBehaviour;
@@ -115,6 +117,47 @@ public class Pterodactyl extends AdultDino {
         }
 
         return action;
+    }
+
+    /**
+     * Inform a Dino the passage of time.
+     * This method is called once per turn
+     * Actions that depend on time/number of turns will be returned if conditions are met
+     * This implementation in particular checks if the Pterodactyl is ready to lay an egg. If it is, it seeks out a Tree to lay it on
+     *
+     * @param map the map the actor is in
+     * @return an action if applicable
+     */
+    @Override
+    protected Action tick(GameMap map) {
+        super.tick(map);
+        if (isPregnant() && pregnantTick > 0) {
+            pregnantTick -= 1;
+        } else if (pregnantTick == 0 && isPregnant == true) {
+            if (map.locationOf(this).getGround() instanceof Tree) {
+                return new LayEggAction();
+            } else {
+                Location closestTree = null;
+                Location here = map.locationOf(this);
+                for (int x : map.getXRange()) {
+                    for (int y : map.getYRange()) {
+                        Location there = map.at(x, y);
+                        if (there.getGround() instanceof Tree && !there.containsAnActor()) {
+                            if (closestTree == null || Util.distance(closestTree, here) > Util.distance(there, here)) {
+                                closestTree = there;
+                            }
+                        }
+                    }
+                }
+                for (Exit exit : here.getExits()) {
+                    Location there = exit.getDestination();
+                    if (there.canActorEnter(this) && Util.distance(there, closestTree) < Util.distance(here, closestTree)) {
+                        return new MoveActorAction(there, exit.getName());
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     @Override
