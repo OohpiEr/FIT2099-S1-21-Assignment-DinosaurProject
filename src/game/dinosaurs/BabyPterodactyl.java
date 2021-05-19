@@ -6,6 +6,7 @@ import game.grounds.Lake;
 import game.grounds.Tree;
 import game.items.CarnivoreMealKit;
 import game.items.Corpse;
+import game.items.Egg;
 import game.items.Fish;
 
 import java.util.HashMap;
@@ -64,6 +65,7 @@ public class BabyPterodactyl extends BabyDino{
         final int CORPSE_HEAL = 10;
         final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
         final int FISH_HEAL = 5;
+        final int EGG_HEAL = 10;
         if (food.getClass() == Corpse.class){
             for (int i=0;i<quantity;i++){
                 ((Corpse) food).eat(CORPSE_HEAL);
@@ -75,6 +77,10 @@ public class BabyPterodactyl extends BabyDino{
         } else if (food.getClass() == Fish.class){
             for (int i = 0; i < quantity; i++) {
                 heal(FISH_HEAL);
+            }
+        } else if (food.getClass() == Egg.class){
+            for (int i = 0; i<quantity;i++){
+                heal(EGG_HEAL);
             }
         }
     }

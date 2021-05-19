@@ -60,6 +60,7 @@ public class Pterodactyl extends AdultDino {
         final int CORPSE_HEAL = 10;
         final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
         final int FISH_HEAL = 5;
+        final int EGG_HEAL = 10;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
                 ((Corpse) food).eat(CORPSE_HEAL);
@@ -72,6 +73,10 @@ public class Pterodactyl extends AdultDino {
             for (int i = 0; i < quantity; i++) {
                 heal(FISH_HEAL);
             }
+        } else if (food.getClass() == Egg.class) {
+            for (int i = 0; i < quantity; i++) {
+                heal(EGG_HEAL);
+            }
         }
     }
 
@@ -80,7 +85,7 @@ public class Pterodactyl extends AdultDino {
         adjustWaterLevel(30);
     }
 
-    public boolean isFlying(){
+    public boolean isFlying() {
         return flying;
     }
 
@@ -112,7 +117,7 @@ public class Pterodactyl extends AdultDino {
         } else {
             flying = true;
         }
-        if (super.playTurn(actions, lastAction, map, display) instanceof EatAction){
+        if (super.playTurn(actions, lastAction, map, display) instanceof EatAction) {
             flying = false;
         }
         return super.playTurn(actions, lastAction, map, display);
