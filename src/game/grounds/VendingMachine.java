@@ -29,6 +29,7 @@ public class VendingMachine extends Ground {
             put(new Egg(DinosaurEnumType.STEGOSAUR), 200);
             put(new Egg(DinosaurEnumType.BRANCHIOSAUR), 500);
             put(new Egg(DinosaurEnumType.ALLOSAUR), 1000);
+            put(new Egg(DinosaurEnumType.PTERODACTYL), 200);
             put(new LaserGun(), 500);
         }};
     }
