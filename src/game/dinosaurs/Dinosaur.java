@@ -8,6 +8,7 @@ import game.actions.FeedAction;
 import game.behaviours.Behaviour;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.grounds.Lake;
 import game.items.Corpse;
 
 import java.util.ArrayList;
@@ -272,6 +273,12 @@ public abstract class Dinosaur extends Actor {
             display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is unconscious");
             return new DoNothingAction();
         } else {
+            for (Exit exit : map.locationOf(this).getExits()){
+                if(exit.getDestination().getGround() instanceof Lake){
+                    this.drink(1);
+                    ((Lake) exit.getDestination().getGround()).adjustSips(-1);
+                }
+            }
             if (action == null && lastAction != null && lastAction.getNextAction() != null) {
                 action = lastAction.getNextAction();
             } else if (action == null) {

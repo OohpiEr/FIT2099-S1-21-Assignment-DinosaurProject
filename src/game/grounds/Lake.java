@@ -35,9 +35,12 @@ public class Lake extends Ground {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-        if (actor instanceof Pterodactyl || actor instanceof BabyPterodactyl) {
-            return true;
-        } else {
+        if (actor instanceof Pterodactyl) {
+            return ((Pterodactyl) actor).isFlying();
+        } else if (actor instanceof BabyPterodactyl){
+            return ((BabyPterodactyl) actor).isFlying();
+        }
+        else {
             return false;
         }
     }
