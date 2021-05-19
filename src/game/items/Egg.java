@@ -141,31 +141,45 @@ public class Egg extends PortableItem {
         roundsPassed++;
         if (roundsPassed >= timeToHatch) {
             // Egg will try to hatch a baby dinosaur an adjacent location
-            if (type == DinosaurEnumType.STEGOSAUR) {
-                for (Exit exit : currentLocation.getExits()) {
-                    if (exit.getDestination().canActorEnter(new BabyStegosaur())) {
-                        exit.getDestination().addActor(new BabyStegosaur());
-                        actor.removeItemFromInventory(this);
-                        Player.addEcoPoints(STEGOSAUR_HATCH_ECO_POINT_REWARD);
-                        break;
+            switch (type) {
+                case STEGOSAUR: {
+                    for (Exit exit : currentLocation.getExits()) {
+                        if (exit.getDestination().canActorEnter(new BabyStegosaur())) {
+                            exit.getDestination().addActor(new BabyStegosaur());
+                            actor.removeItemFromInventory(this);
+                            Player.addEcoPoints(STEGOSAUR_HATCH_ECO_POINT_REWARD);
+                            break;
+                        }
                     }
                 }
-            } else if (type == DinosaurEnumType.BRANCHIOSAUR) {
-                for (Exit exit : currentLocation.getExits()) {
-                    if (exit.getDestination().canActorEnter(new BabyBrachiosaur())) {
-                        exit.getDestination().addActor(new BabyBrachiosaur());
-                        actor.removeItemFromInventory(this);
-                        Player.addEcoPoints(BRACHIOSAUR_HATCH_ECO_POINT_REWARD);
-                        break;
+                case BRANCHIOSAUR: {
+                    for (Exit exit : currentLocation.getExits()) {
+                        if (exit.getDestination().canActorEnter(new BabyBrachiosaur())) {
+                            exit.getDestination().addActor(new BabyBrachiosaur());
+                            actor.removeItemFromInventory(this);
+                            Player.addEcoPoints(BRACHIOSAUR_HATCH_ECO_POINT_REWARD);
+                            break;
+                        }
                     }
                 }
-            } else if (type == DinosaurEnumType.ALLOSAUR) {
-                for (Exit exit : currentLocation.getExits()) {
-                    if (exit.getDestination().canActorEnter(new BabyAllosaur())) {
-                        exit.getDestination().addActor(new BabyAllosaur());
-                        actor.removeItemFromInventory(this);
-                        Player.addEcoPoints(ALLOSAUR_HATCH_ECO_POINT_REWARD);
-                        break;
+                case ALLOSAUR: {
+                    for (Exit exit : currentLocation.getExits()) {
+                        if (exit.getDestination().canActorEnter(new BabyAllosaur())) {
+                            exit.getDestination().addActor(new BabyAllosaur());
+                            actor.removeItemFromInventory(this);
+                            Player.addEcoPoints(ALLOSAUR_HATCH_ECO_POINT_REWARD);
+                            break;
+                        }
+                    }
+                }
+                case PTERODACTYL: {
+                    for (Exit exit : currentLocation.getExits()) {
+                        if (exit.getDestination().canActorEnter(new BabyPterodactyl())) {
+                            exit.getDestination().addActor(new BabyPterodactyl());
+                            actor.removeItemFromInventory(this);
+                            Player.addEcoPoints(PTERODACTYL_HATCH_ECO_POINT_REWARD);
+                            break;
+                        }
                     }
                 }
             }
