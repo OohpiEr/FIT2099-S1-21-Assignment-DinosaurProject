@@ -1,6 +1,7 @@
 package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
+import game.actions.EatAction;
 import game.grounds.Lake;
 import game.grounds.Tree;
 import game.items.CarnivoreMealKit;
@@ -114,6 +115,9 @@ public class BabyPterodactyl extends BabyDino{
             flying = false;
         } else {
             flying = true;
+        }
+        if (super.playTurn(actions, lastAction, map, display) instanceof EatAction){
+            flying = false;
         }
         return super.playTurn(actions, lastAction, map, display);
     }
