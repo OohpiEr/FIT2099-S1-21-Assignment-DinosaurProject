@@ -83,6 +83,10 @@ public class BabyPterodactyl extends BabyDino{
         adjustWaterLevel(30);
     }
 
+    public boolean isFlying(){
+        return flying;
+    }
+
     @Override
     protected Action determineBehaviour(GameMap map) {
         return null;
