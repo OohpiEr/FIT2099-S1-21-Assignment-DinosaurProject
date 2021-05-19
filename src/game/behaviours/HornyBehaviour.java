@@ -1,8 +1,12 @@
 package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
+import game.Util;
 import game.actions.BreedAction;
 import game.dinosaurs.AdultDino;
+import game.dinosaurs.Dinosaur;
+import game.dinosaurs.Pterodactyl;
+import game.grounds.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +44,28 @@ public class HornyBehaviour implements Behaviour {
             target = (AdultDino) getNearestTarget(dino, map, locationsWithTargets);
 
             if (target != null) {
-
-                if (isTargetInExit(target, dino, map)) {
-                    returnAction = new BreedAction(target);
+                if (actor instanceof Pterodactyl) {
+                    if (dino.isFemale()) {
+                        return goToNearestTree(dino, map);
+                    } else {
+                        if (isTargetInExit(target, dino, map)) {
+                            if (map.locationOf(dino).getGround() instanceof Tree){
+                                returnAction = new BreedAction(target);
+                            } else {
+                                return goToNearestTree(dino, map);
+                            }
+                        } else {
+                            followBehaviour = new FollowBehaviour(target);
+                            returnAction = followBehaviour.getAction(dino, map);
+                        }
+                    }
                 } else {
-                    followBehaviour = new FollowBehaviour(target);
-                    returnAction = followBehaviour.getAction(dino, map);
+                    if (isTargetInExit(target, dino, map)) {
+                        returnAction = new BreedAction(target);
+                    } else {
+                        followBehaviour = new FollowBehaviour(target);
+                        returnAction = followBehaviour.getAction(dino, map);
+                    }
                 }
             }
         }
@@ -129,4 +149,51 @@ public class HornyBehaviour implements Behaviour {
         }
     }
 
+    /**
+     * Returns an action to let the actor go towards the nearest Tree with an adjacent Tree. The actor does nothing if it is already on a Tree
+     *
+     * @param actor The actor to be moved
+     * @param map   The map the actor is on
+     * @return An appropriate action
+     */
+    private Action goToNearestTree(AdultDino actor, GameMap map) {
+        if (!(map.locationOf(actor).getGround() instanceof Tree)) {
+            Location closestTree = null;
+            Location here = map.locationOf(actor);
+            for (int x : map.getXRange()) {
+                for (int y : map.getYRange()) {
+                    Location there = map.at(x, y);
+                    boolean hasAdjacentTree = false;
+                    boolean hasAdjacentFemale = false;
+                    if (there.getGround() instanceof Tree && !there.containsAnActor()) {
+                        for (Exit exit : there.getExits()){
+                            if (exit.getDestination().getGround() instanceof Tree){
+                                hasAdjacentTree = true;
+                            }
+                            if (exit.getDestination().containsAnActor() && exit.getDestination().getActor() instanceof Pterodactyl && ((Pterodactyl) exit.getDestination().getActor()).isFemale()){
+                                hasAdjacentFemale = true;
+                            }
+                        }
+                        if (actor.isFemale()){
+                            if (hasAdjacentTree && (closestTree == null || Util.distance(closestTree, here) > Util.distance(there, here))) {
+                                closestTree = there;
+                            }
+                        } else {
+                            if (hasAdjacentFemale && hasAdjacentTree && (closestTree == null || Util.distance(closestTree, here) > Util.distance(there, here))) {
+                                closestTree = there;
+                            }
+                        }
+
+                    }
+                }
+            }
+            for (Exit exit : here.getExits()) {
+                Location there = exit.getDestination();
+                if (there.canActorEnter(actor) && Util.distance(there, closestTree) < Util.distance(here, closestTree)) {
+                    return new MoveActorAction(there, exit.getName());
+                }
+            }
+        }
+        return new DoNothingAction();
+    }
 }
