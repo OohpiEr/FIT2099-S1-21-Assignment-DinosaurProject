@@ -33,6 +33,10 @@ public class Lake extends Ground {
         rainTimer = DEFAULT_RAIN_TIMER;
     }
 
+    public static double getRainfall() {
+        return rainfall;
+    }
+
     @Override
     public boolean canActorEnter(Actor actor) {
         if (actor instanceof Pterodactyl) {

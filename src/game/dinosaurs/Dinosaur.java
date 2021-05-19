@@ -267,6 +267,9 @@ public abstract class Dinosaur extends Actor {
             display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting thirsty!");
         }
         Action action = tick(map);
+        if (waterLevel<=0 && Lake.getRainfall()>0){
+            waterLevel = 10;
+        }
         if (isDead()) {
             return new DieAction();
         } else if (!isConscious()) {
