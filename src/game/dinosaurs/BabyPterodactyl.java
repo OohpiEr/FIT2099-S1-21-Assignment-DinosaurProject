@@ -2,6 +2,7 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.grounds.Lake;
+import game.grounds.Tree;
 import game.items.CarnivoreMealKit;
 import game.items.Corpse;
 import game.items.Fish;
@@ -27,7 +28,9 @@ public class BabyPterodactyl extends BabyDino{
     private static final HashMap<Class<?>, Class<?>[]> FROM_THESE_EATS_THESE = new HashMap<>() {{
         put(Ground.class, new Class[]{Corpse.class});
     }};
-    private boolean flying;
+    private static final int MAX_FLIGHT_TIME = 30;
+    private boolean flying = true;
+    private int flightTimeCounter = MAX_FLIGHT_TIME;
 
     /**
      * Constructor.
@@ -87,8 +90,26 @@ public class BabyPterodactyl extends BabyDino{
 
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        if (map.locationOf(this).getGround() instanceof Lake && hitPoints<maxHitpoints){
-            eat(new Fish(),((Lake) map.locationOf(this).getGround()).eatFish((int) (Math.round(Math.random()*3))));
+        Location actorLocation = map.locationOf(this);
+        if (actorLocation.getGround() instanceof Lake && hitPoints < maxHitpoints) {
+            eat(new Fish(), ((Lake) actorLocation.getGround()).eatFish((int) (Math.round(Math.random() * 3))));
+        }
+        if (flightTimeCounter > 0) {
+            flightTimeCounter--;
+        }
+        if (actorLocation.getGround() instanceof Tree) {
+            flightTimeCounter = MAX_FLIGHT_TIME;
+        } else {
+            for (Item item : actorLocation.getItems()) {
+                if (item.getClass() == Corpse.class) {
+                    flightTimeCounter = MAX_FLIGHT_TIME;
+                }
+            }
+        }
+        if (flightTimeCounter <= 0) {
+            flying = false;
+        } else {
+            flying = true;
         }
         return super.playTurn(actions, lastAction, map, display);
     }
