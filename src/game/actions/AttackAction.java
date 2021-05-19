@@ -100,15 +100,16 @@ public class AttackAction extends Action {
 
 
         if (!target.isConscious()) {
-            if (actor instanceof Dinosaur) {
-                corpse = new Corpse(((Dinosaur) actor).getDinoType());
-            } else {
-                corpse = new PortableItem("dead " + target, '%');
+            if (actor instanceof Pterodactyl || actor instanceof BabyPterodactyl){
+                if (actor instanceof Dinosaur) {
+                    corpse = new Corpse(((Dinosaur) actor).getDinoType());
+                } else {
+                    corpse = new PortableItem("dead " + target, '%');
+                }
+                setCorpse(corpse);
+                setCorpseLocation(map.locationOf(target));
+                map.locationOf(target).addItem(corpse);
             }
-            setCorpse(corpse);
-            setCorpseLocation(map.locationOf(target));
-            map.locationOf(target).addItem(corpse);
-
             Actions dropActions = new Actions();
             for (Item item : target.getInventory())
                 dropActions.add(item.getDropAction());

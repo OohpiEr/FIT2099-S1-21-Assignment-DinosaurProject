@@ -2,7 +2,9 @@ package game.behaviours;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.AttackAction;
+import game.dinosaurs.BabyPterodactyl;
 import game.dinosaurs.BabyStegosaur;
+import game.dinosaurs.Pterodactyl;
 import game.dinosaurs.Stegosaur;
 
 import java.util.*;
@@ -41,11 +43,15 @@ public class AttackBehaviour implements Behaviour {
         ArrayList<Class<?>> targetClasses = new ArrayList<>();
         targetClasses.add(Stegosaur.class);
         targetClasses.add(BabyStegosaur.class);
+        targetClasses.add(Pterodactyl.class);
+        targetClasses.add(BabyPterodactyl.class);
 
         Actor target = getTargetsInExit(attacker, map, targetClasses);
         if (target != null) {
             attackAction = new AttackAction(attacker, target);
-            addUnattackableActor(target);
+            if (target instanceof Stegosaur || target instanceof BabyStegosaur){
+                addUnattackableActor(target);
+            }
         }
 
         return attackAction;
