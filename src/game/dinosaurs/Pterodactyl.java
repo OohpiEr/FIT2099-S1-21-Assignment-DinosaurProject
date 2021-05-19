@@ -2,6 +2,9 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.EatAction;
+import game.behaviours.HornyBehaviour;
+import game.behaviours.HungryBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.grounds.Lake;
 import game.grounds.Tree;
 import game.items.CarnivoreMealKit;
@@ -91,7 +94,27 @@ public class Pterodactyl extends AdultDino {
 
     @Override
     protected Action determineBehaviour(GameMap map) {
-        return null;
+        Action action = null;
+
+        if (hitPoints >= 50 && hitPoints <= 60) {
+            //wander behaviour or horny behaviour
+            if (!isPregnant() && Math.random() < 0.4) {
+                action = getBehaviourAction(HornyBehaviour.class, map);
+            }
+        } else if (hitPoints >= 30 && hitPoints < 50) {
+            if (!isPregnant() && Math.random() <= 0.5) {
+                action = getBehaviourAction(HornyBehaviour.class, map);
+            } else if (Math.random() <= 0.5) {
+                action = getBehaviourAction(HungryBehaviour.class, map);
+            }
+        } else if (hitPoints < 30) {
+            //hungry behaviour
+            action = getBehaviourAction(HungryBehaviour.class, map);
+        } else {
+            action = getBehaviourAction(WanderBehaviour.class, map);
+        }
+
+        return action;
     }
 
     @Override

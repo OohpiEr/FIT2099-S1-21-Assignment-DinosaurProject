@@ -2,6 +2,9 @@ package game.dinosaurs;
 
 import edu.monash.fit2099.engine.*;
 import game.actions.EatAction;
+import game.behaviours.HornyBehaviour;
+import game.behaviours.HungryBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.grounds.Lake;
 import game.grounds.Tree;
 import game.items.CarnivoreMealKit;
@@ -22,7 +25,7 @@ public class BabyPterodactyl extends BabyDino{
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 100;
     private static final int THIRSTY_THRESHOLD = 50;
-    private static final String NAME = "Pterodactyl";
+    private static final String NAME = "Baby Pterodactyl";
     private static final char DISPLAY_CHAR = 'p';
     public static final int HUNGRY_THRESHOLD = 50;
     private static final int PTERODACTYL_GROW_UP_TICK = 20;
@@ -96,7 +99,15 @@ public class BabyPterodactyl extends BabyDino{
 
     @Override
     protected Action determineBehaviour(GameMap map) {
-        return null;
+        Action action = null;
+
+        if (hitPoints <= 50) {
+            action = getBehaviourAction(HungryBehaviour.class, map);
+        } else {
+            action = getBehaviourAction(WanderBehaviour.class, map);
+        }
+
+        return action;
     }
 
     @Override
