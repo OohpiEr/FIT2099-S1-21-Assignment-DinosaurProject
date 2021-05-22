@@ -66,7 +66,7 @@ public class BabyPterodactyl extends BabyDino{
     @Override
     public void eat(Item food, int quantity) {
         final int CORPSE_HEAL = 10;
-        final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
+        final int CARNIVORE_MEAL_KIT_HEAL = maxHitPoints;
         final int FISH_HEAL = 5;
         final int EGG_HEAL = 10;
         if (food.getClass() == Corpse.class){
@@ -112,9 +112,11 @@ public class BabyPterodactyl extends BabyDino{
 
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        Action action = super.playTurn(actions, lastAction, map, display);
         Location actorLocation = map.locationOf(this);
-        if (actorLocation.getGround() instanceof Lake && hitPoints < maxHitpoints) {
+        if (actorLocation.getGround() instanceof Lake && hitPoints < maxHitPoints) {
             eat(new Fish(), ((Lake) actorLocation.getGround()).eatFish((int) (Math.round(Math.random() * 3))));
+            display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") eats some fish");
         }
         if (flightTimeCounter > 0) {
             flightTimeCounter--;
@@ -128,14 +130,14 @@ public class BabyPterodactyl extends BabyDino{
                 }
             }
         }
-        if (flightTimeCounter <= 0) {
+        if (flightTimeCounter <= 0 || action instanceof EatAction) {
             flying = false;
+            display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is grounded");
         } else {
             flying = true;
         }
-        if (super.playTurn(actions, lastAction, map, display) instanceof EatAction){
-            flying = false;
-        }
-        return super.playTurn(actions, lastAction, map, display);
+
+
+        return action;
     }
 }

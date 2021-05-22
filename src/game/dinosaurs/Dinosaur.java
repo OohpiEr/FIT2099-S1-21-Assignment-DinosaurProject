@@ -22,12 +22,8 @@ public abstract class Dinosaur extends Actor {
 
     protected DinosaurEnumType dinoType;
     protected int startingHitpoints;
-    protected int maxHitpoints;
-    protected String name;
-    protected char displayChar;
     protected int hungryThreshold;
     protected int waterLevel;
-    protected int startingWaterLevel;
     protected int maxWaterLevel;
     protected int thirstyThreshold;
 
@@ -41,22 +37,22 @@ public abstract class Dinosaur extends Actor {
     /**
      * Constructor for a Dinosaur with all its starting values
      *
-     * @param name                  the name of the Actor
-     * @param displayChar           the character that will represent the Actor in the display
-     * @param startingHitpoints     the Actor's starting hit points
-     * @param dinoType              the Actor's dinosaur type
-     * @param maxHitpoints          the Actor's maximum hit points
-     * @param hungryThreshold       the Actor's threshold of hunger
-     * @param startingWaterLevel    the Actor's starting water level
-     * @param maxWaterLevel         the Actor's maximum water level
-     * @param thirstyThreshold      the Actor's threshold of thirst
-     * @param food                  an array of classes the Actor eats as food
-     * @param fromTheseEatsThese    a HashMap with keys of Grounds that the Actor eats from, and values of the foods that it eats from said Grounds
+     * @param name               the name of the Actor
+     * @param displayChar        the character that will represent the Actor in the display
+     * @param startingHitpoints  the Actor's starting hit points
+     * @param dinoType           the Actor's dinosaur type
+     * @param maxHitpoints       the Actor's maximum hit points
+     * @param hungryThreshold    the Actor's threshold of hunger
+     * @param startingWaterLevel the Actor's starting water level
+     * @param maxWaterLevel      the Actor's maximum water level
+     * @param thirstyThreshold   the Actor's threshold of thirst
+     * @param food               an array of classes the Actor eats as food
+     * @param fromTheseEatsThese a HashMap with keys of Grounds that the Actor eats from, and values of the foods that it eats from said Grounds
      */
     public Dinosaur(String name, char displayChar, int startingHitpoints, DinosaurEnumType dinoType, int maxHitpoints, int hungryThreshold, int startingWaterLevel, int maxWaterLevel, int thirstyThreshold, Class<?>[] food, HashMap<Class<?>, Class<?>[]> fromTheseEatsThese) {
         super(name, displayChar, startingHitpoints);
         this.dinoType = dinoType;
-        this.maxHitpoints = maxHitpoints;
+        this.maxHitPoints = maxHitpoints;
         this.hungryThreshold = hungryThreshold;
         this.waterLevel = startingWaterLevel;
         this.maxWaterLevel = maxWaterLevel;
@@ -101,13 +97,13 @@ public abstract class Dinosaur extends Actor {
      * @return returns the maximum hitpoints of the dinosaur as an integer
      */
     public int getMaxHitpoints() {
-        return maxHitpoints;
+        return maxHitPoints;
     }
 
     /**
      * getter for water level
      *
-     * @return  the dinosaur's water level
+     * @return the dinosaur's water level
      */
     public int getWaterLevel() {
         return waterLevel;
@@ -116,7 +112,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * adjusts the dinosaur's water level
      *
-     * @param waterLevel    the amount to adjust the dinosaur's water level by. Can be negative
+     * @param waterLevel the amount to adjust the dinosaur's water level by. Can be negative
      */
     public void adjustWaterLevel(int waterLevel) {
         this.waterLevel += waterLevel;
@@ -135,7 +131,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * Gets an array of foods the dinosaur eats
      *
-     * @return  An array of foods the dinosaur eats
+     * @return An array of foods the dinosaur eats
      */
     public Class<?>[] getFood() {
         return food;
@@ -144,7 +140,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * Gets a HaspMap of Grounds the dinosaur eats from as keys, each with an array of foods that it eats from those grounds as values
      *
-     * @return  A HaspMap of Grounds the dinosaur eats from as keys, each with an array of foods that it eats from those grounds as values
+     * @return A HaspMap of Grounds the dinosaur eats from as keys, each with an array of foods that it eats from those grounds as values
      */
     public HashMap<Class<?>, Class<?>[]> getFromTheseEatsThese() {
         return fromTheseEatsThese;
@@ -152,7 +148,7 @@ public abstract class Dinosaur extends Actor {
 
     @Override
     public boolean isConscious() {
-        return (super.isConscious() && waterLevel>0);
+        return (super.isConscious() && waterLevel > 0);
     }
 
     /**
@@ -179,7 +175,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * Used to let the dinosaur drink a number of sips of water. Adjusts waterLevel accordingly
      *
-     * @param sips  The number of sips taken
+     * @param sips The number of sips taken
      */
     public abstract void drink(int sips);
 
@@ -189,7 +185,7 @@ public abstract class Dinosaur extends Actor {
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
-     * @return  A collection of the Actions that the otherActor can do to the current Actor.
+     * @return A collection of the Actions that the otherActor can do to the current Actor.
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
@@ -244,6 +240,7 @@ public abstract class Dinosaur extends Actor {
      */
     protected Action tick(GameMap map) {
         hitPoints -= 1;
+        waterLevel-=1;
         for (Behaviour behaviour : actionFactories) {
             if (behaviour instanceof AttackBehaviour) {
                 ((AttackBehaviour) behaviour).tick();
@@ -263,11 +260,11 @@ public abstract class Dinosaur extends Actor {
         if (hitPoints == hungryThreshold - 1) {
             display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting hungry!");
         }
-        if (waterLevel == thirstyThreshold-1) {
+        if (waterLevel == thirstyThreshold - 1) {
             display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is getting thirsty!");
         }
         Action action = tick(map);
-        if (waterLevel<=0 && Lake.getRainfall()>0){
+        if (waterLevel <= 0 && Lake.getRainfall() > 0) {
             waterLevel = 10;
         }
         if (isDead()) {
@@ -276,10 +273,12 @@ public abstract class Dinosaur extends Actor {
             display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") is unconscious");
             return new DoNothingAction();
         } else {
-            for (Exit exit : map.locationOf(this).getExits()){
-                if(exit.getDestination().getGround() instanceof Lake){
+            for (Exit exit : map.locationOf(this).getExits()) {
+                if (exit.getDestination().getGround() instanceof Lake || map.locationOf(this).getGround() instanceof Lake) {
                     this.drink(1);
                     ((Lake) exit.getDestination().getGround()).adjustSips(-1);
+                    display.println(this + " at (" + map.locationOf(this).x() + ", " + map.locationOf(this).y() + ") takes a sip of water");
+                    break;
                 }
             }
             if (action == null && lastAction != null && lastAction.getNextAction() != null) {

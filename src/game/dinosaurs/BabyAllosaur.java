@@ -84,7 +84,7 @@ public class BabyAllosaur extends BabyDino {
         final int ALLOSAUR_CORPSE_HEAL = 50;
         final int STEGOSAUR_CORPSE_HEAL = 50;
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
-        final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
+        final int CARNIVORE_MEAL_KIT_HEAL = maxHitPoints;
         final int EGG_HEAL = 10;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {

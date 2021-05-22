@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
+import game.grounds.Lake;
 
 /**
  * Class representing the Player.
@@ -29,6 +30,9 @@ public class Player extends Actor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
 		display.println("Eco Points: " + getEcoPoints());
+		if (Lake.getRainfall()!=0){
+			display.println("It's raining!");
+		}
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);

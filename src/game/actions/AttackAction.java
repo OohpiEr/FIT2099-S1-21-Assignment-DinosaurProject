@@ -90,7 +90,13 @@ public class AttackAction extends Action {
         int damage = weapon.damage();
         String result = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") " + weapon.verb() + " " + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") for " + damage + " damage.";
 
-        target.hurt(damage);
+        if((actor instanceof Allosaur || actor instanceof BabyAllosaur) && (target instanceof Pterodactyl || target instanceof BabyPterodactyl)){
+            target.hurt(((Dinosaur) target).getMaxHitpoints());
+            result = actor + " at (" + map.locationOf(actor).x() + ", " + map.locationOf(actor).y() + ") swallows " + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") whole.";
+        } else {
+            target.hurt(damage);
+        }
+
 
         if (actor instanceof Allosaur) {
             actor.heal(20);
@@ -98,9 +104,8 @@ public class AttackAction extends Action {
             actor.heal(10);
         }
 
-
         if (!target.isConscious()) {
-            if (actor instanceof Pterodactyl || actor instanceof BabyPterodactyl){
+            if (!(target instanceof Pterodactyl || target instanceof BabyPterodactyl)){
                 if (actor instanceof Dinosaur) {
                     corpse = new Corpse(((Dinosaur) actor).getDinoType());
                 } else {
@@ -109,13 +114,13 @@ public class AttackAction extends Action {
                 setCorpse(corpse);
                 setCorpseLocation(map.locationOf(target));
                 map.locationOf(target).addItem(corpse);
+                result += System.lineSeparator() + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") is killed.";
             }
             Actions dropActions = new Actions();
             for (Item item : target.getInventory())
                 dropActions.add(item.getDropAction());
             for (Action drop : dropActions)
                 drop.execute(target, map);
-            result += System.lineSeparator() + target + " at (" + map.locationOf(target).x() + ", " + map.locationOf(target).y() + ") is killed.";
             map.removeActor(target);
         }
 
