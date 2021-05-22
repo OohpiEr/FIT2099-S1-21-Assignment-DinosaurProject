@@ -26,7 +26,7 @@ public class Pterodactyl extends AdultDino {
     private static final int MAX_HITPOINTS = 60;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 100;
-    private static final int THIRSTY_THRESHOLD = 50;
+    private static final int THIRSTY_THRESHOLD = 40;
     private static final String NAME = "Pterodactyl";
     private static final char DISPLAY_CHAR = 'P';
     private static final int MAX_PREGNANT_TICK = 10;

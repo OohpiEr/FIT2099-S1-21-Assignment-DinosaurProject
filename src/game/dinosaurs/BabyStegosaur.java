@@ -22,7 +22,7 @@ public class BabyStegosaur extends BabyDino {
     private static final int MAX_HITPOINTS = 100;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 100;
-    private static final int THIRSTY_THRESHOLD = 50;
+    private static final int THIRSTY_THRESHOLD = 40;
     private static final int STEGOSAUR_GROW_UP_TICK = 10;
     private static final String NAME = "Baby Stegosaur";
     private static final char DISPLAY_CHAR = 's';

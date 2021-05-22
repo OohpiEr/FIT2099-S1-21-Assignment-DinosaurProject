@@ -23,7 +23,7 @@ public class Brachiosaur extends AdultDino {
     private static final int MAX_HITPOINTS = 160;
     private static final int STARTING_WATER_LEVEL = 60;
     private static final int MAX_WATER_LEVEL = 200;
-    private static final int THIRSTY_THRESHOLD = 50;
+    private static final int THIRSTY_THRESHOLD = 40;
     private static final String NAME = "Brachiosaur";
     private static final char DISPLAY_CHAR = 'B';
     private static final int MAX_PREGNANT_TICK = 30;

@@ -104,6 +104,9 @@ public class Application {
         gameMap.at(15, 15).addActor(new Brachiosaur("Brachiosaur", true));
         gameMap.at(18, 18).addActor(new Brachiosaur("Brachiosaur", true));
 
+        gameMap.at(2, 1).addActor(new Pterodactyl("Pterodactyl", true));
+        gameMap.at(2, 2).addActor(new Pterodactyl("Pterodactyl", false));
+
         world.run();
     }
 }
