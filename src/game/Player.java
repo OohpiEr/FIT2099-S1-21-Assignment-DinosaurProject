@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
+import game.actions.QuitGameAction;
 
 /**
  * Class representing the Player.
@@ -27,6 +28,7 @@ public class Player extends Actor {
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		actions.add(new QuitGameAction());
 		// Handle multi-turn Actions
 		display.println("Eco Points: " + getEcoPoints());
 		if (lastAction.getNextAction() != null)
