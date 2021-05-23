@@ -65,8 +65,8 @@ public class Lake extends Ground {
             rainTimer--;
             if (rainTimer <= 0) {
                 rainTimer = DEFAULT_RAIN_TIMER;
-                if (Math.random() < 0.2) {
-                    rainfall = 0.1 + 0.5 * Math.random();
+                if (Math.random() <= 0.2) {
+                    rainfall = 0.1 + (0.5 * Math.random());
                 }
             }
         }
