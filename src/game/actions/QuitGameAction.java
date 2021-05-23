@@ -3,12 +3,12 @@ package game.actions;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.MainMenu;
+import game.Game;
 
 public class QuitGameAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
-        MainMenu.quitGame();
+        Game.quitGame();
         return null;
     }
 

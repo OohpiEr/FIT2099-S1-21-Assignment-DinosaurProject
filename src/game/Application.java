@@ -14,7 +14,11 @@ import game.items.Teleporter;
 public class Application {
 
     public static void main(String[] args) {
-        World world = new World(new Display());
+        Display display = new Display();
+        Game game = new Game(display);
+        game.showMainMenu();
+
+        World world = new World(display);
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new VendingMachine(), new Bush(), new Lake());
 
@@ -46,7 +50,7 @@ public class Application {
                 "................................................................................");
         GameMap gameMap = new GameMap(groundFactory, map);
         world.addGameMap(gameMap);
-
+        //TODO maybe change the map to be different - add lakes and stuff
         List<String> gameMapNorth = Arrays.asList(
                 "................................................................................",
                 "................................................................................",
