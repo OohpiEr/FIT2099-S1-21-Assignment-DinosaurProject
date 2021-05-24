@@ -24,7 +24,7 @@ public class Game {
     private Display display;
     private GameMode gameMode;
     private static final String TITLE =
-            "                               ,--.\n" +
+                    "                               ,--.\n" +
                     "                              `.`_.`\\\n" +
                     "                                   \\ \\\n" +
                     "               __                   \\ \\\n" +
@@ -97,6 +97,11 @@ public class Game {
         this.display = display;
     }
 
+    /**
+     * Returns game title
+     *
+     * @return Returns game title
+     */
     public static String getTITLE() {
         return TITLE;
     }
@@ -203,44 +208,51 @@ public class Game {
      * Sets up new world for the game and runs the game.
      */
     private void setUpWorld() {
+        //create and set new World
         setWorld(new World(display));
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new VendingMachine(), new Bush(), new Lake());
-        GameMap gameMap = new GameMap(groundFactory, MAIN_MAP);
-        GameMap mapNorth = new GameMap(groundFactory, NORTHERN_MAP);
-        world.addGameMap(gameMap);
-        world.addGameMap(mapNorth);
+        GameMap mainMap = new GameMap(groundFactory, MAIN_MAP);
+        GameMap northernMap = new GameMap(groundFactory, NORTHERN_MAP);
+        world.addGameMap(mainMap);
+        world.addGameMap(northernMap);
 
-        Location mapNorthDestination = mapNorth.at(Math.round(mapNorth.getXRange().max() / 2), mapNorth.getYRange().max());
-        for (int x : gameMap.getXRange()) {
-            Location currentLocation = gameMap.at(x, 0);
+        //add invisible teleporters to connect the 2 maps on mainMap
+        Location mapNorthDestination = northernMap.at(Math.round(northernMap.getXRange().max() / 2), northernMap.getYRange().max());
+        for (int x : mainMap.getXRange()) {
+            Location currentLocation = mainMap.at(x, 0);
             Teleporter invisibleTeleporter = new Teleporter("Main to Northern Game Map Teleporter", currentLocation,
                     mapNorthDestination, "to Northern Map!");
             currentLocation.addItem(invisibleTeleporter);
         }
-
-        Location mainMapDestination = gameMap.at(Math.round(gameMap.getXRange().max() / 2), 0);
-        for (int x : mapNorth.getXRange()) {
-            Location currentLocation = mapNorth.at(x, mapNorth.getYRange().max());
+        //add invisible teleporters to connect the 2 maps on northernMap
+        Location mainMapDestination = mainMap.at(Math.round(mainMap.getXRange().max() / 2), 0);
+        for (int x : northernMap.getXRange()) {
+            Location currentLocation = northernMap.at(x, northernMap.getYRange().max());
             Teleporter invisibleTeleporter = new Teleporter("Northern Game Map to Main Teleporter", currentLocation,
                     mainMapDestination, "to Main Map");
             currentLocation.addItem(invisibleTeleporter);
         }
 
+        //add a new player
         Player player = new Player("Player", '@', 100, this);
         Player.resetEcoPoints();
-        world.addPlayer(player, gameMap.at(1, 1));
+        world.addPlayer(player, mainMap.at(1, 1));
 
-        gameMap.at(10, 10).addActor(new Stegosaur("Stegosaur", true));
-        gameMap.at(20, 19).addActor(new Stegosaur("Stegosaur", false));
+        //adds 1 male and 1 female stegosaur
+        mainMap.at(10, 10).addActor(new Stegosaur("Stegosaur", true));
+        mainMap.at(20, 19).addActor(new Stegosaur("Stegosaur", false));
 
-        gameMap.at(21, 19).addActor(new Brachiosaur("Brachiosaur", false));
-        gameMap.at(11, 11).addActor(new Brachiosaur("Brachiosaur", false));
-        gameMap.at(15, 14).addActor(new Brachiosaur("Brachiosaur", true));
-        gameMap.at(18, 18).addActor(new Brachiosaur("Brachiosaur", true));
+        //add 2 male and 2 female Brachiosaurs
+        mainMap.at(21, 19).addActor(new Brachiosaur("Brachiosaur", false));
+        mainMap.at(11, 11).addActor(new Brachiosaur("Brachiosaur", false));
+        mainMap.at(15, 14).addActor(new Brachiosaur("Brachiosaur", true));
+        mainMap.at(18, 18).addActor(new Brachiosaur("Brachiosaur", true));
 
-        gameMap.at(70, 23).addActor(new Pterodactyl("Pterodactyl", true));
-        gameMap.at(70, 24).addActor(new Pterodactyl("Pterodactyl", false));
+        //add 1 male and 1 female Pterodactyl
+        mainMap.at(70, 23).addActor(new Pterodactyl("Pterodactyl", true));
+        mainMap.at(70, 24).addActor(new Pterodactyl("Pterodactyl", false));
 
+        //runs the game
         world.run();
     }
 
@@ -312,7 +324,7 @@ public class Game {
                 boolean flag = false;
 
                 display.println("\nGAME MODE CHALLENGE");
-                do  {
+                do {
                     display.println("Number of moves:");
                     if (scanner.hasNextInt()) {
                         maxMoves = scanner.nextInt();
@@ -331,7 +343,7 @@ public class Game {
                         continue;
                     }
                     flag = true;
-                }while (!flag);
+                } while (!flag);
 
                 game.setMovesLeft(maxMoves);
                 game.setEcoPointsToWin(ecoPointsToWin);
@@ -371,6 +383,7 @@ public class Game {
 
         /**
          * Returns the text of the enum constant
+         *
          * @return Returns the text of the enum constant
          */
         @Override
