@@ -24,7 +24,7 @@ public class Game {
     private Display display;
     private GameMode gameMode;
     private static final String TITLE =
-                    "                               ,--.\n" +
+            "                               ,--.\n" +
                     "                              `.`_.`\\\n" +
                     "                                   \\ \\\n" +
                     "               __                   \\ \\\n" +
@@ -305,14 +305,29 @@ public class Game {
             void showOptions(Display display, Game game) {
                 Scanner scanner = new Scanner(System.in);
                 int maxMoves = 0, ecoPointsToWin = 0;
+                boolean flag = false;
 
-                display.println("GAME MODE CHALLENGE");
-                do {
+                display.println("\nGAME MODE CHALLENGE");
+                do  {
                     display.println("Number of moves:");
-                    maxMoves = scanner.nextInt();
+                    if (scanner.hasNextInt()) {
+                        maxMoves = scanner.nextInt();
+                    } else {
+                        display.println("Number must be an Integer");
+                        scanner.next();
+                        continue;
+                    }
+
                     display.println("Number of Eco Points:");
-                    ecoPointsToWin = scanner.nextInt();
-                } while (maxMoves <= 0 && ecoPointsToWin <= 0);
+                    if (scanner.hasNextInt()) {
+                        ecoPointsToWin = scanner.nextInt();
+                    } else {
+                        display.println("Number must be an Integer");
+                        scanner.next();
+                        continue;
+                    }
+                    flag = true;
+                }while (!flag);
 
                 game.setMovesLeft(maxMoves);
                 game.setEcoPointsToWin(ecoPointsToWin);
