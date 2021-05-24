@@ -14,7 +14,6 @@ import game.grounds.Lake;
  */
 public class Player extends Actor {
     private static int ecoPoints = 0;
-    private int numberOfMoves;
     private Game game;
     private Menu menu = new Menu();
 
@@ -31,24 +30,27 @@ public class Player extends Actor {
         this.game = game;
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to be performed
+     */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        actions.add(new QuitGameAction(game));
-        game.tick(numberOfMoves, ecoPoints);
-        display.println(String.format("Eco Points: %d, Number of Moves: %d", getEcoPoints(), getNumberOfMoves()));
-        numberOfMoves += 1;
+        actions.add(new QuitGameAction(game, display));
+        game.tick(ecoPoints);
+        display.println(String.format("Eco Points: %d", getEcoPoints()));
         // Handle multi-turn Actions
-        display.println("Eco Points: " + getEcoPoints());
         if (Lake.getRainfall() != 0) {
             display.println("It's raining!");
         }
         if (lastAction.getNextAction() != null)
             return lastAction.getNextAction();
         return menu.showMenu(this, actions, display);
-    }
-
-    public int getNumberOfMoves() {
-        return numberOfMoves;
     }
 
     /**
@@ -91,5 +93,12 @@ public class Player extends Actor {
         if (ecoPoints >= 0) {
             Player.ecoPoints -= ecoPoints;
         }
+    }
+
+    /**
+     * Resets Eco Points to 0
+     */
+    public static void resetEcoPoints(){
+        ecoPoints = 0;
     }
 }
