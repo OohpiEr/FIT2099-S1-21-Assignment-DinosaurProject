@@ -101,14 +101,16 @@ public class AttackBehaviour implements Behaviour {
     private boolean isAttackable(Actor target) {
         boolean attackable = true;
 
+        if(target instanceof BabyPterodactyl){
+            return !((BabyPterodactyl) target).isFlying();
+        } else if (target instanceof Pterodactyl){
+            return !((Pterodactyl) target).isFlying();
+        }
+
         for (Actor unattackableActor : unattackableActors.keySet()) {
             if (target == unattackableActor) {
                 attackable = false;
                 break;
-            } else if (target instanceof BabyPterodactyl){
-                attackable = !((BabyPterodactyl) target).isFlying();
-            } else if (target instanceof Pterodactyl){
-                attackable = !((Pterodactyl) target).isFlying();
             }
         }
 

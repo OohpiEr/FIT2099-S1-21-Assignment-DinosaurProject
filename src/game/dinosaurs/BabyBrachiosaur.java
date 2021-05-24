@@ -67,7 +67,7 @@ public class BabyBrachiosaur extends BabyDino {
     @Override
     public void eat(Item food, int quantity) {
         final int FRUIT_HEAL = 5;
-        final int VEGETARIAN_MEAL_KIT_HEAL = maxHitpoints;
+        final int VEGETARIAN_MEAL_KIT_HEAL = maxHitPoints;
         if (food.getClass() == Fruit.class) {
             for (int i = 0; i < quantity; i++) {
                 heal(FRUIT_HEAL);

@@ -81,7 +81,7 @@ public class Allosaur extends AdultDino {
         final int ALLOSAUR_CORPSE_HEAL = 50;
         final int STEGOSAUR_CORPSE_HEAL = 50;
         final int BRACHIOSAUR_CORPSE_HEAL = this.maxHitPoints;
-        final int CARNIVORE_MEAL_KIT_HEAL = maxHitpoints;
+        final int CARNIVORE_MEAL_KIT_HEAL = maxHitPoints;
         final int EGG_HEAL = 10;
         if (food.getClass() == Corpse.class) {
             for (int i = 0; i < quantity; i++) {
@@ -117,13 +117,18 @@ public class Allosaur extends AdultDino {
         return new IntrinsicWeapon(20, "bites a chunk off");
     }
 
-    private boolean isStegosaurInExits(GameMap map) {
+    /**
+     * Check if there are any targets in the dinosaur's exits
+     * @param map   The map the dinosaur is in
+     * @return  True if there are any targets in the dinosaur's exits, False otherwise
+     */
+    private boolean isTargetInExits(GameMap map) {
         Location here = map.locationOf(this);
 
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
             if (destination.containsAnActor() &&
-                    (destination.getActor() instanceof Stegosaur || destination.getActor() instanceof BabyStegosaur)) {
+                    (destination.getActor() instanceof Stegosaur || destination.getActor() instanceof BabyStegosaur || (destination.getActor() instanceof Pterodactyl || destination.getActor() instanceof BabyPterodactyl))) {
                 return true;
             }
         }
@@ -141,7 +146,7 @@ public class Allosaur extends AdultDino {
     protected Action determineBehaviour(GameMap map) {
         Action action = null;
 
-        if (isStegosaurInExits(map)) {
+        if (isTargetInExits(map)) {
             //attack behaviour
             action = getBehaviourAction(AttackBehaviour.class, map);
         } else if (hitPoints >= 90 && hitPoints <= 100) {

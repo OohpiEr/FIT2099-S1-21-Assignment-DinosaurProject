@@ -50,14 +50,13 @@ public class HornyBehaviour implements Behaviour {
                         return goToNearestTree((Pterodactyl) dino, map);
                     } else {
                         if (isTargetInExit(target, dino, map)) {
-                            if (map.locationOf(dino).getGround() instanceof Tree){
+                            if (map.locationOf(dino).getGround() instanceof Tree && map.locationOf(target).getGround() instanceof Tree){
                                 returnAction = new BreedAction(target);
                             } else {
                                 return goToNearestTree((Pterodactyl) dino, map);
                             }
                         } else {
-                            followBehaviour = new FollowBehaviour(target);
-                            returnAction = followBehaviour.getAction(dino, map);
+                            return goToNearestTree((Pterodactyl) dino, map);
                         }
                     }
                 } else {
@@ -188,10 +187,12 @@ public class HornyBehaviour implements Behaviour {
                     }
                 }
             }
-            for (Exit exit : here.getExits()) {
-                Location there = exit.getDestination();
-                if (there.canActorEnter(actor) && Util.distance(there, closestTree) < Util.distance(here, closestTree)) {
-                    return new MoveActorAction(there, exit.getName());
+            if (closestTree!=null){
+                for (Exit exit : here.getExits()) {
+                    Location there = exit.getDestination();
+                    if (there.canActorEnter(actor) && Util.distance(there, closestTree) < Util.distance(here, closestTree)) {
+                        return new MoveActorAction(there, exit.getName());
+                    }
                 }
             }
         }

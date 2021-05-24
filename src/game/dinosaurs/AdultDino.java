@@ -145,6 +145,7 @@ public abstract class AdultDino extends Dinosaur {
                 case STEGOSAUR -> egg = new Egg(DinosaurEnumType.STEGOSAUR);
                 case BRANCHIOSAUR -> egg = new Egg(DinosaurEnumType.BRANCHIOSAUR);
                 case ALLOSAUR -> egg = new Egg(DinosaurEnumType.ALLOSAUR);
+                case PTERODACTYL -> egg = new Egg(DinosaurEnumType.PTERODACTYL);
             }
 
             if (egg != null) {

@@ -37,6 +37,10 @@ public class Player extends Actor {
 		display.println(String.format("Eco Points: %d, Number of Moves: %d",  getEcoPoints(), getNumberOfMoves()));
 		numberOfMoves += 1;
 		// Handle multi-turn Actions
+		display.println("Eco Points: " + getEcoPoints());
+		if (Lake.getRainfall()!=0){
+			display.println("It's raining!");
+		}
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);
