@@ -6,9 +6,16 @@ import edu.monash.fit2099.engine.GameMap;
 import game.Game;
 
 public class QuitGameAction extends Action {
+
+    private Game game;
+
+    public QuitGameAction(Game game) {
+        this.game = game;
+    }
+
     @Override
     public String execute(Actor actor, GameMap map) {
-        Game.quitGame();
+        game.showGameOptions();
         return null;
     }
 

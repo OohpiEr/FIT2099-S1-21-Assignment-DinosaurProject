@@ -19,7 +19,6 @@ public class Application {
         game.showMainMenu();
 
         World world = new World(display);
-
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree(), new VendingMachine(), new Bush(), new Lake());
 
         List<String> map = Arrays.asList(
@@ -84,7 +83,7 @@ public class Application {
         for (int x : gameMap.getXRange()) {
             Location currentLocation = gameMap.at(x, 0);
             Teleporter invisibleTeleporter = new Teleporter("Main to Northern Game Map Teleporter", currentLocation,
-                    mapNorthDestination, "further North!");
+                    mapNorthDestination, "Northern Map!");
             currentLocation.addItem(invisibleTeleporter);
         }
 
@@ -92,11 +91,11 @@ public class Application {
         for (int x : mapNorth.getXRange()) {
             Location currentLocation = mapNorth.at(x, mapNorth.getYRange().max());
             Teleporter invisibleTeleporter = new Teleporter("Northern Game Map to Main Teleporter", currentLocation,
-                    mainMapDestination, "further South!");
+                    mainMapDestination, "Main Map");
             currentLocation.addItem(invisibleTeleporter);
         }
 
-        Actor player = new Player("Player", '@', 100);
+        Actor player = new Player("Player", '@', 100, game);
         world.addPlayer(player, gameMap.at(1, 1));
 
         // Place a pair of stegosaurs in the middle of the map

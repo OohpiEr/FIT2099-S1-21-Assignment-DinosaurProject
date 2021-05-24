@@ -13,6 +13,8 @@ import game.actions.QuitGameAction;
  */
 public class Player extends Actor {
 	private static int ecoPoints = 0;
+	private int numberOfMoves;
+	private Game game;
 	private Menu menu = new Menu();
 
 	/**
@@ -21,19 +23,27 @@ public class Player extends Actor {
 	 * @param name        Name to call the player in the UI
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
+	 * @param game		  Current game
 	 */
-	public Player(String name, char displayChar, int hitPoints) {
+	public Player(String name, char displayChar, int hitPoints, Game game) {
 		super(name, displayChar, hitPoints);
+		this.game = game;
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		actions.add(new QuitGameAction());
+		actions.add(new QuitGameAction(game));
+		game.tick(numberOfMoves, ecoPoints);
+		display.println(String.format("Eco Points: %d, Number of Moves: %d",  getEcoPoints(), getNumberOfMoves()));
+		numberOfMoves += 1;
 		// Handle multi-turn Actions
-		display.println("Eco Points: " + getEcoPoints());
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);
+	}
+
+	public int getNumberOfMoves() {
+		return numberOfMoves;
 	}
 
 	/**
