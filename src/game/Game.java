@@ -236,7 +236,7 @@ public class Game {
         //add a new player
         Player player = new Player("Player", '@', 100, this);
         Player.resetEcoPoints();
-        world.addPlayer(player, mainMap.at(1, 1));
+        world.addPlayer(player, mainMap.at(9, 4));
 
         //adds 1 male and 1 female stegosaur
         mainMap.at(10, 10).addActor(new Stegosaur("Stegosaur", true));
