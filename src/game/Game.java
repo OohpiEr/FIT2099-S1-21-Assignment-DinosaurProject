@@ -172,24 +172,28 @@ public class Game {
      * Prints out Game Options on the I/O
      */
     public void showGameOptions() {
-        HashMap<Character, GameMode> keyToGameModeMap = new HashMap<Character, GameMode>();
+        HashMap<Character, Object> keyToOptionsMap = new HashMap<Character, Object>();
+        final String QUIT = "QUIT";
 
         int i = 1;
         for (GameMode gameMode : GameMode.values()) {
-            keyToGameModeMap.put(Integer.toString(i).charAt(0), gameMode);
+            keyToOptionsMap.put(Integer.toString(i).charAt(0), gameMode);
             display.println(i + ": " + gameMode.toString());
             i++;
         }
+        keyToOptionsMap.put(Integer.toString(i).charAt(0), QUIT);
+        display.println(i + ": Quit Game");
+
 
         char key;
         do {
             key = display.readChar();
-        } while (!keyToGameModeMap.containsKey(key));
+        } while (!keyToOptionsMap.containsKey(key));
 
-        if (keyToGameModeMap.get(key) == GameMode.QUIT) {
+        if (keyToOptionsMap.get(key) == QUIT) {
             quitGame();
         } else {
-            setGameMode(keyToGameModeMap.get(key));
+            setGameMode((GameMode) keyToOptionsMap.get(key));
             gameMode.showOptions(display, this);
             setUpWorld();
         }
@@ -341,16 +345,7 @@ public class Game {
             @Override
             void showOptions(Display display, Game game) {
             }
-        },
-        /**
-         * Quit the game
-         */
-        QUIT("Quit Game") {
-            @Override
-            void showOptions(Display display, Game game) {
-            }
         };
-
 
         /**
          * text description of game modes
@@ -374,6 +369,10 @@ public class Game {
          */
         abstract void showOptions(Display display, Game game);
 
+        /**
+         * Returns the text of the enum constant
+         * @return Returns the text of the enum constant
+         */
         @Override
         public String toString() {
             return this.text;
