@@ -81,7 +81,7 @@ public class Stegosaur extends AdultDino {
     }
 
     /**
-     * determines the highest priority behaviour based on probability
+     * determines the highest priority behaviour based on dinosaur condition
      *
      * @param map gamemap the actor is on
      * @return action to be performed this playturn
