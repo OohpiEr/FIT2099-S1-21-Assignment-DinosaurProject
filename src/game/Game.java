@@ -286,7 +286,7 @@ public class Game {
      */
     private void showWinMessage() {
         display.println(TITLE);
-        display.println("YOU WIN THE CHALLENGE\n\nPlay Again?");
+        display.println("YOU WIN THE GAME\n\nPlay Again?");
         showGameOptions();
     }
 
